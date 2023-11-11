@@ -26,15 +26,6 @@ import React, { useState } from 'react';
 
 export default function RegisterForm(){
 
-
-  const goToLoginForm = () => {
-    // Use history.push to navigate to the LoginForm component
-    history.push('/login');
-  };
-
-
-
-
   return(
     <>
 {/* Section: Design Block */}
@@ -107,7 +98,7 @@ export default function RegisterForm(){
 
                 {/* GO TO LOGIN FORM BUTTON */}
                 <div className="text-center">
-                  <a className="link mt-4" href="/login" onClick={goToLoginForm}>
+                  <a className="link mt-4" href="/LoginForm" >
                     Login
                   </a>
                 </div>

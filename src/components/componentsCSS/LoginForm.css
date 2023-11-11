@@ -1,69 +1,258 @@
 
 
+/*  This is the main white rounded background for the form  */
+.main_Login_Div{
+  display: inline-block;
+  background: #FFFFFF;
+  width: 434px;
+  height: 700px;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 
-h4{
-  font-family: 'Segoe UI', bold;
-  font-size: 35px;
+
+  -webkit-animation: scale-up-center 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: scale-up-center 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+
+
+
+/*  This is the title text that says Login  */
+.login_Header{
+  font-family: 'Poppins', sans-serif;
+  /*   font-family: 'Nunito', sans-serif; */
+  font-size: 50px;
   margin-top: 4rem;
   margin-bottom: 2rem;
 }
 
-form{
+
+/*  This is the form that the inputs are inside of  */
+.login_Form{
   display: inline-block;
   align-items: center;
   height: 270px;
   width: 350px;
-  margin-bottom: 170px;
+  margin-bottom: 130px;
 }
 
-.text_area{
+
+/*  Actual text user enters  */
+.login_Inputs{
+  margin-top: 1rem;
+  font-family: 'Segoe UI', bold;
+  font-size: 23px;
+  border: none;
+  /* background-color: black; */
+  color: #B58DED;
+
+  /* Padding of the text from the left wall */
+  padding-left: 20px;
+
+
+  /* Below makes the rounded pill like object*/
   align-content: center;
   border-radius: 22px;
+
+  /* Space between each text box */
   margin-bottom: 35px;
+
+
   width: 100%;
   height: 64px;
+
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.text_input{
-  margin-top: 1.2rem;
-  font-family: 'Montserrat regular';
-  font-size: 20px;
-  border: none;
-  background-color: black;
-  width: 80%;
+/* WHEN A USER AUTO COMPLETES THE EMAIL OR PASSWORD MAKE TEXT COLOR SAME AS MY FOCUS AND MAKE THE BACKGROUND TRANSPARENT INSTEAD OF GRAY*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 600000s 0s, color 600000s 0s;
 }
 
-.btn{
-  margin-top: 28px;
+
+/* When user is inside of the textbox */
+.login_Inputs:focus {
+  color: #FFFFFF;
+  background: #d1b0ff;
+
+  outline: none;
+  -webkit-animation: jello-textboxs 0.9s both;
+	        animation: jello-textboxs 0.9s both;
+}
+@-webkit-keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+
+
+/*  Big Login Button that user clicks to go to home page  */
+.login_Button {
+  margin-top: 30px;
   width: 165px;
   height: 60px;
   border-radius: 30px;
   background: #B58DED;
   border: none;
-  font-family: 'Montserrat';
+  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Montserrat'; */
   font-size: 20px;
   color: #FFFFFF;
   box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
-  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
 }
 
-.login{
-  display: inline-block;
-  background: #FFFFFF;
-  width: 434px;
-  height: 700px;
-  margin-top: 10%;
-  border-radius: 22px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.login_Button:hover, .login_Button:focus {
+  -webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
 }
 
-.link{
+
+
+
+/*    */
+.register_Link{
+  margin-top: 2rem;
   color: #0E4579;
   font-family: 'Montserrat light';
   font-size: 18px;
-  cursor: pointer;
   display: block;
   text-decoration: none;
 }

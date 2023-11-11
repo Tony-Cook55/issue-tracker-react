@@ -15,14 +15,12 @@ import "bootstrap/dist/js/bootstrap.min.js"
 
 
 import React, { useState } from 'react';
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // CSS
 import './componentsCSS/LoginForm.css'
 
 
-// 
-import { useNavigate } from 'react-router-dom';
+
 
 
 // ******************* IMPORTS ******************* //
@@ -45,12 +43,13 @@ export default function LoginForm() {
 
 
 
+  
   const handleLogin = (e) => {
     e.preventDefault();
     // Check if entered credentials are correct
     if (formData.email === "admin@example.com" && formData.password === "password") {
-      // Call the login success event handler (you can replace this with your logic)
-      history.push('/home');
+
+
       console.log("LOGIN SUCCESSFUL")
     } else {
       console.log("INVALID LOGIN")
@@ -59,23 +58,20 @@ export default function LoginForm() {
 
 
 
-  const NavigateToRegister = () => {
-    // Use history.push to navigate to the RegisterForm component
-    history.push('/register');
-  };
+
 
 
 
 
   return (
     <>
-      <div className="login">
-        <h4>Login</h4>
-        <form onSubmit={handleLogin}>
+      <div className="main_Login_Div">
+        <h4 className="login_Header">Login</h4>
+        <form className="login_Form" onSubmit={handleLogin}>
 
           {/* EMAIL INPUT */}
-          <div className="text_area">
-            <input type="email" id="email" name="email" placeholder="Email" className="text_input" 
+          <div className="login_Inputs_Div">
+            <input type="email" id="email" name="email" placeholder="Email" className="login_Inputs" 
               value={formData.email}
               onChange={handleInputChange}
             />
@@ -83,8 +79,8 @@ export default function LoginForm() {
           {/* EMAIL INPUT */}
 
           {/* PASSWORD INPUT */}
-          <div className="text_area">
-            <input type="password" id="password" name="password" placeholder="Password" className="text_input"
+          <div className="login_Inputs_Div">
+            <input type="password" id="password" name="password" placeholder="Password" className="login_Inputs"
               value={formData.password}
               onChange={handleInputChange}
             />
@@ -92,14 +88,17 @@ export default function LoginForm() {
           {/* PASSWORD INPUT */}
 
           {/* LOGIN BUTTON */}
-          <button type="submit" className="btn" onClick={handleLogin}>LOGIN</button>
+          <button type="submit" className="login_Button" onClick={handleLogin}>
+            LOGIN
+            </button>
           {/* LOGIN BUTTON */}
 
         </form>
 
         {/* SIGN UP BUTTON */}
-        <a className="link" href="/register" onClick={NavigateToRegister}>
-          Sign Up
+        <a className="register_Link" href="/register" >
+          
+          Don't Have An Account? <br /> Sign Up Here!
         </a>
         {/* SIGN UP BUTTON */} 
 
