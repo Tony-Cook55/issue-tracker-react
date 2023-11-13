@@ -36,6 +36,23 @@
 
 
 
+/* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
+
+/* This is the single highlighted word in the main header*/
+.highlighted_header{
+  color: #d1b0ff;
+}
+
+
+/* The smaller text under the big header */
+.under_header_text{
+  font-size: 20px;
+  color: black;
+}
+
+/* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
+
+
 
 
 
@@ -43,20 +60,227 @@
 /* ccccccccccccccccccccc CARD ccccccccccccccccccccc */
 
 
-/* Holder For the form inputs */
+/* Holder For the form inputs THE OUTER MOST PART */
 .card{
   background-color: rgb(255, 255, 255);
-  border: 3px solid black;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* This is the text text box's in the card */
 .card input{
-  border: 1px solid blue;
+  margin-top: 1rem;
+  font-family: 'Segoe UI', bold;
+  font-size: 23px;
+  border: none;
+  background-color: #3b3b3b;
+
+  color: #B58DED;
+
+  /* Padding of the text from the left wall */
+  padding-left: 20px;
+
+
+  /* Below makes the rounded pill like object*/
+  align-content: center;
+  border-radius: 22px;
+
+  /* Space between each text box */
+  margin-bottom: 10px;
+
+
+  width: 100%;
+  height: 64px;
+
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* This is the text under text box's*/
-label{
+
+
+
+
+/* The text under the input box's */
+.under_input_placeholder{
   color: black;
+  font-family: 'Segoe UI', bold;
+  font-size: 20px;
+}
+
+
+
+/* WHEN A USER AUTO COMPLETES THE FIELDS MAKE TEXT COLOR SAME AS MY FOCUS AND MAKE THE BACKGROUND TRANSPARENT INSTEAD OF GRAY*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+
+/* When user is inside of the textbox */
+.register_inputs:focus {
+  color: #FFFFFF;
+  background: #d1b0ff;
+
+  outline: none;
+  -webkit-animation: jello-textboxs 0.9s both;
+	        animation: jello-textboxs 0.9s both;
+}
+@-webkit-keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
 }
 
 /* ccccccccccccccccccccc CARD ccccccccccccccccccccc */
+
+
+
+
+
+
+
+
+
+
+
+/* This is the button that user clicks to register the account */
+.register_button{
+  margin-top: 30px;
+  width: 165px;
+  height: 60px;
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Montserrat'; */
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
+}
+
+.register_button:hover, .register_button:focus {
+  -webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+/* This is the same css as the button of the Register Button on the login Page */
+.login_Link{
+  margin-top: 2rem;
+  color: #0E4579;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  display: block;
+  text-decoration: none;
+}

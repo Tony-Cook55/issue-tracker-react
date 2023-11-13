@@ -28,10 +28,17 @@ import './componentsCSS/LoginForm.css'
 
 
 export default function LoginForm() {
+
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(true);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +46,9 @@ export default function LoginForm() {
       ...prevData,
       [name]: value,
     }));
+    // Reset validation state on input change
+    setEmailValid(true);
+    setPasswordValid(true);
   };
 
 
@@ -46,16 +56,23 @@ export default function LoginForm() {
   
   const handleLogin = (e) => {
     e.preventDefault();
+
     // Check if entered credentials are correct
     if (formData.email === "admin@example.com" && formData.password === "password") {
-
-
-      console.log("LOGIN SUCCESSFUL")
+      // TAKES YOU TO THE HOME PAGE ON SUCCESSFUL LOGIN
+      window.location.href = '/'; // Navigate to the home page
+      console.log("LOGIN SUCCESSFUL");
     } else {
-      console.log("INVALID LOGIN")
+      // Handle invalid login
+      if (formData.email !== "admin@example.com") {
+        setEmailValid(false);
+      }
+      if (formData.password !== "password") {
+        setPasswordValid(false);
+      }
+      console.log("INVALID LOGIN");
     }
   };
-
 
 
 
@@ -69,21 +86,34 @@ export default function LoginForm() {
         <h4 className="login_Header">Login</h4>
         <form className="login_Form" onSubmit={handleLogin}>
 
+
           {/* EMAIL INPUT */}
           <div className="login_Inputs_Div">
-            <input type="email" id="email" name="email" placeholder="Email" className="login_Inputs" 
+            <input type="email" id="email" name="email" placeholder="Email" 
+              className="login_Inputs " 
+              required
               value={formData.email}
               onChange={handleInputChange}
             />
+
+            {/* This is the Error message that appears after an unsuccessful input*/}
+            {!emailValid && <span className="error_message">Email Is Invalid</span>}
           </div>
           {/* EMAIL INPUT */}
 
+
+
           {/* PASSWORD INPUT */}
           <div className="login_Inputs_Div">
-            <input type="password" id="password" name="password" placeholder="Password" className="login_Inputs"
+            <input type="password" id="password" name="password" placeholder="Password" 
+              className="login_Inputs ${!passwordValid && 'invalid'}"
+              required
               value={formData.password}
               onChange={handleInputChange}
             />
+
+            {/* This is the Error message that appears after an unsuccessful input*/}
+            {!passwordValid && <span className="error_message">Password Is Invalid</span>}
           </div>
           {/* PASSWORD INPUT */}
 
@@ -96,7 +126,7 @@ export default function LoginForm() {
         </form>
 
         {/* SIGN UP BUTTON */}
-        <a className="register_Link" href="/register" >
+        <a className="register_Link" href="/register">
           
           Don't Have An Account? <br /> Sign Up Here!
         </a>

@@ -26,6 +26,13 @@ import React, { useState } from 'react';
 
 export default function RegisterForm(){
 
+
+
+
+
+
+
+
   return(
     <>
 {/* Section: Design Block */}
@@ -37,10 +44,10 @@ export default function RegisterForm(){
         <div className="col-lg-6 mb-5 mb-lg-0">
           <h1 className="my-5 display-3 fw-bold">
             Register To Report Your Very Own 
-            <span className="text-primary"> Bugs</span>
+            <span className="highlighted_header"> Bugs</span>
           </h1>
-          <p >
-            Register with your Email, Password, Full, Given, and Family name. 
+          <p className="under_header_text">
+            Create an account and be able to Create your very own bugs. Explore what others have to say and view their bugs. 
           </p>
         </div>
 
@@ -53,8 +60,8 @@ export default function RegisterForm(){
 
                 {/* Full Name */}
                 <div className="form-outline mb-4">
-                  <input type="text" id="fullName" className="form-control" required/>
-                  <label className="form-label" htmlFor="fullName">Full Name</label>
+                  <input type="text" id="fullName" className="register_inputs" required/>
+                  <label className="under_input_placeholder" htmlFor="fullName">Full Name</label>
                 </div>
 
 
@@ -62,14 +69,14 @@ export default function RegisterForm(){
                 <div className="row">
                   <div className="col-md-6 mb-6">
                     <div className="form-outline">
-                      <input type="text" id="givenName" className="form-control" />
-                      <label className="form-label" htmlFor="givenName">Given name</label>
+                      <input type="text" id="givenName" className="register_inputs" />
+                      <label className="under_input_placeholder" htmlFor="givenName">Given name</label>
                     </div>
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input type="text" id="familyName" className="form-control" />
-                      <label className="form-label" htmlFor="familyName">Family name</label>
+                      <input type="text" id="familyName" className="register_inputs" />
+                      <label className="under_input_placeholder" htmlFor="familyName">Family name</label>
                     </div>
                   </div>
                 </div>
@@ -77,28 +84,28 @@ export default function RegisterForm(){
 
                 {/* Email input --> */}
                 <div className="form-outline mb-4">
-                  <input type="email" id="email" className="form-control" />
-                  <label className="form-label" htmlFor="email">Email address</label>
+                  <input type="email" id="email" className="register_inputs" />
+                  <label className="under_input_placeholder" htmlFor="email">Email address</label>
                 </div>
 
 
                 {/* Password input --> */}
                 <div className="form-outline mb-4">
-                  <input type="password" id="password" className="form-control" />
-                  <label className="form-label" htmlFor="password">Password</label>
+                  <input type="password" id="password" className="register_inputs" />
+                  <label className="under_input_placeholder" htmlFor="password">Password</label>
                 </div>
 
 
                 {/* Submit button --> */}
                 <div className="text-center">
-                  <button type="submit" className="btn btn-primary btn-block mb-5 ">
+                  <button type="submit" className="register_button ">
                     Register
                   </button>
                 </div>
 
                 {/* GO TO LOGIN FORM BUTTON */}
                 <div className="text-center">
-                  <a className="link mt-4" href="/LoginForm" >
+                  <a className="login_Link" href="/login" >
                     Login
                   </a>
                 </div>

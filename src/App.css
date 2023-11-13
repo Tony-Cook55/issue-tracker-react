@@ -6,11 +6,13 @@
 }
 
 
+html {
+  box-sizing: border-box;
+}
 
 
 body{
-  background: linear-gradient(135deg, #1B8AF1, #B58DED);
-
+  background: linear-gradient(150deg, #d1b0ff ,#1B8AF1, #B58DED);
   text-align: center;
 }
 

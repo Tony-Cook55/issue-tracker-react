@@ -11,8 +11,8 @@
 
 
 
-  -webkit-animation: scale-up-center 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: scale-up-center 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 @-webkit-keyframes scale-up-center {
@@ -66,7 +66,7 @@
   font-family: 'Segoe UI', bold;
   font-size: 23px;
   border: none;
-  /* background-color: black; */
+
   color: #B58DED;
 
   /* Padding of the text from the left wall */
@@ -78,7 +78,7 @@
   border-radius: 22px;
 
   /* Space between each text box */
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 
 
   width: 100%;
@@ -159,6 +159,11 @@ input:-webkit-autofill:focus {
 
 
 
+/* This is the span message that appears underneath the inputs when the info is incorrect */
+.error_message{
+  color: #dc1717;
+  font-weight: bold;
+}
 
 
 
@@ -251,7 +256,7 @@ input:-webkit-autofill:focus {
 .register_Link{
   margin-top: 2rem;
   color: #0E4579;
-  font-family: 'Montserrat light';
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   display: block;
   text-decoration: none;

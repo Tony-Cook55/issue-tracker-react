@@ -13,14 +13,19 @@ export default function HomePage(){
 
 
 
-  const handleLoginClick = () => {
-    window.location.href = '/LoginForm'; // Navigate to the login page
-    console.log("Login Form");
+  const goToLoginPage = () => {
+    window.location.href = '/login'; // Navigate to the login page
+    console.log("Login Form Hit");
   };
 
-  const handleRegisterClick = () => {
-    window.location.href = '/RegisterForm'; // Navigate to the register page
-    console.log("Register Form");
+  const goToRegisterPage = () => {
+    window.location.href = '/register'; // Navigate to the register page
+    console.log("Register Form Hit");
+  };
+
+  const goToBugItem = () => {
+    window.location.href = '/bugItem'; // Navigate to the register page
+    console.log("Register Form Hit");
   };
 
 
@@ -30,11 +35,15 @@ export default function HomePage(){
     <>
       <div>
       <h1>Welcome to the Home Page</h1>
-        <button type="button" onClick={handleLoginClick}>
+        <button type="button" onClick={goToLoginPage} className='m-5'>
           Log In
         </button>
-        <button type="button" onClick={handleRegisterClick}>
+        <button type="button" onClick={goToRegisterPage} className='m-5'>
           Sign Up
+        </button>
+
+        <button type="button" onClick={goToBugItem} className='m-5'>
+          1 Bug Item
         </button>
       </div>
     </>

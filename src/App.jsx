@@ -7,7 +7,7 @@
   5. npm i lodash
   6. npm i axios
   7. npm i react-icons  
-  8. npm install @fontsource/poppins    // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;
+  8. npm install @fontsource/poppins    https://fontsource.org/ // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;
 
 
 
@@ -37,15 +37,21 @@ import React from 'react';
 // COMPONENTS //
 //import LoginForm from  "./components/LoginForm";
 
-import RegisterForm from './components/RegisterForm';
-import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import BugListItem from './components/Bugs/BugListItem';
 // COMPONENTS //
 
 
 // FONTS //
-import '@fontsource/poppins';
+import '@fontsource/poppins';  //   font-family: 'Poppins', sans-serif;
+import '@fontsource/paytone-one';  //   font-family: 'Paytone One', sans-serif;
 // FONTS //
+
+
+/* LINKING TO OTHER PAGES */
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 // ******************* IMPORTS ******************* //
@@ -65,7 +71,15 @@ function App() {
   return (
     <div>
 
-        <LoginForm />
+        <BrowserRouter>
+          <Routes path='/'>
+              {/* App will always go to the home page due to the / */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="login" element={<LoginForm />} />
+              <Route path="register" element={<RegisterForm />} />
+              <Route path="bugItem" element={<BugListItem />} />
+          </Routes>
+        </BrowserRouter>
 
     </div>
   );
