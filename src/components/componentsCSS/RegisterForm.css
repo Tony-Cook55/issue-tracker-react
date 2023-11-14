@@ -38,16 +38,24 @@
 
 /* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
 
+
+.main_header{
+  font-family: 'Poppins', sans-serif;
+}
+
+
 /* This is the single highlighted word in the main header*/
 .highlighted_header{
+  font-family: 'Poppins', sans-serif;
   color: #d1b0ff;
 }
 
 
 /* The smaller text under the big header */
 .under_header_text{
+  font-family: 'Poppins', sans-serif;
   font-size: 20px;
-  color: black;
+  color: #212529;
 }
 
 /* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */

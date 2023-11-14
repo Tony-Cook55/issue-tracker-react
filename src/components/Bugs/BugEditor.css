@@ -10,7 +10,7 @@
   border: none;
 
   background-image: linear-gradient(120deg,  #343A4F, #0F1620);
-  overflow: hidden;
+
 
 
 
@@ -284,3 +284,47 @@
 
 
 /* ^aaaaaaaaaa^ ACCORDION ^aaaaaaaaaa^ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.edit-input {
+  font-size: 40px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: inherit;
+  color: inherit;
+}
+
+.edit-textarea {
+  font-size: 40px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: inherit;
+  color: inherit;
+  /* resize: none;
+  overflow: hidden; /* Ensure no scrollbar appears */
+}

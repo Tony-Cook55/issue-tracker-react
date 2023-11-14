@@ -11,7 +11,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "./BugListItem.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowAltCircleLeft, FaShoppingCart } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaShoppingCart, FaTrash, FaEdit } from "react-icons/fa";
 // ICONS //
 
 import React, { useState } from 'react';
@@ -32,23 +32,29 @@ export default function BugListItem(){
   return( 
     <>
 <div className="wrapper">
-
   
 <div className="overviewInfo">
-  <div className="actions">
-    <div className="backbutton ">
+  <div className="top_button_styles">
+    <div className="back_button">
       <FaArrowAltCircleLeft/>
     </div>
 
-    <div className="cartbutton neurobutton"> 
+    {/* <p className="spacer_text">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p> */}
+
+
+    <div className="right_button button_background">
     <FaShoppingCart/>
     </div>
   </div>
   
   <div className="bug_title_div">
-    <div className="grouptext">
+    <div className="">
       <h1>BUG TITLE HERE</h1>
-      <p>Bug&#39;s Id: <br/> 123456789023456789</p>
+      <p>Bug&#39;s Id <br/> 123456789023456789</p>
+
+      <br></br>
+
+      <h2>DESCRIPTION HERE</h2>
     </div>
   </div>
 </div> 
@@ -58,16 +64,6 @@ export default function BugListItem(){
 
 
 
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
-  <div className="accordion-item">
-    <h2 className="accordion-header">SOMETHING HERE</h2>
-    <div id="created_by_user" className="accordion-collapse collapse show"> {/*add:    show   to he className to allow it to always be open on start */}
-      <div className="accordion-body">
-        <strong>This is the first item accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -79,104 +75,189 @@ export default function BugListItem(){
 
 
 
-
+{/* BEGGING OF ACCORDION */}
 <div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
 
+
+  {/* STEPS TO REPRODUCE */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        Accordion Item #1
+      <button className="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#steps_to_reproduce" aria-expanded="true" aria-controls="steps_to_reproduce">
+        Steps To Reproduce
       </button>
     </h2>
-    <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
+    <div id="steps_to_reproduce" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
       <div className="accordion-body">
-        <strong>This is the first item accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <ol className="accordion_ol">
+          <li>Step 1</li>
+          <li>Step 2</li>
+          <li>Step 3</li>
+        </ol>
       </div>
     </div>
   </div>
+  {/* STEPS TO REPRODUCE */}
 
 
+
+
+  {/* BUG ADDED INFO */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-        Accordion Item #3
+      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
+        Bug Creation Information
       </button>
     </h2>
-    <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse">
+    <div id="creation_information" className="accordion-collapse collapse">
       <div className="accordion-body">
-        <strong>This is the third item accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+
+        <div className="container text-center justify-content-center">
+          <div className="row">
+            <div className="col-sm">
+              <h3>Added By User</h3>
+              <h4>USER NAME HERE</h4>
+            </div>
+
+            <div className="col-sm">
+              <h3>Created On</h3>
+              <h4>DATE CREATE HERE</h4>
+            </div>
+          </div>
+        </div>
+      
       </div>
     </div>
   </div>
+  {/* BUG ADDED INFO */}
+
+
+
+
+  {/* CLASSIFICATION */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#classification" aria-expanded="false" aria-controls="classification">
+        Classification
+      </button>
+    </h2>
+    <div id="classification" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+          <div className="container text-center justify-content-center">
+            <div className="row">
+              <div className="col-sm">
+                <h3>Classification</h3>
+                <h4 className="">APPROVED</h4>
+              </div>
+
+              <div className="col-sm">
+                <h3>Classified On</h3>
+                <h4>DATE CREATE HERE</h4>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  {/* CLASSIFICATION */}
+
+
+
+
+  {/* COMMENTS */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments" aria-expanded="false" aria-controls="comments">
+        Comments
+      </button>
+    </h2>
+    <div id="comments" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+          <div className="">
+            <h2>MESSAGE TEXT HERE</h2>
+            <h5>USER NAME HERE</h5>
+            <h6>CREATED ON DATE HERE</h6>
+          </div>
+
+          <div className="pt-5">
+            <h2>MESSAGE TEXT HERE</h2>
+            <h5>USER NAME HERE</h5>
+            <h6>CREATED ON DATE HERE</h6>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  {/* COMMENTS */}
+
+
+
+
+  {/* TEST CASES */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases" aria-expanded="false" aria-controls="test_cases">
+        Test Cases
+      </button>
+    </h2>
+    <div id="test_cases" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+          <div className="">
+            <h2>TITLE HERE</h2>
+            <h5>CREATED BY USER HERE</h5>
+            <h6>CREATED ON DATE HERE</h6>
+            <h4>PASSED ?</h4>
+            <h4>VERSION RELEASE</h4>
+            <h4>APPLIED FIX ON DATE HERE</h4>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  {/* TEST CASES */}
 
 
 
 </div>
+{/* END OF ACCORDION */}
+
+
+
+
+
+<div className="bottom_cap_under_accordion">
 
 
 
 
 
 
-<div className="productSpecifications">
-
-  <h1> Steps To Reproduce </h1>
-    <ol className="steps_to_reproduce">
-      <li>Step 1</li>
-      <li>Step 2</li>
-      <li>Step 3</li>
-    </ol>
-
-    
   
-  <div className="productFeatures">
-    <div className="feature">
-      <div className="featureIcon">
-      </div>
-      <div className="featureText">
-        <p> <strong>Futuristic</strong></p>
-        <p>Design</p>
-      </div>
-    </div>
-    <div className="feature">
-      <div className="featureIcon">
-      </div>
-      <div className="featureText">
-        <p> <strong>Built-in</strong></p>
-        <p>Microphone</p>
-      </div>
-    </div>
-    <div className="feature">
-      <div className="featureIcon">
-      </div>
-      <div className="featureText">
-        <p> <strong>Haptic</strong></p>
-        <p>Feedback</p>
-      </div>
-      </div>
-    <div className="feature">
-      <div className="featureIcon">
-      </div>
-      <div className="featureText">
-        <p> <strong>Fast charge</strong></p>
-        <p>USB-C port</p>
+  <div className="end_cap_base">
+
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 col-sm-4">
+          <button className="edit_button  ">
+            <p className="edit_text"><FaEdit/></p>
+            <p className="edit_text">Edit</p>
+          </button> 
+        </div>
+        <div className="col-md-6 col-sm-4">
+          <button className="delete_button  ">
+              <p className="delete_text"><FaTrash/></p>
+              <p className="delete_text">Delete</p>
+          </button> 
+        </div>
       </div>
     </div>
-  </div>
-  
-  <div className="checkoutButton">
-    <div className="priceTag">
-      <span>$</span>50
-    </div>
-    <button className="preorder">
-      <p>Preorder</p>
-      <div className="buttonaction">
-      <FaArrowAltCircleLeft/>
-      </div>
-    </button> 
+
   </div>
 </div>
-{/* <!-- product specificaiton --> */}
+
 
 
 

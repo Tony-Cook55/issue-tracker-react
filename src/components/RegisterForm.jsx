@@ -42,7 +42,7 @@ export default function RegisterForm(){
     <div className="container">
       <div className="row gx-lg-5 align-items-center">
         <div className="col-lg-6 mb-5 mb-lg-0">
-          <h1 className="my-5 display-3 fw-bold">
+          <h1 className="my-5 display-3 fw-bold main_header">
             Register To Report Your Very Own 
             <span className="highlighted_header"> Bugs</span>
           </h1>

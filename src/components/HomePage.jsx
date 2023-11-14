@@ -24,10 +24,20 @@ export default function HomePage(){
   };
 
   const goToBugItem = () => {
-    window.location.href = '/bugItem'; // Navigate to the register page
-    console.log("Register Form Hit");
+    window.location.href = '/bugItem';
   };
 
+  const goToBugList = () => {
+    window.location.href = '/bugList';
+  };
+
+  const goToBugEditor = () => {
+    window.location.href = '/bugEditor';
+  };
+
+  const goToUserList = () => {
+    window.location.href = '/userList';
+  };
 
 
 
@@ -45,6 +55,20 @@ export default function HomePage(){
         <button type="button" onClick={goToBugItem} className='m-5'>
           1 Bug Item
         </button>
+
+        <button type="button" onClick={goToBugList} className='m-5'>
+          Bug List
+        </button>
+
+        <button type="button" onClick={goToBugEditor} className='m-5'>
+          Bug Editor
+        </button>
+
+        <button type="button" onClick={goToUserList} className='m-5'>
+          User List
+        </button>
+
+
       </div>
     </>
   )

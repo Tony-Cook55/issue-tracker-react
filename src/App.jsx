@@ -40,7 +40,12 @@ import React from 'react';
 import HomePage from './components/HomePage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+
 import BugListItem from './components/Bugs/BugListItem';
+import BugList from './components/Bugs/BugList';
+import BugEditor from './components/Bugs/BugEditor';
+
+import UserList from './components/Users/UserList';
 // COMPONENTS //
 
 
@@ -77,7 +82,14 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="login" element={<LoginForm />} />
               <Route path="register" element={<RegisterForm />} />
+
+
               <Route path="bugItem" element={<BugListItem />} />
+              <Route path="bugList" element={<BugList />} />
+              <Route path="bugEditor" element={<BugEditor />} />
+
+
+              <Route path="userList" element={<UserList />} />
           </Routes>
         </BrowserRouter>
 
