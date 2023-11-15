@@ -49,6 +49,10 @@ export default function HomePage(){
     window.location.href = '/userList';
   };
 
+  const goToUserEditor = () => {
+    window.location.href = '/userEditor';
+  };
+
 
 
   return(
@@ -61,6 +65,8 @@ export default function HomePage(){
         <button type="button" onClick={goToRegisterPage} className='m-5'>
           Sign Up
         </button>
+
+
 
         <button type="button" onClick={goToBugItem} className='m-5'>
           Bug Item
@@ -82,6 +88,10 @@ export default function HomePage(){
 
         <button type="button" onClick={goToUserList} className='m-5'>
           User List
+        </button>
+
+        <button type="button" onClick={goToUserEditor} className='m-5'>
+          User Editor
         </button>
 
 

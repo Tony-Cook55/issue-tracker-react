@@ -11,7 +11,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "./UserListItem.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import {  } from "react-icons/fa";
+import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
 //import React, { useState } from 'react';
@@ -22,45 +22,71 @@ import {  } from "react-icons/fa";
 export default function UserListItem(){
 
 
+
+  /* ddddddddddddddddd DATE MESSAGE ddddddddddddddddd */
+    // Get the current date
+    const currentDate = new Date();
+  
+    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    const currentDay = currentDate.getDay();
+  
+    // Define an array of greetings based on the day of the week
+    const greetings = [
+      'Happy Sunday',
+      'Happy Monday',
+      'Happy Tuesday',
+      'Happy Wednesday',
+      'Happy Thursday',
+      'Happy Friday',
+      'Happy Saturday',
+    ];
+  
+    // Get the greeting for the current day
+    const greetingMessage = greetings[currentDay];
+  /* ddddddddddddddddd DATE MESSAGE ddddddddddddddddd */
+
+
+
 return (
   <>
 
 
 <div className="wrapper slide_in_from_top">
 
-<div className="overviewInfo    user_background">
+  <div className="overviewInfo    user_background">
 
 
-  <div className="top_button_styles">
-    < a href="/bugList" className="icon_link"    title="Back To Bug List">
-      <div className="back_button  back_button_background">
+    <div className="top_button_styles">
+      < a href="/userList" className="icon_link"    >
+        <div className="back_button  back_button_background">
+        <FaArrowLeft/>
+        </div>
+      </a>
 
-      </div>
-    </a>
-
-    <a href="/bugEditor" className="icon_link"   title="Edit This Bug">
-      <div className="edit_button  edit_button_background">
-
-      </div>
-    </a>
-  </div>
-  
-
-  
-  <div className="bug_title_div">
-    <div className="">
-
-
-
-
-      <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className="user_profile_pic  rounded-circle mb-3" alt="Avatar" />
-      <h2 className="accordion-body"><strong>USER NAME HERE</strong></h2>
-
-
-
-      <h2>DESCRIPTION HERE</h2>
+      <a href="/userEditor" className="icon_link"   >
+        <div className="edit_button  edit_button_background">
+        <FaPencilRuler/>
+        </div>
+      </a>
     </div>
-</div>
+    
+
+    
+    <div className="bug_title_div">
+      <div className="user_pic_name_container">
+
+        <div className="profile_box">
+          <div className="profile_card">
+              <h2><strong>{greetingMessage}</strong></h2>
+              <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+              <h2 className="users_name"><strong>USER NAME HERE</strong></h2>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
 </div> 
 {/* <!-- overview info --> */}
 
@@ -84,131 +110,82 @@ return (
 
 
 
-{/* BUG ADDED INFO */}
+{/* ROLES */}
 <div className="accordion-item">
 <h2 className="accordion-header">
-  <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
-    Bug Creation Information
+  <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#users_roles" aria-expanded="false" aria-controls="users_roles">
+    User&#39;s Role&#39;s
   </button>
 </h2>
-<div id="creation_information" className="accordion-collapse collapse">
+<div id="users_roles" className="accordion-collapse collapse">
   <div className="accordion-body">
 
     <div className="container text-center justify-content-center">
+      
       <div className="row">
         <div className="col-sm">
-          <h3>Added By User</h3>
-          <h4>USER NAME HERE</h4>
+          <h3>Quality Analyst</h3>
         </div>
 
         <div className="col-sm">
-          <h3>Created On</h3>
-          <h4>DATE CREATE HERE</h4>
+            <h3>Business Analyst</h3>
         </div>
+
+        <div className="col-sm">
+          <h3 className="developer_role">Developer</h3>
+        </div>
+
+        <div className="col-sm">
+          <h3>Product Manager</h3>
+        </div>
+
+        <div className="col-sm">
+          <h3>Technical Manager</h3>
+        </div>
+
       </div>
     </div>
   
   </div>
 </div>
 </div>
-{/* BUG ADDED INFO */}
+{/* ROLES */}
 
 
 
 
 
 
-{/* ASSIGNED TO USER */}
+{/* USERS OTHER NAMES */}
 <div className="accordion-item">
 <h2 className="accordion-header">
-  <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assigned_to_user" aria-expanded="true" aria-controls="assigned_to_user">
-    Assigned To
+  <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#users_other_names" aria-expanded="true" aria-controls="users_other_names">
+    Names
   </button>
 </h2>
-<div id="assigned_to_user" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
-  <div className="accordion-body">
-    <h2>Assigned to User: NAME HERE</h2>
-    <h3>USER ID HERE 1234567890</h3>
-    <h4>Bug Assigned On: DATE HERE</h4>
-  </div>
-</div>
-</div>
-{/* ASSIGNED TO USER */}
-
-
-
-{/* COMMENTS */}
-<div className="accordion-item">
-<h2 className="accordion-header">
-  <button className="accordion-button    accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments" aria-expanded="false" aria-controls="comments">
-    Comments
-  </button>
-</h2>
-<div id="comments" className="accordion-collapse collapse">
+<div id="users_other_names" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
   <div className="accordion-body">
 
-      <div className="">
-        <h2>MESSAGE TEXT HERE</h2>
-        <h5>USER NAME HERE</h5>
-        <h6>CREATED ON DATE HERE</h6>
+  <div className="row">
+
+        <div className="col-sm">
+          <h3 className="">FULL NAME HERE</h3>
+        </div>
+
+        <div className="col-sm">
+          <h3>GIVEN NAME HERE</h3>
+        </div>
+
+        <div className="col-sm">
+          <h3>FAMILY NAME HERE</h3>
+        </div>
+
       </div>
+    </div>
 
-      <div className="pt-5">
-        <h2>MESSAGE TEXT HERE</h2>
-        <h5>USER NAME HERE</h5>
-        <h6>CREATED ON DATE HERE</h6>
-      </div>
-
-  </div>
 </div>
 </div>
-{/* COMMENTS */}
-
-
-
-
-{/* TEST CASES */}
-<div className="accordion-item">
-<h2 className="accordion-header">
-  <button className="accordion-button    accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases" aria-expanded="false" aria-controls="test_cases">
-    Test Cases
-  </button>
-</h2>
-<div id="test_cases" className="accordion-collapse collapse">
-  <div className="accordion-body">
-
-      <div className="">
-        <h2>TITLE HERE</h2>
-        <h5>CREATED BY USER HERE</h5>
-        <h6>CREATED ON DATE HERE</h6>
-        <h4>PASSED ?</h4>
-        <h4>VERSION RELEASE</h4>
-        <h4>APPLIED FIX ON DATE HERE</h4>
-      </div>
-
-  </div>
-</div>
-</div>
-{/* TEST CASES */}
-
-
-
-
-{/* CLOSED */}
-<div className="accordion-item">
-<h2 className="accordion-header">
-  <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#closed" aria-expanded="true" aria-controls="closed">
-    Closed
-  </button>
-</h2>
-<div id="closed" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
-  <div className="accordion-body">
-    <h3>Is This Bug Closed: ADD True or False</h3>
-    <h4>Closed On: ADD DATE HERE</h4>
-  </div>
-</div>
-</div>
-{/* CLOSED */}
+{/* USERS OTHER NAMES */}
 
 
 
@@ -223,20 +200,9 @@ return (
 <div className="end_cap_base">
 
 <div className="container ">
-<p className="last_updated_on ">Last Updated On: <span className="last_updated_on ">DATE HERE</span></p>
+<p className="last_updated_on ">User Joined On: <span className="last_updated_on ">DATE HERE</span></p>
 </div>
 
-
-{/* <div className="container">
-  <div className="row">
-    <div className="col-md-6 col-sm-4">
-      
-    </div>
-    <div className="col-md-6 col-sm-4">
-
-    </div>
-  </div>
-</div> */}
 
 </div>
 </div>

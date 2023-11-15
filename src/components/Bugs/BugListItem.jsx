@@ -51,13 +51,13 @@ export default function BugListItem(){
 
     <div className="overviewInfo">
       <div className="top_button_styles">
-        < a href="/bugList" className="icon_link"    title="Back To Bug List">
+        < a href="/bugList" className="icon_link"    >
           <div className="back_button  back_button_background">
               <FaArrowLeft/>
           </div>
         </a>
 
-        <a href="/bugEditor" className="icon_link"   title="Edit This Bug">
+        <a href="/bugEditor" className="icon_link"   >
           <div className="edit_button  edit_button_background">
             <FaPencilRuler/>
           </div>

@@ -57,13 +57,13 @@ export default function BugEditor() {
       <div className="wrapper swing_in_left_bck  ">
         <div className="overviewInfo">
           <div className="top_button_styles">
-            <a href="/bugItem" className="icon_link" title="Back To Bug">
+            <a href="/bugItem" className="icon_link" >
               <div className="back_button  back_button_background">
                 <FaArrowLeft />
               </div>
             </a>
 
-            <a href="/bugItem" className="icon_link" title="Save This Bug">
+            <a href="/bugItem" className="icon_link" >
               <div className="edit_button  edit_button_background">
                 <FaSave />
               </div>

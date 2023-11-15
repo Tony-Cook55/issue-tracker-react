@@ -55,6 +55,7 @@ import BugEditor from './components/Bugs/BugEditor';
 
 import UserListItem from './components/Users/UserListItem';
 import UserList from './components/Users/UserList';
+import UserEditor from './components/Users/UserEditor';
 // COMPONENTS //
 
 
@@ -103,6 +104,7 @@ function App() {
 
               <Route path="userItem" element={<UserListItem />} />
               <Route path="userList" element={<UserList />} />
+              <Route path="userEditor" element={<UserEditor />} />
           </Routes>
         </BrowserRouter>
 
