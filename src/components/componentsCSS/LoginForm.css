@@ -9,31 +9,6 @@
   border-radius: 22px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-
-
-  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-}
-
-@-webkit-keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-@keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
 }
 
 
@@ -42,7 +17,7 @@
 
 /*  This is the title text that says Login  */
 .login_Header{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lexend Variable', sans-serif;
   /*   font-family: 'Nunito', sans-serif; */
   font-size: 50px;
   margin-top: 4rem;
@@ -163,7 +138,19 @@ input:-webkit-autofill:focus {
 .error_message{
   color: #dc1717;
   font-weight: bold;
+
+  animation: gelatine 2s infinite;
 }
+@keyframes gelatine {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+
+
+
 
 
 
@@ -176,7 +163,7 @@ input:-webkit-autofill:focus {
   border-radius: 30px;
   background: #B58DED;
   border: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lexend Variable', sans-serif;
   /* font-family: 'Montserrat'; */
   font-size: 20px;
   color: #FFFFFF;

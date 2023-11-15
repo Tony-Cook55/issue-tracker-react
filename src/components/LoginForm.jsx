@@ -82,7 +82,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="main_Login_Div">
+      <div className="main_Login_Div   scale_in_center">
         <h4 className="login_Header">Login</h4>
         <form className="login_Form" onSubmit={handleLogin}>
 
@@ -97,7 +97,7 @@ export default function LoginForm() {
             />
 
             {/* This is the Error message that appears after an unsuccessful input*/}
-            {!emailValid && <span className="error_message">Email Is Invalid</span>}
+            {!emailValid && <div className="error_message">Email Is Invalid</div>}
           </div>
           {/* EMAIL INPUT */}
 
@@ -113,7 +113,7 @@ export default function LoginForm() {
             />
 
             {/* This is the Error message that appears after an unsuccessful input*/}
-            {!passwordValid && <span className="error_message">Password Is Invalid</span>}
+            {!passwordValid && <div className="error_message">Password Is Invalid</div>}
           </div>
           {/* PASSWORD INPUT */}
 

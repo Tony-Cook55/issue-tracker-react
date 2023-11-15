@@ -7,10 +7,18 @@
   5. npm i lodash
   6. npm i axios
   7. npm i react-icons  
-  8. npm install @fontsource/poppins    https://fontsource.org/ // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;
+  8. 
 
 
+  Font Source Fonts     https://fontsource.org/ // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;
+    1. npm install @fontsource/poppins          //   font-family: 'Poppins', sans-serif;
+    2. npm install @fontsource-variable/lexend  //   font-family: 'Lexend Variable', sans-serif;
+    3. npm install @fontsource/prompt           //   font-family: 'Prompt', sans-serif;
+    4. npm install @fontsource/paytone-one      //   font-family: 'Paytone One', sans-serif;
 
+
+        DEFAULT BOOTSTRAP FONT
+    font-family: 'Segoe UI', bold;
 
 
   To Run Program: npm run dev   
@@ -51,6 +59,8 @@ import UserList from './components/Users/UserList';
 
 // FONTS //
 import '@fontsource/poppins';  //   font-family: 'Poppins', sans-serif;
+import '@fontsource-variable/lexend'; //   font-family: 'Lexend Variable', sans-serif;
+import '@fontsource/prompt'; //   font-family: 'Prompt', sans-serif;
 import '@fontsource/paytone-one';  //   font-family: 'Paytone One', sans-serif;
 // FONTS //
 

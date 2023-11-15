@@ -1,38 +1,5 @@
 
-/*
- * ----------------------------------------
- * animation scale-in-center
- * ----------------------------------------
- */
-.scale-in-center {
-	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
 
-@-webkit-keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
-}
 
 
 
@@ -40,13 +7,13 @@
 
 
 .main_header{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lexend Variable', sans-serif;
 }
 
 
 /* This is the single highlighted word in the main header*/
 .highlighted_header{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lexend Variable', sans-serif;
   color: #d1b0ff;
 }
 
@@ -81,7 +48,7 @@
   font-family: 'Segoe UI', bold;
   font-size: 23px;
   border: none;
-  background-color: #3b3b3b;
+  /* background-color: #3b3b3b; */
 
   color: #B58DED;
 
@@ -206,7 +173,7 @@ input:-webkit-autofill:focus {
   border-radius: 30px;
   background: #B58DED;
   border: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lexend Variable', sans-serif;
   /* font-family: 'Montserrat'; */
   font-size: 20px;
   color: #FFFFFF;

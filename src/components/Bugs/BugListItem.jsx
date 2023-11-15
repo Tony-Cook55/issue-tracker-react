@@ -11,10 +11,10 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "./BugListItem.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowAltCircleLeft, FaShoppingCart, FaTrash, FaEdit } from "react-icons/fa";
+import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 
 
 // ******************* IMPORTS ******************* //
@@ -31,21 +31,29 @@ export default function BugListItem(){
 
   return( 
     <>
-<div className="wrapper">
+
+<div className="wrapper  full_screen_background  bounce_in_top">
+
+
+
+
   
 <div className="overviewInfo">
   <div className="top_button_styles">
-    <div className="back_button">
-      <FaArrowAltCircleLeft/>
-    </div>
+    < a href="/bugList" className="icon_link"    title="Back To Bug List">
+      <div className="back_button  back_button_background">
+          <FaArrowLeft/>
+      </div>
+    </a>
 
-    {/* <p className="spacer_text">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p> */}
-
-
-    <div className="right_button button_background">
-    <FaShoppingCart/>
-    </div>
+    <a href="/bugEditor" className="icon_link"   title="Edit This Bug">
+      <div className="edit_button  edit_button_background">
+        <FaPencilRuler/>
+      </div>
+    </a>
   </div>
+  
+
   
   <div className="bug_title_div">
     <div className="">
@@ -75,29 +83,8 @@ export default function BugListItem(){
 
 
 
-{/* BEGGING OF ACCORDION */}
+{/* BEGINNING OF ACCORDION */}
 <div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
-
-
-  {/* STEPS TO REPRODUCE */}
-  <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button className="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#steps_to_reproduce" aria-expanded="true" aria-controls="steps_to_reproduce">
-        Steps To Reproduce
-      </button>
-    </h2>
-    <div id="steps_to_reproduce" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
-      <div className="accordion-body">
-        <ol className="accordion_ol">
-          <li>Step 1</li>
-          <li>Step 2</li>
-          <li>Step 3</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-  {/* STEPS TO REPRODUCE */}
-
 
 
 
@@ -129,6 +116,33 @@ export default function BugListItem(){
     </div>
   </div>
   {/* BUG ADDED INFO */}
+
+
+
+
+
+  {/* STEPS TO REPRODUCE */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#steps_to_reproduce" aria-expanded="true" aria-controls="steps_to_reproduce">
+        Steps To Reproduce
+      </button>
+    </h2>
+    <div id="steps_to_reproduce" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
+      <div className="accordion-body">
+        <ol className="accordion_ol">
+          <li>Step 1</li>
+          <li>Step 2</li>
+          <li>Step 3</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  {/* STEPS TO REPRODUCE */}
+
+
+
+
 
 
 
@@ -229,31 +243,23 @@ export default function BugListItem(){
 
 
 <div className="bottom_cap_under_accordion">
-
-
-
-
-
-
-  
   <div className="end_cap_base">
 
-    <div className="container">
+  <div className="container ">
+    <p className="last_updated_on ">Last Updated On: <span className="last_updated_on ">DATE HERE</span></p>
+  </div>
+
+
+    {/* <div className="container">
       <div className="row">
         <div className="col-md-6 col-sm-4">
-          <button className="edit_button  ">
-            <p className="edit_text"><FaEdit/></p>
-            <p className="edit_text">Edit</p>
-          </button> 
+          
         </div>
         <div className="col-md-6 col-sm-4">
-          <button className="delete_button  ">
-              <p className="delete_text"><FaTrash/></p>
-              <p className="delete_text">Delete</p>
-          </button> 
+
         </div>
       </div>
-    </div>
+    </div> */}
 
   </div>
 </div>

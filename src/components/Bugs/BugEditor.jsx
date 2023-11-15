@@ -44,7 +44,7 @@ export default function BugEditor(){
 
   return( 
     <>
-<div className="wrapper">
+<div className="wrapper        bounce_in_bottom">
   
   <div className="overviewInfo">
     <div className="top_button_styles">

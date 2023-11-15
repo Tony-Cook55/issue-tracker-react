@@ -36,7 +36,7 @@ export default function RegisterForm(){
   return(
     <>
 {/* Section: Design Block */}
-<section className="scale-in-center">
+<section className="scale_in_center">
   {/* Jumbotron --> */}
   <div className="px-4 py-5 px-md-5 text-center text-lg-start">
     <div className="container">
