@@ -11,6 +11,9 @@ export default function HomePage(){
 
 
 
+  // const goToHomePage = () => {
+  //   window.location.href = '/';
+  // }
 
 
   const goToLoginPage = () => {
@@ -35,6 +38,13 @@ export default function HomePage(){
     window.location.href = '/bugEditor';
   };
 
+
+
+  
+  const goToUserItem = () => {
+    window.location.href = '/userItem';
+  };
+
   const goToUserList = () => {
     window.location.href = '/userList';
   };
@@ -53,7 +63,7 @@ export default function HomePage(){
         </button>
 
         <button type="button" onClick={goToBugItem} className='m-5'>
-          1 Bug Item
+          Bug Item
         </button>
 
         <button type="button" onClick={goToBugList} className='m-5'>
@@ -64,9 +74,17 @@ export default function HomePage(){
           Bug Editor
         </button>
 
+
+
+        <button type="button" onClick={goToUserItem} className='m-5'>
+          User Item
+        </button>
+
         <button type="button" onClick={goToUserList} className='m-5'>
           User List
         </button>
+
+
 
 
       </div>

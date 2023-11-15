@@ -32,39 +32,50 @@ export default function BugListItem(){
   return( 
     <>
 
-<div className="wrapper  full_screen_background  bounce_in_top">
 
-
-
-
-  
-<div className="overviewInfo">
-  <div className="top_button_styles">
-    < a href="/bugList" className="icon_link"    title="Back To Bug List">
-      <div className="back_button  back_button_background">
-          <FaArrowLeft/>
-      </div>
-    </a>
-
-    <a href="/bugEditor" className="icon_link"   title="Edit This Bug">
-      <div className="edit_button  edit_button_background">
-        <FaPencilRuler/>
-      </div>
-    </a>
+{/* ~~~~~~~ TO HOME PAGE ~~~~~~~ */}
+< a href="/" className="icon_link ag-courses-item_title" >
+  <div className="">
+      ~~~~ HOME PAGE ~~~~
   </div>
-  
+</a>
+{/* ~~~~~~~ TO HOME PAGE ~~~~~~~ */}
 
-  
-  <div className="bug_title_div">
-    <div className="">
-      <h1>BUG TITLE HERE</h1>
-      <p>Bug&#39;s Id <br/> 123456789023456789</p>
 
-      <br></br>
 
-      <h2>DESCRIPTION HERE</h2>
+
+
+
+
+  <div className="wrapper swing_in_right_fwd">
+
+    <div className="overviewInfo">
+      <div className="top_button_styles">
+        < a href="/bugList" className="icon_link"    title="Back To Bug List">
+          <div className="back_button  back_button_background">
+              <FaArrowLeft/>
+          </div>
+        </a>
+
+        <a href="/bugEditor" className="icon_link"   title="Edit This Bug">
+          <div className="edit_button  edit_button_background">
+            <FaPencilRuler/>
+          </div>
+        </a>
+      </div>
+      
+
+      
+      <div className="bug_title_div">
+        <div className="">
+          <h1>BUG TITLE HERE</h1>
+          <p>Bug&#39;s Id <br/> 123456789023456789</p>
+
+          <br></br>
+
+          <h2>DESCRIPTION HERE</h2>
+        </div>
     </div>
-  </div>
 </div> 
 {/* <!-- overview info --> */}
 
@@ -91,7 +102,7 @@ export default function BugListItem(){
   {/* BUG ADDED INFO */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
+      <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
         Bug Creation Information
       </button>
     </h2>
@@ -124,7 +135,7 @@ export default function BugListItem(){
   {/* STEPS TO REPRODUCE */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#steps_to_reproduce" aria-expanded="true" aria-controls="steps_to_reproduce">
+      <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#steps_to_reproduce" aria-expanded="true" aria-controls="steps_to_reproduce">
         Steps To Reproduce
       </button>
     </h2>
@@ -150,7 +161,7 @@ export default function BugListItem(){
   {/* CLASSIFICATION */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#classification" aria-expanded="false" aria-controls="classification">
+      <button className="accordion-button   accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#classification" aria-expanded="false" aria-controls="classification">
         Classification
       </button>
     </h2>
@@ -178,11 +189,29 @@ export default function BugListItem(){
 
 
 
+    {/* ASSIGNED TO USER */}
+    <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assigned_to_user" aria-expanded="true" aria-controls="assigned_to_user">
+        Assigned To
+      </button>
+    </h2>
+    <div id="assigned_to_user" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
+      <div className="accordion-body">
+        <h2>Assigned to User: NAME HERE</h2>
+        <h3>USER ID HERE 1234567890</h3>
+        <h4>Bug Assigned On: DATE HERE</h4>
+      </div>
+    </div>
+  </div>
+  {/* ASSIGNED TO USER */}
+
+
 
   {/* COMMENTS */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments" aria-expanded="false" aria-controls="comments">
+      <button className="accordion-button    accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments" aria-expanded="false" aria-controls="comments">
         Comments
       </button>
     </h2>
@@ -212,7 +241,7 @@ export default function BugListItem(){
   {/* TEST CASES */}
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases" aria-expanded="false" aria-controls="test_cases">
+      <button className="accordion-button    accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases" aria-expanded="false" aria-controls="test_cases">
         Test Cases
       </button>
     </h2>
@@ -232,6 +261,25 @@ export default function BugListItem(){
     </div>
   </div>
   {/* TEST CASES */}
+
+
+
+
+    {/* CLOSED */}
+    <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#closed" aria-expanded="true" aria-controls="closed">
+        Closed
+      </button>
+    </h2>
+    <div id="closed" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
+      <div className="accordion-body">
+        <h3>Is This Bug Closed: ADD True or False</h3>
+        <h4>Closed On: ADD DATE HERE</h4>
+      </div>
+    </div>
+  </div>
+  {/* CLOSED */}
 
 
 

@@ -1,0 +1,31 @@
+
+
+.item_being_edited{
+  /* font-size: 40px; */
+
+  cursor: pointer; /* Add this to show the cursor as a pointer when editable */
+
+  transition: all 0.3s ease 0s;
+}
+
+
+.item_being_edited:hover , .item_being_edited:focus{
+  margin: 10px;
+  padding: 15px;
+
+  border: 1px solid black;
+
+  transform: scale(1.1);
+
+  background-color: #B58DED; /* Add a background color for highlighting */
+
+}
+
+
+
+/* This will create a paper like background for anything named:  edit_mode_background*/
+.edit_mode_background:hover, .edit_mode_background:focus{
+background-color: #e5e5f7;
+background-size: 20px 20px;
+background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
+}

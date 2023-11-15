@@ -11,7 +11,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "./BugList.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import {  } from "react-icons/fa";
+import { FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
 import React, { useState } from 'react';
@@ -31,36 +31,29 @@ export default function BugList(){
 
   return( 
     <>
-<div className="ag-format-container">
+
+
+{/* ~~~~~~~ TO HOME PAGE ~~~~~~~ */}
+< a href="/" className="icon_link ag-courses-item_title" >
+  <div className="">
+      ~~~~ HOME PAGE ~~~~
+  </div>
+</a>
+{/* ~~~~~~~ TO HOME PAGE ~~~~~~~ */}
+
+
+<div className="ag-format-container      delay-1   item_come_in_animation   item_pop">
   <div className="ag-courses_box">
 
+
+  {/* ITEM */}
     <div className="ag-courses_item">
-      <a href="#" className="ag-courses-item_link">
+      <a href="/bugItem" className="ag-courses-item_link">
         <div className="ag-courses-item_bg"></div>
 
         <div className="ag-courses-item_title">
           <p>BUG TITLE 1</p>
-          <p>Description Here</p>
-          <p>Classification HERE</p>
-        </div>
-
-
-        <div className="ag-courses-item_date-box">
-          Created
-          <span className="ag-courses-item_date">
-            <p>CREATED ON DATE HERE</p>
-          </span>
-        </div>
-      </a>
-    </div>
-
-    <div className="ag-courses_item">
-      <a href="#" className="ag-courses-item_link">
-        <div className="ag-courses-item_bg"></div>
-
-        <div className="ag-courses-item_title">
-          <p>BUG TITLE 2</p>
-
+          <h6>ID HERE</h6>
         </div>
 
         <div className="ag-courses-item_date-box">
@@ -69,18 +62,28 @@ export default function BugList(){
             <p>CREATED ON DATE HERE</p>
           </span>
         </div>
+
+        < a href="/bugEditor" className="icon_link ag-courses-item_title" >
+            <div className="edit_button edit_button_background">
+                <FaPencilRuler/>
+            </div>
+          </a>
+
       </a>
     </div>
+  {/* ITEM */}
 
 
 
-    <div className="ag-courses_item">
-      <a href="#" className="ag-courses-item_link">
+
+  {/* ITEM */}
+  <div className="ag-courses_item">
+      <a href="/bugItem" className="ag-courses-item_link">
         <div className="ag-courses-item_bg"></div>
 
         <div className="ag-courses-item_title">
-          <p>BUG TITLE 3</p>
-
+          <p>BUG TITLE 1</p>
+          <h6>ID HERE</h6>
         </div>
 
         <div className="ag-courses-item_date-box">
@@ -89,51 +92,116 @@ export default function BugList(){
             <p>CREATED ON DATE HERE</p>
           </span>
         </div>
+
+        < a href="/bugEditor" className="icon_link ag-courses-item_title" >
+            <div className="edit_button edit_button_background">
+                <FaPencilRuler/>
+            </div>
+          </a>
+
       </a>
     </div>
+  {/* ITEM */}
 
 
 
-    <div className="ag-courses_item">
-      <a href="#" className="ag-courses-item_link">
+  
+
+
+  {/* ITEM */}
+  <div className="ag-courses_item">
+      <a href="/bugItem" className="ag-courses-item_link">
         <div className="ag-courses-item_bg"></div>
 
         <div className="ag-courses-item_title">
-          <p>Forgot how to use Bootstrap</p>
+          <p>BUG TITLE 1</p>
+          <h6>ID HERE</h6>
         </div>
 
         <div className="ag-courses-item_date-box">
           Created
           <span className="ag-courses-item_date">
-            <p>11/14/2023</p>
+            <p>CREATED ON DATE HERE</p>
           </span>
         </div>
+
+        < a href="/bugEditor" className="icon_link ag-courses-item_title" >
+            <div className="edit_button edit_button_background">
+                <FaPencilRuler/>
+            </div>
+          </a>
+
       </a>
     </div>
+  {/* ITEM */}
 
 
 
-
-    <div className="ag-courses_item">
-      <a href="#" className="ag-courses-item_link">
+  {/* ITEM */}
+  <div className="ag-courses_item">
+      <a href="/bugItem" className="ag-courses-item_link">
         <div className="ag-courses-item_bg"></div>
 
         <div className="ag-courses-item_title">
-          <p>Awesome Cook Bug title right here</p>
+          <p>BUG TITLE 1</p>
+          <h6>ID HERE</h6>
         </div>
 
         <div className="ag-courses-item_date-box">
           Created
           <span className="ag-courses-item_date">
-            <p>11/11/2023</p>
+            <p>CREATED ON DATE HERE</p>
           </span>
         </div>
+
+        < a href="/bugEditor" className="icon_link ag-courses-item_title" >
+            <div className="edit_button edit_button_background">
+                <FaPencilRuler/>
+            </div>
+          </a>
+
       </a>
     </div>
+  {/* ITEM */}
+
+
+
+    {/* ITEM */}
+    <div className="ag-courses_item">
+      <a href="/bugItem" className="ag-courses-item_link">
+        <div className="ag-courses-item_bg"></div>
+
+        <div className="ag-courses-item_title">
+          <p>BUG TITLE 1</p>
+          <h6>ID HERE</h6>
+        </div>
+
+        <div className="ag-courses-item_date-box">
+          Created
+          <span className="ag-courses-item_date">
+            <p>CREATED ON DATE HERE</p>
+          </span>
+        </div>
+
+        < a href="/bugEditor" className="icon_link ag-courses-item_title" >
+            <div className="edit_button edit_button_background">
+                <FaPencilRuler/>
+            </div>
+          </a>
+
+      </a>
+    </div>
+  {/* ITEM */}
 
 
   </div>
 </div>
+
+
+
+
+
+
     </>
 
   )

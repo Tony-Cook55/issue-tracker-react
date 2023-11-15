@@ -35,7 +35,7 @@
 .top_button_styles{
   display: flex;
   justify-content: space-between;
-
+  
 /* 
   .edit_button{
     position:relative;
@@ -56,11 +56,13 @@
 
 
 
-/* Makes the buttons circle */
+/* Makes the buttons circle and is the Icons inside */
 .back_button, .edit_button{
   width: 50px;
   height: 50px;
   border-radius: 50%;
+
+  font-size: 22px;
 }
 
 
@@ -83,18 +85,21 @@
 
 
 .icon_link:hover, .icon_link:focus{
-  color: #ff78d7 !important;
+  color: #000000 !important;
   background: none;
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   transition: all 0.3s ease 0s;
+
+  /* Will enlarge the icons if original font is deleted*/
+  /* font-size: 25px; */
 
   transform: scale(1.05);
 }
 
 
 .back_button_background{
-  background-image: linear-gradient(120deg,  #0036f8, #166ce3);
+  background-image: linear-gradient(50deg,  #B58DED, #ff78d7);
 
   display: flex;
   justify-content: center;
@@ -140,8 +145,6 @@
 /* ^aaaaaaaaaa^ ACCORDION ^aaaaaaaaaa^ */
 
 
-
-
 /* Effects the items inside of the accordions*/
 .accordion-item{
   border: 0;
@@ -173,12 +176,9 @@
   /* background-color: #3b3b3b; */
   background-image: linear-gradient(90deg, #414850, #131720);
 
-
-  
-
   transition: all 0.3s ease 0s;
   }
-  
+
 
 .accordion-button:focus{
   /* -webkit-animation: jello-textboxs 0.9s both;
@@ -230,7 +230,12 @@
 }
 
 
-.accordion-button:hover, .accordion-button:focus{
+/* Instead of Making the actual button have the hover animations adding it to this*/
+.accordion_button_animation{
+  transition: all 0.3s ease 0s;
+}
+
+.accordion_button_animation:hover, .accordion_button_animation:focus{
   background-color: #131720;
   color: #f6b7f7;
 
@@ -246,6 +251,22 @@
 
 
 
+/* .accordion-button:hover, .accordion-button:focus{
+  background-color: #131720;
+  color: #f6b7f7;
+
+  border: 1px solid white;
+
+
+
+  transform: scale(1.05); 
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+} */
+
+
+
 
 /* This is the items inside of the accordion */
 .accordion-body{
@@ -257,6 +278,9 @@
 /* The ordered list inside of steps to reproduce*/
 .accordion_ol{
   list-style-position: inside;
+
+
+  font-size: 25px;
 
   margin: 0;
   padding: 0;
