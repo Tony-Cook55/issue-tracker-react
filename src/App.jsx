@@ -5,9 +5,41 @@
   3. npm i bootstrap
   4. npm i nanoid   
   5. npm i lodash
+
+  / Allows for the connection of the backend \
   6. npm i axios
+
   7. npm i react-icons  
-  8. 
+  8. npm i react-router-dom    CHANGES PAGES
+
+    /\ ADD THIS TO THE BACKEND TO ALLOW FOR axios TO CONNECT TO THE BACKEND /\
+  9.  npm i cors
+
+  \\ Steps with Axios for backend //
+    1. npm i cors
+    2. import cors from "cors";
+
+    / Add this into the middleware ABOVE my routers in server.js   This --> app.use("/api/books", BookRouter);
+    3 app.use(cors(
+        {
+        origin: "http://localhost:5173",
+        credentials: true
+        }
+      )); 
+
+    / THIS ACCEPTS JSON DATA IN THE BODY OF THE REQUEST FROM THE CLIENT ADD UNDER  app.use(cors());
+    4. app.use(express.json()); 
+
+  \\ Steps with Axios for backend //
+
+  \/ ADD THIS TO THE BACKEND TO ALLOW FOR axios TO CONNECT TO THE BACKEND \/
+
+
+  10. npm i react-toastify    ADD these imports:      https://fkhadra.github.io/react-toastify/introduction
+      import { ToastContainer, toast } from 'react-toastify'
+      import "react-toastify/dist/ReactToastify.css"
+
+  11. npm i dotenv   : GETS US THE .env file
 
 
   Font Source Fonts     https://fontsource.org/ // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;
@@ -39,13 +71,12 @@ import "bootstrap/dist/css/bootstrap.min.css"
 // This is technical things like navbar
 import "bootstrap/dist/js/bootstrap.min.js"
 
-import React from 'react';
+import { useState, useEffect } from 'react'
 //import { BrowserRouter as Router, Route  } from 'react-router-dom';
 
 // COMPONENTS //
-//import LoginForm from  "./components/LoginForm";
-
 import HomePage from './components/HomePage';
+import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 
@@ -57,6 +88,12 @@ import UserListItem from './components/Users/UserListItem';
 import UserList from './components/Users/UserList';
 import UserEditor from './components/Users/UserEditor';
 // COMPONENTS //
+
+
+// TOASTIFY //
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
+// TOASTIFY //
 
 
 // FONTS //
@@ -80,20 +117,48 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
 
-  //const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  
+  // This will hold in the email about the user once logged in
+  const [userFullName, setUserFullName] = useState("");
+
+  // When the component loads use this
+  useEffect(() => {
+    // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
+    const getFullName = localStorage.getItem("fullName");
+    if(getFullName){
+      setUserFullName(getFullName);
+    }
+  }, []);
+
+
+
+  // This is the little pop up function called toasts that we can call in and set the message we want and type of toast
+  function showToast(message, type){
+    // When called in we must specify the message and the type of toast we want it to look like
+    toast(message, {
+      type: type,              // info, success, warning, error, default
+      position: "bottom-right" // top-left, top-right, top-center, bottom-left, bottom-right, bottom-center
+    });
+  }
 
 
   return (
-    <div>
+    <>
+      <div className="container       d-flex flex-column min-vh-100">
 
-        <BrowserRouter>
-          <Routes path='/'>
-              {/* App will always go to the home page due to the / */}
-              <Route path="/" element={<HomePage />} />
-              <Route path="login" element={<LoginForm />} />
-              <Route path="register" element={<RegisterForm />} />
+        <header>
+          <nav>
+            <NavBar   userFullName={userFullName}   setUserFullName={setUserFullName}/>
+          </nav>
+        </header>
+
+
+        <main  className="flex-grow-1">
+          <ToastContainer />
+            <Routes>
+              <Route path="/" element={<HomePage    showToast={showToast} />} />
+              <Route path="/login" element={<LoginForm    setUserFullName={setUserFullName} showToast={showToast} />} />
+              <Route path="/register" element={<RegisterForm />}/>
 
 
               <Route path="bugItem" element={<BugListItem />} />
@@ -101,14 +166,14 @@ function App() {
               <Route path="bugEditor" element={<BugEditor />} />
 
 
-
               <Route path="userItem" element={<UserListItem />} />
               <Route path="userList" element={<UserList />} />
               <Route path="userEditor" element={<UserEditor />} />
-          </Routes>
-        </BrowserRouter>
-
-    </div>
+            </Routes>
+        </main>
+        
+      </div>
+    </>
   );
 }
 

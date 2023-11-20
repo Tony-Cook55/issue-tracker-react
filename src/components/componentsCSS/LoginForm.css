@@ -139,7 +139,9 @@ input:-webkit-autofill:focus {
   color: #dc1717;
   font-weight: bold;
 
-  animation: gelatine 2s infinite;
+  margin: auto;
+
+  /* animation: gelatine 4s infinite; */
 }
 @keyframes gelatine {
   from, to { transform: scale(1, 1); }
