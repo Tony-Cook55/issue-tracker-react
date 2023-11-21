@@ -1,0 +1,341 @@
+
+
+.wrapper{
+  /* width:350px; */
+
+  border-radius: 40px;
+
+  border: none;
+
+  background-image: linear-gradient(120deg,  #343A4F, #0F1620);
+  overflow: hidden;
+
+  background-image: linear-gradient(90deg, #414850, #131720);
+  color: #D5E1EF;
+}
+
+
+
+
+/* HHHHHHHHHHHHHHHHHHHHHHHHHHHHH TOP HEADER HHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
+
+.overviewInfo{
+  padding: 30px;
+}
+/* This is the background of the top half of the card */
+.overviewInfo{
+  color: #000000;
+  font-family: 'Lexend Variable', sans-serif;
+  background-image:  linear-gradient(176deg, #ffffff, #ece9f0);
+}
+
+
+
+/* This makes the top 2 buttons go side to side */
+.top_button_styles{
+  display: flex;
+  justify-content: space-between;
+  
+/* 
+  .edit_button{
+    position:relative;
+  }
+  .edit_button::after {
+      content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    top: 11px;
+    right: 8px;
+  } */
+}   
+/* Add this into the .edit_button::after to make a small blue circle */
+/* background-image: linear-gradient(90deg, #489be2, #0f629c); */
+
+
+
+/* Makes the buttons circle and is the Icons inside */
+.back_button, .edit_button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  font-size: 22px;
+}
+
+
+
+/* This focuses on the <a href> that holds the icons*/
+.icon_link{
+  color: white;
+  text-decoration: none;
+
+  border: none;
+
+  color: #ffffff !important;
+
+  padding: 20px;
+
+  border-radius: 10px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+}
+
+
+.icon_link:hover, .icon_link:focus{
+  color: #000000 !important;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+
+  /* Will enlarge the icons if original font is deleted*/
+  /* font-size: 25px; */
+
+  transform: scale(1.05);
+}
+
+
+.back_button_background{
+  background-image: linear-gradient(50deg,  #B58DED, #ff78d7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+}
+
+
+
+
+
+.edit_button_background{
+  background-image: linear-gradient(120deg,  #4ccc30, #11841e);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+}
+/* THIS IS ALL THE STUFF FOR THE TOP 2 BUTTONS */
+
+
+
+.bug_title_div {
+    margin-bottom: 50px;
+}
+/* HHHHHHHHHHHHHHHHHHHHHHHHHHHHH TOP HEADER HHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ^aaaaaaaaaa^ ACCORDION ^aaaaaaaaaa^ */
+
+
+/* Effects the items inside of the accordions*/
+.accordion-item{
+  border: 0;
+  /* border: 1px solid black; */
+
+  font-family: 'Lexend Variable', sans-serif;
+
+  background-image: linear-gradient(90deg, #414850, #131720);
+  color: #fff;
+
+}
+
+
+/* This changes the color when the accordion is open and the default color when loading*/
+.accordion-button:not(.collapsed){
+  color: #f6b7f7;
+}
+
+
+/* This is the outside button users click to see items inside accordion*/
+.accordion-button{
+  font-size: 35px;
+  display:block;
+
+  /* Will auto capitalize the first letter in each word*/
+  text-transform: capitalize;
+
+  color: #B58DED;
+  /* background-color: #3b3b3b; */
+  background-image: linear-gradient(90deg, #414850, #131720);
+
+  transition: all 0.3s ease 0s;
+  }
+
+
+.accordion-button:focus{
+  /* -webkit-animation: jello-textboxs 0.9s both;
+  animation: jello-textboxs 0.9s both; */
+}
+@-webkit-keyframes jello-textboxs {
+0% {
+-webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+40% {
+-webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+}
+50% {
+-webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+}
+65% {
+-webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+}
+100% {
+-webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+}
+@keyframes jello-textboxs {
+0% {
+-webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+40% {
+-webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+}
+50% {
+-webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+}
+65% {
+-webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+}
+100% {
+-webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+}
+
+
+/* Instead of Making the actual button have the hover animations adding it to this*/
+.accordion_button_animation{
+  transition: all 0.3s ease 0s;
+}
+
+.accordion_button_animation:hover, .accordion_button_animation:focus{
+  background-color: #131720;
+  color: #f6b7f7;
+
+  border: 1px solid white;
+
+
+
+  transform: scale(1.05); 
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+
+
+/* .accordion-button:hover, .accordion-button:focus{
+  background-color: #131720;
+  color: #f6b7f7;
+
+  border: 1px solid white;
+
+
+
+  transform: scale(1.05); 
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+} */
+
+
+
+
+/* This is the items inside of the accordion */
+.accordion-body{
+  padding-top: 25px;
+
+  padding-bottom: 25px;
+}
+
+/* The ordered list inside of steps to reproduce*/
+.accordion_ol{
+  list-style-position: inside;
+
+
+  font-size: 25px;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+/* ^aaaaaaaaaa^ ACCORDION ^aaaaaaaaaa^ */
+
+
+
+
+
+
+
+
+
+
+/* bbbbbbbbbbbbbbbbbbbbbbbbbbbbb BOTTOM CAP WITH BUTTONS bbbbbbbbbbbbbbbbbbbbbbbbbbbbb*/
+
+.bottom_cap_under_accordion {
+  /* margin: 30px; */
+}
+
+
+
+/* This is the long item that holds all of the buttons and updated text*/
+.end_cap_base {
+  display: flex;
+  width: 100%;
+  background-image: linear-gradient(120deg,  #343A4F, #0F1620);
+
+  /* ADD THIS IF THERE IS PADDING */
+  /* border-radius: 12px; */
+  overflow: hidden;
+      box-shadow: -2px -2px 2px 0px rgba(80, 80, 80, 0.1), 2px 2px 3px 0px rgba(12, 12, 12, 0.3), inset 0px 0px 0px 2px rgba(80, 80, 80, 0.2);
+  /* margin-top: 30px; */
+  /* padding: 15px; */
+
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+
+/* This is the last updated on text */
+.last_updated_on {
+  font-size: 15px;
+
+  /* Centers the text in the box */
+  margin-top: 15px;
+  font-family: 'Lexend Variable', sans-serif;
+}
+
+/* bbbbbbbbbbbbbbbbbbbbbbbbbbbbb BOTTOM CAP WITH BUTTONS bbbbbbbbbbbbbbbbbbbbbbbbbbbbb*/
+
+
+

@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 
 /* Steps taken for install 
   1. npm create vite@latest .
@@ -78,10 +81,12 @@ import { useState, useEffect } from 'react'
 import HomePage from './components/HomePage';
 import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
+import LoginFormRequiredMsg from './components/LoginRequiredMsg';
 import RegisterForm from './components/RegisterForm';
 
-import BugListItem from './components/Bugs/BugListItem';
 import BugList from './components/Bugs/BugList';
+import BugListItem from './components/Bugs/BugListItem';
+import BugItem from './components/Bugs/BugItem';
 import BugEditor from './components/Bugs/BugEditor';
 
 import UserListItem from './components/Users/UserListItem';
@@ -124,10 +129,21 @@ function App() {
   // When the component loads use this
   useEffect(() => {
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
-    const getFullName = localStorage.getItem("fullName");
-    if(getFullName){
+    const getFullName = JSON.parse(localStorage.getItem("fullName"));
+    if(getFullName) {
+
       setUserFullName(getFullName);
+
+      /* The code below will remove the fullName from local storage after 1 hour */
+      const now = new Date();
+      if(now.getTime() > getFullName.expiration){
+        localStorage.removeItem("fullName");
+  
+        setUserFullName(null);
+        location.reload();
+      }
     }
+    
   }, []);
 
 
@@ -158,11 +174,13 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage    showToast={showToast} />} />
               <Route path="/login" element={<LoginForm    setUserFullName={setUserFullName} showToast={showToast} />} />
+              <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />}/>
               <Route path="/register" element={<RegisterForm />}/>
 
 
-              <Route path="bugItem" element={<BugListItem />} />
               <Route path="bugList" element={<BugList />} />
+              {/* <Route path="bugListItem" element={<BugListItem />} /> */}
+              <Route path=":bugId" element={<BugItem />} />
               <Route path="bugEditor" element={<BugEditor />} />
 
 

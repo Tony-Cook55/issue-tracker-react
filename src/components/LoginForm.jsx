@@ -102,15 +102,21 @@ export default function LoginForm(    {setUserFullName, showToast}   ) {
       //Sets this to the fullName from our database  calling from this in message in backend:  fullName: usersLoggedIn.fullName
       setUserFullName(response.data.fullName);
 
-      // askdakdkadhakdhk FINISH THIS  https://youtu.be/L6eUTjdVPMk?t=1642
-      const currentTime = Date();
+
+
+      // SETS THE CURRENT TIME SO USERS NAME WILL DELETE OUT OF LOCAL STORAGE IN AN HOUR \\
+      const currentTime = new Date();
       const numHours = 1;
       const expirationTime = currentTime.getTime() + numHours + 60 + 60 + 1000;
 
       const user = {
-        ...response.data.fullName,
+        fullName : response.data.fullName,
         expiration: expirationTime
-      }
+      };
+      // console.log(user)
+      localStorage.setItem("fullName", JSON.stringify(user));
+      // SETS THE CURRENT TIME SO USERS NAME WILL DELETE OUT OF LOCAL STORAGE IN AN HOUR \\
+
 
       // Takes us to the homepage 
       navigateToAnotherPage("/");

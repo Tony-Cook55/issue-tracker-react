@@ -44,13 +44,13 @@ export default function UserList(){
 
 
 <div className="ag-format-container      delay-1   item_come_in_animation   item_pop">
-  <div className="ag-courses_box">
+  <div className="item_list_box_flex">
 
 
   {/* ITEM */}
-    <div className="ag-courses_item">
-      <a href="/userItem" className="ag-courses-item_link">
-        <div className="ag-courses-item_bg"></div>
+    <div className="list_item">
+      <a href="/userItem" className="item_list_box_flex">
+        <div className="list_item_background"></div>
 
         <div className="ag-courses-item_title">
           <p>User NAME HERE</p>
@@ -63,9 +63,9 @@ export default function UserList(){
         </div>
 
 
-        <div className="ag-courses-item_date-box">
+        <div className="list_item_date_container">
           User Joined On
-          <span className="ag-courses-item_date">
+          <span className="list_item_dates">
             <p>DATE HERE</p>
           </span>
         </div>
@@ -83,9 +83,9 @@ export default function UserList(){
 
 
 {/* ITEM */}
-<div className="ag-courses_item">
-      <a href="/userItem" className="ag-courses-item_link">
-        <div className="ag-courses-item_bg"></div>
+<div className="list_item">
+      <a href="/userItem" className="item_list_box_flex">
+        <div className="list_item_background"></div>
 
         <div className="ag-courses-item_title">
           <p>User NAME HERE</p>
@@ -98,9 +98,9 @@ export default function UserList(){
         </div>
 
 
-        <div className="ag-courses-item_date-box">
+        <div className="list_item_date_container">
           User Joined On
-          <span className="ag-courses-item_date">
+          <span className="list_item_dates">
             <p>DATE HERE</p>
           </span>
         </div>
@@ -119,9 +119,9 @@ export default function UserList(){
 
 
   {/* ITEM */}
-  <div className="ag-courses_item">
-      <a href="/userItem" className="ag-courses-item_link">
-        <div className="ag-courses-item_bg"></div>
+  <div className="list_item">
+      <a href="/userItem" className="item_list_box_flex">
+        <div className="list_item_background"></div>
 
         <div className="ag-courses-item_title">
           <p>User NAME HERE</p>
@@ -134,9 +134,9 @@ export default function UserList(){
         </div>
 
 
-        <div className="ag-courses-item_date-box">
+        <div className="list_item_date_container">
           User Joined On
-          <span className="ag-courses-item_date">
+          <span className="list_item_dates">
             <p>DATE HERE</p>
           </span>
         </div>
