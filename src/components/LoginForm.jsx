@@ -33,7 +33,7 @@ import './componentsCSS/LoginForm.css'
 
 
 
-export default function LoginForm(    {setUserFullName, showToast}   ) {
+export default function LoginForm(    {setUserFullName,setUsersRole, showToast}   ) {
 
 
   const [email, setEmail] = useState("");
@@ -113,13 +113,8 @@ export default function LoginForm(    {setUserFullName, showToast}   ) {
       //Sets this to the fullName from our database  calling from this in message in backend:  fullName: usersLoggedIn.fullName
       setUserFullName(response.data.fullName);
 
-
-
-
-      // console.log(user)
-      // localStorage.setItem("fullName", JSON.stringify(user));
-      // SETS THE CURRENT TIME SO USERS NAME WILL DELETE OUT OF LOCAL STORAGE IN AN HOUR \\
-
+      // This gets the role from the message sent to check later on in functions like update
+      setUsersRole(response.data.roles);
 
       // Takes us to the homepage 
       navigateToAnotherPage("/");

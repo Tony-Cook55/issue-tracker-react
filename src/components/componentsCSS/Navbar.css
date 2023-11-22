@@ -142,7 +142,6 @@ input[type="checkbox"]{
 .wrapper ul li a:after{
   position: absolute;
   content: "";
-  background: #fff;
   width: 104%;
   height: 110%;
   left: -2%;

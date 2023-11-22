@@ -18,7 +18,7 @@ import { useState, useEffect } from "react"
 import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
-
+// Gets the id from the current bug
 import { useParams } from "react-router-dom";
 
 
@@ -37,7 +37,9 @@ export default function BugItem(){
   // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;
   // console.log(bugId);
+
   const [bugItem, setBugItem] = useState([]);
+
 
 
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
@@ -49,6 +51,16 @@ export default function BugItem(){
       // If you retrieve bugs then set the bugs useState to the data you get from backend
       .then(response => {
         setBugItem(response.data);
+        // console.log(response.data);
+
+        // IF THE INFO IS STILL BEING LOADED THROW THIS
+        if (!bugItem) {
+          return <div className="text-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>;
+        }
       })
       .catch(error => console.log(error));
 
@@ -57,31 +69,15 @@ export default function BugItem(){
 
 
 
-//   function loopArray() {
-//       let arr = bugItem.stepsToReproduce[0];
-
-//     arr.forEach(element => {
-//        console.log(element);
-//     });
-// }
-
-// let i = 0;
-
-// while (i < bugItem.stepsToReproduce.length) {
-//     console.log(bugItem.stepsToReproduce[i]);
-//     i++;
-// }
-
-
 
 // console.log(bugItem.bugCreationInformation[0].bugsCreationDate);
 // console.log(bugItem.bugCreationInformation[0].bugCreatedByUser);
 
 
-  return( 
+  return(
     <>
 
-  <div className="wrapper swing_in_right_fwd">
+  <div className="button_container   swing_in_right_fwd">
 
     <div className="overviewInfo">
       <div className="top_button_styles">
@@ -103,7 +99,7 @@ export default function BugItem(){
       <div className="bug_title_div">
           <div className="">
             <h1>{bugItem.title}</h1>
-            <p>Bug&#39;s Id <br/> {bugItem._id}</p>
+            <p>Bug&#39;s Id <br/>{bugId}</p>
 
             <br></br>
 
@@ -144,15 +140,22 @@ export default function BugItem(){
 
         <div className="container text-center justify-content-center">
           <div className="row">
-            {/* <div className="col-sm">
+            <div className="col-sm">
               <h3>Added By User</h3>
-              <h4>{bugItem.bugCreationInformation[0].bugCreatedByUser}</h4>
+
+              {/* If the bugCreationInformation object && the bugCreationInformation[0] array is loaded do item*/}
+              {bugItem.bugCreationInformation && bugItem.bugCreationInformation[0] && (
+                <h4>{bugItem.bugCreationInformation[0].bugCreatedByUser}</h4>
+              )}
+
             </div>
 
             <div className="col-sm">
               <h3>Created On</h3>
-              <h4>{bugItem.bugCreationInformation[0].bugsCreationDate}</h4>
-            </div> */}
+              {bugItem.bugCreationInformation && bugItem.bugCreationInformation[0] && (
+                <h4>{bugItem.bugCreationInformation[0].bugsCreationDate}</h4>
+              )}
+            </div>
           </div>
         </div>
       
@@ -175,6 +178,15 @@ export default function BugItem(){
     <div id="steps_to_reproduce" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
       <div className="accordion-body">
         <ol className="accordion_ol">
+          {/* Adasdadsad FIX ME MAPPING ALL THE STEPS*/}
+          {/* {bugItem.stepsToReproduce.map(step => (
+                    <div key={step._id}>
+
+                      <li>{bugItem.stepsToReproduce}</li>
+
+                    </div>
+                ))} */}
+
           {/* <li>{bugItem.stepsToReproduce[0]}</li>
           <li>{bugItem.stepsToReproduce[1]}</li> */}
         </ol>
@@ -364,5 +376,5 @@ export default function BugItem(){
 
 
 
-  
+
 }

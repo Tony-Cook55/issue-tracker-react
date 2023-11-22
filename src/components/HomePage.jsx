@@ -26,10 +26,6 @@ export default function HomePage(){
     console.log("Register Form Hit");
   };
 
-  const goToBugItem = () => {
-    window.location.href = '/bugItem';
-  };
-
   const goToBugList = () => {
     window.location.href = '/bugList';
   };
@@ -67,10 +63,6 @@ export default function HomePage(){
         </button>
 
 
-
-        <button type="button" onClick={goToBugItem} className='m-5'>
-          Bug Item
-        </button>
 
         <button type="button" onClick={goToBugList} className='m-5'>
           Bug List

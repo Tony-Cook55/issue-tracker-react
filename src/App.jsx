@@ -154,6 +154,11 @@ function App() {
 
 
 
+    // Sets the roles that a user has once logged in
+    const [usersRole, setUsersRole] = useState(null);
+
+
+
   // This is the little pop up function called toasts that we can call in and set the message we want and type of toast
   function showToast(message, type){
     // When called in we must specify the message and the type of toast we want it to look like
@@ -175,19 +180,21 @@ function App() {
         </header>
 
 
-        <main  className="flex-grow-1">
+        <main>
           <ToastContainer />
             <Routes>
               <Route path="/" element={<HomePage    showToast={showToast} />} />
-              <Route path="/login" element={<LoginForm    setUserFullName={setUserFullName} showToast={showToast} />} />
+              <Route path="/login" element={<LoginForm    setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
               <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />}/>
               <Route path="/register" element={<RegisterForm  setUserFullName={setUserFullName}  showToast={showToast}/>}/>
 
 
-              <Route path="bugList" element={<BugList />} />
+              <Route path="bugList" element={<BugList />}  />
               {/* <Route path="bugListItem" element={<BugListItem />} /> */}
-              <Route path=":bugId" element={<BugItem />} />
-              <Route path="bugEditor" element={<BugEditor />} />
+              {/* SEARCH BUG BY ID*/}
+              <Route path="/bugItem/:bugId" element={<BugItem />} />
+              {/* EDIT BUGS */}
+              <Route path="/bugs/:bugId" element={<BugEditor />} />
 
 
               <Route path="userItem" element={<UserListItem />} />

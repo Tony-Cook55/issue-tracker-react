@@ -11,6 +11,10 @@ import './componentsCSS/Navbar.css'
 import axios from "axios";
 
 import { useState } from "react";
+
+
+// Lets us on a command go to another page
+import { useNavigate } from "react-router-dom";
 // *********** IMPORTS *********** //
 
 
@@ -19,6 +23,9 @@ import { useState } from "react";
                               // Allows us to get the fullName from the user logging in and setting their fullName
 export default function NavBar(      {userFullName,setUserFullName}       ){
   
+
+  const navigateToAnotherPage = useNavigate();
+
 
   /* LOGOUT BUTTON FUNCTION */
   function onClickLogout(evt){
@@ -32,6 +39,9 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
       setUserFullName("");
       localStorage.removeItem("fullName");
       //console.log(response.data);
+
+      // Goes to home page on successful logout
+      navigateToAnotherPage("/");
       window.location.reload();
     })
     .catch(error => console.log(error));
@@ -47,11 +57,6 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
 
 
 
-
-
-
-
-
   return(
     <>
 
@@ -62,10 +67,10 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
             
               <div className="wrapper">
                   {/* <img src="/images/colored_bug_logo.png" className="" ></img> */}
-                <ul   onClick={refreshNavbar}>
+                <ul>
 
                   {/* /////// HOME PAGE /////// */}
-                  <li>
+                  <li className="nav-item"  onClick={refreshNavbar}>
                     <NavLink to="/" className="nav-link">
                       Home
                     </NavLink>
@@ -78,16 +83,16 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
                     {!userFullName && 
                     <div>
                       {/* / LOGIN PAGE / */}
-                      <li className="nav-item">
-                        <NavLink to="/login" className="nav-link">
+                      <li className="nav-item" onClick={refreshNavbar}>
+                        <NavLink to="/login" className="nav-link" >
                           Login
                         </NavLink>
                       </li>
                       {/* / LOGIN PAGE / */}
 
                       {/* / REGISTER PAGE / */}
-                      <li>
-                        <NavLink to="/register" className="nav-link">
+                      <li className="nav-item" onClick={refreshNavbar}>
+                        <NavLink to="/register" className="nav-link" onClick={refreshNavbar}>
                           Register
                         </NavLink>
                       </li>
@@ -110,7 +115,7 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
                     {/* THIS DISPLAYS THE USERS FULL NAME WE GET FROM LOGGING IN*/}
                     {userFullName && 
                       <div className="cursor_pointer">
-                        <li className="nav-item">
+                        <li className="nav-item" onClick={refreshNavbar}>
                           <NavLink to="/profile" className="nav-link">
                             {userFullName}
                           </NavLink>

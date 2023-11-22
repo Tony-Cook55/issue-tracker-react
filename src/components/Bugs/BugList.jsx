@@ -27,6 +27,8 @@ import { Link, NavLink } from "react-router-dom";
 
 import BugListItem from "./BugListItem";
 
+import BugItem from "./BugItem";
+
 import LoginFormRequiredMsg from "../LoginRequiredMsg";
 
 

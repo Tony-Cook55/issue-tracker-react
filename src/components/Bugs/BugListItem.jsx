@@ -18,8 +18,6 @@ import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 import { NavLink, Link } from "react-router-dom";
 // ICONS //
 
-//import React, { useState } from 'react';
-
 
 // ******************* IMPORTS ******************* //
 
@@ -44,7 +42,7 @@ export default function BugListItem(  {bug, onBugDelete}  ){
 
     {/* ITEM */} {/*  */}
     <div className="list_item">
-          <Link to={`/${bug._id}`} className="list_item_link">
+          <Link to={`/bugItem/${bug._id}`} className="list_item_link">
 
             {/* This is the small bg in the corner */}
             <div className="background_circle_top_right"></div>
@@ -91,12 +89,11 @@ export default function BugListItem(  {bug, onBugDelete}  ){
 
 
             {/* EDIT BUTTON */}
-            <Link to="/bugEditor" className="icon_link item_section_container  edit_button_list_item">
-              {/* <span className="edit_button_text">Edit</span> */}
+            {/* <Link to="/bugEditor" className="icon_link item_section_container  edit_button_list_item">
               <div className="edit_button edit_button_background">
                   <FaPencilRuler/>
               </div>
-            </Link> 
+            </Link>  */}
             {/* EDIT BUTTON */}
 
 
