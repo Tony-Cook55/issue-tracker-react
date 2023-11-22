@@ -10,11 +10,15 @@ import "bootstrap/dist/js/bootstrap.min.js"
 // CSS
 import "./BugItem.css"
 
+import axios from "axios"
+
+import { useState, useEffect } from "react"
+
 // ICONS //   Call them in like this    <FaClock/>
 import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
-//import React, { useState } from 'react';
+
 import { useParams } from "react-router-dom";
 
 
@@ -29,16 +33,53 @@ import { useParams } from "react-router-dom";
 
 
 export default function BugItem(){
+
+  // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;
-  console.log(bugId)
+  // console.log(bugId);
+  const [bugItem, setBugItem] = useState([]);
+
+
+  //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
+    useEffect(() => {
+      // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
+      // We use ${bugId} from above to get that bugs specific ID and we search as if in postman
+      axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`,             {withCredentials: true})
+
+      // If you retrieve bugs then set the bugs useState to the data you get from backend
+      .then(response => {
+        setBugItem(response.data);
+      })
+      .catch(error => console.log(error));
+
+    }, );
+  //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
+
+
+
+//   function loopArray() {
+//       let arr = bugItem.stepsToReproduce[0];
+
+//     arr.forEach(element => {
+//        console.log(element);
+//     });
+// }
+
+// let i = 0;
+
+// while (i < bugItem.stepsToReproduce.length) {
+//     console.log(bugItem.stepsToReproduce[i]);
+//     i++;
+// }
+
+
+
+// console.log(bugItem.bugCreationInformation[0].bugsCreationDate);
+// console.log(bugItem.bugCreationInformation[0].bugCreatedByUser);
+
+
   return( 
     <>
-
-
-
-
-
-
 
   <div className="wrapper swing_in_right_fwd">
 
@@ -60,15 +101,15 @@ export default function BugItem(){
 
       
       <div className="bug_title_div">
-        <div className="">
-          <h1>BUG TITLE HERE</h1>
-          <p>Bug&#39;s Id <br/> 123456789023456789</p>
+          <div className="">
+            <h1>{bugItem.title}</h1>
+            <p>Bug&#39;s Id <br/> {bugItem._id}</p>
 
-          <br></br>
+            <br></br>
 
-          <h2>DESCRIPTION HERE</h2>
-        </div>
-    </div>
+            <h2>{bugItem.description}</h2>
+          </div>
+      </div>
 </div> 
 {/* <!-- overview info --> */}
 
@@ -103,15 +144,15 @@ export default function BugItem(){
 
         <div className="container text-center justify-content-center">
           <div className="row">
-            <div className="col-sm">
+            {/* <div className="col-sm">
               <h3>Added By User</h3>
-              <h4>USER NAME HERE</h4>
+              <h4>{bugItem.bugCreationInformation[0].bugCreatedByUser}</h4>
             </div>
 
             <div className="col-sm">
               <h3>Created On</h3>
-              <h4>DATE CREATE HERE</h4>
-            </div>
+              <h4>{bugItem.bugCreationInformation[0].bugsCreationDate}</h4>
+            </div> */}
           </div>
         </div>
       
@@ -134,9 +175,8 @@ export default function BugItem(){
     <div id="steps_to_reproduce" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
       <div className="accordion-body">
         <ol className="accordion_ol">
-          <li>Step 1</li>
-          <li>Step 2</li>
-          <li>Step 3</li>
+          {/* <li>{bugItem.stepsToReproduce[0]}</li>
+          <li>{bugItem.stepsToReproduce[1]}</li> */}
         </ol>
       </div>
     </div>
@@ -162,15 +202,15 @@ export default function BugItem(){
 
           <div className="container text-center justify-content-center">
             <div className="row">
-              <div className="col-sm">
+              {/* <div className="col-sm">
                 <h3>Classification</h3>
-                <h4 className="">APPROVED</h4>
+                <h4 className="">{bugItem.bugClassified.classification}</h4>
               </div>
 
               <div className="col-sm">
                 <h3>Classified On</h3>
-                <h4>DATE CREATE HERE</h4>
-              </div>
+                <h4>{bugItem.bugClassified.bugClassifiedOn}</h4>
+              </div> */}
             </div>
           </div>
 

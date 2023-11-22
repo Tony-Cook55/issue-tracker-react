@@ -82,6 +82,7 @@ export default function LoginForm(    {setUserFullName, showToast}   ) {
 
     {/* SUCCESS  IF NO ERRORS POST LOGIN TO SERVER  SUCCESS */}
 
+    // [][][][][][][][][][] USER LOGIN WITH EMAIL & PASSWORD [][][][][][][][][][]
     /* This is basically PostMan and on button click this function posts the info into our backend*/
     axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, {
         // This is plugging in our email & password to the backends/server email & password
@@ -96,6 +97,16 @@ export default function LoginForm(    {setUserFullName, showToast}   ) {
     .then(response => {
       console.log(response.data);
 
+        // SETS THE CURRENT TIME SO that it will be stored in local storage and in App.jsx we can delete it after an hour
+        const currentTime = new Date();
+        const numHours = 1;
+        const expirationTime = currentTime.getTime() + numHours + 60 + 60 + 1000;
+  
+        const user = {
+          fullName : response.data.fullName,
+          expiration: expirationTime
+        };
+
       // Puts the fullName we get back into the local storage
       localStorage.setItem("fullName", response.data.fullName);
 
@@ -104,17 +115,9 @@ export default function LoginForm(    {setUserFullName, showToast}   ) {
 
 
 
-      // SETS THE CURRENT TIME SO USERS NAME WILL DELETE OUT OF LOCAL STORAGE IN AN HOUR \\
-      const currentTime = new Date();
-      const numHours = 1;
-      const expirationTime = currentTime.getTime() + numHours + 60 + 60 + 1000;
 
-      const user = {
-        fullName : response.data.fullName,
-        expiration: expirationTime
-      };
       // console.log(user)
-      localStorage.setItem("fullName", JSON.stringify(user));
+      // localStorage.setItem("fullName", JSON.stringify(user));
       // SETS THE CURRENT TIME SO USERS NAME WILL DELETE OUT OF LOCAL STORAGE IN AN HOUR \\
 
 
@@ -143,6 +146,7 @@ export default function LoginForm(    {setUserFullName, showToast}   ) {
         }
       }
     });
+    // [][][][][][][][][][] USER LOGIN WITH EMAIL & PASSWORD [][][][][][][][][][]
   } // end of onSubmitLogin function
 
 

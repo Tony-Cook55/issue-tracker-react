@@ -129,18 +129,24 @@ function App() {
   // When the component loads use this
   useEffect(() => {
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
-    const getFullName = JSON.parse(localStorage.getItem("fullName"));
+    const getFullName = localStorage.getItem("fullName");
     if(getFullName) {
 
       setUserFullName(getFullName);
 
       /* The code below will remove the fullName from local storage after 1 hour */
-      const now = new Date();
-      if(now.getTime() > getFullName.expiration){
+      const currentTime = new Date();
+      const numHours = 1;
+      const expirationTime = currentTime.getTime() + numHours + 60 + 60 + 1000;
+
+
+
+      if(currentTime.getTime() > expirationTime){
         localStorage.removeItem("fullName");
   
         setUserFullName(null);
         location.reload();
+        console.log("IF STATEMENT HIT");
       }
     }
     
@@ -175,7 +181,7 @@ function App() {
               <Route path="/" element={<HomePage    showToast={showToast} />} />
               <Route path="/login" element={<LoginForm    setUserFullName={setUserFullName} showToast={showToast} />} />
               <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />}/>
-              <Route path="/register" element={<RegisterForm />}/>
+              <Route path="/register" element={<RegisterForm  setUserFullName={setUserFullName}  showToast={showToast}/>}/>
 
 
               <Route path="bugList" element={<BugList />} />

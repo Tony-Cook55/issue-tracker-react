@@ -89,6 +89,8 @@ export default function BugList(   {showToast}  ){
   // -------------------- DELETING BUG FROM DATABASE -------------------
 
 
+
+
   return( 
     <>
 
@@ -105,7 +107,6 @@ export default function BugList(   {showToast}  ){
               ))}
             </div>
       }
-
 
 
     </>

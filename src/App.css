@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -22,7 +22,106 @@ body{
   /* overflow-x:hidden; */
 
   text-align: center;
+
+
+
 }
+
+
+
+
+
+/* BUG LOGO ANIMATION */
+/* 
+  <div className="bug_container">
+    <img src="/images/colored_bug_logo.png" className="bug_pic" ></img>
+  </div> 
+*/
+
+
+
+.bug_pic{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+
+  pointer-events: none;
+
+  width: 150px;
+}
+
+.bug_animation{
+  width: 150px;
+  position: fixed;
+  animation: scurry 5s infinite linear;
+}
+
+/* @keyframes fly {
+  0%{
+    transform: translate(0, 100vh);
+  }
+  50%{
+    transform: translate(100vw, 0);
+  }
+  100%{
+    transform: translate(0, 100vh);
+  }
+} */
+
+@keyframes fly {
+  0%{
+    transform: translate(-200%, 100vh) rotateZ(0deg);
+  }
+  12.5%{
+    transform: translate(100vw, -120%) rotateZ(20deg);
+  }
+  25%{
+    transform: translate(-200%, 50vh) scale(1.75) rotateZ(-40deg);
+  }
+  37.5%{
+    transform: translate(-200%, 100%) rotateZ(-40deg);
+  }
+  50%{
+    transform: translate(100vw, 50vh) rotateZ(0deg);
+  }
+  62.5%{
+    transform: translate(20vw, 100vh) rotateZ(20deg);
+  }
+  75%{
+    transform: translate(-200%, 100vh) rotateZ(20deg);
+  }
+  87.5%{
+    transform: translate(50vw, -200%) scale(1.75) rotateZ(20deg);
+  }
+  100%{
+    transform: translate(-200%, 100vh) rotateZ(0deg);
+  }
+}
+
+@keyframes scurry {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(15deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(-15deg);
+  }
+}
+
+.bug_pic:hover{
+  transform: scale(1.5);
+}
+
+/* BUG LOGO ANIMATION */
+
+
+
 
 
 
