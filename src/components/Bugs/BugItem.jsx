@@ -40,7 +40,7 @@ export default function BugItem(){
 
   const [bugItem, setBugItem] = useState([]);
 
-
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
     useEffect(() => {
@@ -50,28 +50,20 @@ export default function BugItem(){
 
       // If you retrieve bugs then set the bugs useState to the data you get from backend
       .then(response => {
+        // Sets the database info into this
         setBugItem(response.data);
-        // console.log(response.data);
-
-        // IF THE INFO IS STILL BEING LOADED THROW THIS
-        if (!bugItem) {
-          return <div className="text-center">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        </div>;
-        }
+        
+        // Set loading to false when data is received
+        setLoading(false); 
       })
       .catch(error => console.log(error));
 
-    }, );
+      // Set loading to false on error as well
+      setLoading(false);
+    }, [bugId]); // Add bugId as a dependency to re-run the effect when it changes
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
 
 
-
-
-// console.log(bugItem.bugCreationInformation[0].bugsCreationDate);
-// console.log(bugItem.bugCreationInformation[0].bugCreatedByUser);
 
 
   return(
@@ -140,22 +132,26 @@ export default function BugItem(){
 
         <div className="container text-center justify-content-center">
           <div className="row">
-            <div className="col-sm">
-              <h3>Added By User</h3>
 
+            {/* ADDED BY USER */}
+            <div className="bug_information_div">
+              <h3>Added By User</h3>
               {/* If the bugCreationInformation object && the bugCreationInformation[0] array is loaded do item*/}
               {bugItem.bugCreationInformation && bugItem.bugCreationInformation[0] && (
                 <h4>{bugItem.bugCreationInformation[0].bugCreatedByUser}</h4>
               )}
-
             </div>
+            {/* ADDED BY USER */}
 
-            <div className="col-sm">
+            {/* CREATED ON DATE */}
+            <div className="bug_information_div">
               <h3>Created On</h3>
               {bugItem.bugCreationInformation && bugItem.bugCreationInformation[0] && (
                 <h4>{bugItem.bugCreationInformation[0].bugsCreationDate}</h4>
               )}
             </div>
+            {/* CREATED ON DATE */}
+
           </div>
         </div>
       
@@ -177,19 +173,16 @@ export default function BugItem(){
     </h2>
     <div id="steps_to_reproduce" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
       <div className="accordion-body">
-        <ol className="accordion_ol">
-          {/* Adasdadsad FIX ME MAPPING ALL THE STEPS*/}
-          {/* {bugItem.stepsToReproduce.map(step => (
-                    <div key={step._id}>
+        <div className="bug_information_div">
+          <ol className="accordion_ol">
 
-                      <li>{bugItem.stepsToReproduce}</li>
+            {/* Checks if the array is there and then maps all the items in the array by calling them steps and giving each an index to identify them */}
+            {bugItem.stepsToReproduce && bugItem.stepsToReproduce.map((mappedStep, index) => (
+              <li className="mapped_bug_items" key={index}>{mappedStep}</li>
+            ))}
 
-                    </div>
-                ))} */}
-
-          {/* <li>{bugItem.stepsToReproduce[0]}</li>
-          <li>{bugItem.stepsToReproduce[1]}</li> */}
-        </ol>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -214,15 +207,47 @@ export default function BugItem(){
 
           <div className="container text-center justify-content-center">
             <div className="row">
-              {/* <div className="col-sm">
+              {/* CLASSIFICATION OF BUG */}
+              <div className="bug_information_div">
                 <h3>Classification</h3>
-                <h4 className="">{bugItem.bugClassified.classification}</h4>
-              </div>
 
-              <div className="col-sm">
+                {bugItem.bugClassified && (
+                  <h4>{bugItem.bugClassified.classification}</h4>
+                )}
+              </div>
+              {/* CLASSIFICATION OF BUG */}
+
+              {/* CLASSIFIED BY USER */}
+              <div className="bug_information_div">
+                <h3>Classified By User</h3>
+                {bugItem.bugClassified && (
+                  <div>
+                    {/* IF the bugClassified object has lastClassifiedByUser it will show the Users Name : OTHERWISE : Show Message of no User */}
+                    {bugItem.bugClassified.lastClassifiedByUser ? (
+                      <h4>Last Classified By: {bugItem.bugClassified.lastClassifiedByUser}</h4>
+                    ) : (
+                      <h4>Not yet classified by any user</h4>
+                    )}
+                  </div>
+                )}
+              </div>
+              {/* CLASSIFIED BY USER */}
+
+              {/* CLASSIFIED ON DATE */}
+              <div className="bug_information_div">
                 <h3>Classified On</h3>
-                <h4>{bugItem.bugClassified.bugClassifiedOn}</h4>
-              </div> */}
+                {bugItem.bugClassified && (
+                  <div>
+                    {/* IF the bugClassified object has a date it was classified on "bugClassifiedOn" it will show the Date : OTHERWISE : Show Message of no Date */}
+                    {bugItem.bugClassified.bugClassifiedOn ? (
+                      <h4>Classified On: {bugItem.bugClassified.bugClassifiedOn}</h4>
+                    ) : (
+                      <h4>Bug Has Not Been Classified Yet</h4>
+                    )}
+                  </div>
+                )}
+              </div>
+              {/* CLASSIFIED ON DATE */}
             </div>
           </div>
 
@@ -233,78 +258,137 @@ export default function BugItem(){
 
 
 
-    {/* ASSIGNED TO USER */}
+
+
+  {/* ASSIGNED TO USER */}
+  {/* THIS SEES IF bugItem.assignedTo exists and has a length greater than 0 before rendering the accordion section. If the condition is true, the entire accordion section will be rendered; : otherwise :, nothing will be rendered. */}
+  {bugItem.assignedTo && bugItem.assignedTo.length > 0 && (
     <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assigned_to_user" aria-expanded="true" aria-controls="assigned_to_user">
-        Assigned To
-      </button>
-    </h2>
-    <div id="assigned_to_user" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
-      <div className="accordion-body">
-        <h2>Assigned to User: NAME HERE</h2>
-        <h3>USER ID HERE 1234567890</h3>
-        <h4>Bug Assigned On: DATE HERE</h4>
+      <h2 className="accordion-header">
+        <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assigned_to_user" aria-expanded="true" aria-controls="assigned_to_user">
+          Assigned To
+        </button>
+      </h2>
+      <div id="assigned_to_user" className="accordion-collapse collapse">
+        <div className="accordion-body">
+          <div className="container text-center justify-content-center">
+            <div className="">
+              {/* ASSIGNED TO USERS NAME */}
+              <div className="bug_information_div">
+                {/* SEES IF bugItem.assignedTo exists and has a length greater than 0. If true, it renders the content inside the parentheses; :otherwise: it renders the NOT ASSIGNED YET after the : */}
+                <div className="row text-center justify-content-center">
+                  {bugItem.assignedTo.map((mappedItem, index) => (
+                    <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
+                      {/* This is to add +1 for every mapped index we have. It uses index + 1 because index is zero-based, and we want to start the count from 1.  */}
+                      <h2>User {index + 1}:</h2>
+                      <h3>Assigned Name:</h3>
+                      <p>{mappedItem.assignedToUser}</p>
+                      <h3>User Who Assigned:</h3>
+                      <p>{mappedItem.assignedByUser}</p>
+                      <h3>Date Assigned:</h3>
+                      <p>{mappedItem.bugAssignedOn}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  )}
   {/* ASSIGNED TO USER */}
 
 
 
+
+
+  {/* TEST CASES */}
+  {bugItem.testCases && bugItem.testCases.length > 0 && (
+    <div className="accordion-item">
+      <h2 className="accordion-header">
+        <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases_section" aria-expanded="true" aria-controls="test_cases_section">
+          Test Cases
+        </button>
+      </h2>
+      <div id="test_cases_section" className="accordion-collapse collapse">
+        <div className="accordion-body">
+          <div className="container text-center justify-content-center">
+            <div className="">
+              <div className="bug_information_div">
+                {/* SEES IF bugItem.testCases exists and has a length greater than 0. If true, it renders the content inside the parentheses; :otherwise: it renders nothing after the : */}
+                <div className="row text-center justify-content-center">
+                  {bugItem.testCases.map((testCase, index) => (
+                    <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
+                      <h2>Test Case {index + 1}:</h2>
+                      <h3>Title:</h3>
+                      <p>{testCase.title}</p>
+                      <h3>Test Case Created By User:</h3>
+                      <p>{testCase.testCaseCreatedByUser}</p>
+                      <h3>Test Case Created On:</h3>
+                      <p>{testCase.testCaseCreatedOn}</p>
+                      <h3>Passed:</h3>
+                      <p>{testCase.passed ? 'Yes' : 'No'}</p>
+                      <h3>Version Release:</h3>
+                      <p>{testCase.versionRelease}</p>
+                      <h3>Applied Fix On Date:</h3>
+                      <p>{testCase.appliedFixOnDate}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+  {/* TEST CASES */}
+
+
+
+
+
   {/* COMMENTS */}
+  {/* THIS SEES IF bugItem.comments exists and has a length greater than 0 before rendering the accordion section. If the condition is true, the entire accordion section will be rendered; : otherwise :, nothing will be rendered. */}
+  {bugItem.comments && bugItem.comments.length > 0 && (
+  /* COMMENTS SECTION */
   <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button    accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments" aria-expanded="false" aria-controls="comments">
+      <button
+        className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments_section" aria-expanded="true" aria-controls="comments_section">
         Comments
       </button>
     </h2>
-    <div id="comments" className="accordion-collapse collapse">
+    <div id="comments_section" className="accordion-collapse collapse">
       <div className="accordion-body">
-
+        <div className="container text-center justify-content-center">
           <div className="">
-            <h2>MESSAGE TEXT HERE</h2>
-            <h5>USER NAME HERE</h5>
-            <h6>CREATED ON DATE HERE</h6>
+            <div className="bug_information_div">
+              {/* SEES IF bugItem.comments exists and has a length greater than 0. If true, it renders the content inside the parentheses; :otherwise: it renders nothing after the : */}
+              <div className="row  text-center justify-content-center">
+                {bugItem.comments.map((comment, index) => (
+                  <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
+                    <h2>Comment {index + 1}:</h2>
+                    <h3>Message:</h3>
+                    <p>{comment.message}</p>
+                    <h3>Comment Author:</h3>
+                    <p>{comment.commentAuthor}</p>
+                    <h3>Comment Created On:</h3>
+                    <p>{comment.commentCreatedOn}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-
-          <div className="pt-5">
-            <h2>MESSAGE TEXT HERE</h2>
-            <h5>USER NAME HERE</h5>
-            <h6>CREATED ON DATE HERE</h6>
-          </div>
-
+        </div>
       </div>
     </div>
   </div>
+  /* COMMENTS SECTION */
+)}
   {/* COMMENTS */}
 
-
-
-
-  {/* TEST CASES */}
-  <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button className="accordion-button    accordion_button_animation   text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases" aria-expanded="false" aria-controls="test_cases">
-        Test Cases
-      </button>
-    </h2>
-    <div id="test_cases" className="accordion-collapse collapse">
-      <div className="accordion-body">
-
-          <div className="">
-            <h2>TITLE HERE</h2>
-            <h5>CREATED BY USER HERE</h5>
-            <h6>CREATED ON DATE HERE</h6>
-            <h4>PASSED ?</h4>
-            <h4>VERSION RELEASE</h4>
-            <h4>APPLIED FIX ON DATE HERE</h4>
-          </div>
-
-      </div>
-    </div>
-  </div>
-  {/* TEST CASES */}
 
 
 

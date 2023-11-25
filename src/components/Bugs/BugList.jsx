@@ -52,19 +52,28 @@ export default function BugList(   {showToast}  ){
   const [deleteCounter, setDeleteCounter] = useState(0);
 
 
+  // Gets the fullName we stored in localStorage
+  const userFullName = localStorage.getItem('fullName');
+
+  // If the userFullName IS in storage and is not null there are now isLoggedIn
+  const isLoggedIn = userFullName !== null;
+
+
+
+
+
+
   // ~~~~~~~~~~~~~~~~ FIND ALL BUGS ~~~~~~~~~~~~~~~~ //
-    // what ever is in those brackets "so" [deleteCounter], call useEffect
-    useEffect(() => {
-      // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
-      axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list`,             {withCredentials: true})
-
-      // If you retrieve bugs then set the bugs useState to the data you get from backend
-      .then(response => {
-        setBugs(response.data);
-      })
-      .catch(error => console.log(error));
-
-    }, [deleteCounter]);
+  useEffect(() => {
+    // Fetch bug data only if the user is logged in with their fullName
+    if (isLoggedIn) {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list`, { withCredentials: true })
+        .then(response => {
+          setBugs(response.data);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [deleteCounter, isLoggedIn]);
   // ~~~~~~~~~~~~~~~~ FIND ALL BUGS ~~~~~~~~~~~~~~~~ //
 
 
@@ -97,18 +106,23 @@ export default function BugList(   {showToast}  ){
     <>
 
 
-      {/* If there is no BUGS, display the h2  : IF THERE ARE : Map and list all of the following items*/}
-      {!bugs.length ? <h2><Link to="/login">  <LoginFormRequiredMsg /> </Link></h2> :
-            <div className="row  text-center justify-content-center">
-              {bugs.map(bug => (
-                  <div key={bug._id}  className="col-lg-4 col-md-12 col-sm-12">
-
-                    <BugListItem  bug={bug} key={bug._id}   onBugDelete={onBugDelete}/>
-
-                  </div>
-              ))}
+     {/* Check if the user is logged in before rendering content */}
+    {!isLoggedIn && !bugs.length ? (
+        <h2>
+          <Link to="/login">
+            <LoginFormRequiredMsg />
+          </Link>
+        </h2>
+      ) : (
+        // Check if there are bugs, display the bug list if true
+        <div className="row text-center justify-content-center">
+          {bugs.map((bug) => (
+            <div key={bug._id} className="col-lg-4 col-md-12 col-sm-12">
+              <BugListItem bug={bug} key={bug._id} onBugDelete={onBugDelete} />
             </div>
-      }
+          ))}
+        </div>
+      )}
 
 
     </>
@@ -117,3 +131,7 @@ export default function BugList(   {showToast}  ){
 
 
 }
+
+
+
+

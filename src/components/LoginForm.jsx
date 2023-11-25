@@ -97,16 +97,6 @@ export default function LoginForm(    {setUserFullName,setUsersRole, showToast} 
     .then(response => {
       console.log(response.data);
 
-        // SETS THE CURRENT TIME SO that it will be stored in local storage and in App.jsx we can delete it after an hour
-        const currentTime = new Date();
-        const numHours = 1;
-        const expirationTime = currentTime.getTime() + numHours + 60 + 60 + 1000;
-  
-        const user = {
-          fullName : response.data.fullName,
-          expiration: expirationTime
-        };
-
       // Puts the fullName we get back into the local storage
       localStorage.setItem("fullName", response.data.fullName);
 

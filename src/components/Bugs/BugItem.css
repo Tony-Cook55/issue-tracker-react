@@ -239,9 +239,7 @@
   background-color: #131720;
   color: #f6b7f7;
 
-  border: 1px solid white;
-
-
+  border: 2px solid white;
 
   transform: scale(1.05); 
 
@@ -268,25 +266,48 @@
 
 
 
-/* This is the items inside of the accordion */
+/* This is the items inside of the accordion when opened*/
 .accordion-body{
-  padding-top: 25px;
+  /* padding-top: 25px;
+  padding-bottom: 25px; */
 
-  padding-bottom: 25px;
+  border: 2px solid #f6b7f7;
+
+  margin: 0;
+  padding: 0;
 }
 
 /* The ordered list inside of steps to reproduce*/
 .accordion_ol{
   list-style-position: inside;
 
-
   font-size: 25px;
 
   margin: 0;
   padding: 0;
+  }
+
+
+/* This is the div that holds all of the actual bugs information This is added for spacing between each item */
+.bug_information_div{
+  padding-top: 25px;
+  padding-bottom: 25px ;
 }
 
 
+
+/* These are items that are being mapped from arrays so we can add space between each item coming through */
+.mapped_bug_items{
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  /* margin: 15px; */
+}
+
+/* THIS panders only to the items mapped not in lists. So this will not effect the Steps To Reproduce*/
+.row .mapped_bug_items{
+  border: 2px solid white; 
+}
 
 
 /* ^aaaaaaaaaa^ ACCORDION ^aaaaaaaaaa^ */

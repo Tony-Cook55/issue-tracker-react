@@ -126,6 +126,10 @@ function App() {
   // This will hold in the email about the user once logged in
   const [userFullName, setUserFullName] = useState("");
 
+  // Sets the roles that a user has once logged in
+  const [usersRole, setUsersRole] = useState(null);
+
+
   // When the component loads use this
   useEffect(() => {
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
@@ -154,8 +158,7 @@ function App() {
 
 
 
-    // Sets the roles that a user has once logged in
-    const [usersRole, setUsersRole] = useState(null);
+
 
 
 
@@ -189,8 +192,7 @@ function App() {
               <Route path="/register" element={<RegisterForm  setUserFullName={setUserFullName}  showToast={showToast}/>}/>
 
 
-              <Route path="bugList" element={<BugList />}  />
-              {/* <Route path="bugListItem" element={<BugListItem />} /> */}
+              <Route path="bugList" element={<BugList  userFullName={userFullName}/>}  />
               {/* SEARCH BUG BY ID*/}
               <Route path="/bugItem/:bugId" element={<BugItem />} />
               {/* EDIT BUGS */}
