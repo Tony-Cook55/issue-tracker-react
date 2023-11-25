@@ -107,7 +107,7 @@ export default function BugList(   {showToast}  ){
 
 
      {/* Check if the user is logged in before rendering content */}
-    {!isLoggedIn && !bugs.length ? (
+    {!bugs.length ? ( /* !isLoggedIn &&  */
         <h2>
           <Link to="/login">
             <LoginFormRequiredMsg />

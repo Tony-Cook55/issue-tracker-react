@@ -61,7 +61,7 @@ return (
         <div className="profile_box">
           <div className="profile_card">
               <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
-              <h2 className="users_name  item_being_edited" contentEditable><strong>USER NAME HERE</strong></h2>
+              <h2 className="users_name  item_being_edited" ><strong>USER NAME HERE</strong></h2>
           </div>
         </div>
 
@@ -106,23 +106,23 @@ return (
       
       <div className="row">
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited">Quality Analyst</h3>
+          <h3  className="item_being_edited">Quality Analyst</h3>
         </div>
 
         <div className="col-sm">
-            <h3 contentEditable className="item_being_edited">Business Analyst</h3>
+            <h3  className="item_being_edited">Business Analyst</h3>
         </div>
 
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited   developer_role">Developer</h3>
+          <h3  className="item_being_edited   developer_role">Developer</h3>
         </div>
 
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited">Product Manager</h3>
+          <h3  className="item_being_edited">Product Manager</h3>
         </div>
 
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited">Technical Manager</h3>
+          <h3  className="item_being_edited">Technical Manager</h3>
         </div>
 
       </div>
@@ -151,15 +151,15 @@ return (
   <div className="row">
 
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited">FULL NAME HERE</h3>
+          <h3  className="item_being_edited">FULL NAME HERE</h3>
         </div>
 
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited">GIVEN NAME HERE</h3>
+          <h3  className="item_being_edited">GIVEN NAME HERE</h3>
         </div>
 
         <div className="col-sm">
-          <h3 contentEditable className="item_being_edited">FAMILY NAME HERE</h3>
+          <h3  className="item_being_edited">FAMILY NAME HERE</h3>
         </div>
 
       </div>

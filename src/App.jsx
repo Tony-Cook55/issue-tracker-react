@@ -196,7 +196,7 @@ function App() {
               {/* SEARCH BUG BY ID*/}
               <Route path="/bugItem/:bugId" element={<BugItem />} />
               {/* EDIT BUGS */}
-              <Route path="/bugs/:bugId" element={<BugEditor />} />
+              <Route path="/bugEditor/:bugId" element={<BugEditor  showToast={showToast}/>} />
 
 
               <Route path="userItem" element={<UserListItem />} />

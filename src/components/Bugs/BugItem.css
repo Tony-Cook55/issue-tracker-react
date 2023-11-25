@@ -67,6 +67,8 @@
 
 
 
+
+
 /* This focuses on the <a href> that holds the icons*/
 .icon_link{
   color: white;
@@ -89,12 +91,12 @@
   background: none;
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  box-shadow:  0px 5px 40px -10px rgba(0,0,0,0.57);;
   transition: all 0.3s ease 0s;
 
   /* Will enlarge the icons if original font is deleted*/
   /* font-size: 25px; */
-
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 

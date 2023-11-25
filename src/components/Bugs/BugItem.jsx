@@ -1,3 +1,6 @@
+
+/* eslint-disable */
+
 // ******************* IMPORTS ******************* //
 
 
@@ -19,7 +22,8 @@ import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
 // Gets the id from the current bug
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 
 
 // ******************* IMPORTS ******************* //
@@ -38,9 +42,7 @@ export default function BugItem(){
   const bugId = useParams().bugId;
   // console.log(bugId);
 
-  const [bugItem, setBugItem] = useState([]);
-
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [bugItem, setBugItem] = useState({});
 
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
     useEffect(() => {
@@ -52,14 +54,9 @@ export default function BugItem(){
       .then(response => {
         // Sets the database info into this
         setBugItem(response.data);
-        
-        // Set loading to false when data is received
-        setLoading(false); 
       })
       .catch(error => console.log(error));
-
-      // Set loading to false on error as well
-      setLoading(false);
+  
     }, [bugId]); // Add bugId as a dependency to re-run the effect when it changes
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
 
@@ -79,11 +76,12 @@ export default function BugItem(){
           </div>
         </a>
 
-        <a href="/bugEditor" className="icon_link"   >
+        
+        <Link to={`/bugEditor/${bugId}`} className="icon_link">
           <div className="edit_button  edit_button_background">
             <FaPencilRuler/>
           </div>
-        </a>
+          </Link>
       </div>
       
 
@@ -393,22 +391,45 @@ export default function BugItem(){
 
 
 
-    {/* CLOSED */}
-    <div className="accordion-item">
+{/* BUG CLOSED SECTION */}
+{bugItem.bugClosed && (
+  <div className="accordion-item">
     <h2 className="accordion-header">
-      <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#closed" aria-expanded="true" aria-controls="closed">
-        Closed
+      <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bugClosed_section" aria-expanded="true" aria-controls="bugClosed_section" >
+        Bug Closed
       </button>
     </h2>
-    <div id="closed" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
+    <div id="bugClosed_section" className="accordion-collapse collapse">
       <div className="accordion-body">
-        <h3>Is This Bug Closed: ADD True or False</h3>
-        <h4>Closed On: ADD DATE HERE</h4>
+        <div className="container text-center justify-content-center">
+          <div className="">
+            <div className="bug_information_div">
+              <div className="row  text-center justify-content-center">
+                <div className=" col-md-4 col-sm-6">
+                  <h3>Closed:</h3>
+                  <p>{bugItem.bugClosed.closed}</p>
+                  {bugItem.bugClosed.lastClosedByUser && (
+                    <>
+                      <h3>Last Closed By User:</h3>
+                      <p>{bugItem.bugClosed.lastClosedByUser}</p>
+                    </>
+                  )}
+                  {bugItem.bugClosed.bugClosedOn && (
+                    <>
+                      <h3>Bug Closed On:</h3>
+                      <p>{bugItem.bugClosed.bugClosedOn}</p>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  {/* CLOSED */}
-
+)}
+{/* BUG CLOSED SECTION */}
 
 
 </div>
@@ -418,31 +439,29 @@ export default function BugItem(){
 
 
 
+
 <div className="bottom_cap_under_accordion">
   <div className="end_cap_base">
 
   <div className="container ">
-    <p className="last_updated_on ">Last Updated On: <span className="last_updated_on ">DATE HERE</span></p>
+    <p className="last_updated_on "> 
+      <span className="last_updated_on ">
+      {/* Checks if the bug updated object is there AND if bugLastUpdatedOn is there IF NOT : OTHERWISE : Throw the Not updated yet message*/}
+      {bugItem.bugUpdated && bugItem.bugUpdated.bugLastUpdatedOn ? (
+                    <>
+                      <p>Last Updated On:</p>
+                      <p>{bugItem.bugUpdated.bugLastUpdatedOn}</p>
+                    </>
+      ) : (
+        <p>This Bug Has Not Been Updated Yet</p>
+      )}
+
+      </span>
+    </p>
   </div>
-
-
-    {/* <div className="container">
-      <div className="row">
-        <div className="col-md-6 col-sm-4">
-          
-        </div>
-        <div className="col-md-6 col-sm-4">
-
-        </div>
-      </div>
-    </div> */}
 
   </div>
 </div>
-
-
-
-
 
 
 
