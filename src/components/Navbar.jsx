@@ -65,10 +65,10 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
             <label htmlFor="active" className="menu-btn"><span></span></label>
             <label htmlFor="active" className="close"></label>
             
-              <div className="wrapper">
-                  {/* <img src="/images/colored_bug_logo.png" className="" ></img> */}
-                <ul>
 
+            
+              <div className="wrapper">
+                <ul>
                   {/* /////// HOME PAGE /////// */}
                   <li className="nav-item"  onClick={refreshNavbar}>
                     <NavLink to="/" className="nav-link">
@@ -109,6 +109,17 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
                     </NavLink>
                   </li> */}
                   {/* /////// REGISTER PAGE /////// */}
+
+
+
+                  {/* /////// BUG LIST /////// */}
+                  <li className="nav-item"  onClick={refreshNavbar}>
+                    <NavLink to="bugList" className="nav-link">
+                      Bug List
+                    </NavLink>
+                  </li>
+                  {/* /////// BUG LIST /////// */}
+
 
 
                   {/* ///////  USERS NAME PROFILE PAGE AND LOGOUT BUTTON/////// */}

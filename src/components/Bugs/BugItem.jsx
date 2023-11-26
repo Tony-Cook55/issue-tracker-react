@@ -18,7 +18,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
+import { FaArrowLeft, FaPencilRuler, FaArrowUp } from "react-icons/fa";
 // ICONS //
 
 // Gets the id from the current bug
@@ -66,34 +66,36 @@ export default function BugItem(){
   return(
     <>
 
+{/* <!-- overview info --> */}
   <div className="button_container   swing_in_right_fwd">
 
     <div className="overviewInfo">
       <div className="top_button_styles">
-        < a href="/bugList" className="icon_link"    >
+        {/* BUG LIST */}
+        <Link to="/bugList" className="icon_link"    >
           <div className="back_button  back_button_background">
               <FaArrowLeft/>
           </div>
-        </a>
-
-        
+        </Link>
+        {/* BUG LIST */}
+  
+        {/* EDIT BUG */}
         <Link to={`/bugEditor/${bugId}`} className="icon_link">
           <div className="edit_button  edit_button_background">
             <FaPencilRuler/>
           </div>
-          </Link>
+        </Link>
+        {/* EDIT BUG */}
       </div>
       
 
       
       <div className="bug_title_div">
           <div className="">
-            <h1>{bugItem.title}</h1>
-            <p>Bug&#39;s Id <br/>{bugId}</p>
+            <h1 className="bugs_title">{bugItem.title}</h1>
+            <p>{bugId}</p>
 
-            <br></br>
-
-            <h2>{bugItem.description}</h2>
+            <h4>{bugItem.description}</h4>
           </div>
       </div>
 </div> 
@@ -118,7 +120,7 @@ export default function BugItem(){
 <div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
 
 
-  {/* BUG ADDED INFO */}
+  {/* BUG CREATION INFO */}
   <div className="accordion-item">
     <h2 className="accordion-header">
       <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
@@ -133,19 +135,19 @@ export default function BugItem(){
 
             {/* ADDED BY USER */}
             <div className="bug_information_div">
-              <h3>Added By User</h3>
+              <p className="title_of_database_information">Added By User</p>
               {/* If the bugCreationInformation object && the bugCreationInformation[0] array is loaded do item*/}
               {bugItem.bugCreationInformation && bugItem.bugCreationInformation[0] && (
-                <h4>{bugItem.bugCreationInformation[0].bugCreatedByUser}</h4>
+                <p className="database_information">{bugItem.bugCreationInformation[0].bugCreatedByUser}</p>
               )}
             </div>
             {/* ADDED BY USER */}
 
             {/* CREATED ON DATE */}
             <div className="bug_information_div">
-              <h3>Created On</h3>
+              <p className="title_of_database_information">Created On</p>
               {bugItem.bugCreationInformation && bugItem.bugCreationInformation[0] && (
-                <h4>{bugItem.bugCreationInformation[0].bugsCreationDate}</h4>
+                <p className="database_information">{bugItem.bugCreationInformation[0].bugsCreationDate}</p>
               )}
             </div>
             {/* CREATED ON DATE */}
@@ -156,7 +158,7 @@ export default function BugItem(){
       </div>
     </div>
   </div>
-  {/* BUG ADDED INFO */}
+  {/* BUG CREATION INFO */}
 
 
 
@@ -176,7 +178,7 @@ export default function BugItem(){
 
             {/* Checks if the array is there and then maps all the items in the array by calling them steps and giving each an index to identify them */}
             {bugItem.stepsToReproduce && bugItem.stepsToReproduce.map((mappedStep, index) => (
-              <li className="mapped_bug_items" key={index}>{mappedStep}</li>
+              <li className="mapped_bug_items database_information" key={index}>{mappedStep}</li>
             ))}
 
           </ol>
@@ -207,24 +209,24 @@ export default function BugItem(){
             <div className="row">
               {/* CLASSIFICATION OF BUG */}
               <div className="bug_information_div">
-                <h3>Classification</h3>
+                <p className="title_of_database_information">Classification</p>
 
                 {bugItem.bugClassified && (
-                  <h4>{bugItem.bugClassified.classification}</h4>
+                  <p className="database_information">{bugItem.bugClassified.classification}</p>
                 )}
               </div>
               {/* CLASSIFICATION OF BUG */}
 
               {/* CLASSIFIED BY USER */}
               <div className="bug_information_div">
-                <h3>Classified By User</h3>
+                <p className="title_of_database_information">Classified By User</p>
                 {bugItem.bugClassified && (
                   <div>
                     {/* IF the bugClassified object has lastClassifiedByUser it will show the Users Name : OTHERWISE : Show Message of no User */}
                     {bugItem.bugClassified.lastClassifiedByUser ? (
-                      <h4>Last Classified By: {bugItem.bugClassified.lastClassifiedByUser}</h4>
+                      <p className="database_information">{bugItem.bugClassified.lastClassifiedByUser}</p>
                     ) : (
-                      <h4>Not yet classified by any user</h4>
+                      <p className="database_information">No User Has Classified This Bug</p>
                     )}
                   </div>
                 )}
@@ -233,14 +235,14 @@ export default function BugItem(){
 
               {/* CLASSIFIED ON DATE */}
               <div className="bug_information_div">
-                <h3>Classified On</h3>
+                <p className="title_of_database_information">Classified On</p>
                 {bugItem.bugClassified && (
                   <div>
                     {/* IF the bugClassified object has a date it was classified on "bugClassifiedOn" it will show the Date : OTHERWISE : Show Message of no Date */}
                     {bugItem.bugClassified.bugClassifiedOn ? (
-                      <h4>Classified On: {bugItem.bugClassified.bugClassifiedOn}</h4>
+                      <p className="database_information">{bugItem.bugClassified.bugClassifiedOn}</p>
                     ) : (
-                      <h4>Bug Has Not Been Classified Yet</h4>
+                      <p className="database_information">Bug Has Not Been Classified Yet</p>
                     )}
                   </div>
                 )}
@@ -275,18 +277,23 @@ export default function BugItem(){
               <div className="bug_information_div">
                 {/* SEES IF bugItem.assignedTo exists and has a length greater than 0. If true, it renders the content inside the parentheses; :otherwise: it renders the NOT ASSIGNED YET after the : */}
                 <div className="row text-center justify-content-center">
+          
                   {bugItem.assignedTo.map((mappedItem, index) => (
                     <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
                       {/* This is to add +1 for every mapped index we have. It uses index + 1 because index is zero-based, and we want to start the count from 1.  */}
-                      <h2>User {index + 1}:</h2>
-                      <h3>Assigned Name:</h3>
-                      <p>{mappedItem.assignedToUser}</p>
-                      <h3>User Who Assigned:</h3>
-                      <p>{mappedItem.assignedByUser}</p>
-                      <h3>Date Assigned:</h3>
-                      <p>{mappedItem.bugAssignedOn}</p>
+                      <p className="mapped_item_title">User {index + 1}:</p>
+
+                        <p className="title_of_database_information">User Assigned</p>
+                        <p className="database_information">{mappedItem.assignedToUser}</p>
+
+                        <p className="title_of_database_information">User Who Assigned</p>
+                        <p className="database_information">{mappedItem.assignedByUser}</p>
+
+                        <p className="title_of_database_information">Date Assigned</p>
+                        <p className="database_information">{mappedItem.bugAssignedOn}</p>
                     </div>
                   ))}
+
                 </div>
               </div>
             </div>
@@ -318,19 +325,27 @@ export default function BugItem(){
                 <div className="row text-center justify-content-center">
                   {bugItem.testCases.map((testCase, index) => (
                     <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
-                      <h2>Test Case {index + 1}:</h2>
-                      <h3>Title:</h3>
-                      <p>{testCase.title}</p>
-                      <h3>Test Case Created By User:</h3>
-                      <p>{testCase.testCaseCreatedByUser}</p>
-                      <h3>Test Case Created On:</h3>
-                      <p>{testCase.testCaseCreatedOn}</p>
-                      <h3>Passed:</h3>
-                      <p>{testCase.passed ? 'Yes' : 'No'}</p>
-                      <h3>Version Release:</h3>
-                      <p>{testCase.versionRelease}</p>
-                      <h3>Applied Fix On Date:</h3>
-                      <p>{testCase.appliedFixOnDate}</p>
+                      <p className="mapped_item_title">Test Case {index + 1}:</p>
+
+                        <p>{testCase._id}</p>
+
+                        <p className="title_of_database_information">Title</p>
+                        <p className="database_information">{testCase.title}</p>
+
+                        <p className="title_of_database_information">Test Case Created By User</p>
+                        <p className="database_information">{testCase.testCaseCreatedByUser}</p>
+
+                        <p className="title_of_database_information">Test Case Created On</p>
+                        <p className="database_information">{testCase.testCaseCreatedOn}</p>
+
+                        <p className="title_of_database_information">Passed</p>
+                        <p className="database_information">{testCase.passed}</p>
+
+                        <p className="title_of_database_information">Version Release</p>
+                        <p className="database_information">{testCase.versionRelease}</p>
+
+                        <p className="title_of_database_information">Applied Fix On Date</p>
+                        <p className="database_information">{testCase.appliedFixOnDate}</p>
                     </div>
                   ))}
                 </div>
@@ -367,13 +382,18 @@ export default function BugItem(){
               <div className="row  text-center justify-content-center">
                 {bugItem.comments.map((comment, index) => (
                   <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
-                    <h2>Comment {index + 1}:</h2>
-                    <h3>Message:</h3>
-                    <p>{comment.message}</p>
-                    <h3>Comment Author:</h3>
-                    <p>{comment.commentAuthor}</p>
-                    <h3>Comment Created On:</h3>
-                    <p>{comment.commentCreatedOn}</p>
+                    
+                    <p className="mapped_item_title">Comment {index + 1}:</p>
+                      <p>{comment._id}</p>
+
+                      <p className="title_of_database_information">Message:</p>
+                      <p className="database_information">{comment.message}</p>
+
+                      <p className="title_of_database_information">Comment Author:</p>
+                      <p className="database_information">{comment.commentAuthor}</p>
+
+                      <p className="title_of_database_information">Comment Created On:</p>
+                      <p className="database_information">{comment.commentCreatedOn}</p>
                   </div>
                 ))}
               </div>
@@ -406,20 +426,23 @@ export default function BugItem(){
             <div className="bug_information_div">
               <div className="row  text-center justify-content-center">
                 <div className=" col-md-4 col-sm-6">
-                  <h3>Closed:</h3>
-                  <p>{bugItem.bugClosed.closed}</p>
+
+                  <p className="title_of_database_information">Closed:</p>
+
+                  <p className="database_information">{bugItem.bugClosed.closed}</p>
                   {bugItem.bugClosed.lastClosedByUser && (
                     <>
-                      <h3>Last Closed By User:</h3>
-                      <p>{bugItem.bugClosed.lastClosedByUser}</p>
+                      <p className="title_of_database_information">Last Closed By User:</p>
+                      <p className="database_information">{bugItem.bugClosed.lastClosedByUser}</p>
                     </>
                   )}
                   {bugItem.bugClosed.bugClosedOn && (
                     <>
-                      <h3>Bug Closed On:</h3>
-                      <p>{bugItem.bugClosed.bugClosedOn}</p>
+                      <p className="title_of_database_information">Bug Closed On:</p>
+                      <p className="database_information">{bugItem.bugClosed.bugClosedOn}</p>
                     </>
                   )}
+
                 </div>
               </div>
             </div>
@@ -445,7 +468,7 @@ export default function BugItem(){
 
   <div className="container ">
     <p className="last_updated_on "> 
-      <span className="last_updated_on ">
+      <span className=" ">
       {/* Checks if the bug updated object is there AND if bugLastUpdatedOn is there IF NOT : OTHERWISE : Throw the Not updated yet message*/}
       {bugItem.bugUpdated && bugItem.bugUpdated.bugLastUpdatedOn ? (
                     <>
@@ -455,8 +478,16 @@ export default function BugItem(){
       ) : (
         <p>This Bug Has Not Been Updated Yet</p>
       )}
-
       </span>
+
+
+        {/* TAKES YOU TO TOP OF THE PAGE */}
+          <a href="#top" className="icon_link">
+            <div className="  back_to_top_background">
+                <FaArrowUp/>
+            </div>
+          </a>
+        {/* TAKES YOU TO TOP OF THE PAGE */}
     </p>
   </div>
 

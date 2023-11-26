@@ -128,6 +128,11 @@
 .bug_title_div {
     margin-bottom: 50px;
 }
+
+.bugs_title{
+  font-weight: bold;
+  /* font-size: 60px; */
+}
 /* HHHHHHHHHHHHHHHHHHHHHHHHHHHHH TOP HEADER HHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
 
 
@@ -297,6 +302,26 @@
 }
 
 
+/* This is the TITLE of the information Above the Database info */
+.title_of_database_information{
+  font-size: 32.5px;
+  margin: 0%;
+  padding: 0%;
+}
+
+/* This is the information coming from the database like who made the bug and when */
+.database_information{
+  color: #f9b234;
+  font-size: 28px;
+}
+
+/* This is the Title of For mapped items being counted. Its used for User # for the Assigned To Accordion  &&  Test Cases # In the Test Cases Accordion*/
+.mapped_item_title{
+  margin-top: 10px;
+  font-size: 35px;
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 /* These are items that are being mapped from arrays so we can add space between each item coming through */
 .mapped_bug_items{
@@ -309,6 +334,8 @@
 /* THIS panders only to the items mapped not in lists. So this will not effect the Steps To Reproduce*/
 .row .mapped_bug_items{
   border: 2px solid white; 
+
+  margin: 25px;
 }
 
 
@@ -358,6 +385,12 @@
   font-family: 'Lexend Variable', sans-serif;
 }
 
+/* This is the back to top button */
+.back_to_top_background{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* bbbbbbbbbbbbbbbbbbbbbbbbbbbbb BOTTOM CAP WITH BUTTONS bbbbbbbbbbbbbbbbbbbbbbbbbbbbb*/
 
 

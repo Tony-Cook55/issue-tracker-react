@@ -134,25 +134,42 @@ function App() {
   useEffect(() => {
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
     const getFullName = localStorage.getItem("fullName");
-    if(getFullName) {
+      if(getFullName) {
 
-      setUserFullName(getFullName);
+        // Set the userFullName state with the retrieved value
+        setUserFullName(getFullName);
 
-      /* The code below will remove the fullName from local storage after 1 hour */
-      const currentTime = new Date();
-      const numHours = 1;
-      const expirationTime = currentTime.getTime() + numHours + 60 + 60 + 1000;
+        /* The code below will remove the fullName from local storage after 1 hour */
+        const currentTime = new Date();
+        const numHours = 1; // Change this number to change the time
+        const expirationTime = currentTime.getTime() + numHours * 60 * 60 * 1000;
+    
+        // console.log("Current Time:", new Date(currentTime).toLocaleString());
+        // console.log("Expiration Time:", new Date(expirationTime).toLocaleString());
+    
+        // Set up an interval to check expiration every second
+        const intervalId = setInterval(() => {
 
+          // Get the current time for each iteration 
+          const currentCheckTime = new Date();
 
-
-      if(currentTime.getTime() > expirationTime){
-        localStorage.removeItem("fullName");
-  
-        setUserFullName(null);
-        location.reload();
-        console.log("IF STATEMENT HIT");
+            // console.log("Current Time:", new Date(currentCheckTime).toLocaleString());
+            // console.log("Expiration Time:", new Date(expirationTime).toLocaleString());
+    
+          // Check if the current time is equal to or past the expiration time
+          if (currentCheckTime.getTime() >= expirationTime) {
+            localStorage.removeItem("fullName"); // If expired, remove fullName from local storage, reset state, and reload the page
+            setUserFullName(null);
+            clearInterval(intervalId); // Clear the interval to stop further checks
+            location.reload();
+            console.log("IF STATEMENT HIT");
+          }
+        }, 1000);  // Interval set to 1000 milliseconds (1 second)
+    
+        return () => {
+          clearInterval(intervalId);
+        };
       }
-    }
     
   }, []);
 

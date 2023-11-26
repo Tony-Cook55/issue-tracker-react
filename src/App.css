@@ -41,21 +41,20 @@ body{
 
 
 .bug_pic{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 999;
+
+  /* z-index: 999; */
 
   pointer-events: none;
 
   width: 150px;
+
 }
 
-.bug_animation{
-  width: 150px;
-  position: fixed;
-  animation: scurry 5s infinite linear;
+.bug_image_container{
+
 }
+
+
 
 /* @keyframes fly {
   0%{
@@ -69,35 +68,6 @@ body{
   }
 } */
 
-@keyframes fly {
-  0%{
-    transform: translate(-200%, 100vh) rotateZ(0deg);
-  }
-  12.5%{
-    transform: translate(100vw, -120%) rotateZ(20deg);
-  }
-  25%{
-    transform: translate(-200%, 50vh) scale(1.75) rotateZ(-40deg);
-  }
-  37.5%{
-    transform: translate(-200%, 100%) rotateZ(-40deg);
-  }
-  50%{
-    transform: translate(100vw, 50vh) rotateZ(0deg);
-  }
-  62.5%{
-    transform: translate(20vw, 100vh) rotateZ(20deg);
-  }
-  75%{
-    transform: translate(-200%, 100vh) rotateZ(20deg);
-  }
-  87.5%{
-    transform: translate(50vw, -200%) scale(1.75) rotateZ(20deg);
-  }
-  100%{
-    transform: translate(-200%, 100vh) rotateZ(0deg);
-  }
-}
 
 @keyframes scurry {
   0%, 100% {

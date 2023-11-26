@@ -47,6 +47,7 @@ export default function BugEditor(  {showToast}  ) {
   // This must match the id in the route path thats in App : path="/bugEditor/:bugId"
   const {bugId} = useParams();
 
+  // The actual bugs information
   const [bugItem, setBugItem] = useState({});
 
     // These store the new updated values of these items
@@ -100,9 +101,11 @@ export default function BugEditor(  {showToast}  ) {
     // THIS WILL DELETE THE ID SO WHEN WE SPREAD THE ...updatedBook THE ID WONT TRY AND BE PASSED INTO AS THE BODY
     delete updatedBug._id;
 
+    console.log(bugId);
+    console.log(updatedBug);
 
     // Does the update backend function
-    axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`,
+    axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/update/${bugId}`,
     // This spread of the bugs is what allows it to be sent as the body.params
     {...updatedBug}
     , {withCredentials: true})
