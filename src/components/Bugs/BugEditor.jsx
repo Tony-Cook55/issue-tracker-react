@@ -15,7 +15,7 @@ import "./BugListItem.css"
 import "./BugEditor.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowLeft, FaSave } from "react-icons/fa";
+import { FaArrowLeft, FaSave, FaArrowUp, FaTrash } from "react-icons/fa";
 // ICONS //
 
 import axios from "axios";
@@ -55,6 +55,9 @@ export default function BugEditor(  {showToast}  ) {
     const [description, setDescription] = useState("");
 
 
+    const [deleteCounter, setDeleteCounter] = useState(0);
+
+
     const navigateToAnotherPage = useNavigate();
 
 
@@ -66,6 +69,7 @@ export default function BugEditor(  {showToast}  ) {
 
     // If you retrieve bugs then set the bugs useState to the data you get from backend
     .then(response => {
+      console.log('success!')
       // Sets the database info into this
       setBugItem(response.data);
 
@@ -79,7 +83,7 @@ export default function BugEditor(  {showToast}  ) {
     }
     );
 
-  }, [bugId]); // Add bugId as a dependency to re-run the effect when it changes
+  }, [deleteCounter, bugId]); // Add bugId as a dependency to re-run the effect when it changes
 //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
 
 
@@ -107,10 +111,10 @@ export default function BugEditor(  {showToast}  ) {
     // Does the update backend function
     axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/update/${bugId}`,
     // This spread of the bugs is what allows it to be sent as the body.params
-    {...updatedBug}
-    , {withCredentials: true})
+    {title, description}, {withCredentials: true})
     .then(response => {
-      navigateToAnotherPage(`/`);
+      // navigateToAnotherPage(`/`);
+      navigateToAnotherPage(`/bugItem/${bugId}`);
       showToast(response.data.Bug_Updated, "success");
       console.log(response.data);
     })
@@ -123,6 +127,33 @@ export default function BugEditor(  {showToast}  ) {
   }
 
 
+
+
+
+    // -------------------- DELETING BUG FROM DATABASE -------------------
+    function onBugDelete(evt, bugId){
+      evt.preventDefault();
+
+      axios.delete(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`, {withCredentials: true})
+      .then(response => { 
+
+        navigateToAnotherPage("/bugList");
+
+        // When you delete a book this counter goes up by 1
+        setDeleteCounter(previousCount => previousCount + 1);
+
+        // response.data.message is our json message from the backend 
+        console.log(response.data.Bugs_Deleted);
+
+        // This is our toast plugging in the toast function from app. so our message is our responses message and the type is success
+        showToast(response.data.Bugs_Deleted, "success");
+
+      })
+      .catch(error => 
+        console.log(error)
+      );
+    }
+  // -------------------- DELETING BUG FROM DATABASE -------------------
 
 
   return (
@@ -148,6 +179,7 @@ export default function BugEditor(  {showToast}  ) {
                 <FaSave />
               </div>
             </button>
+
           </div>
 
           <div className="bug_title_div">
@@ -243,12 +275,35 @@ export default function BugEditor(  {showToast}  ) {
         </div>
         {/* END OF ACCORDION */}
 
+
+
         <div className="bottom_cap_under_accordion">
           <div className="end_cap_base">
             <div className="container ">
               <p className="last_updated_on ">
                 Time Spent Updating This Bug: <Stopwatch />
+
+
+              {/* TAKES YOU TO TOP OF THE PAGE */}
+              <a href="#top" className="icon_link">
+                  <div className="  back_to_top_background">
+                      <FaArrowUp/>
+                  </div>
+                </a>
+              {/* TAKES YOU TO TOP OF THE PAGE */}
+
+
+              <button className="icon_link"  onClick={(evt) => onBugDelete(evt, bugId)}>
+                <div className="edit_button  delete_button_background">
+                  <FaTrash />
+                </div>
+              </button>
+
+
               </p>
+
+
+
             </div>
           </div>
         </div>

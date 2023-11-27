@@ -49,13 +49,16 @@ export default function BugList(   {showToast}  ){
 
 
   const [bugs, setBugs] = useState([]);
-  const [deleteCounter, setDeleteCounter] = useState(0);
 
 
-  // Gets the fullName we stored in localStorage
-  const userFullName = localStorage.getItem('fullName');
 
-  // If the userFullName IS in storage and is not null there are now isLoggedIn
+  // Retrieve the user's info object from local storage
+  const userInfo = JSON.parse(localStorage.getItem('fullName'));
+
+  // Extract the fullName from the userInfo object
+  const userFullName = userInfo ? userInfo.fullName : null;
+
+  // Check if the user is logged in by verifying the existence of fullName
   const isLoggedIn = userFullName !== null;
 
 
@@ -73,31 +76,9 @@ export default function BugList(   {showToast}  ){
         })
         .catch(error => console.log(error));
     }
-  }, [deleteCounter, isLoggedIn]);
+  }, [isLoggedIn]);
   // ~~~~~~~~~~~~~~~~ FIND ALL BUGS ~~~~~~~~~~~~~~~~ //
 
-
-  // -------------------- DELETING BUG FROM DATABASE -------------------
-    function onBugDelete(evt, bugId){
-      evt.preventDefault();
-
-      axios.delete(`${import.meta.env.VITE_API_URL}/api/bugs/delete/${bugId}`, {withCredentials: true})
-      .then(response => { 
-        // When you delete a book this counter goes up by 1
-        setDeleteCounter(previousCount => previousCount + 1);
-
-        // response.data.message is our json message from the backend 
-        console.log(response.data.Bugs_Deleted);
-
-        // This is our toast plugging in the toast function from app. so our message is our responses message and the type is success
-        showToast(response.data.Bugs_Deleted, "success");
-
-      })
-      .catch(error => 
-        console.log(error)
-      );
-    }
-  // -------------------- DELETING BUG FROM DATABASE -------------------
 
 
 
@@ -106,8 +87,8 @@ export default function BugList(   {showToast}  ){
     <>
 
 
-     {/* Check if the user is logged in before rendering content */}
-    {!bugs.length ? ( /* !isLoggedIn &&  */
+    {/* Check if the user is logged in before rendering content */}
+    {!isLoggedIn ? ( /* !isLoggedIn &&  bugs.length*/
         <h2>
           <Link to="/login">
             <LoginFormRequiredMsg />
@@ -118,7 +99,7 @@ export default function BugList(   {showToast}  ){
         <div className="row text-center justify-content-center">
           {bugs.map((bug) => (
             <div key={bug._id} className="col-lg-4 col-md-12 col-sm-12">
-              <BugListItem bug={bug} key={bug._id} onBugDelete={onBugDelete} />
+              <BugListItem bug={bug} key={bug._id}/>
             </div>
           ))}
         </div>

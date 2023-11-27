@@ -97,8 +97,23 @@ export default function LoginForm(    {setUserFullName,setUsersRole, showToast} 
     .then(response => {
       console.log(response.data);
 
-      // Puts the fullName we get back into the local storage
-      localStorage.setItem("fullName", response.data.fullName);
+      /* The code below will remove the fullName from local storage after 1 hour */
+      const currentTime = new Date();
+      const numHours = 1; // Change this number to change the time
+      const expirationTime = currentTime.getTime() + numHours * 60 * 60 * 1000;
+
+      // Makes an object and plugs it into fullName that has the users name and the time it should expire
+      const user = {
+        fullName : response.data.fullName,
+        expiration : expirationTime,
+
+        readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
+          timeZone: "UTC", // Change this to the user's timezone if needed
+        }),
+      }
+
+      // Puts the user Object with the users fullName and the time it will expire into the local storage
+      localStorage.setItem("fullName", JSON.stringify(user));
 
       //Sets this to the fullName from our database  calling from this in message in backend:  fullName: usersLoggedIn.fullName
       setUserFullName(response.data.fullName);

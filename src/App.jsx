@@ -57,7 +57,7 @@
 
 
   To Run Program: npm run dev   
-*/ 
+*/
 
 
 
@@ -89,8 +89,9 @@ import BugListItem from './components/Bugs/BugListItem';
 import BugItem from './components/Bugs/BugItem';
 import BugEditor from './components/Bugs/BugEditor';
 
-import UserListItem from './components/Users/UserListItem';
 import UserList from './components/Users/UserList';
+import UserListItem from './components/Users/UserListItem';
+import UserItem from './components/Users/UserItem';
 import UserEditor from './components/Users/UserEditor';
 // COMPONENTS //
 
@@ -133,44 +134,36 @@ function App() {
   // When the component loads use this
   useEffect(() => {
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
-    const getFullName = localStorage.getItem("fullName");
-      if(getFullName) {
+    const getFullName = JSON.parse(localStorage.getItem("fullName"));
+    if (getFullName) {
 
-        // Set the userFullName state with the retrieved value
-        setUserFullName(getFullName);
+      // Set the userFullName state with the retrieved value
+      setUserFullName(getFullName.fullName);
 
-        /* The code below will remove the fullName from local storage after 1 hour */
-        const currentTime = new Date();
-        const numHours = 1; // Change this number to change the time
-        const expirationTime = currentTime.getTime() + numHours * 60 * 60 * 1000;
-    
-        // console.log("Current Time:", new Date(currentTime).toLocaleString());
-        // console.log("Expiration Time:", new Date(expirationTime).toLocaleString());
-    
-        // Set up an interval to check expiration every second
-        const intervalId = setInterval(() => {
+      /* The code below will remove the fullName from local storage after 1 hour */
+      const currentTime = new Date();
 
-          // Get the current time for each iteration 
-          const currentCheckTime = new Date();
+      // Check if the current time is equal to or past the expiration time
+      if (currentTime.getTime() >= getFullName.expiration) {
+        localStorage.removeItem("fullName"); // If expired, remove fullName from local storage, reset state, and reload the page
+        setUserFullName(null);
+        location.reload();
+        console.log("IF STATEMENT HIT");
 
-            // console.log("Current Time:", new Date(currentCheckTime).toLocaleString());
-            // console.log("Expiration Time:", new Date(expirationTime).toLocaleString());
-    
-          // Check if the current time is equal to or past the expiration time
-          if (currentCheckTime.getTime() >= expirationTime) {
-            localStorage.removeItem("fullName"); // If expired, remove fullName from local storage, reset state, and reload the page
-            setUserFullName(null);
-            clearInterval(intervalId); // Clear the interval to stop further checks
-            location.reload();
-            console.log("IF STATEMENT HIT");
-          }
-        }, 1000);  // Interval set to 1000 milliseconds (1 second)
-    
-        return () => {
-          clearInterval(intervalId);
-        };
+
+        // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
+        axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`, {withCredentials: true})
+        .then(response => { 
+          location.reload();
+          // response.data.message is our json message from the backend 
+          console.log(response.data.message);
+        })
+        .catch(error => 
+          console.log(error)
+        );
+        // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
       }
-    
+    }
   }, []);
 
 
@@ -180,7 +173,7 @@ function App() {
 
 
   // This is the little pop up function called toasts that we can call in and set the message we want and type of toast
-  function showToast(message, type){
+  function showToast(message, type) {
     // When called in we must specify the message and the type of toast we want it to look like
     toast(message, {
       type: type,              // info, success, warning, error, default
@@ -195,33 +188,33 @@ function App() {
 
         <header>
           <nav>
-            <NavBar   userFullName={userFullName}   setUserFullName={setUserFullName}/>
+            <NavBar userFullName={userFullName} setUserFullName={setUserFullName} />
           </nav>
         </header>
 
 
         <main>
           <ToastContainer />
-            <Routes>
-              <Route path="/" element={<HomePage    showToast={showToast} />} />
-              <Route path="/login" element={<LoginForm    setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
-              <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />}/>
-              <Route path="/register" element={<RegisterForm  setUserFullName={setUserFullName}  showToast={showToast}/>}/>
+          <Routes>
+            <Route path="/" element={<HomePage showToast={showToast} />} />
+            <Route path="/login" element={<LoginForm setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
+            <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />} />
+            <Route path="/register" element={<RegisterForm setUserFullName={setUserFullName} showToast={showToast} />} />
 
 
-              <Route path="bugList" element={<BugList  userFullName={userFullName}/>}  />
-              {/* SEARCH BUG BY ID*/}
-              <Route path="/bugItem/:bugId" element={<BugItem />} />
-              {/* EDIT BUGS */}
-              <Route path="/bugEditor/:bugId" element={<BugEditor  showToast={showToast}/>} />
+            <Route path="bugList" element={<BugList userFullName={userFullName} />} />
+            {/* SEARCH BUG BY ID*/}
+            <Route path="/bugItem/:bugId" element={<BugItem  usersRole={usersRole}/>} />
+            {/* EDIT BUGS */}
+            <Route path="/bugEditor/:bugId" element={<BugEditor showToast={showToast}/>} />
 
 
-              <Route path="userItem" element={<UserListItem />} />
-              <Route path="userList" element={<UserList />} />
-              <Route path="userEditor" element={<UserEditor />} />
-            </Routes>
+            <Route path="userList" element={<UserList userFullName={userFullName}/>} />
+            <Route path="/user/:userId" element={<UserItem />} />
+            <Route path="/userEditor/:userId" element={<UserEditor />} />
+          </Routes>
         </main>
-        
+
       </div>
     </>
   );

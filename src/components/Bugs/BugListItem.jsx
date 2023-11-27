@@ -29,7 +29,7 @@ import { NavLink, Link } from "react-router-dom";
 
 
 
-export default function BugListItem(  {bug, onBugDelete}  ){
+export default function BugListItem(  {bug}  ){
 
   return( 
     <>
@@ -86,15 +86,6 @@ export default function BugListItem(  {bug, onBugDelete}  ){
               </p>
             </div>
             {/* CREATED ON DATE */}
-
-
-            {/* EDIT BUTTON */}
-            {/* <Link to="/bugEditor" className="icon_link item_section_container  edit_button_list_item">
-              <div className="edit_button edit_button_background">
-                  <FaPencilRuler/>
-              </div>
-            </Link>  */}
-            {/* EDIT BUTTON */}
 
 
           </Link>

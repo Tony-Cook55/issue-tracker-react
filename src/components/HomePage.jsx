@@ -54,7 +54,9 @@ export default function HomePage(){
   return(
     <>
       <div>
-      <h1>Welcome to the Home Page</h1>
+
+        <br/><br/>
+      <h1>GARBAGE HOME PAGE PLEASE FOR THE LOVE OF GOD CHANGE ME!!</h1>
         <button type="button" onClick={goToLoginPage} className='m-5'>
           Log In
         </button>

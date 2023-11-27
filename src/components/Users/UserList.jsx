@@ -10,11 +10,21 @@ import "bootstrap/dist/js/bootstrap.min.js"
 // CSS
 import "./UserList.css"
 
-// ICONS //   Call them in like this    <FaClock/>
-import { FaPencilRuler } from "react-icons/fa";
-// ICONS //
 
-import React, { useState } from 'react';
+
+import axios from "axios"
+
+import { useState, useEffect } from "react"
+
+import { Link, NavLink } from "react-router-dom";
+
+
+import UserListItem from "./UserListItem";
+
+import UserItem from "./UserItem";
+
+import LoginFormRequiredMsg from "../LoginRequiredMsg";
+
 
 
 // ******************* IMPORTS ******************* //
@@ -29,132 +39,59 @@ import React, { useState } from 'react';
 
 export default function UserList(){
 
+  
+  const [users, setUser] = useState([]);
+
+
+  // Retrieve the user's info object from local storage
+  const userInfo = JSON.parse(localStorage.getItem('fullName'));
+
+  // Extract the fullName from the userInfo object
+  const userFullName = userInfo ? userInfo.fullName : null;
+
+  // Check if the user is logged in by verifying the existence of fullName
+  const isLoggedIn = userFullName !== null;
+
+
+
+
+
+
+  // ~~~~~~~~~~~~~~~~ FIND ALL USERS ~~~~~~~~~~~~~~~~ //
+  useEffect(() => {
+    // Fetch bug data only if the user is logged in with their fullName
+    if (isLoggedIn) {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/users/list`, { withCredentials: true })
+        .then(response => {
+          setUser(response.data);
+        })
+        .catch(error => console.log(error));
+    }
+  },  [isLoggedIn]);
+  // ~~~~~~~~~~~~~~~~ FIND ALL USERS ~~~~~~~~~~~~~~~~ //
+
   return( 
     <>
 
 
 
-{/* ~~~~~~~ TO HOME PAGE ~~~~~~~ */}
-< a href="/" className="icon_link ag-courses-item_title" >
-  <div className="">
-      ~~~~ HOME PAGE ~~~~
-  </div>
-</a>
-{/* ~~~~~~~ TO HOME PAGE ~~~~~~~ */}
-
-
-<div className="ag-format-container      delay-1   item_come_in_animation   item_pop">
-  <div className="item_list_box_flex">
-
-
-  {/* ITEM */}
-    <div className="list_item">
-      <a href="/userItem" className="item_list_box_flex">
-        <div className="list_item_background"></div>
-
-        <div className="ag-courses-item_title">
-          <p>User NAME HERE</p>
-          <h6>ID HERE</h6>
-        </div>
-
-
-        <div className="ag-courses-item_title">
-          <img src="/images/wide_ear_dog.png" className="user_profile_pic_small  rounded-circle" alt="User Avatar" />
-        </div>
-
-
-        <div className="list_item_date_container">
-          User Joined On
-          <span className="list_item_dates">
-            <p>DATE HERE</p>
-          </span>
-        </div>
-
-        < a href="/userEditor" className="icon_link ag-courses-item_title" >
-            <div className="edit_button edit_button_background">
-                <FaPencilRuler/>
+{/* Check if the user is logged in before rendering content */}
+{!isLoggedIn ? ( /* !isLoggedIn &&  bugs.length*/
+        <h2>
+          <Link to="/login">
+            <LoginFormRequiredMsg />
+          </Link>
+        </h2>
+      ) : (
+        // Check if there are bugs, display the bug list if true
+        <div className="row text-center justify-content-center">
+          {users.map((userItem) => (
+            <div key={userItem._id} className="col-lg-4 col-md-12 col-sm-12">
+              <UserListItem userItem={userItem} key={userItem._id}/>
             </div>
-          </a>
-
-      </a>
-    </div>
-  {/* ITEM */}
-
-
-
-{/* ITEM */}
-<div className="list_item">
-      <a href="/userItem" className="item_list_box_flex">
-        <div className="list_item_background"></div>
-
-        <div className="ag-courses-item_title">
-          <p>User NAME HERE</p>
-          <h6>ID HERE</h6>
+          ))}
         </div>
-
-
-        <div className="ag-courses-item_title">
-          <img src="/images/wide_ear_dog.png" className="user_profile_pic_small  rounded-circle" alt="User Avatar" />
-        </div>
-
-
-        <div className="list_item_date_container">
-          User Joined On
-          <span className="list_item_dates">
-            <p>DATE HERE</p>
-          </span>
-        </div>
-
-        < a href="/userEditor" className="icon_link ag-courses-item_title" >
-            <div className="edit_button edit_button_background">
-                <FaPencilRuler/>
-            </div>
-          </a>
-
-      </a>
-    </div>
-  {/* ITEM */}
-
-
-
-
-  {/* ITEM */}
-  <div className="list_item">
-      <a href="/userItem" className="item_list_box_flex">
-        <div className="list_item_background"></div>
-
-        <div className="ag-courses-item_title">
-          <p>User NAME HERE</p>
-          <h6>ID HERE</h6>
-        </div>
-
-
-        <div className="ag-courses-item_title">
-          <img src="/images/wide_ear_dog.png" className="user_profile_pic_small  rounded-circle" alt="User Avatar" />
-        </div>
-
-
-        <div className="list_item_date_container">
-          User Joined On
-          <span className="list_item_dates">
-            <p>DATE HERE</p>
-          </span>
-        </div>
-
-        < a href="/userEditor" className="icon_link ag-courses-item_title" >
-            <div className="edit_button edit_button_background">
-                <FaPencilRuler/>
-            </div>
-          </a>
-
-      </a>
-    </div>
-  {/* ITEM */}
-
-
-  </div>
-</div>
-
+      )}
 
 
 

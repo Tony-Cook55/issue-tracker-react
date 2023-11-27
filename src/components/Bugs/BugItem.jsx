@@ -36,7 +36,7 @@ import { useParams, Link } from "react-router-dom";
 
 
 
-export default function BugItem(){
+export default function BugItem(  {usersRole} ){
 
   // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;
@@ -78,13 +78,16 @@ export default function BugItem(){
           </div>
         </Link>
         {/* BUG LIST */}
-  
+
+
         {/* EDIT BUG */}
-        <Link to={`/bugEditor/${bugId}`} className="icon_link">
-          <div className="edit_button  edit_button_background">
-            <FaPencilRuler/>
-          </div>
-        </Link>
+        {/* {usersRole.includes("Quality Analyst") && */}
+          <Link to={`/bugEditor/${bugId}`} className="icon_link">
+            <div className="edit_button  edit_button_background">
+              <FaPencilRuler/>
+            </div>
+          </Link>
+        {/* } */}
         {/* EDIT BUG */}
       </div>
       

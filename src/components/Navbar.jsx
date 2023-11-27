@@ -122,12 +122,22 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
 
 
 
+                  {/* /////// USER LIST /////// */}
+                  <li className="nav-item"  onClick={refreshNavbar}>
+                    <NavLink to="userList" className="nav-link">
+                      User List
+                    </NavLink>
+                  </li>
+                  {/* /////// USER LIST /////// */}
+
+
+
                   {/* ///////  USERS NAME PROFILE PAGE AND LOGOUT BUTTON/////// */}
                     {/* THIS DISPLAYS THE USERS FULL NAME WE GET FROM LOGGING IN*/}
                     {userFullName && 
                       <div className="cursor_pointer">
                         <li className="nav-item" onClick={refreshNavbar}>
-                          <NavLink to="/profile" className="nav-link">
+                          <NavLink to="/userItem" className="nav-link">
                             {userFullName}
                           </NavLink>
                         </li>

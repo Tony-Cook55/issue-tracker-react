@@ -1,5 +1,21 @@
 
 
+.delete_button_background{
+  background-image: linear-gradient(120deg,  #f41414, #cc3030);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+}
+
+
+
+.last_updated_on{
+  color: white;
+}
+
+
 .item_being_edited{
   /* font-size: 40px; */
 
@@ -25,7 +41,7 @@
 
 /* This will create a paper like background for anything named:  edit_mode_background*/
 .edit_mode_background:hover, .edit_mode_background:focus{
-background-color: #e5e5f7;
-background-size: 20px 20px;
-background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
+  background-color: #e5e5f7;
+  background-size: 20px 20px;
+  background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
 }
