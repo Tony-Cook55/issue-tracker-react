@@ -27,7 +27,7 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
   const navigateToAnotherPage = useNavigate();
 
 
-  /* LOGOUT BUTTON FUNCTION */
+// LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
   function onClickLogout(evt){
     evt.preventDefault();
 
@@ -38,6 +38,8 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
     .then(response => {
       setUserFullName("");
       localStorage.removeItem("fullName");
+      localStorage.removeItem("roles");
+      localStorage.removeItem("usersId");
       //console.log(response.data);
 
       // Goes to home page on successful logout
@@ -52,6 +54,7 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
   const refreshNavbar = () => {
     window.location.reload();
   };
+// LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
 
 
 
@@ -132,7 +135,8 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
                         {/* /////// PROFILE /////// */}
                         <li className="nav-item" onClick={refreshNavbar}>
                           <NavLink to="/userItem" className="nav-link">
-                            {userFullName}
+                            {/* {userFullName} */}
+                            Profile
                           </NavLink>
                         </li>
                         {/* /////// PROFILE /////// */}

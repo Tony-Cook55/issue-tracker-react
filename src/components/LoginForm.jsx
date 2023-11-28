@@ -33,7 +33,7 @@ import './componentsCSS/LoginForm.css'
 
 
 
-export default function LoginForm(    {setUserFullName,setUsersRole, showToast}   ) {
+export default function LoginForm(    {setUserFullName,setUsersRole,setUsersId, showToast}   ) {
 
 
   const [email, setEmail] = useState("");
@@ -105,11 +105,11 @@ export default function LoginForm(    {setUserFullName,setUsersRole, showToast} 
       // Makes an object and plugs it into fullName that has the users name and the time it should expire
       const user = {
         fullName : response.data.fullName,
-        expiration : expirationTime,
+        users_id: response.data.users_id,
 
-        readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
-          timeZone: "UTC", // Change this to the user's timezone if needed
-        }),
+        // readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
+        //   timeZone: "UTC", // Change this to the user's timezone if needed
+        // }),
       }
 
       // Puts the user Object with the users fullName and the time it will expire into the local storage
@@ -117,9 +117,13 @@ export default function LoginForm(    {setUserFullName,setUsersRole, showToast} 
 
       //Sets this to the fullName from our database  calling from this in message in backend:  fullName: usersLoggedIn.fullName
       setUserFullName(response.data.fullName);
+      console.log(response.data);
 
       // This gets the role from the message sent to check later on in functions like update
       setUsersRole(response.data.roles);
+
+      // Sets the users Id from the message back into the app to use later
+      setUsersId(response.data.users_id);
 
       // Takes us to the homepage 
       navigateToAnotherPage("/");

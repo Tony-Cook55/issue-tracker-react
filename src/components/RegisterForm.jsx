@@ -26,7 +26,7 @@ import { useState } from 'react';
 
 // ******************* IMPORTS ******************* //
 
-export default function RegisterForm(  {setUserFullName, setUsersRole, showToast}){
+export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersId, showToast}){
 
 
 
@@ -148,6 +148,9 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, showToast
 
       // This gets the role from the message sent to check later on in functions like update
       setUsersRole(response.data.roles);
+
+      // Sets the inserted Id the user gets when making a new account
+      setUsersId(response.data.users_id);
 
       // Takes us to the homepage 
       navigateToAnotherPage("/");

@@ -43,7 +43,7 @@ import LoginFormRequiredMsg from "../LoginRequiredMsg";
 
 
 
-export default function BugList(   {showToast}  ){
+export default function BugList(   {showToast }  ){
 
 
 
@@ -63,9 +63,6 @@ export default function BugList(   {showToast}  ){
 
 
 
-
-
-
   // ~~~~~~~~~~~~~~~~ FIND ALL BUGS ~~~~~~~~~~~~~~~~ //
   useEffect(() => {
     // Fetch bug data only if the user is logged in with their fullName
@@ -74,10 +71,13 @@ export default function BugList(   {showToast}  ){
         .then(response => {
           setBugs(response.data);
 
-          showToast("Success! Found All Bugs", "success");
+          // showToast("Success! Found All Bugs", "success");
         })
         .catch(error => console.log(error));
     }
+
+
+
   }, [isLoggedIn]);
   // ~~~~~~~~~~~~~~~~ FIND ALL BUGS ~~~~~~~~~~~~~~~~ //
 
@@ -89,19 +89,22 @@ export default function BugList(   {showToast}  ){
     <>
 
 
-    {/* Check if the user is logged in before rendering content */}
-    {!isLoggedIn ? ( /* !isLoggedIn &&  bugs.length*/
+    {/* Check if the user is logged in before rendering content OR if there is no BUGS : OTHERWISE : Show List*/}
+    {!isLoggedIn ? ( /* !isLoggedIn &&  !bugs.length*/
         <h2>
           <Link to="/login">
             <LoginFormRequiredMsg />
           </Link>
         </h2>
-      ) : (
+      ) :
+        !bugs.length ? (
+          <h1 className="no_bugs_found_message">There Are No Bugs</h1>
+        ) : (
         // Check if there are bugs, display the bug list if true
         <div className="row text-center justify-content-center">
           {bugs.map((bug) => (
             <div key={bug._id} className="col-lg-4 col-md-12 col-sm-12">
-              <BugListItem bug={bug} key={bug._id}/>
+              <BugListItem bug={bug} key={bug._id}  />
             </div>
           ))}
         </div>

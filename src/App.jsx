@@ -83,6 +83,7 @@ import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 import LoginFormRequiredMsg from './components/LoginRequiredMsg';
 import RegisterForm from './components/RegisterForm';
+import Footer from './components/Footer';
 
 import BugList from './components/Bugs/BugList';
 import BugListItem from './components/Bugs/BugListItem';
@@ -124,17 +125,31 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
 
 
-  // This will hold in the email about the user once logged in
+  // This will hold in the fullName and expiration Time about the user once logged in
   const [userFullName, setUserFullName] = useState("");
 
   // Sets the roles that a user has once logged in
   const [usersRole, setUsersRole] = useState(null);
-
+  // Sets the id we get when a user logs in 
+  const [usersId, setUsersId] = useState(null);
+  
 
   // When the component loads use this
   useEffect(() => {
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
     const getFullName = JSON.parse(localStorage.getItem("fullName"));
+
+
+    // After We Set the Roles we will save them to Local Storage to be called in on other pages
+    if(usersRole){
+      localStorage.setItem('roles',JSON.stringify(usersRole));
+    }
+    // Sets the Id of the user from logging in or making an account into storage
+    if(usersId){
+      localStorage.setItem('usersId', JSON.stringify(usersId))
+    }
+
+
     if (getFullName) {
 
       // Set the userFullName state with the retrieved value
@@ -146,9 +161,9 @@ function App() {
       // Check if the current time is equal to or past the expiration time
       if (currentTime.getTime() >= getFullName.expiration) {
         localStorage.removeItem("fullName"); // If expired, remove fullName from local storage, reset state, and reload the page
+        localStorage.removeItem("roles");
         setUserFullName(null);
         location.reload();
-        console.log("IF STATEMENT HIT");
 
 
         // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
@@ -164,7 +179,7 @@ function App() {
         // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
       }
     }
-  }, []);
+  }, [usersRole]);
 
 
 
@@ -182,6 +197,8 @@ function App() {
   }
 
 
+
+
   return (
     <>
       <div className="container       d-flex flex-column min-vh-100">
@@ -197,14 +214,26 @@ function App() {
           <ToastContainer className={"toast_message"}/>
           <Routes>
             <Route path="/" element={<HomePage showToast={showToast} />} />
-            <Route path="/login" element={<LoginForm setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
             <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />} />
-            <Route path="/register" element={<RegisterForm setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
+            <Route path="/login" element={
+              <LoginForm 
+              setUserFullName={setUserFullName} 
+              setUsersRole={setUsersRole} 
+              setUsersId={setUsersId} 
+              showToast={showToast} />
+            } />
+            <Route path="/register" element={
+              <RegisterForm 
+              setUserFullName={setUserFullName} 
+              setUsersRole={setUsersRole} 
+              setUsersId={setUsersId} 
+              showToast={showToast} />
+            } />
 
 
-            <Route path="bugList" element={<BugList userFullName={userFullName} showToast={showToast} />} />
+            <Route path="bugList" element={<BugList  userFullName={userFullName} showToast={showToast}  />} />
             {/* SEARCH BUG BY ID*/}
-            <Route path="/bugItem/:bugId" element={<BugItem  usersRole={usersRole} showToast={showToast}/>} />
+            <Route path="/bugItem/:bugId" element={<BugItem showToast={showToast}/>} />
             {/* EDIT BUGS */}
             <Route path="/bugEditor/:bugId" element={<BugEditor showToast={showToast}/>} />
 
@@ -216,6 +245,11 @@ function App() {
         </main>
 
       </div>
+
+
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

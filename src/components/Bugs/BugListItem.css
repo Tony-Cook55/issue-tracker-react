@@ -2,8 +2,7 @@
 /* aaaaaaaaaaaa COME IN ANIMATION aaaaaaaaaaaaaa */
 
 .item_come_in_animation {
-  animation-duration: 0.75s;
-  animation-duration: 1s; 
+  animation-duration: 0.7s; 
   animation-delay: 0.5s;
   animation-name: animate-fade;
   /* animation-timing-function: cubic-bezier(.26,.53,.74,1.48); */

@@ -72,7 +72,6 @@ export default function BugEditor(  {showToast}  ) {
 
     // If you retrieve bugs then set the bugs useState to the data you get from backend
     .then(response => {
-      console.log('success!')
       // Sets the database info into this
       setBugItem(response.data);
 
@@ -108,7 +107,7 @@ export default function BugEditor(  {showToast}  ) {
     // THIS WILL DELETE THE ID SO WHEN WE SPREAD THE ...updatedBook THE ID WONT TRY AND BE PASSED INTO AS THE BODY
     delete updatedBug._id;
 
-    console.log(bugId);
+    // console.log(bugId);
     console.log(updatedBug);
 
     // Does the update backend function
@@ -119,7 +118,7 @@ export default function BugEditor(  {showToast}  ) {
       // navigateToAnotherPage(`/`);
       navigateToAnotherPage(`/bugItem/${bugId}`);
       showToast(response.data.Bug_Updated, "success");
-      console.log(response.data);
+      // console.log(response.data);
     })
     .catch(error => {
       console.log(error.response)
@@ -179,11 +178,12 @@ export default function BugEditor(  {showToast}  ) {
             </Link>
 
 
-            <button className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
+            <button type="button" className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
                   <div className="edit_button  delete_button_background">
                     <FaTrash />
                   </div>
             </button>
+
 
             <button type="submit" className="icon_link" >
               <div className="edit_button  edit_button_background">
@@ -308,19 +308,21 @@ export default function BugEditor(  {showToast}  ) {
                 {/* TAKES YOU TO TOP OF THE PAGE */}
 
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <!-- wrapper--> */}
+    </form>
 
 
 
 
-              <button className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
-                  <div className="edit_button  delete_button_background">
-                    <FaTrash />
-                  </div>
-              </button>
 
 
 
 
+{/* dddddddddddddddddddddd DELETING CONFIRMATION MODAL dddddddddddddddddddddd*/}
 <div className="modal fade   modal-confirm"  id="confirmation_modal"  aria-labelledby="confirmation_modal_title" aria-hidden="true">
 	<div className="modal-dialog "> {/* modal-dialog-centered */}
 		<div className="modal-content">
@@ -341,27 +343,9 @@ export default function BugEditor(  {showToast}  ) {
 		</div>
 	</div>
 </div>     
+{/* dddddddddddddddddddddd DELETING CONFIRMATION MODAL dddddddddddddddddddddd*/}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <!-- wrapper--> */}
-    </form>
     </>
   );
 }

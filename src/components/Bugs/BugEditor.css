@@ -71,10 +71,17 @@
 
 
 
-
 .modal-confirm {		
 	color: #fff;
-  margin-top: 300px;
+  /* margin-top: 300px; */
+	background-color: #B58DED;
+
+	position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  max-height: 100vh; /* Set a maximum height for the modal */
 }
 
 

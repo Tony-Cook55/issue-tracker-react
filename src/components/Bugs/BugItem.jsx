@@ -15,6 +15,7 @@ import "./BugItem.css"
 
 import axios from "axios"
 
+
 import { useState, useEffect } from "react"
 
 // ICONS //   Call them in like this    <FaClock/>
@@ -36,7 +37,7 @@ import { useParams, Link } from "react-router-dom";
 
 
 
-export default function BugItem(  {usersRole} ){
+export default function BugItem( ){
 
   // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;
@@ -44,8 +45,31 @@ export default function BugItem(  {usersRole} ){
 
   const [bugItem, setBugItem] = useState({});
 
+
+  const [userFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
+  const [roles,setRolesFromLocalStorage] = useState(null);
+  const [usersId,setUsersIdFromLocalStorage] = useState(null);
+
+
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
     useEffect(() => {
+      
+      // This reads out of local storage for the Users Roles To see if they can Edit the Bug
+      if(localStorage.getItem('roles'))
+      {
+        setRolesFromLocalStorage(JSON.parse(localStorage.getItem('roles')));
+      }
+      // Sets the fullName of the user object from local storage into the userFullName
+      if(localStorage.getItem('fullName'))
+      {
+        setUserFullNameFromLocalStorage(JSON.parse(localStorage.getItem('fullName')));
+      }
+      if(localStorage.getItem('usersId'))
+      {
+        setUsersIdFromLocalStorage(JSON.parse(localStorage.getItem('usersId')));
+      }
+
+
       // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
       // We use ${bugId} from above to get that bugs specific ID and we search as if in postman
       axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`,             {withCredentials: true})
@@ -54,11 +78,32 @@ export default function BugItem(  {usersRole} ){
       .then(response => {
         // Sets the database info into this
         setBugItem(response.data);
+
+        // console.log("User In Storage: " + userFullName.fullName);
+        // console.log("User who made bug: " + bugItem.bugCreationInformation[0].bugCreatedByUser);
       })
       .catch(error => console.log(error));
   
     }, [bugId]); // Add bugId as a dependency to re-run the effect when it changes
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
+
+
+
+
+  // THIS CHECKS both the roles of the user and to see if there name in local storage is the name of the user who created the bug
+  const canUserEditThisBug =
+  roles &&
+  (roles.includes('Business Analyst') ||
+    (bugItem.bugCreationInformation &&
+      bugItem.bugCreationInformation.length > 0 &&
+      /* IF the users fullName from local storage matches that of the user who is CREATED THE BUG they can edit */
+      bugItem.bugCreationInformation[0].bugCreatedByUser === userFullNameFromLocalStorage.fullName) ||
+
+      /* IF the users fullName from local storage matches that of the user who is assigned they can edit */
+    (bugItem.assignedTo &&
+      bugItem.assignedTo.some((assignedUser) => assignedUser.assignedToUser === userFullNameFromLocalStorage.fullName))
+  );
+
 
 
 
@@ -80,14 +125,17 @@ export default function BugItem(  {usersRole} ){
         {/* BUG LIST */}
 
 
+
         {/* EDIT BUG */}
-        {/* {usersRole.includes("Quality Analyst") && */}
-          <Link to={`/bugEditor/${bugId}`} className="icon_link">
-            <div className="edit_button  edit_button_background">
-              <FaPencilRuler/>
-            </div>
-          </Link>
-        {/* } */}
+
+          {canUserEditThisBug && (
+            <Link to={`/bugEditor/${bugId}`} className="icon_link">
+              <div className="edit_button  edit_button_background">
+                <FaPencilRuler/>
+              </div>
+            </Link>
+          )} 
+
         {/* EDIT BUG */}
       </div>
       

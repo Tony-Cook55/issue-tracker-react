@@ -14,7 +14,12 @@ import "./UserListItem.css"
 import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 // ICONS //
 
-//import React, { useState } from 'react';
+import axios from "axios"
+
+// Gets the id from the current bug
+import { useParams, Link } from "react-router-dom";
+
+import { useState, useEffect } from "react";
 
 
 // ******************* IMPORTS ******************* //
@@ -46,7 +51,82 @@ import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 
 
 
+
+
 export default function UserItem(){
+
+
+
+
+  // Lets us get the User Id of the specific User we are on
+  const userId = useParams().userId;
+
+  // Sets the information of the user into this
+  const [userProfile, setUserProfile] = useState({});
+
+
+  const [userFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
+  const [roles,setRolesFromLocalStorage] = useState(null);
+
+
+
+  //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
+    useEffect(() => {
+      
+      // This reads out of local storage for the Users Roles To see if they can Edit the User
+      if(localStorage.getItem('roles'))
+      {
+        setRolesFromLocalStorage(JSON.parse(localStorage.getItem('roles')));
+      }
+      // Sets the fullName of the user object from local storage into the userFullName
+      if(localStorage.getItem('fullName'))
+      {
+        setUserFullNameFromLocalStorage(JSON.parse(localStorage.getItem('fullName')));
+      }
+
+
+      // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
+      // We use ${userId} from above to get that users specific ID and we search as if in postman
+      axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`,             {withCredentials: true})
+
+      // If you retrieve the user then set the users useState to the data you get from backend
+      .then(response => {
+        // Sets the database info into this
+        setUserProfile(response.data);
+
+        // console.log("User In Storage: " + userFullName.fullName);
+        console.log("User who made bug: " + userProfile.bugCreationInformation[0].bugCreatedByUser);
+      })
+      .catch(error => console.log(error));
+  
+    }, [userId]); // Add bugId as a dependency to re-run the effect when it changes
+  //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
+
+
+
+
+
+    // THIS CHECKS both the roles of the user and to see if there name in local storage is the name of the user who created the user
+    const canUserEditThisUser =
+    roles &&
+    (roles.includes('Technical Manager') ||
+      (userProfile.bugCreationInformation &&
+        userProfile.bugCreationInformation.length > 0 &&
+        /* IF the users fullName from local storage matches that of the user who is CREATED THE BUG they can edit */
+        userProfile.bugCreationInformation[0].bugCreatedByUser === userFullNameFromLocalStorage.fullName) ||
+  
+        /* IF the users fullName from local storage matches that of the user who is assigned they can edit */
+      (userProfile.assignedTo &&
+        userProfile.assignedTo.some((assignedUser) => assignedUser.assignedToUser === userFullNameFromLocalStorage.fullName))
+    );
+
+
+
+
+
+
+
+
 
 
 
@@ -66,11 +146,15 @@ return (
         </div>
       </a>
 
-      <a href="/userEditor" className="icon_link"   >
-        <div className="edit_button  edit_button_background">
-        <FaPencilRuler/>
-        </div>
-      </a>
+
+      {canUserEditThisUser && (
+        <Link to={`/bugEditor/${userProfile}`} className="icon_link">
+          <div className="edit_button  edit_button_background">
+            <FaPencilRuler/>
+          </div>
+        </Link>
+      )} 
+
     </div>
     
 
@@ -82,7 +166,7 @@ return (
           <div className="profile_card">
               <h2><strong>{greetingMessage}</strong></h2>
               <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
-              <h2 className="users_name"><strong>USER NAME HERE</strong></h2>
+              <h2 className="users_name"><strong>{userProfile.fullName}</strong></h2>
           </div>
         </div>
 
