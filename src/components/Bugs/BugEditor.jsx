@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 // This is technical things like navbar
 import "bootstrap/dist/js/bootstrap.min.js"
 
+
 // CSS
 import "./BugListItem.css"
 import "./BugEditor.css"
@@ -29,6 +30,8 @@ import { useState, useEffect } from 'react';
 
 // Changes pages
 import { useNavigate } from "react-router-dom";
+
+
 
 
 // ******************* IMPORTS ******************* //
@@ -137,13 +140,15 @@ export default function BugEditor(  {showToast}  ) {
       axios.delete(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`, {withCredentials: true})
       .then(response => { 
 
-        navigateToAnotherPage("/bugList");
-
         // When you delete a book this counter goes up by 1
         setDeleteCounter(previousCount => previousCount + 1);
 
         // response.data.message is our json message from the backend 
         console.log(response.data.Bugs_Deleted);
+
+        navigateToAnotherPage("/bugList");
+
+        location.reload();
 
         // This is our toast plugging in the toast function from app. so our message is our responses message and the type is success
         showToast(response.data.Bugs_Deleted, "success");
@@ -174,6 +179,12 @@ export default function BugEditor(  {showToast}  ) {
             </Link>
 
 
+            <button className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
+                  <div className="edit_button  delete_button_background">
+                    <FaTrash />
+                  </div>
+            </button>
+
             <button type="submit" className="icon_link" >
               <div className="edit_button  edit_button_background">
                 <FaSave />
@@ -186,6 +197,10 @@ export default function BugEditor(  {showToast}  ) {
             <div className="">
               <h1>You Are Now Updating Bug:</h1>
               <h2>{bugItem.title}</h2>
+
+              <p className=" ">
+                Time Spent Updating This Bug: <Stopwatch />
+              </p>
 
               <br />
               <input type="text" id="title" className="form-control" value={title} onChange={(evt) => setTitle(evt.target.value)}></input>
@@ -284,23 +299,60 @@ export default function BugEditor(  {showToast}  ) {
                 Time Spent Updating This Bug: <Stopwatch />
 
 
-              {/* TAKES YOU TO TOP OF THE PAGE */}
-              <a href="#top" className="icon_link">
-                  <div className="  back_to_top_background">
-                      <FaArrowUp/>
+                {/* TAKES YOU TO TOP OF THE PAGE */}
+                <a href="#top" className="icon_link">
+                    <div className="  back_to_top_background">
+                        <FaArrowUp/>
+                    </div>
+                  </a>
+                {/* TAKES YOU TO TOP OF THE PAGE */}
+
+              </p>
+
+
+
+
+              <button className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
+                  <div className="edit_button  delete_button_background">
+                    <FaTrash />
                   </div>
-                </a>
-              {/* TAKES YOU TO TOP OF THE PAGE */}
-
-
-              <button className="icon_link"  onClick={(evt) => onBugDelete(evt, bugId)}>
-                <div className="edit_button  delete_button_background">
-                  <FaTrash />
-                </div>
               </button>
 
 
-              </p>
+
+
+<div className="modal fade   modal-confirm"  id="confirmation_modal"  aria-labelledby="confirmation_modal_title" aria-hidden="true">
+	<div className="modal-dialog "> {/* modal-dialog-centered */}
+		<div className="modal-content">
+			<div className="modal-header flex-column">
+				<div className="icon-box">
+					<i className="material-icons"><FaTrash/></i>
+				</div>						
+				<h4 className="modal-title w-100" id="confirmation_modal_title">Are you sure?</h4>	
+                <button type="button" className="close" aria-hidden="true" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+			</div>
+			<div className="modal-body">
+				<p>Do you really want to delete this Bug? This process cannot be undone.</p>
+			</div>
+			<div className="modal-footer justify-content-center">
+				<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" className="btn btn-danger"  onClick={(evt) => onBugDelete(evt, bugId)} >Delete</button>
+			</div>
+		</div>
+	</div>
+</div>     
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

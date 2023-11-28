@@ -102,53 +102,52 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
                   {/* /////// LOGIN & REGISTER PAGE /////// */}
 
 
-                  {/* /////// REGISTER PAGE /////// */}
-                  {/* <li>
-                    <NavLink to="/register" className="nav-link">
-                      Register
-                    </NavLink>
-                  </li> */}
-                  {/* /////// REGISTER PAGE /////// */}
 
 
 
-                  {/* /////// BUG LIST /////// */}
-                  <li className="nav-item"  onClick={refreshNavbar}>
-                    <NavLink to="bugList" className="nav-link">
-                      Bug List
-                    </NavLink>
-                  </li>
-                  {/* /////// BUG LIST /////// */}
 
-
-
-                  {/* /////// USER LIST /////// */}
-                  <li className="nav-item"  onClick={refreshNavbar}>
-                    <NavLink to="userList" className="nav-link">
-                      User List
-                    </NavLink>
-                  </li>
-                  {/* /////// USER LIST /////// */}
-
-
-
-                  {/* ///////  USERS NAME PROFILE PAGE AND LOGOUT BUTTON/////// */}
+                  {/* ///////IF LOGGED IN   USERS NAME PROFILE PAGE AND LOGOUT BUTTON   IF LOGGED IN /////// */}
                     {/* THIS DISPLAYS THE USERS FULL NAME WE GET FROM LOGGING IN*/}
                     {userFullName && 
                       <div className="cursor_pointer">
+
+                        {/* /////// BUG LIST /////// */}
+                        <li className="nav-item"  onClick={refreshNavbar}>
+                          <NavLink to="bugList" className="nav-link">
+                            Bug List
+                          </NavLink>
+                        </li>
+                        {/* /////// BUG LIST /////// */}
+
+
+                        {/* /////// USER LIST /////// */}
+                        <li className="nav-item"  onClick={refreshNavbar}>
+                          <NavLink to="userList" className="nav-link">
+                            User List
+                          </NavLink>
+                        </li>
+                        {/* /////// USER LIST /////// */}
+
+
+                        {/* /////// PROFILE /////// */}
                         <li className="nav-item" onClick={refreshNavbar}>
                           <NavLink to="/userItem" className="nav-link">
                             {userFullName}
                           </NavLink>
                         </li>
+                        {/* /////// PROFILE /////// */}
+
+
+                        {/* /////// LOGOUT /////// */}
                         <li className="nav-item">
                           <a className="nav-link " onClick={(evt) => onClickLogout(evt)}>
                             Logout
                           </a>
                         </li>
+                        {/* /////// LOGOUT /////// */}
                       </div>
                     }
-                  {/* ///////  USERS NAME PROFILE PAGE AND LOGOUT BUTTON/////// */}
+                  {/* ///////IF LOGGED IN   USERS NAME PROFILE PAGE AND LOGOUT BUTTON   IF LOGGED IN /////// */}
 
 
 

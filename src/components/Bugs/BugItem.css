@@ -63,10 +63,8 @@
   border-radius: 50%;
 
   font-size: 22px;
+  transition: all 0.15s ease 0s;
 }
-
-
-
 
 
 /* This focuses on the <a href> that holds the icons*/
@@ -100,7 +98,7 @@
 
   /* Will enlarge the icons if original font is deleted*/
   /* font-size: 25px; */
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 
 
@@ -389,11 +387,22 @@
   font-family: 'Lexend Variable', sans-serif;
 }
 
+
+
 /* This is the back to top button */
 .back_to_top_background{
   display: flex;
   justify-content: center;
   align-items: center;
+
+  color: #B58DED;
+  transition: all 0.3s ease 0s;
+}
+
+
+.back_to_top_background:hover{
+  transform: scale(1.2);
+
 }
 /* bbbbbbbbbbbbbbbbbbbbbbbbbbbbb BOTTOM CAP WITH BUTTONS bbbbbbbbbbbbbbbbbbbbbbbbbbbbb*/
 

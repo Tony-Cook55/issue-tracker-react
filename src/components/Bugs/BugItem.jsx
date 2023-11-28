@@ -491,6 +491,8 @@ export default function BugItem(  {usersRole} ){
             </div>
           </a>
         {/* TAKES YOU TO TOP OF THE PAGE */}
+
+
     </p>
   </div>
 
