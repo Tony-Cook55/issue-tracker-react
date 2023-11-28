@@ -73,6 +73,8 @@ export default function BugList(   {showToast}  ){
       axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list`, { withCredentials: true })
         .then(response => {
           setBugs(response.data);
+
+          showToast("Success! Found All Bugs", "success");
         })
         .catch(error => console.log(error));
     }

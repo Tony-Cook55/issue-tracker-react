@@ -29,7 +29,7 @@ import { NavLink, Link } from "react-router-dom";
 
 
 
-export default function BugListItem(  {bug}  ){
+export default function BugListItem(  {bug, showToast}  ){
 
   return( 
     <>

@@ -177,7 +177,7 @@ function App() {
     // When called in we must specify the message and the type of toast we want it to look like
     toast(message, {
       type: type,              // info, success, warning, error, default
-      position: "bottom-right" // top-left, top-right, top-center, bottom-left, bottom-right, bottom-center
+      position: "bottom-right", // top-left, top-right, top-center, bottom-left, bottom-right, bottom-center
     });
   }
 
@@ -194,24 +194,24 @@ function App() {
 
 
         <main>
-          <ToastContainer />
+          <ToastContainer className={"toast_message"}/>
           <Routes>
             <Route path="/" element={<HomePage showToast={showToast} />} />
             <Route path="/login" element={<LoginForm setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
             <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />} />
-            <Route path="/register" element={<RegisterForm setUserFullName={setUserFullName} showToast={showToast} />} />
+            <Route path="/register" element={<RegisterForm setUserFullName={setUserFullName} setUsersRole={setUsersRole} showToast={showToast} />} />
 
 
-            <Route path="bugList" element={<BugList userFullName={userFullName} />} />
+            <Route path="bugList" element={<BugList userFullName={userFullName} showToast={showToast} />} />
             {/* SEARCH BUG BY ID*/}
-            <Route path="/bugItem/:bugId" element={<BugItem  usersRole={usersRole}/>} />
+            <Route path="/bugItem/:bugId" element={<BugItem  usersRole={usersRole} showToast={showToast}/>} />
             {/* EDIT BUGS */}
             <Route path="/bugEditor/:bugId" element={<BugEditor showToast={showToast}/>} />
 
 
-            <Route path="userList" element={<UserList userFullName={userFullName}/>} />
-            <Route path="/user/:userId" element={<UserItem />} />
-            <Route path="/userEditor/:userId" element={<UserEditor />} />
+            <Route path="userList" element={<UserList userFullName={userFullName} showToast={showToast}/>} />
+            <Route path="/user/:userId" element={<UserItem />} showToast={showToast}/>
+            <Route path="/userEditor/:userId" element={<UserEditor showToast={showToast}/>} />
           </Routes>
         </main>
 

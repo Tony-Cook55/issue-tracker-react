@@ -23,12 +23,18 @@ body{
 
   text-align: center;
 
-
-
 }
 
 
+/* ttttttt TOASTIFY ttttttt */
+.toast_message {
+  font-size: 20px;
+}
 
+.Toastify__toast-body {
+  color: #B58DED;
+}
+/* ttttttt TOASTIFY ttttttt */
 
 
 /* BUG LOGO ANIMATION */

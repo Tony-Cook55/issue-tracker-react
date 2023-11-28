@@ -18,20 +18,21 @@ import './componentsCSS/RegisterForm.css'
 
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 
 import { useState } from 'react';
 
 
 // ******************* IMPORTS ******************* //
 
-export default function RegisterForm(){
+export default function RegisterForm(  {setUserFullName, setUsersRole, showToast}){
 
 
 
   const [fullName, setFullName] = useState("");
   const [givenName, setGivenName] = useState("");
   const [familyName, setFamilyName] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -57,6 +58,12 @@ export default function RegisterForm(){
 
 
   const navigateToAnotherPage = useNavigate();
+
+
+  // Allows the inputs to be entered and then we can set them from above
+  function handleInputChange(event, setUserInputs) {
+    setUserInputs(event.target.value);
+  }
 
 
 
@@ -89,7 +96,10 @@ export default function RegisterForm(){
         setError(passwordError);
         return;
       }
-      
+      else if (!fullName || !givenName || !familyName || !email || !password) {
+        setError("All fields are required");
+        return;
+      }
     {/* xxxxx ERROR HANDLING xxxxx */}
 
 
@@ -132,6 +142,7 @@ export default function RegisterForm(){
       // Puts the user Object with the users fullName and the time it will expire into the local storage
       localStorage.setItem("fullName", JSON.stringify(user));
 
+
       //Sets this to the fullName from our database  calling from this in message in backend:  fullName: usersLoggedIn.fullName
       setUserFullName(response.data.fullName);
 
@@ -141,8 +152,11 @@ export default function RegisterForm(){
       // Takes us to the homepage 
       navigateToAnotherPage("/");
 
+      console.log("Go Home pls")
+
       // This is our toast plugging in the toast function from app. so our message is our responses message and the type is success
       showToast(response.data.User_Added, "success");
+
     })
     // xxxx ERROR BAD LOGIN xxxx
     .catch(error => {
@@ -156,9 +170,13 @@ export default function RegisterForm(){
         // If the error is a string then we send back the stringed response from Axios
         if(typeof responseError === "string"){ // Bad Username or Password
           setError(error.response.data);
+
+          showToast(error.response.data, "error");
         }
-        else if(responseError.error.details){  // Joi validation errors for Email
-          setError(responseError.error.details[0].message);
+        else if(responseError.error){  // Joi validation errors for Email
+          setError(responseError.error);
+
+          showToast(responseError.error, "error");
         }
       }
     });
@@ -198,7 +216,7 @@ export default function RegisterForm(){
 
                 {/* Full Name */}
                 <div className="form-outline mb-4">
-                  <input name="fullName" type="text" id="fullName" className="register_inputs" required/>
+                  <input value={fullName} name="fullName" type="text" id="fullName" className="register_inputs"   onChange={(e) => handleInputChange(e, setFullName)}  required/>
                   <label  className="under_input_placeholder" htmlFor="fullName">Full Name</label>
                 </div>
 
@@ -207,13 +225,13 @@ export default function RegisterForm(){
                 <div className="row">
                   <div className="col-md-6 mb-6">
                     <div className="form-outline">
-                      <input  name="givenName" type="text" id="givenName" className="register_inputs" required/>
+                      <input value={givenName} name="givenName" type="text" id="givenName" className="register_inputs" onChange={(e) => handleInputChange(e, setGivenName)}  required/>
                       <label  className="under_input_placeholder" htmlFor="givenName">Given name</label>
                     </div>
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input name="familyName" type="text" id="familyName" className="register_inputs" required/>
+                      <input value={familyName} name="familyName" type="text" id="familyName" className="register_inputs"  onChange={(e) => handleInputChange(e, setFamilyName)}  required/>
                       <label  className="under_input_placeholder" htmlFor="familyName">Family name</label>
                     </div>
                   </div>
@@ -222,14 +240,14 @@ export default function RegisterForm(){
 
                 {/* Email input --> */}
                 <div className="form-outline mb-4">
-                  <input name="email" type="email" id="email" className="register_inputs" required/>
+                  <input value={email} name="email" type="email" id="email" className="register_inputs"  onChange={(e) => handleInputChange(e, setEmail)}  required/>
                   <label className="under_input_placeholder" htmlFor="email">Email address</label>
                 </div>
 
 
                 {/* Password input --> */}
                 <div className="form-outline mb-4">
-                  <input name="password" type="password" id="password" className="register_inputs" required/>
+                  <input value={password} name="password" type="password" id="password" className="register_inputs"  onChange={(e) => handleInputChange(e, setPassword)}  required/>
                   <label className="under_input_placeholder" htmlFor="password">Password</label>
                 </div>
 
