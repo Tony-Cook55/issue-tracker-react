@@ -46,9 +46,9 @@ export default function BugItem( ){
   const [bugItem, setBugItem] = useState({});
 
 
-  const [userFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
-  const [roles,setRolesFromLocalStorage] = useState(null);
-  const [usersId,setUsersIdFromLocalStorage] = useState(null);
+  const [usersFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
+  const [rolesFromLocalStorage,setRolesFromLocalStorage] = useState(null);
+  const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
 
 
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
@@ -92,16 +92,20 @@ export default function BugItem( ){
 
   // THIS CHECKS both the roles of the user and to see if there name in local storage is the name of the user who created the bug
   const canUserEditThisBug =
-  roles &&
-  (roles.includes('Business Analyst') ||
+  rolesFromLocalStorage &&
+  (rolesFromLocalStorage.includes('Business Analyst') ||
     (bugItem.bugCreationInformation &&
       bugItem.bugCreationInformation.length > 0 &&
-      /* IF the users fullName from local storage matches that of the user who is CREATED THE BUG they can edit */
-      bugItem.bugCreationInformation[0].bugCreatedByUser === userFullNameFromLocalStorage.fullName) ||
-
-      /* IF the users fullName from local storage matches that of the user who is assigned they can edit */
+       /* IF the users ID from local storage matches that of the users ID who CREATED THE BUG they can edit */
+      bugItem.bugCreationInformation[0]._id === usersIdFromLocalStorage  // Check user's ID
+       /* IF the users fullName from local storage matches that of the user who is CREATED THE BUG they can edit */
+      //  && bugItem.bugCreationInformation[0].bugCreatedByUser === usersFullNameFromLocalStorage.fullName
+      ) ||
+      /* Looks in the assignedTo Object Array and sees if the usersId Matches that of Who Made it*/
     (bugItem.assignedTo &&
-      bugItem.assignedTo.some((assignedUser) => assignedUser.assignedToUser === userFullNameFromLocalStorage.fullName))
+      bugItem.assignedTo.some(
+        (assignedUser) => assignedUser.assignedToUserId === usersIdFromLocalStorage // Check user's ID
+      ))
   );
 
 

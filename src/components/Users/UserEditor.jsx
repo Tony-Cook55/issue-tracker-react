@@ -30,7 +30,7 @@ return (
   <>
 
 
-<div className="wrapper slide_in_from_top">
+<div className=" slide_in_from_top">
 
   <div className="overviewInfo    user_background">
 

@@ -239,7 +239,7 @@ function App() {
 
 
             <Route path="userList" element={<UserList userFullName={userFullName} showToast={showToast}/>} />
-            <Route path="/user/:userId" element={<UserItem />} showToast={showToast}/>
+            <Route path="/user/:userId" element={<UserItem  showToast={showToast}/>} />
             <Route path="/userEditor/:userId" element={<UserEditor showToast={showToast}/>} />
           </Routes>
         </main>

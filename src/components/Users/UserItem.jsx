@@ -1,3 +1,7 @@
+
+/* eslint-disable */
+
+
 // ******************* IMPORTS ******************* //
 
 
@@ -66,7 +70,8 @@ export default function UserItem(){
 
 
   const [userFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
-  const [roles,setRolesFromLocalStorage] = useState(null);
+  const [rolesFromLocalStorage,setRolesFromLocalStorage] = useState(null);
+  const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
 
 
 
@@ -83,6 +88,10 @@ export default function UserItem(){
       {
         setUserFullNameFromLocalStorage(JSON.parse(localStorage.getItem('fullName')));
       }
+      if(localStorage.getItem('usersId'))
+      {
+        setUsersIdFromLocalStorage(JSON.parse(localStorage.getItem('usersId')));
+      }
 
 
       // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
@@ -94,8 +103,6 @@ export default function UserItem(){
         // Sets the database info into this
         setUserProfile(response.data);
 
-        // console.log("User In Storage: " + userFullName.fullName);
-        console.log("User who made bug: " + userProfile.bugCreationInformation[0].bugCreatedByUser);
       })
       .catch(error => console.log(error));
   
@@ -108,18 +115,10 @@ export default function UserItem(){
 
     // THIS CHECKS both the roles of the user and to see if there name in local storage is the name of the user who created the user
     const canUserEditThisUser =
-    roles &&
-    (roles.includes('Technical Manager') ||
-      (userProfile.bugCreationInformation &&
-        userProfile.bugCreationInformation.length > 0 &&
-        /* IF the users fullName from local storage matches that of the user who is CREATED THE BUG they can edit */
-        userProfile.bugCreationInformation[0].bugCreatedByUser === userFullNameFromLocalStorage.fullName) ||
-  
-        /* IF the users fullName from local storage matches that of the user who is assigned they can edit */
-      (userProfile.assignedTo &&
-        userProfile.assignedTo.some((assignedUser) => assignedUser.assignedToUser === userFullNameFromLocalStorage.fullName))
-    );
-
+      rolesFromLocalStorage &&
+      (rolesFromLocalStorage.includes('Technical Manager') ||  
+        userProfile._id === usersIdFromLocalStorage
+      );
 
 
 
@@ -148,7 +147,7 @@ return (
 
 
       {canUserEditThisUser && (
-        <Link to={`/bugEditor/${userProfile}`} className="icon_link">
+        <Link to={`/userEditor/${userId}`} className="icon_link">
           <div className="edit_button  edit_button_background">
             <FaPencilRuler/>
           </div>

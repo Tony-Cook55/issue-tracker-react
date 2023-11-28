@@ -64,8 +64,12 @@ export default function BugEditor(  {showToast}  ) {
     const navigateToAnotherPage = useNavigate();
 
 
+
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
   useEffect(() => {
+
+
+
     // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
     // We use ${bugId} from above to get that bugs specific ID and we search as if in postman
     axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/${bugId}`,             {withCredentials: true})
@@ -90,7 +94,7 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
-  /* UPDATES THE BOOK */
+// uuuuuuuuuuuuuuuuu UPDATE A BUG uuuuuuuuuuuuuuuuu //
   function onBugUpdate(evt){
     evt.preventDefault();
 
@@ -124,7 +128,7 @@ export default function BugEditor(  {showToast}  ) {
       console.log(error.response)
       }
     );
-
+// uuuuuuuuuuuuuuuuu UPDATE A BUG uuuuuuuuuuuuuuuuu //
 
   }
 
@@ -160,6 +164,11 @@ export default function BugEditor(  {showToast}  ) {
   // -------------------- DELETING BUG FROM DATABASE -------------------
 
 
+
+
+
+
+
   return (
     <>
 
@@ -190,6 +199,10 @@ export default function BugEditor(  {showToast}  ) {
                 <FaSave />
               </div>
             </button>
+
+
+
+
 
           </div>
 

@@ -134,9 +134,9 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
         fullName : response.data.fullName,
         expiration : expirationTime,
 
-        readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
-          timeZone: "UTC", // Change this to the user's timezone if needed
-        }),
+        // readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
+        //   timeZone: "UTC", // Change this to the user's timezone if needed
+        // }),
       }
 
       // Puts the user Object with the users fullName and the time it will expire into the local storage

@@ -311,11 +311,20 @@
   padding: 0%;
 }
 
+
+
+
 /* This is the information coming from the database like who made the bug and when */
 .database_information{
   color: #f9b234;
-  font-size: 28px;
+  font-size: 20px;
 }
+
+
+
+
+
+
 
 /* This is the Title of For mapped items being counted. Its used for User # for the Assigned To Accordion  &&  Test Cases # In the Test Cases Accordion*/
 .mapped_item_title{
