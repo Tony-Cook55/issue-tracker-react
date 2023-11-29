@@ -309,7 +309,16 @@ export default function BugEditor(  {showToast}  ) {
           <div className="end_cap_base">
             <div className="container ">
               <p className="last_updated_on ">
-                Time Spent Updating This Bug: <Stopwatch />
+
+
+
+              {bugItem.bugUpdated && bugItem.bugUpdated.bugLastUpdatedOn && (
+                <p className="last_updated_on">Bug Last Updated On: <br/> {bugItem.bugUpdated.bugLastUpdatedOn}</p>
+              )}
+
+              {!bugItem.bugUpdated || !bugItem.bugUpdated.bugLastUpdatedOn && (
+                <p className="last_updated_on">Bug not yet updated</p>
+              )}
 
 
                 {/* TAKES YOU TO TOP OF THE PAGE */}

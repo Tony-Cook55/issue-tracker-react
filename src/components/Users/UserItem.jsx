@@ -12,10 +12,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 
 // CSS
-import "./UserListItem.css"
+import "./UserItem.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
+import { FaArrowLeft, FaPencilRuler, FaArrowUp } from "react-icons/fa";
 // ICONS //
 
 import axios from "axios"
@@ -58,8 +58,6 @@ import { useState, useEffect } from "react";
 
 
 export default function UserItem(){
-
-
 
 
   // Lets us get the User Id of the specific User we are on
@@ -113,7 +111,7 @@ export default function UserItem(){
 
 
 
-    // THIS CHECKS both the roles of the user and to see if there name in local storage is the name of the user who created the user
+    // THIS CHECKS both the roles of the user and to see if there id is in local storage is also the id of the user who this is
     const canUserEditThisUser =
       rolesFromLocalStorage &&
       (rolesFromLocalStorage.includes('Technical Manager') ||  
@@ -133,19 +131,21 @@ return (
   <>
 
 
-<div className=" slide_in_from_top">
+<div className="button_container slide_in_from_top    ">
 
   <div className="overviewInfo    user_background">
 
-
+    {/* USER LIST */}
     <div className="top_button_styles">
       < a href="/userList" className="icon_link"    >
         <div className="back_button  back_button_background">
         <FaArrowLeft/>
         </div>
       </a>
+    {/* USER LIST */}
 
 
+    {/* USER EDITOR */}
       {canUserEditThisUser && (
         <Link to={`/userEditor/${userId}`} className="icon_link">
           <div className="edit_button  edit_button_background">
@@ -153,6 +153,7 @@ return (
           </div>
         </Link>
       )} 
+    {/* USER EDITOR */}
 
     </div>
     
@@ -160,15 +161,16 @@ return (
     
     <div className="bug_title_div">
       <div className="user_pic_name_container">
-
         <div className="profile_box">
           <div className="profile_card">
               <h2><strong>{greetingMessage}</strong></h2>
               <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+              {/* <img src="/images/user_profile_body.png" className="user_profile_pic  rounded-circle" alt="User Avatar" /> */}
               <h2 className="users_name"><strong>{userProfile.fullName}</strong></h2>
+
+              <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -196,103 +198,165 @@ return (
 
 
 
-{/* ROLES */}
-<div className="accordion-item">
-<h2 className="accordion-header">
-  <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#users_roles" aria-expanded="false" aria-controls="users_roles">
-    User&#39;s Role&#39;s
-  </button>
-</h2>
-<div id="users_roles" className="accordion-collapse collapse">
-  <div className="accordion-body">
 
-    <div className="container text-center justify-content-center">
-      
-      <div className="row">
-        <div className="col-sm">
-          <h3>Quality Analyst</h3>
+
+
+
+
+
+{/* SENSITIVE USER INFORMATION ACCORDION */}
+{/* Check if the logged-in user has the necessary role or is viewing their own profile */}
+{canUserEditThisUser && (
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sensitive_user_info" aria-expanded="true" aria-controls="sensitive_user_info">
+        Sensitive User Information
+      </button>
+    </h2>
+    <div id="sensitive_user_info" className="accordion-collapse collapse">
+      <div className="accordion-body">
+        <div className="container text-center justify-content-center">
+          <div className="">
+            {/* SENSITIVE USER INFO CONTENT */}
+            <div className="row text-center justify-content-center">
+              {/* Render sensitive user information here */}
+              {/* Example: Email and Password */}
+              <div className="">
+                <p className="title_of_database_information">Email</p>
+                <p className="database_information">{userProfile.email}</p>
+              </div>
+              <div className="">
+                <p className="title_of_database_information">Password</p>
+                <p className="database_information">{userProfile.password}</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div className="col-sm">
-            <h3>Business Analyst</h3>
-        </div>
-
-        <div className="col-sm">
-          <h3 className="developer_role">Developer</h3>
-        </div>
-
-        <div className="col-sm">
-          <h3>Product Manager</h3>
-        </div>
-
-        <div className="col-sm">
-          <h3>Technical Manager</h3>
-        </div>
-
       </div>
     </div>
-  
   </div>
-</div>
-</div>
-{/* ROLES */}
+)}
+{/* SENSITIVE USER INFORMATION ACCORDION */}
 
 
 
 
 
 
-{/* USERS OTHER NAMES */}
-<div className="accordion-item">
-<h2 className="accordion-header">
-  <button className="accordion-button    accordion_button_animation   text-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#users_other_names" aria-expanded="true" aria-controls="users_other_names">
-    Names
-  </button>
-</h2>
-<div id="users_other_names" className="accordion-collapse collapse "> {/*add:    show   to he className to allow it to always be open on start */}
-  <div className="accordion-body">
 
-  <div className="row">
 
-        <div className="col-sm">
-          <h3 className="">FULL NAME HERE</h3>
+
+  {/* USERS ROLES */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#users_roles" aria-expanded="false" aria-controls="users_roles">
+        User's Roles
+      </button>
+    </h2>
+    <div id="users_roles" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+        <div className="container text-center justify-content-center">
+          <div className="row">
+
+            {/* USERS ROLE */}
+            <div className="bug_information_div">
+                {/* Checks if the array is there and then maps all the items in the array by calling them steps and giving each an index to identify them */}
+                {userProfile.role && userProfile.role.map((mappedRoles, index) => (
+                  <li className="users_roles" key={index}>{mappedRoles}</li>
+                ))}
+            </div>
+            {/* USERS ROLE */}
+
+          </div>
         </div>
-
-        <div className="col-sm">
-          <h3>GIVEN NAME HERE</h3>
-        </div>
-
-        <div className="col-sm">
-          <h3>FAMILY NAME HERE</h3>
-        </div>
-
+      
       </div>
     </div>
-
-</div>
-</div>
-{/* USERS OTHER NAMES */}
+  </div>
+  {/* USERS ROLES */}
 
 
 
-</div>
-{/* END OF ACCORDION */}
+
+
+
+
+
+
+  {/* USERS OTHER NAMES */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
+        Names
+      </button>
+    </h2>
+    <div id="creation_information" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+        <div className="container text-center justify-content-center">
+          <div className="row">
+
+            {/* FULL NAME */}
+            <div className="bug_information_div">
+              <p className="title_of_database_information">Full Name</p>
+                <p className="database_information">{userProfile.fullName}</p>
+            </div>
+            {/* FULL NAME */}
+
+            {/* GIVEN NAME */}
+            <div className="bug_information_div">
+              <p className="title_of_database_information">Given Name</p>
+                <p className="database_information">{userProfile.givenName}</p>
+            </div>
+            {/* GIVEN NAME */}
+
+            {/* FAMILY NAME */}
+            <div className="bug_information_div">
+              <p className="title_of_database_information">Family Name</p>
+                <p className="database_information">{userProfile.familyName}</p>
+            </div>
+            {/* FAMILY NAME */}
+
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  {/* USERS OTHER NAMES */}
+
+
+
+</div> {/* END OF ACCORDION */}
 
 
 
 
 
 <div className="bottom_cap_under_accordion">
-<div className="end_cap_base">
+  <div className="end_cap_base">
 
-<div className="container ">
-<p className="last_updated_on ">User Joined On: <span className="last_updated_on ">DATE HERE</span></p>
+  <div className="container ">
+    <p className="last_updated_on "> 
+    {userProfile.usersCreationDate && (
+    <p className="last_updated_on">User Joined On: <br/> {userProfile.usersCreationDate}</p>
+  )}
+
+        {/* TAKES YOU TO TOP OF THE PAGE */}
+          <a href="#top" className="icon_link">
+            <div className="  back_to_top_background">
+                <FaArrowUp/>
+            </div>
+          </a>
+        {/* TAKES YOU TO TOP OF THE PAGE */}
+
+
+    </p>
+  </div>
+
+  </div>
 </div>
-
-
-</div>
-</div>
-
 
 
 

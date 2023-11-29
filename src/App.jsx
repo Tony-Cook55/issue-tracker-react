@@ -143,12 +143,12 @@ function App() {
     // After We Set the Roles we will save them to Local Storage to be called in on other pages
     if(usersRole){
       localStorage.setItem('roles',JSON.stringify(usersRole));
-    }
+      }
+
     // Sets the Id of the user from logging in or making an account into storage
     if(usersId){
       localStorage.setItem('usersId', JSON.stringify(usersId))
     }
-
 
     if (getFullName) {
 
@@ -162,7 +162,12 @@ function App() {
       if (currentTime.getTime() >= getFullName.expiration) {
         localStorage.removeItem("fullName"); // If expired, remove fullName from local storage, reset state, and reload the page
         localStorage.removeItem("roles");
+        localStorage.removeItem("usersId");
+
         setUserFullName(null);
+        setUsersRole(null);
+        setUsersId(null);
+
         location.reload();
 
 
@@ -179,7 +184,7 @@ function App() {
         // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
       }
     }
-  }, [usersRole]);
+  }, [userFullName ,usersRole, usersId]);
 
 
 

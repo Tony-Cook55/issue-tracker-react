@@ -120,6 +120,7 @@ export default function BugItem( ){
 
     <div className="overviewInfo">
       <div className="top_button_styles">
+
         {/* BUG LIST */}
         <Link to="/bugList" className="icon_link"    >
           <div className="back_button  back_button_background">
@@ -128,10 +129,7 @@ export default function BugItem( ){
         </Link>
         {/* BUG LIST */}
 
-
-
         {/* EDIT BUG */}
-
           {canUserEditThisBug && (
             <Link to={`/bugEditor/${bugId}`} className="icon_link">
               <div className="edit_button  edit_button_background">
@@ -139,7 +137,6 @@ export default function BugItem( ){
               </div>
             </Link>
           )} 
-
         {/* EDIT BUG */}
       </div>
       

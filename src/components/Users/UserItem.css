@@ -31,10 +31,6 @@
 
 
 
-/* This is Specifically for the Role of Developer Text. This allows me to center it with the other Roles*/
-.developer_role{
-  margin-top: 20px;
-}
 
 
 
@@ -82,7 +78,7 @@
   color: #ffffff;
   overflow: hidden;
   padding: 20px;
-  cursor: pointer;
+  /* cursor: pointer; */
   box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.5) 0px 18px 36px -18px inset;
 }
@@ -108,4 +104,20 @@ background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+
+
+.users_roles{
+  color: #f9b234;
+  font-size: 20px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  /* Gets rid of ol's bullet points */
+  list-style-type: none 
 }
