@@ -72,10 +72,15 @@ export default function BugList(   {showToast }  ){
           setBugs(response.data);
 
           // showToast("Success! Found All Bugs", "success");
+
         })
         .catch(error => console.log(error));
+
     }
 
+    // return() => {
+    //   showToast("Success! Found All Bugs", "success");
+    // }
 
 
   }, [isLoggedIn]);

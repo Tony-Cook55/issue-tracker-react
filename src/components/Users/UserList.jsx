@@ -59,7 +59,7 @@ export default function UserList(){
 
   // ~~~~~~~~~~~~~~~~ FIND ALL USERS ~~~~~~~~~~~~~~~~ //
   useEffect(() => {
-    // Fetch bug data only if the user is logged in with their fullName
+    // Fetch User data only if the user is logged in with their fullName
     if (isLoggedIn) {
       axios.get(`${import.meta.env.VITE_API_URL}/api/users/list`, { withCredentials: true })
         .then(response => {
@@ -82,8 +82,11 @@ export default function UserList(){
             <LoginFormRequiredMsg />
           </Link>
         </h2>
+      ) : 
+      !users.length ? (
+        <h1 className="no_bugs_found_message">There Are No Users</h1>
       ) : (
-        // Check if there are bugs, display the bug list if true
+        // Check if there are users, display the usersListItem if true
         <div className="row text-center justify-content-center">
           {users.map((userItem) => (
             <div key={userItem._id} className="col-lg-4 col-md-12 col-sm-12">

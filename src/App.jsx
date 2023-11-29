@@ -94,6 +94,8 @@ import UserList from './components/Users/UserList';
 import UserListItem from './components/Users/UserListItem';
 import UserItem from './components/Users/UserItem';
 import UserEditor from './components/Users/UserEditor';
+
+import Profile from './components/Users/Profile';
 // COMPONENTS //
 
 
@@ -132,7 +134,13 @@ function App() {
   const [usersRole, setUsersRole] = useState(null);
   // Sets the id we get when a user logs in 
   const [usersId, setUsersId] = useState(null);
-  
+
+
+
+  // This gets the users Id from local storage
+  const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
+
+
 
   // When the component loads use this
   useEffect(() => {
@@ -210,7 +218,7 @@ function App() {
 
         <header>
           <nav>
-            <NavBar userFullName={userFullName} setUserFullName={setUserFullName} />
+            <NavBar userFullName={userFullName} setUserFullName={setUserFullName} usersIdFromLocalStorage={usersIdFromLocalStorage} setUsersIdFromLocalStorage={setUsersIdFromLocalStorage}/>
           </nav>
         </header>
 
@@ -246,6 +254,8 @@ function App() {
             <Route path="userList" element={<UserList userFullName={userFullName} showToast={showToast}/>} />
             <Route path="/user/:userId" element={<UserItem  showToast={showToast}/>} />
             <Route path="/userEditor/:userId" element={<UserEditor showToast={showToast}/>} />
+
+            <Route path="/profile" element={<Profile showToast={showToast} usersIdFromLocalStorage={usersIdFromLocalStorage}/>} />
           </Routes>
         </main>
 

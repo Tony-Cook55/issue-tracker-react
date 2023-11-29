@@ -37,7 +37,7 @@ import { useParams, Link } from "react-router-dom";
 
 
 
-export default function BugItem( ){
+export default function BugItem( {showToast} ){
 
   // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;

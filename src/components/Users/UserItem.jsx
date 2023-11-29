@@ -114,11 +114,9 @@ export default function UserItem(){
     // THIS CHECKS both the roles of the user and to see if there id is in local storage is also the id of the user who this is
     const canUserEditThisUser =
       rolesFromLocalStorage &&
-      (rolesFromLocalStorage.includes('Technical Manager') ||  
-        userProfile._id === usersIdFromLocalStorage
+      (rolesFromLocalStorage.includes('Technical Manager')
+      // || userProfile._id === usersIdFromLocalStorage
       );
-
-
 
 
 
@@ -206,36 +204,26 @@ return (
 
 {/* SENSITIVE USER INFORMATION ACCORDION */}
 {/* Check if the logged-in user has the necessary role or is viewing their own profile */}
-{canUserEditThisUser && (
-  <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sensitive_user_info" aria-expanded="true" aria-controls="sensitive_user_info">
-        Sensitive User Information
-      </button>
-    </h2>
-    <div id="sensitive_user_info" className="accordion-collapse collapse">
-      <div className="accordion-body">
-        <div className="container text-center justify-content-center">
-          <div className="">
-            {/* SENSITIVE USER INFO CONTENT */}
+<div className="accordion-item">
+      <h2 className="accordion-header">
+        <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sensitive_user_info" aria-expanded="true" aria-controls="sensitive_user_info">
+          Sensitive User Information
+        </button>
+      </h2>
+      <div id="sensitive_user_info" className="accordion-collapse collapse">
+        <div className="accordion-body">
+          <div className="container text-center justify-content-center">
             <div className="row text-center justify-content-center">
               {/* Render sensitive user information here */}
-              {/* Example: Email and Password */}
               <div className="">
                 <p className="title_of_database_information">Email</p>
-                <p className="database_information">{userProfile.email}</p>
-              </div>
-              <div className="">
-                <p className="title_of_database_information">Password</p>
-                <p className="database_information">{userProfile.password}</p>
+                  <p className="database_information">{userProfile.email}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-)}
 {/* SENSITIVE USER INFORMATION ACCORDION */}
 
 

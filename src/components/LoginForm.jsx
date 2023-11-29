@@ -106,6 +106,7 @@ export default function LoginForm(    {setUserFullName,setUsersRole,setUsersId, 
       const user = {
         fullName : response.data.fullName,
         users_id: response.data.users_id,
+        expiration: expirationTime
 
         // readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
         //   timeZone: "UTC", // Change this to the user's timezone if needed

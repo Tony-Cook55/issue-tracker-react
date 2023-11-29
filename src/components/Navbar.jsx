@@ -10,18 +10,20 @@ import './componentsCSS/Navbar.css'
 
 import axios from "axios";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 // Lets us on a command go to another page
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+
 // *********** IMPORTS *********** //
 
 
 
 
                               // Allows us to get the fullName from the user logging in and setting their fullName
-export default function NavBar(      {userFullName,setUserFullName}       ){
+export default function NavBar(      {userFullName,setUserFullName, usersIdFromLocalStorage, setUsersIdFromLocalStorage,}       ){
   
 
   const navigateToAnotherPage = useNavigate();
@@ -55,6 +57,39 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
     window.location.reload();
   };
 // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
+
+
+
+
+
+// Sets the information of the user into this
+const [userProfile, setUserProfile] = useState({});
+
+
+
+
+//!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
+  useEffect(() => {
+
+    if(localStorage.getItem('usersId'))
+    {
+      setUsersIdFromLocalStorage(JSON.parse(localStorage.getItem('usersId')));
+    }
+
+
+    // Gets our host and sees if they have the credentials and auth     Send this cookie back to the server
+    // We use ${userId} from above to get that users specific ID and we search as if in postman
+    axios.get(`${import.meta.env.VITE_API_URL}/api/users/${usersIdFromLocalStorage}`,             {withCredentials: true})
+
+    // If you retrieve the user then set the users useState to the data you get from backend
+    .then(response => {
+      // Sets the database info into this
+      setUserProfile(response.data);
+    })
+    .catch(error => console.log(error));
+
+  }, []); // Add bugId as a dependency to re-run the effect when it changes
+//!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
 
 
 
@@ -134,10 +169,12 @@ export default function NavBar(      {userFullName,setUserFullName}       ){
 
                         {/* /////// PROFILE /////// */}
                         <li className="nav-item" onClick={refreshNavbar}>
-                          <NavLink to="/userItem" className="nav-link">
+                          <NavLink to="/profile" className="nav-link">
                             {/* {userFullName} */}
                             Profile
                           </NavLink>
+
+                          {/* <Link to={`/userEditor/${userId}`} className="icon_link"> */}
                         </li>
                         {/* /////// PROFILE /////// */}
 
