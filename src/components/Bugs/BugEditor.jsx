@@ -56,6 +56,9 @@ export default function BugEditor(  {showToast}  ) {
     // These store the new updated values of these items
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [stepsToReproduce, setStepsToReproduce] = useState([]); // <--- Its an empty array instead of string due to stepsToReproduce being an array
+
+    const [classification, setClassification] = useState("");
 
 
     const [deleteCounter, setDeleteCounter] = useState(0);
@@ -64,9 +67,34 @@ export default function BugEditor(  {showToast}  ) {
     const navigateToAnotherPage = useNavigate();
 
 
+  // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
+  const [usersFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
+  const [rolesFromLocalStorage,setRolesFromLocalStorage] = useState(null);
+  const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
+  // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
+
+
 
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
   useEffect(() => {
+
+
+  // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
+    // This reads out of local storage for the Users Roles To see if they can Edit the Bug
+    if(localStorage.getItem('roles'))
+    {
+      setRolesFromLocalStorage(JSON.parse(localStorage.getItem('roles')));
+    }
+    // Sets the fullName of the user object from local storage into the userFullName
+    if(localStorage.getItem('fullName'))
+    {
+      setUserFullNameFromLocalStorage(JSON.parse(localStorage.getItem('fullName')));
+    }
+    if(localStorage.getItem('usersId'))
+    {
+      setUsersIdFromLocalStorage(JSON.parse(localStorage.getItem('usersId')));
+    }
+  // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
 
 
 
@@ -79,10 +107,13 @@ export default function BugEditor(  {showToast}  ) {
       // Sets the database info into this
       setBugItem(response.data);
 
+      // Setting the new ITEMS THAT ARE UPDATED
+      setTitle(response.data.title);
+      setDescription(response.data.description);
+      setStepsToReproduce(response.data.stepsToReproduce);
 
-            // Setting the new ITEMS THAT ARE UPDATED
-            setTitle(response.data.title);
-            setDescription(response.data.description);
+      // Set the classification if available
+      setClassification(response.data.bugClassified ? response.data.bugClassified.classification : '');
     })
     .catch(error => {
       console.log(error)
@@ -94,17 +125,83 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
+
+
+
+  // -+ -+ -+ CAN USER UPDATE AND DELETE BUG +- +- +- //
+  // THIS CHECKS both the roles of the user and to see if there name in local storage is the name of the user who created the bug
+  const canUserEditThisBug =
+  rolesFromLocalStorage &&
+  (rolesFromLocalStorage.includes('Business Analyst') ||
+    (bugItem.bugCreationInformation &&
+      bugItem.bugCreationInformation.length > 0 &&
+       /* IF the users ID from local storage matches that of the users ID who CREATED THE BUG they can edit */
+      bugItem.bugCreationInformation[0]._id === usersIdFromLocalStorage  // Check user's ID
+       /* IF the users fullName from local storage matches that of the user who is CREATED THE BUG they can edit */
+      //  && bugItem.bugCreationInformation[0].bugCreatedByUser === usersFullNameFromLocalStorage.fullName
+      ) ||
+      /* Looks in the assignedTo Object Array and sees if the usersId Matches that of Who Made it*/
+    (bugItem.assignedTo &&
+      bugItem.assignedTo.some(
+        (assignedUser) => assignedUser.assignedToUserId === usersIdFromLocalStorage // Check user's ID
+      ))
+  );
+  // -+ -+ -+ CAN USER UPDATE AND DELETE BUG +- +- +- //
+
+
+
+
+
+
+
+  // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
+  function onClassificationUpdate(evt){
+    evt.preventDefault();
+
+
+    // if (!rolesFromLocalStorage && !rolesFromLocalStorage.includes('Business Analyst')) {
+    //   // Show an error message or handle the lack of permission as needed
+    //   showToast("You don't have permission to update classification", "error");
+    //   return;
+    // }
+
+    // Axios call for classification update
+  axios.put(
+    `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/classify`,
+    { classification },
+    { withCredentials: true }
+  )
+    .then(response => {
+      showToast(response.data.Classification_Updated, "success");
+      // After updating the classification, navigate to the Bug Item page
+      navigateToAnotherPage(`/bugItem/${bugId}`);
+    })
+    .catch(error => {
+      console.log(error.response);
+      showToast(error.response.data.Assign_Error, "error");
+      showToast(error.response.data.Users_Allowed, "error");
+    });
+  }
+  // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
+
+
+
+
+
+
+
 // uuuuuuuuuuuuuuuuu UPDATE A BUG uuuuuuuuuuuuuuuuu //
   function onBugUpdate(evt){
     evt.preventDefault();
 
     const updatedBug ={
-      // Spreading the book
+      // Spreading the bug
       ...bugItem,
 
       // Setting the new items here
       title,
       description,
+      stepsToReproduce
     }
 
 
@@ -117,20 +214,36 @@ export default function BugEditor(  {showToast}  ) {
     // Does the update backend function
     axios.put(`${import.meta.env.VITE_API_URL}/api/bugs/update/${bugId}`,
     // This spread of the bugs is what allows it to be sent as the body.params
-    {title, description}, {withCredentials: true})
+    {title, description, stepsToReproduce}, {withCredentials: true})
     .then(response => {
       // navigateToAnotherPage(`/`);
       navigateToAnotherPage(`/bugItem/${bugId}`);
       showToast(response.data.Bug_Updated, "success");
+
+      // After updating the bug, update the classification
+      onClassificationUpdate(evt);
       // console.log(response.data);
     })
     .catch(error => {
-      console.log(error.response)
+      console.log(error.response),
+
+      showToast(error.response.data.Update_Error, "error")
+      showToast(error.response.data.Users_Allowed, "error")
+      // showToast(error.response.data.Update_Error + " " + error.response.data.Users_Allowed, "error")
       }
     );
-// uuuuuuuuuuuuuuuuu UPDATE A BUG uuuuuuuuuuuuuuuuu //
-
   }
+  // uuuuuuuuuuuuuuuuu UPDATE A BUG uuuuuuuuuuuuuuuuu //
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -158,7 +271,7 @@ export default function BugEditor(  {showToast}  ) {
 
       })
       .catch(error => 
-        console.log(error)
+        console.log(error),
       );
     }
   // -------------------- DELETING BUG FROM DATABASE -------------------
@@ -180,25 +293,35 @@ export default function BugEditor(  {showToast}  ) {
         <div className="overviewInfo">
           <div className="top_button_styles">
 
+            {/* BACK TO BUG ITEM */}
             <Link to={`/bugItem/${bugItem._id}`} className="icon_link">
               <div className="back_button  back_button_background">
                 <FaArrowLeft />
               </div>
             </Link>
+            {/* BACK TO BUG ITEM */}
 
 
+            {/* DELETE THIS BUG */}
+            {canUserEditThisBug && (
             <button type="button" className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
                   <div className="edit_button  delete_button_background">
                     <FaTrash />
                   </div>
             </button>
+            )}
+            {/* DELETE THIS BUG */}
 
 
+            {/* SAVE/UPDATE THIS BUG */}
+            {canUserEditThisBug && (
             <button type="submit" className="icon_link" >
               <div className="edit_button  edit_button_background">
                 <FaSave />
               </div>
             </button>
+            )}
+            {/* SAVE/UPDATE THIS BUG */}
 
 
 
@@ -216,14 +339,46 @@ export default function BugEditor(  {showToast}  ) {
               </p>
 
               <br />
-              <input type="text" id="title" className="form-control" value={title} onChange={(evt) => setTitle(evt.target.value)}></input>
+              <h2>LOOKS UGLY PLS FIX ME</h2>
+          
+              {/* TITLE */}
+              <p>Title</p>
+              <input type="text" id="title" className="form-control" 
+                value={title} 
+                onChange={(evt) => setTitle(evt.target.value)}></input>
+              {/* TITLE */}
+
+              {/* DESCRIPTION */}
+              <p>Description</p>
+              <input type="text" id="description" className="form-control" 
+                value={description} 
+                onChange={(evt) => setDescription(evt.target.value)}></input>
+              {/* DESCRIPTION */}
+
+              {/* STEPS TO REPRODUCE */}
+              <p>Steps To Reproduce</p>
+              <textarea id="stepsToReproduce" className="form-control"
+                value={stepsToReproduce.join('\n')} // Join array elements with new lines
+                onChange={(evt) => setStepsToReproduce(evt.target.value.split('\n'))} // Split textarea value into an array
+                rows={5} // Set the initial height to 5 rows to show
+              ></textarea>
+              {/* STEPS TO REPRODUCE */}
 
 
-              <input type="text" id="description" className="form-control" value={description} onChange={(evt) => setDescription(evt.target.value)}></input>
+              {/* CLASSIFY BUG */}
+              <p>Classification</p>
+              {/* Checks if the role of logged in user is a Business Analyst */}
+              {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+                <input type="text" id="classification" className="form-control"
+                  value={classification}
+                  onChange={(evt) => setClassification(evt.target.value)}
+                />
+              )}
+              {/* CLASSIFY BUG */}
 
               <br></br>
 
-              <h2  className="">description</h2>
+
             </div>
           </div>
         </div>

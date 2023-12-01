@@ -84,7 +84,10 @@ export default function UserList(){
         </h2>
       ) : 
       !users.length ? (
-        <h1 className="no_bugs_found_message">There Are No Users</h1>
+        // <h1 className="no_bugs_found_message">There Are No Users</h1>
+        <div className="loading_spinner_container ">
+          <span className="loading_spinner"></span>
+        </div>
       ) : (
         // Check if there are users, display the usersListItem if true
         <div className="row text-center justify-content-center">

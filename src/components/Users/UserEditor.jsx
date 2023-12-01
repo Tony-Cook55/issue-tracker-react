@@ -46,6 +46,8 @@ export default function UserEditor(  {showToast}  ){
   // These store the new updated values of these items
   const [givenName, setGivenName] = useState("");
   const [familyName, setFamilyName] = useState("");
+  const [role, setRole] = useState([]); // <--- Its an empty array instead of string due to role being an array
+
 
 
   const [deleteCounter, setDeleteCounter] = useState(0);
@@ -73,6 +75,7 @@ useEffect(() => {
           // Setting the new ITEMS THAT ARE UPDATED
           setGivenName(response.data.givenName);
           setFamilyName(response.data.familyName);
+          setRole(response.data.role);
   })
   .catch(error => {
     console.log(error)
@@ -95,8 +98,11 @@ function onUserUpdate(evt){
     // Setting the new items here
     givenName,
     familyName,
+    role: userProfile.role, // Use userProfile.role instead of role
   }
 
+    // Log the updatedUser to inspect the structure before making the request
+    console.log('Updated User:', updatedUser);
 
   // THIS WILL DELETE THE ID SO WHEN WE SPREAD THE ...usersProfile INFO THE ID WONT TRY AND BE PASSED INTO AS THE BODY
   delete updatedUser._id;
@@ -107,7 +113,7 @@ function onUserUpdate(evt){
   // Does the update backend function
   axios.put(`${import.meta.env.VITE_API_URL}/api/users/update/${userId}`,
   // This spread of the bugs is what allows it to be sent as the body.params
-  {givenName, familyName}, {withCredentials: true})
+  {givenName, familyName, role}, {withCredentials: true})
   .then(response => {
     // navigateToAnotherPage(`/`);
     navigateToAnotherPage(`/user/${userId}`);
@@ -226,15 +232,30 @@ return (
 
 
 
+              {/* GIVEN NAME */}
+                <p>Given Name</p>
+                <input type="text" id="givenName" className="form-control" 
+                  value={givenName} 
+                  onChange={(evt) => setGivenName(evt.target.value)}></input>
+              {/* GIVEN NAME */}
 
-  <input type="text" id="givenName" className="form-control" value={givenName} onChange={(evt) => setGivenName(evt.target.value)}></input>
+
+              {/* FAMILY NAME */}
+                <p>Family Name</p>
+                <input type="text" id="familyName" className="form-control" 
+                  value={familyName} 
+                  onChange={(evt) => setFamilyName(evt.target.value)}></input>
+              {/* FAMILY NAME */}
 
 
-<input type="text" id="familyName" className="form-control" value={familyName} onChange={(evt) => setFamilyName(evt.target.value)}></input>
-
-
-
-
+              {/* USERS ROLES */}
+              <p>Users Roles</p>
+              <textarea id="role" className="form-control"
+                value={role.join('\n')} // Join array elements with new lines
+                onChange={(evt) => setRole(evt.target.value.split('\n'))} // Split textarea value into an array
+                rows={5} // Set the initial height to 5 rows to show
+              ></textarea>
+              {/* USERS ROLES */}
 
 
 

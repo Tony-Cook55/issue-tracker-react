@@ -103,7 +103,10 @@ export default function BugList(   {showToast }  ){
         </h2>
       ) :
         !bugs.length ? (
-          <h1 className="no_bugs_found_message">There Are No Bugs</h1>
+          // <h1 className="no_bugs_found_message">There Are No Bugs</h1>
+          <div className="loading_spinner_container ">
+            <span className="loading_spinner"></span>
+          </div>
         ) : (
         // Check if there are bugs, display the bug list if true
         <div className="row text-center justify-content-center">
