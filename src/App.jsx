@@ -86,12 +86,11 @@ import RegisterForm from './components/RegisterForm';
 import Footer from './components/Footer';
 
 import BugList from './components/Bugs/BugList';
-import BugListItem from './components/Bugs/BugListItem';
 import BugItem from './components/Bugs/BugItem';
 import BugEditor from './components/Bugs/BugEditor';
+import AddNewBug from './components/Bugs/AddNewBug';
 
 import UserList from './components/Users/UserList';
-import UserListItem from './components/Users/UserListItem';
 import UserItem from './components/Users/UserItem';
 import UserEditor from './components/Users/UserEditor';
 
@@ -249,6 +248,8 @@ function App() {
             <Route path="/bugItem/:bugId" element={<BugItem showToast={showToast}/>} />
             {/* EDIT BUGS */}
             <Route path="/bugEditor/:bugId" element={<BugEditor showToast={showToast}/>} />
+            {/* ADD BUGS */}
+            <Route path="/report" element={<AddNewBug showToast={showToast}/>} />
 
 
             <Route path="userList" element={<UserList userFullName={userFullName} showToast={showToast}/>} />
