@@ -154,41 +154,6 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
-  // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
-  function onClassificationUpdate(evt){
-    evt.preventDefault();
-
-
-    // if (!rolesFromLocalStorage && !rolesFromLocalStorage.includes('Business Analyst')) {
-    //   // Show an error message or handle the lack of permission as needed
-    //   showToast("You don't have permission to update classification", "error");
-    //   return;
-    // }
-
-    // Axios call for classification update
-  axios.put(
-    `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/classify`,
-    { classification },
-    { withCredentials: true }
-  )
-    .then(response => {
-      showToast(response.data.Classification_Updated, "success");
-      // After updating the classification, navigate to the Bug Item page
-      navigateToAnotherPage(`/bugItem/${bugId}`);
-    })
-    .catch(error => {
-      console.log(error.response);
-      showToast(error.response.data.Assign_Error, "error");
-      showToast(error.response.data.Users_Allowed, "error");
-    });
-  }
-  // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
-
-
-
-
-
-
 
 // uuuuuuuuuuuuuuuuu UPDATE A BUG uuuuuuuuuuuuuuuuu //
   function onBugUpdate(evt){
@@ -216,13 +181,12 @@ export default function BugEditor(  {showToast}  ) {
     // This spread of the bugs is what allows it to be sent as the body.params
     {title, description, stepsToReproduce}, {withCredentials: true})
     .then(response => {
-      // navigateToAnotherPage(`/`);
-      navigateToAnotherPage(`/bugItem/${bugId}`);
+
+      // After updating the bug, hit the classification function that holds the relocate page
+      onClassificationUpdate(evt);
+
       showToast(response.data.Bug_Updated, "success");
 
-      // After updating the bug, update the classification
-      onClassificationUpdate(evt);
-      // console.log(response.data);
     })
     .catch(error => {
       console.log(error.response),
@@ -241,6 +205,38 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
+
+  // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
+  function onClassificationUpdate(evt){
+    evt.preventDefault();
+
+    // if (!rolesFromLocalStorage && !rolesFromLocalStorage.includes('Business Analyst')) {
+    //   // Show an error message or handle the lack of permission as needed
+    //   showToast("You don't have permission to update classification", "error");
+    //   return;
+    // }
+
+    // Axios call for classification update
+  axios.put(
+    `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/classify`,
+    { classification },
+    { withCredentials: true }
+  )
+    .then(response => {
+
+      // showToast(response.data.Bug_Classified, "success");
+
+      // After updating the classification, navigate to the Bug Item page
+      navigateToAnotherPage(`/bugItem/${bugId}`);
+
+    })
+    .catch(error => {
+      console.log(error.response);
+      showToast(error.response.data.Assign_Error, "error");
+      showToast(error.response.data.Users_Allowed, "error");
+    });
+  }
+  // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
 
 
 
@@ -368,11 +364,23 @@ export default function BugEditor(  {showToast}  ) {
               {/* CLASSIFY BUG */}
               <p>Classification</p>
               {/* Checks if the role of logged in user is a Business Analyst */}
-              {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+              {/* {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
                 <input type="text" id="classification" className="form-control"
                   value={classification}
                   onChange={(evt) => setClassification(evt.target.value)}
                 />
+              )} */}
+
+              {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+                <select id="classification" className="form-control"
+                  value={classification}
+                  onChange={(evt) => setClassification(evt.target.value)}
+                >
+                  <option value="Unclassified">Unclassified</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Unapproved">Unapproved</option>
+                  <option value="Duplicate">Duplicate</option>
+                </select>
               )}
               {/* CLASSIFY BUG */}
 

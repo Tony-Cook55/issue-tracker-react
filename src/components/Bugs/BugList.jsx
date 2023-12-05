@@ -110,6 +110,7 @@ export default function BugList(   {showToast }  ){
         ) : (
         // Check if there are bugs, display the bug list if true
         <div className="row text-center justify-content-center">
+          <h1>Bugs Found: {bugs.length} </h1>
           {bugs.map((bug) => (
             <div key={bug._id} className="col-lg-4 col-md-12 col-sm-12">
               <BugListItem bug={bug} key={bug._id}  />

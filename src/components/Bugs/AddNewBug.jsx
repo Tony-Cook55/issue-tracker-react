@@ -60,9 +60,10 @@ export default function AddNewBug(  {showToast}  ) {
     {withCredentials: true})
     .then(response => {
       console.log(response.data.Bug_Added);
+
       showToast(`${response.data.Bug_Added}`,"success");
 
-      // navigateToAnotherPage("/");
+      navigateToAnotherPage("/");
     })
     .catch(error => 
       console.log(error)

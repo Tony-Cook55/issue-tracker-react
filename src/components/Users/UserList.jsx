@@ -91,6 +91,7 @@ export default function UserList(){
       ) : (
         // Check if there are users, display the usersListItem if true
         <div className="row text-center justify-content-center">
+          <h1>Users Found: {users.length} </h1>
           {users.map((userItem) => (
             <div key={userItem._id} className="col-lg-4 col-md-12 col-sm-12">
               <UserListItem userItem={userItem} key={userItem._id}/>
