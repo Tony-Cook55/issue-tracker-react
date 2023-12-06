@@ -26,6 +26,9 @@ import { FaArrowLeft, FaPencilRuler, FaArrowUp } from "react-icons/fa";
 import { useParams, Link } from "react-router-dom";
 
 
+import Comments from "./Comments"
+
+
 
 // ******************* IMPORTS ******************* //
 
@@ -549,7 +552,7 @@ export default function BugItem( {showToast} ){
 </div>
 
 
-
+<Comments  bugItem={bugItem}  bugId={bugId}/>
 
 
 

@@ -24,35 +24,61 @@ export default function AddNewBug(  {showToast}  ) {
   const [stepsToReproduce, setStepsToReproduce] = useState([""]);
 
 
-  const [errors, setError] = useState({});
+
+  const [titleError, setTitleError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+  const [stepsToReproduceError, setStepsToReproduceError] = useState("");
 
 
-  const validateForm = () => {
-    if (title.length < 1 || title.length > 40) {
-      setError("Title must be between 1 and 40 characters long");
-      return false;
+  const MAX_STEPS_TO_REPRODUCE = 5;
+
+
+  const validateInputs = () => {
+    let valid = true;
+
+    if (!title.trim()) {
+      setTitleError("Title is required");
+      valid = false;
+    } else if (title.length < 1 || title.length > 40) {
+      setTitleError("Title must be between 1 and 40 characters");
+      valid = false;
+    } else {
+      setTitleError("");
     }
 
-    if (description.length < 1 || description.length > 100) {
-      setError("Description must be between 1 and 100 characters long");
-      return false;
+    if (!description.trim()) {
+      setDescriptionError("Description is required");
+      valid = false;
+    } else if (description.length < 1 || description.length > 100) {
+      setDescriptionError("Description must be between 1 and 100 characters");
+      valid = false;
+    } else {
+      setDescriptionError("");
     }
 
-    if (stepsToReproduce.some((step) => step.length < 1 || step.length > 100)) {
-      setError("Each step must be between 1 and 100 characters long");
-      return false;
-    }
+    stepsToReproduce.forEach((step, index) => {
+      if (!step.trim() || step.length < 1 || step.length > 100) {
+        setStepsToReproduceError(`Step ${index + 1} must be between 1 and 100 characters`);
+        valid = false;
+      } else {
+        setStepsToReproduceError("");
+      }
+    });
 
-    setError("");
-    return true;
+    return valid;
   };
+
+
 
 
 
   const onAddBug = (evt) => {
     evt.preventDefault();
 
-    setError("");
+
+    if (!validateInputs()) {
+      return;
+    }
 
 
     axios.post(`${import.meta.env.VITE_API_URL}/api/bugs/new`, 
@@ -92,7 +118,7 @@ export default function AddNewBug(  {showToast}  ) {
           <input type="text"
             value={title} onChange={(evt) => setTitle(evt.target.value)}
           />
-          {errors.title && <div className="error">{errors.title}</div>}
+                    <div className="error">{titleError}</div>
         </div>
 
         <div>
@@ -101,7 +127,8 @@ export default function AddNewBug(  {showToast}  ) {
             value={description}
             onChange={(evt) => setDescription(evt.target.value)}
           />
-          {errors.description && <div className="error">{errors.description}</div>}
+                    <div className="error">{descriptionError}</div>
+
         </div>
 
         <div>
@@ -117,21 +144,28 @@ export default function AddNewBug(  {showToast}  ) {
                   setStepsToReproduce(newSteps);
                 }}
               />
-              {errors.stepsToReproduce && (
-                <div className="error">{errors.stepsToReproduce}</div>
-              )}
             </div>
           ))}
-          <button
-            type="button"
-            onClick={() => setStepsToReproduce([...stepsToReproduce, ""])}
-          >
-            Add Step
-          </button>
+                    <div className="error">{stepsToReproduceError}</div>
+
+          {stepsToReproduce.length < MAX_STEPS_TO_REPRODUCE ? (
+            <button
+              type="button"
+              onClick={() => setStepsToReproduce([...stepsToReproduce, ""])}
+            >
+              Add Step
+            </button>
+          ) : (
+            <div className="error">Maximum steps reached Only {MAX_STEPS_TO_REPRODUCE} Steps Allowed</div>
+          )}
+
         </div>
 
         <button type="submit">Submit Bug Report</button>
       </form>
+
+
+
     </>
   );
 }
