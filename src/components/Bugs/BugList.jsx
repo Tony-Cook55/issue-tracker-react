@@ -99,8 +99,8 @@ export default function BugList(   {showToast }  ){
   const onSearchFormSubmit = (evt) => {
     evt.preventDefault();
 
-    // the 3rd . like  .search || .minPrice  ==  the id of the input
-    const keywords = evt.target.search.value;
+    // the 3rd . like  .keywords || .minPrice  ==  the id of the input
+    const keywords = evt.target.keywords.value;
     const classification = evt.target.classification.value;
     const maxAge = evt.target.maxAge.value;
     const minAge = evt.target.minAge.value;
@@ -150,6 +150,12 @@ export default function BugList(   {showToast }  ){
 
 
 
+  const [panelOpen, setPanelOpen] = useState(false);
+
+  const togglePanel = () => setPanelOpen(!panelOpen);
+
+
+
   return( 
     <>
 
@@ -162,93 +168,209 @@ export default function BugList(   {showToast }  ){
           </Link>
         </h2>
       ) :
-        !bugs.length ? (
-          // <h1 className="no_bugs_found_message">There Are No Bugs</h1>
-          <div className="loading_spinner_container ">
-            <span className="loading_spinner"></span>
-          </div>
-        ) : (
+        // !bugs.length ? (
+        //   // <h1 className="no_bugs_found_message">There Are No Bugs</h1>
+        //   <div className="loading_spinner_container ">
+        //     <span className="loading_spinner"></span>
+        //   </div>
+        // ) : 
+        (
         // Check if there are bugs, display the bug list if true
         <div>
-    
-          <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
 
 
 
-            {/* Searching for BUGS by Keywords */}
-            <div className="form-group">
-              <label htmlFor="search" className="form-label">Keywords</label>
-              <input type="text" className="form-control" id="search" placeholder="Search Bugs By Keywords" />
+
+    <div className={`search-panel ${panelOpen ? 'open' : ''}`}>
+      <button className="toggle-button" onClick={togglePanel}>
+        Toggle Search
+      </button>
+
+      <div className="panel-content">
+        <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
+{/* Searching for BUGS by Keywords */}
+<div className="form-group">
+                      <label htmlFor="keywords" className="form-label">Keywords</label>
+                      <input type="text" className="form-control" id="keywords" placeholder="Search Bugs By Keywords" />
+                    </div>
+                    {/* Searching for BUGS by Keywords */}
+
+
+
+                    {/* CLASSIFICATION */}
+                    <div className="form-group">
+                      <label htmlFor="classification" className="form-label">Classification</label>
+                      <select id="classification" className="form-control">
+                        <option value="">All</option>
+                        <option value="Approved" className="form-control">Approved</option>
+                        <option value="Unapproved" className="form-control">Unapproved</option>
+                        <option value="Duplicate" className="form-control">Duplicate</option>
+                        <option value="Unclassified" className="form-control">Unclassified</option>
+                      </select>
+                    </div>
+                    {/* CLASSIFICATION */}
+
+
+
+                    {/* Max and Min AGE */}
+                    <div className="form-group">
+                      <label htmlFor="maxAge" className="form-label">Max Age</label>
+                      <input type="number" className="form-control" id="maxAge" placeholder="Max Age" />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="minAge" className="form-label">Min Age</label>
+                      <input type="number" className="form-control" id="minAge" placeholder="Min Age" />
+                    </div>
+                    {/* Max and Min AGE */}
+
+
+
+                    {/* CLOSED */}
+                    <div className="form-group">
+                      <label htmlFor="closed" className="form-label">Closed</label>
+                      <select id="closed" className="form-control">
+                        <option value="" className="form-control">Is The Bug Closed?</option>
+                        <option value="True" className="form-control">True</option>
+                        <option value="False" className="form-control">False</option>
+                      </select>
+                    </div>
+                    {/* CLOSED */}
+
+
+
+                    {/* Sort By Items */}
+                    <div className="form-group">
+                      <label htmlFor="sortBy" className="form-label">Sort By</label>
+                      <select id="sortBy" className="form-control">
+                        <option value="">Select A Item To Sort By</option>
+                        <option value="title" className="form-control">title</option>
+                        <option value="classification" className="form-control">classification</option>
+                        <option value="assignedTo" className="form-control">assignedTo</option>
+                        <option value="createdBy" className="form-control">createdBy</option>
+                        <option value="newest" className="form-control">newest</option>
+                        <option value="oldest" className="form-control">oldest</option>
+                      </select>
+                    </div>
+                    {/* Sort By Items */}
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+
+
+
+<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+  <div className="accordion-item">
+      <h2 className="accordion-header">
+        <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test_cases_section" aria-expanded="true" aria-controls="test_cases_section">
+          Search Bugs
+        </button>
+      </h2>
+      <div id="test_cases_section" className="accordion-collapse collapse">
+        <div className="accordion-body">
+          <div className="container text-center justify-content-center">
+            <div className="">
+              <div className="bug_information_div">
+                {/* SEES IF bugItem.testCases exists and has a length greater than 0. If true, it renders the content inside the parentheses; :otherwise: it renders nothing after the : */}
+                <div className="row text-center justify-content-center">
+
+
+                  <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
+
+                    {/* Searching for BUGS by Keywords */}
+                    <div className="form-group">
+                      <label htmlFor="keywords" className="form-label">Keywords</label>
+                      <input type="text" className="form-control" id="keywords" placeholder="Search Bugs By Keywords" />
+                    </div>
+                    {/* Searching for BUGS by Keywords */}
+
+
+
+                    {/* CLASSIFICATION */}
+                    <div className="form-group">
+                      <label htmlFor="classification" className="form-label">Classification</label>
+                      <select id="classification" className="form-control">
+                        <option value="">All</option>
+                        <option value="Approved" className="form-control">Approved</option>
+                        <option value="Unapproved" className="form-control">Unapproved</option>
+                        <option value="Duplicate" className="form-control">Duplicate</option>
+                        <option value="Unclassified" className="form-control">Unclassified</option>
+                      </select>
+                    </div>
+                    {/* CLASSIFICATION */}
+
+
+
+                    {/* Max and Min AGE */}
+                    <div className="form-group">
+                      <label htmlFor="maxAge" className="form-label">Max Age</label>
+                      <input type="number" className="form-control" id="maxAge" placeholder="Max Age" />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="minAge" className="form-label">Min Age</label>
+                      <input type="number" className="form-control" id="minAge" placeholder="Min Age" />
+                    </div>
+                    {/* Max and Min AGE */}
+
+
+
+                    {/* CLOSED */}
+                    <div className="form-group">
+                      <label htmlFor="closed" className="form-label">Closed</label>
+                      <select id="closed" className="form-control">
+                        <option value="" className="form-control">Is The Bug Closed?</option>
+                        <option value="True" className="form-control">True</option>
+                        <option value="False" className="form-control">False</option>
+                      </select>
+                    </div>
+                    {/* CLOSED */}
+
+
+
+                    {/* Sort By Items */}
+                    <div className="form-group">
+                      <label htmlFor="sortBy" className="form-label">Sort By</label>
+                      <select id="sortBy" className="form-control">
+                        <option value="">Select A Item To Sort By</option>
+                        <option value="title" className="form-control">title</option>
+                        <option value="classification" className="form-control">classification</option>
+                        <option value="assignedTo" className="form-control">assignedTo</option>
+                        <option value="createdBy" className="form-control">createdBy</option>
+                        <option value="newest" className="form-control">newest</option>
+                        <option value="oldest" className="form-control">oldest</option>
+                      </select>
+                    </div>
+                    {/* Sort By Items */}
+
+
+
+
+                    {/* Submit Button */}
+                    <br/>
+                    <button type="submit" className="btn btn-primary">Search</button>
+                    <br/><br/>
+                    {/* Submit Button */}
+
+                  </form>
+
+
+
+                </div>
+              </div>
             </div>
-            {/* Searching for BUGS by Keywords */}
-
-
-
-            {/* CLASSIFICATION */}
-            <div className="form-group">
-              <label htmlFor="classification" className="form-label">Classification</label>
-              <select id="classification" className="form-control">
-                <option value="">All</option>
-                <option value="Approved" className="form-control">Approved</option>
-                <option value="Unapproved" className="form-control">Unapproved</option>
-                <option value="Duplicate" className="form-control">Duplicate</option>
-                <option value="Unclassified" className="form-control">Unclassified</option>
-              </select>
-            </div>
-            {/* CLASSIFICATION */}
-
-
-
-            {/* Max and Min AGE */}
-            <div className="form-group">
-              <label htmlFor="maxAge" className="form-label">Max Age</label>
-              <input type="number" className="form-control" id="maxAge" placeholder="Min Price" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="minAge" className="form-label">Min Age</label>
-              <input type="number" className="form-control" id="minAge" placeholder="Max Price" />
-            </div>
-            {/* Max and Min AGE */}
-
-
-
-            {/* CLOSED */}
-            <div className="form-group">
-              <label htmlFor="classification" className="form-label">Closed</label>
-              <select id="classification" className="form-control">
-                <option value="True" className="form-control">True</option>
-                <option value="False" className="form-control">False</option>
-              </select>
-            </div>
-            {/* CLOSED */}
-
-
-
-            {/* Sort By Items */}
-            <div className="form-group">
-              <label htmlFor="sortBy" className="form-label">Sort By</label>
-              <select id="sortBy" className="form-control">
-                <option value="">Select A Item To Sort By</option>
-                <option value="title" className="form-control">title</option>
-                <option value="classification" className="form-control">classification</option>
-                <option value="assignedTo" className="form-control">assignedTo</option>
-                <option value="createdBy" className="form-control">createdBy</option>
-                <option value="newest" className="form-control">newest</option>
-                <option value="oldest" className="form-control">oldest</option>
-              </select>
-            </div>
-            {/* Sort By Items */}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
 
-            {/* Submit Button */}
-            <br/>
-            <button type="submit" className="btn btn-primary">Search</button>
-            <br/><br/>
-            {/* Submit Button */}
 
-          </form>
+
+
+
 
           {/* MAPPED BUG LIST ITEM */}
           <div className="row text-center justify-content-center">
@@ -277,6 +399,20 @@ export default function BugList(   {showToast }  ){
           </nav>
           {/* PAGE CHANGE */}
 
+
+
+          {/* NO BUGS FOUND */}
+          {!bugs.length ? 
+          (
+          <div>
+            <h1>No Bugs Found Please Try Again</h1>
+          </div>
+          ) : (
+          <div className=" ">
+            <span className=""></span>
+          </div>
+          )}
+        {/* NO BUGS FOUND */}
 
       </div>
       )}

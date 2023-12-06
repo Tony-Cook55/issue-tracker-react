@@ -1,4 +1,54 @@
 
+
+.search-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+
+  z-index: 1000;
+}
+
+
+.search-panel.open {
+  height: 550px; /* Adjust the height as needed */
+  transition: height 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
+  opacity: 1;
+}
+
+.search-panel.closed {
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
+}
+
+
+
+
+.toggle-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.panel-content {
+  padding: 10px;
+}
+
+
+
+
+
+
+
+
+
 /* This is the text to Say No Bugs Found  We need this delay due to the brief time it takes to load the Bugs*/
 .no_bugs_found_message{
   animation: fadeIn 5s; 
