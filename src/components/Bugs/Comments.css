@@ -1,7 +1,137 @@
 
 
+
+/* If there are no comments on the bug this message will show */
+.no_comments_message{
+	padding-top: 20px;
+
+	font-size: 35px;
+}
+
+
+.add_comment_div{
+
+	margin-bottom: 15px;
+
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+
+/* Adds the scrolling up and down on the comments*/
+.comment_list{
+	overflow-y: auto;
+	height: 500px;
+}
+
+
+/* This is each and every comment */
+.single_comment{
+	border: 3px solid black;
+	background-color: #B58DED;
+
+	color: #000;
+	font-weight: bold;
+}
+
+
+
+/*  Big Login Button that user clicks to go to home page  */
+.add_new_comment_button {
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+
+  width: 135px;
+  height: 15%;	
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Lexend Variable', sans-serif;
+  /* font-family: 'Montserrat'; */
+  font-size: 18px;
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(181, 141, 237, 0.7), 0 3px 10px 0 rgba(181, 141, 237, 0.9);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
+}
+
+.add_new_comment_button:hover, .add_new_comment_button:focus {
+  -webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .card{
-	
 	background-color: #fff;
 	border: none;
 }
@@ -9,19 +139,13 @@
 
 
 
-
-.comment-text{
-	font-size: 13px;
-}
-
-.wish{
-
-	color:#35b69f;
+/* this is the message of the comment */
+.comment_text{
+	font-size: 15px;
 }
 
 
-.user-feed{
 
-	    font-size: 14px;
-	    margin-top: 12px;
-}
+
+
+

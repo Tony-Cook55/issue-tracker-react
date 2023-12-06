@@ -13,6 +13,8 @@ html {
 }
 
 
+
+
 body{
   background: linear-gradient(150deg, #d1b0ff ,#1B8AF1, #B58DED);
 
@@ -24,6 +26,35 @@ body{
   text-align: center;
 
 }
+
+
+
+/* ||||||| VERTICAL SCROLL BAR ||||||| */
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #B58DED;
+
+  
+  /* background-image: url("../public/images/wide_ear_dog.png"); */
+ 
+  background-size: cover; /* Adjust to your needs */
+  border-radius: 50px; /* Rounded corners */
+  background-position: center; /* Center the image within the thumb */
+  background-size: 25px;
+  
+  outline: 1px solid slategrey;
+}
+/* ||||||| VERTICAL SCROLL BAR ||||||| */
+
+
+
 
 
 /* ttttttt TOASTIFY ttttttt */

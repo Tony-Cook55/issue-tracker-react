@@ -22,18 +22,22 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 
+import { useNavigate } from "react-router-dom"
+
 
 // ******************* IMPORTS ******************* //
 
 
 
-export default function Comments( {bugItem, bugId} ){
+export default function Comments( {bugItem, bugId, showToast} ){
 
 
   const [comments, setComments] = useState([]);
 
   const [newComment, setNewComment] = useState("");
 
+
+  const navigateToAnotherPage = useNavigate();
 
 
     // Retrieve the user's info object from local storage
@@ -55,6 +59,7 @@ export default function Comments( {bugItem, bugId} ){
         .then(response => {
           // Sets the database info into this
           setComments(response.data);
+
         })
         .catch(error => console.log(error));
     }
@@ -67,6 +72,14 @@ export default function Comments( {bugItem, bugId} ){
 
 // ++++++++++++++++ ADDING A NEW COMMENT TO BUG ++++++++++++++++++
     const addNewComment = () => {
+
+      const newCommentObject = { message: newComment, commentAuthor: userFullName, commentCreatedOn: new Date().toLocaleString() };
+
+      // Update the local state immediately
+      setComments([...comments, newCommentObject]);
+      setNewComment(""); // Clear the input field after submitting a comment
+    
+
       axios
         .put(
           `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/comment/new`,
@@ -75,11 +88,15 @@ export default function Comments( {bugItem, bugId} ){
         )
         .then((response) => {
           // After successfully adding a comment, update the comments state
-          setComments([...comments, response.data]); // Assuming the server returns the new comment
-          setNewComment(""); // Clear the input field after submitting a comment
-
+          // setComments([...comments, response.data]); // Assuming the server returns the new comment
+          // setNewComment(""); // Clear the input field after submitting a comment
+          
+          showToast(`${Comment_Created}`, "success");
+          // navigateToAnotherPage(`/`);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+        });
     };
 // ++++++++++++++++ ADDING A NEW COMMENT TO BUG ++++++++++++++++++
 
@@ -91,112 +108,91 @@ export default function Comments( {bugItem, bugId} ){
 
 <div className="container mt-5 mb-5">
 
-<div className="row height d-flex justify-content-center align-items-center">
-
-  <div className="col-md-7">
-
-    <div className="card">
-
-      <div className="p-3">
-
-        <h6>Comments</h6>
-
-        <h3>Bug ID: {bugId}</h3>
-        <h3>Bug Title {bugItem.title}</h3>
+  <div className="row height d-flex justify-content-center align-items-center">
+    <div className="col-md-8">
+      <div className="card ">
 
 
+        <div className="p-3 ">
+
+          <h2>Comments Found: {comments.length} </h2>
 
 
+          {/* Check if the user is logged in before rendering content OR if there is no BUGS : OTHERWISE : Show List*/}
+          {!isLoggedIn ? ( /* !isLoggedIn &&  !bugs.length*/
+              <h2>
+                <Link to="/login">
+                  <LoginFormRequiredMsg />
+                </Link>
+              </h2>
+            ) :
+              !comments.length ? (
+                <h1 className="no_comments_message">No Comments On This Bug Yet</h1>
+                // <div className="loading_spinner_container ">
+                //   <span className="loading_spinner"></span>
+                // </div>
+              ) : (
+              // Check if there are bugs, display the bug list if true
+              <div className="row text-center justify-content-center   comment_list">
+                {comments.map((comment) => (
+                  <div key={comment._id} >  {/* className="col-lg-4 col-md-12 col-sm-12" */}
+                    {/* 
+                    {comment.commentAuthor}
+                    {comment.message}
+                    {comment.commentCreatedOn} 
+                    */}
 
-    {/* Check if the user is logged in before rendering content OR if there is no BUGS : OTHERWISE : Show List*/}
-    {!isLoggedIn ? ( /* !isLoggedIn &&  !bugs.length*/
-        <h2>
-          <Link to="/login">
-            <LoginFormRequiredMsg />
-          </Link>
-        </h2>
-      ) :
-        !comments.length ? (
-          <h1 className="no_comments_message">No Comments On This Bug Yet</h1>
-          // <div className="loading_spinner_container ">
-          //   <span className="loading_spinner"></span>
-          // </div>
-        ) : (
-        // Check if there are bugs, display the bug list if true
-        <div className="row text-center justify-content-center">
-        <h1>Comments Found: {comments.length} </h1>
-          {comments.map((comment) => (
-            <div key={comment._id} >  {/* className="col-lg-4 col-md-12 col-sm-12" */}
-              {/* 
-              {comment.commentAuthor}
-              {comment.message}
-              {comment.commentCreatedOn} 
-              */}
+                    {/* ccccccccccccc ACTUAL MAPPED COMMENTS ccccccccccccc */}
+                    <div className="mt-2  single_comment">
+
+                      <div className="d-flex flex-row p-3">
+
+                        <img src="/images/user_profile_body.png" width="40" height="40" className="rounded-circle mr-3" />
+
+                        <div className="w-100">
+
+                          <div className="d-flex justify-content-between align-items-center">
+                              <div className="d-flex flex-row align-items-center">
+                                <span className="mr-2">{comment.commentAuthor}</span>
+                              </div>
+                              <small>{comment.commentCreatedOn}</small>
+                          </div>
+
+                          <p className="text-justify comment_text ">{comment.message}</p>
+
+                        </div>
+                      </div>
+                    </div>
 
 
-<div className="mt-2">
-
-<div className="d-flex flex-row p-3">
-
-  <img src="/public/images/user_profile_body.png" width="40" height="40" className="rounded-circle mr-3" />
-
-  <div className="w-100">
-
-    <div className="d-flex justify-content-between align-items-center">
-        <div className="d-flex flex-row align-items-center">
-          <span className="mr-2">{comment.commentAuthor}</span>
+                  </div>
+                  ))}
+                </div>
+              )}
         </div>
-        <small>{comment.commentCreatedOn}</small>
-  </div>
-
-  <p className="text-justify comment-text mb-0">{comment.message}</p>
-
-  <div className="d-flex flex-row user-feed">
-
-  </div>
-  
-</div>
+        {/* ccccccccccccc ACTUAL MAPPED COMMENTS ccccccccccccc */}
 
 
-</div>
 
+        {/* +++++++++++++ ADD NEW COMMENT +++++++++++++ */}
+        <div className="add_comment_div  align-items-center  ">
 
-</div>
+          <input type="text" className="add_comment_input form-control" placeholder="Add a Comment" 
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
 
+          <button type="button" className="add_new_comment_button" onClick={addNewComment}>
+            Submit
+          </button>
 
-            </div>
-          ))}
         </div>
-      )}
+        {/* +++++++++++++ ADD NEW COMMENT +++++++++++++ */}
 
-
-
+      
       </div>
-
-
-      <div className="mt-3 d-flex flex-row align-items-center p-3 form-color">
-
-        <img src="https://i.imgur.com/zQZSWrt.jpg" width="50" className="rounded-circle mr-2" />
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter your comment..."
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-        />
-        <button type="button" className="btn btn-primary ml-2" onClick={addNewComment}>
-          Submit
-        </button>
-
-      </div>
-
-
-    
+    </div>
   </div>
-  
-</div>
-</div>
-
 </div>
 
 

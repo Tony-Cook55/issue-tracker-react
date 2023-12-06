@@ -419,9 +419,9 @@ export default function BugItem( {showToast} ){
 
   {/* COMMENTS */}
   {/* THIS SEES IF bugItem.comments exists and has a length greater than 0 before rendering the accordion section. If the condition is true, the entire accordion section will be rendered; : otherwise :, nothing will be rendered. */}
-  {bugItem.comments && bugItem.comments.length > 0 && (
-  /* COMMENTS SECTION */
-  <div className="accordion-item">
+  {/* {bugItem.comments && bugItem.comments.length > 0 && ( */}
+
+  <div className="accordion-item   ">
     <h2 className="accordion-header">
       <button
         className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#comments_section" aria-expanded="true" aria-controls="comments_section">
@@ -435,7 +435,7 @@ export default function BugItem( {showToast} ){
             <div className="bug_information_div">
               {/* SEES IF bugItem.comments exists and has a length greater than 0. If true, it renders the content inside the parentheses; :otherwise: it renders nothing after the : */}
               <div className="row  text-center justify-content-center">
-                {bugItem.comments.map((comment, index) => (
+                {/* {bugItem.comments.map((comment, index) => (
                   <div key={index} className="mapped_bug_items col-md-4 col-sm-6">
                     
                     <p className="mapped_item_title">Comment {index + 1}:</p>
@@ -450,7 +450,8 @@ export default function BugItem( {showToast} ){
                       <p className="title_of_database_information">Comment Created On:</p>
                       <p className="database_information">{comment.commentCreatedOn}</p>
                   </div>
-                ))}
+                ))} */}
+                <Comments  bugItem={bugItem}  bugId={bugId} showToast={showToast}/>
               </div>
             </div>
           </div>
@@ -458,8 +459,8 @@ export default function BugItem( {showToast} ){
       </div>
     </div>
   </div>
-  /* COMMENTS SECTION */
-)}
+
+{/* )} */}
   {/* COMMENTS */}
 
 
@@ -552,7 +553,6 @@ export default function BugItem( {showToast} ){
 </div>
 
 
-<Comments  bugItem={bugItem}  bugId={bugId}/>
 
 
 
