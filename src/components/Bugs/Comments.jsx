@@ -73,10 +73,10 @@ export default function Comments( {bugItem, bugId, showToast} ){
 // ++++++++++++++++ ADDING A NEW COMMENT TO BUG ++++++++++++++++++
     const addNewComment = () => {
 
-      const newCommentObject = { message: newComment, commentAuthor: userFullName, commentCreatedOn: new Date().toLocaleString() };
+      const newTestCaseObject = { message: newComment, commentAuthor: userFullName, commentCreatedOn: new Date().toLocaleString() };
 
       // Update the local state immediately
-      setComments([...comments, newCommentObject]);
+      setComments([...comments, newTestCaseObject]);
       setNewComment(""); // Clear the input field after submitting a comment
     
 

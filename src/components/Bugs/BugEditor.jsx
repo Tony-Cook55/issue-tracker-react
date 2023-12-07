@@ -23,6 +23,8 @@ import axios from "axios";
 
 import Stopwatch from "../Stopwatch/Stopwatch";
 
+import AssignUserToBug from "./AssignUserToBug";
+
 // used for getting the bugs ID
 import { useParams, Link } from "react-router-dom";
 
@@ -64,6 +66,7 @@ export default function BugEditor(  {showToast}  ) {
 
     const [assignedToUserId, setAssignedToUserId] = useState("");
 
+    const [closeBug, setCloseBug] = useState("");
 
 
     const [deleteCounter, setDeleteCounter] = useState(0);
@@ -121,6 +124,9 @@ export default function BugEditor(  {showToast}  ) {
 
       // Set the classification if available
       setClassification(response.data.bugClassified ? response.data.bugClassified.classification : '');
+
+      // Sees if it can put in the true or false
+      setCloseBug(response.data.bugClosed ? response.data.bugClosed.closed : "False")
     })
     .catch(error => {
       console.log(error)
@@ -195,6 +201,9 @@ export default function BugEditor(  {showToast}  ) {
       // Once a user 
       onAssignUserToBug(evt);
 
+      onCloseBug(evt);
+
+
       showToast(response.data.Bug_Updated, "success");
 
     })
@@ -251,12 +260,6 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
-
-
-
-
-
-
     // aaaaaaaaaaaaaaaaaa ASSIGN A BUG aaaaaaaaaaaaaaaaaa //
       const onAssignUserToBug = () => {
         // Make a POST request to assign the user
@@ -288,6 +291,30 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
+
+    
+    // xxxxxxxxxxxxxxxxxxxx CLOSE BUG xxxxxxxxxxxxxxxxxxxx //
+    function onCloseBug(evt){
+      evt.preventDefault();
+  
+      // Axios call for classification update
+    axios.put(
+      `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/close`,
+      { closed: closeBug },
+      { withCredentials: true }
+    )
+      .then(response => {
+  
+        // After updating the closeBug, navigate to the Bug Item page
+        navigateToAnotherPage(`/bugItem/${bugId}`);
+  
+      })
+      .catch(error => {
+        console.log(error.response);
+        showToast(error.response.data.Error, "error");
+      });
+    }
+    // xxxxxxxxxxxxxxxxxxxx CLOSE BUG xxxxxxxxxxxxxxxxxxxx //
 
 
 
@@ -368,8 +395,6 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
-
-
           </div>
 
           <div className="bug_title_div">
@@ -410,14 +435,6 @@ export default function BugEditor(  {showToast}  ) {
 
               {/* CLASSIFY BUG */}
               <p>Classification</p>
-              {/* Checks if the role of logged in user is a Business Analyst */}
-              {/* {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
-                <input type="text" id="classification" className="form-control"
-                  value={classification}
-                  onChange={(evt) => setClassification(evt.target.value)}
-                />
-              )} */}
-
               {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
                 <select id="classification" className="form-control"
                   value={classification}
@@ -441,7 +458,7 @@ export default function BugEditor(  {showToast}  ) {
               <div className="d-flex flex-row align-items-center form-color">
                 <input type="text" className="form-control" placeholder="Enter User ID to Assign"
                   value={assignedToUserId}
-                  onChange={(e) => setAssignedToUserId(e.target.value)}
+                  onChange={(evt) => setAssignedToUserId(evt.target.value)}
                 />
                 <button type="button" lassName="btn btn-primary ml-2"
                   onClick={onAssignUserToBug}
@@ -450,9 +467,27 @@ export default function BugEditor(  {showToast}  ) {
                 </button>
               </div>
               )}
+
               {/* ASSIGN A USER TO BUG */}
 
 
+
+
+              {/* CLOSE BUG */}
+              <p>Close Bug</p>
+              {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+              <div className="d-flex flex-row align-items-center form-color">
+                <select id="closeBug" className="form-control"
+                  value={closeBug}
+                  onChange={(evt) => setCloseBug(evt.target.value)}
+                >
+                  <option value="">Is This Bug Closed?</option>
+                  <option value="True">True</option>
+                  <option value="False">False</option>
+                </select>
+              </div>
+              )}
+              {/* CLOSE BUG */}
 
 
 
@@ -463,6 +498,9 @@ export default function BugEditor(  {showToast}  ) {
           </div>
         </div>
         {/* <!-- overview info --> */}
+
+
+
 
 
 
@@ -490,6 +528,7 @@ export default function BugEditor(  {showToast}  ) {
           </div>
           {/* STEPS TO REPRODUCE */}
 
+
           {/* CLASSIFICATION */}
           <div className="accordion-item">
             <h2 className="accordion-header">
@@ -511,6 +550,7 @@ export default function BugEditor(  {showToast}  ) {
             </div>
           </div>
           {/* CLASSIFICATION */}
+
 
           {/* CLOSED */}
           <div className="accordion-item">
