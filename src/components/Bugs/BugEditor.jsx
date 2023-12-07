@@ -58,7 +58,12 @@ export default function BugEditor(  {showToast}  ) {
     const [description, setDescription] = useState("");
     const [stepsToReproduce, setStepsToReproduce] = useState([]); // <--- Its an empty array instead of string due to stepsToReproduce being an array
 
+
+
     const [classification, setClassification] = useState("");
+
+    const [assignedToUserId, setAssignedToUserId] = useState("");
+
 
 
     const [deleteCounter, setDeleteCounter] = useState(0);
@@ -72,6 +77,8 @@ export default function BugEditor(  {showToast}  ) {
   const [rolesFromLocalStorage,setRolesFromLocalStorage] = useState(null);
   const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
   // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
+
+
 
 
 
@@ -185,6 +192,9 @@ export default function BugEditor(  {showToast}  ) {
       // After updating the bug, hit the classification function that holds the relocate page
       onClassificationUpdate(evt);
 
+      // Once a user 
+      onAssignUserToBug(evt);
+
       showToast(response.data.Bug_Updated, "success");
 
     })
@@ -238,6 +248,43 @@ export default function BugEditor(  {showToast}  ) {
   }
   // ucucucucucucucuc UPDATE BUGS CLASSIFICATION ucucucucucucucuc //
 
+
+
+
+
+
+
+
+
+
+    // aaaaaaaaaaaaaaaaaa ASSIGN A BUG aaaaaaaaaaaaaaaaaa //
+      const onAssignUserToBug = () => {
+        // Make a POST request to assign the user
+        axios
+          .put(
+            `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/assign`,
+            { assignedToUserId },
+            { withCredentials: true }
+          )
+          .then((response) => {
+            // Update the bugItem state to reflect the changes
+            setBugItem((prevBugItem) => ({
+              ...prevBugItem,
+              assignedTo: response.data.assignedTo,
+            }));
+
+            // After Assigning the user to bug, navigate to the Bug Item page
+            navigateToAnotherPage(`/bugItem/${bugId}`);
+      
+            showToast(response.data.Bug_Assigned, "success");
+          })
+          .catch((error) => {
+            console.log(error.response);
+            showToast(error.response.data.Assign_Error, "error");
+            showToast(error.response.data.Users_Allowed, "error");
+          });
+      };
+    // aaaaaaaaaaaaaaaaaa ASSIGN A BUG aaaaaaaaaaaaaaaaaa //
 
 
 
@@ -383,6 +430,31 @@ export default function BugEditor(  {showToast}  ) {
                 </select>
               )}
               {/* CLASSIFY BUG */}
+
+
+
+
+
+              {/* ASSIGN A USER TO BUG */}
+              <p>Assign User to Bug</p>
+              {rolesFromLocalStorage && rolesFromLocalStorage.includes('Technical Manager') && (
+              <div className="d-flex flex-row align-items-center form-color">
+                <input type="text" className="form-control" placeholder="Enter User ID to Assign"
+                  value={assignedToUserId}
+                  onChange={(e) => setAssignedToUserId(e.target.value)}
+                />
+                <button type="button" lassName="btn btn-primary ml-2"
+                  onClick={onAssignUserToBug}
+                >
+                  Assign User
+                </button>
+              </div>
+              )}
+              {/* ASSIGN A USER TO BUG */}
+
+
+
+
 
               <br></br>
 

@@ -57,7 +57,34 @@ export default function HomePage(){
 
         <br/><br/>
       <h1>GARBAGE HOME PAGE PLEASE FOR THE LOVE OF GOD CHANGE ME!!</h1>
-        <button type="button" onClick={goToLoginPage} className='m-5'>
+
+
+
+
+
+
+
+
+      <h1>TODO:</h1>
+      <ol className='accordion_ol mapped_bug_items database_information'>
+        <li>Home Page</li>
+        <li>Login In message page</li>
+        <li>Make all pages require user to be logged in thus showing the login message</li>
+        <li>ADD ERROR VALIDATION FOR ALMOST ALL INPUTS</li>
+        <li>Css the searching list items in bugs and users</li>
+        <li>Edit User Profile</li>
+        <li>Edit all the edit functions of editing users and bugs</li>
+        <li></li>
+        <li></li>
+      </ol>
+
+
+
+
+
+
+      
+        {/* <button type="button" onClick={goToLoginPage} className='m-5'>
           Log In
         </button>
         <button type="button" onClick={goToRegisterPage} className='m-5'>
@@ -86,7 +113,7 @@ export default function HomePage(){
 
         <button type="button" onClick={goToUserEditor} className='m-5'>
           User Editor
-        </button>
+        </button> */}
 
 
 
