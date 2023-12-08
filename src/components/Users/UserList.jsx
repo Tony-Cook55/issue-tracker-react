@@ -47,6 +47,10 @@ export default function UserList(){
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
+    // CHANGE THIS TO CHANGE THE AMOUNT OF ITEMS ON THE PAGE
+    const pageSize = 6;
+    const pageNumber = 1;
+
   const [searchParams, setSearchParams] = useState({keywords: "", role:"", maxAge:"", minAge:"", sortBy:""})
   // PAGES AND NEW PAGES //
 
@@ -72,12 +76,12 @@ export default function UserList(){
     if (isLoggedIn) {
       axios.get(`${import.meta.env.VITE_API_URL}/api/users/list/`, 
       { withCredentials: true,
-        params: {pageSize: 6, pageNumber: 1}
+        params: {pageSize, pageNumber}
       })
         .then(response => {
           setUser(response.data.users);
 
-          setTotalPages(Math.ceil(response.data.totalCount / 3)); // Total count is returned
+          setTotalPages(Math.ceil(response.data.totalCount / pageSize)); // Total count is returned
           setCurrentPage(1);
         })
         .catch(error => console.log(error));
@@ -100,7 +104,7 @@ export default function UserList(){
 
     const newSearchParams = {keywords, role, maxAge, minAge, sortBy};
     setSearchParams(newSearchParams);
-    fetchUsers({...newSearchParams, pageSize: 6, pageNumber: 1})
+    fetchUsers({...newSearchParams, pageSize, pageNumber})
   }
 
 
@@ -110,12 +114,12 @@ export default function UserList(){
     //  console.log(`Search params are: ${JSON.stringify(params)}`);
     axios.get(`${import.meta.env.VITE_API_URL}/api/users/list/`,
     {withCredentials: true,
-      params: {...params, pageSize: 6} 
+      params: {...params, pageSize} 
     }
     )
     .then(response => {
       setUser(response.data.users); // Assuming response contains users
-      setTotalPages(Math.ceil(response.data.totalCount / 6)); // Total count is returned
+      setTotalPages(Math.ceil(response.data.totalCount / pageSize)); // Total count is returned
       // Setting the page to 1 when searching
       setCurrentPage(params.pageNumber || 1);
     })

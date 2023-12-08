@@ -66,7 +66,15 @@
 
 //import { useState } from 'react'
 
+// CSS //
 import './App.css'
+
+// This is for any forms css such as login - register, and bug adder
+import "./components/Forms.css"
+
+// CSS //
+
+
 
 // Calls In Bootstrap for colors and things
 import "bootstrap/dist/css/bootstrap.min.css"

@@ -1,0 +1,657 @@
+
+/* This code is here to allow any and all forms like login - Bug Adder - and Register to share 1 file with similar code*/
+
+
+
+
+
+
+
+
+/* all all all all all all   RegisterForm ~ LoginForm ~ AddNewBug   all all all all all all  */
+
+
+
+    /* CARD Used In - RegisterForm ~ AddNewBug   */
+/* ccccccccccccccccccccc CARD ccccccccccccccccccccc */
+
+/* Holder For the form inputs THE OUTER MOST PART */
+.card{
+  background-color: rgb(255, 255, 255);
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/* This is the text box's in the card */
+.form_inputs{
+  margin-top: 1rem;
+  font-family: 'Segoe UI', bold;
+  font-size: 23px;
+  border: none;
+  /* background-color: #3b3b3b; */
+
+  color: #B58DED;
+
+  /* Padding of the text from the left wall */
+  padding-left: 20px;
+
+
+  /* Below makes the rounded pill like object*/
+  align-content: center;
+  border-radius: 22px;
+
+  /* Space between each text box */
+  margin-bottom: 10px;
+
+
+  width: 100%;
+  height: 64px;
+
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
+/* WHEN A USER AUTO COMPLETES THE FIELDS MAKE TEXT COLOR SAME AS MY FOCUS AND MAKE THE BACKGROUND TRANSPARENT INSTEAD OF GRAY*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+
+
+
+/* When user is inside of the textbox */
+.form_inputs:focus {
+  color: #FFFFFF;
+  background: #d1b0ff;
+
+  outline: none;
+  -webkit-animation: jello-textboxs 0.9s both;
+	        animation: jello-textboxs 0.9s both;
+}
+@-webkit-keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+/* ccccccccccccccccccccc CARD ccccccccccccccccccccc */
+
+
+
+
+
+
+/* This is the button that user clicks to register the account */
+.submit_form_button{
+  margin-top: 30px;
+  width: 165px;
+  height: 60px;
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Lexend Variable', sans-serif;
+  /* font-family: 'Montserrat'; */
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
+}
+
+
+.submit_form_button:hover, .submit_form_button:focus {
+  -webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+/* This is the span message that appears underneath the inputs when the info is incorrect */
+.error_message{
+  color: #dc1717;
+  font-weight: bold;
+
+  margin: auto;
+
+  /* animation: gelatine 4s infinite; */
+}
+@keyframes gelatine {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+
+
+/* all all all all all all  ITEMS IN    RegisterForm ~ LoginForm ~ AddNewBug  all all all all all all  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr REGISTER FORM rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*/
+
+
+/* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
+
+.main_header{
+  font-family: 'Lexend Variable', sans-serif;
+  /*   font-family: 'Nunito', sans-serif; */
+  font-size: 50px;
+  /* margin-top: 4rem; */
+  margin-bottom: 2rem;
+}
+
+
+/* This is the single highlighted word in the main header*/
+.highlighted_header{
+  font-family: 'Lexend Variable', sans-serif;
+  color: #d1b0ff;
+}
+
+
+/* The smaller text under the big header */
+.under_header_text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: #212529;
+}
+
+/* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
+
+
+
+
+/* The text under the input box's */
+.under_input_placeholder{
+  color: black;
+  font-family: 'Segoe UI', bold;
+  font-size: 20px;
+}
+
+
+
+
+
+/* This is the same css as the button of the Register Button on the login Page */
+.login_Link{
+  margin-top: 2rem;
+  color: #0E4579;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  display: block;
+  text-decoration: none;
+}
+
+
+/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr REGISTER FORM rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* lllllllllllllllllllllllllllllllllllllllllllllllll LOGIN FORM lllllllllllllllllllllllllllllllllllllllllllllllllll */
+
+
+/*  This is the main white rounded background for the form  */
+.main_form_div{
+  display: inline-block;
+  background: #FFFFFF;
+  max-width: 434px; 
+  height: 700px;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
+
+/*  This is the title text that says Login  */
+.login_Header{
+  font-family: 'Lexend Variable', sans-serif;
+  /*   font-family: 'Nunito', sans-serif; */
+  font-size: 50px;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+
+/*  This is the form that the inputs are inside of  */
+.login_Form{
+  display: inline-block;
+  align-items: center;
+  height: 270px;
+  width: 350px;
+  margin-bottom: 130px;
+}
+
+
+/*  Actual text user enters  */
+.login_Inputs{
+  margin-top: 1rem;
+  font-family: 'Segoe UI', bold;
+  font-size: 23px;
+  border: none;
+
+  color: #B58DED;
+
+  /* Padding of the text from the left wall */
+  padding-left: 20px;
+
+
+  /* Below makes the rounded pill like object*/
+  align-content: center;
+  border-radius: 22px;
+
+  /* Space between each text box */
+  margin-bottom: 20px;
+
+
+  width: 100%;
+  height: 64px;
+
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* WHEN A USER AUTO COMPLETES THE EMAIL OR PASSWORD MAKE TEXT COLOR SAME AS MY FOCUS AND MAKE THE BACKGROUND TRANSPARENT INSTEAD OF GRAY*/
+/* input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 600000s 0s, color 600000s 0s;
+} */
+
+
+/* When user is inside of the textbox */
+.login_Inputs:focus {
+  color: #FFFFFF;
+  background: #d1b0ff;
+
+  outline: none;
+  -webkit-animation: jello-textboxs 0.9s both;
+	        animation: jello-textboxs 0.9s both;
+}
+@-webkit-keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+/*  Big Login Button that user clicks to go to home page  */
+.login_Button {
+  margin-top: 30px;
+  width: 165px;
+  height: 60px;
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Lexend Variable', sans-serif;
+  /* font-family: 'Montserrat'; */
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
+}
+
+.login_Button:hover, .login_Button:focus {
+  -webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+/*    */
+.register_Link{
+  margin-top: 2rem;
+  color: #0E4579;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  display: block;
+  text-decoration: none;
+}
+
+
+/* lllllllllllllllllllllllllllllllllllllllllllllllll LOGIN FORM lllllllllllllllllllllllllllllllllllllllllllllllllll */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ADD NEW BUG FORM aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+
+/* This is for the text above the text inputs */
+.form_labels{
+  font-size: 35px;
+  font-family: 'Segoe UI', bold;
+}
+
+
+
+
+/* Adds the scrolling up and down on the steps to reproduce in AddNewBug*/
+.steps_to_reproduce_scroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  padding-left: auto;
+  padding-right: auto;
+
+  margin-bottom: 10px;
+  height: 185px;
+
+  /* Use Flexbox to space items vertically */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Items stretch to full width */
+  gap: 10px; /* Adjust the gap between items as needed */
+}
+
+
+/* Custom scrollbar for WebKit/Blink browsers (Chrome, Safari, Opera) */
+.steps_to_reproduce_scroll::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.steps_to_reproduce_scroll::-webkit-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.steps_to_reproduce_scroll::-webkit-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+/* Custom scrollbar for Firefox */
+.steps_to_reproduce_scroll {
+  scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: #B58DED #f1f1f1; /* Color of the scrollbar thumb and track */
+}
+
+/* Custom scrollbar for IE/Edge */
+.steps_to_reproduce_scroll {
+  -ms-overflow-style: none; /* Disable IE/Edge scrollbar */
+}
+
+.steps_to_reproduce_scroll::-ms-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.steps_to_reproduce_scroll::-ms-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ADD NEW BUG FORM aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */

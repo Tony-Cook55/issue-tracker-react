@@ -55,6 +55,10 @@ export default function BugList(   {showToast }  ){
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
+  // CHANGE THIS TO CHANGE THE AMOUNT OF ITEMS ON THE PAGE
+  const pageSize = 6;
+  const pageNumber = 1;
+
   const [searchParams, setSearchParams] = useState({keywords: "", classification:"", maxAge:"", minAge:"", closed:"", sortBy:""})
   // PAGES AND NEW PAGES //
 
@@ -77,12 +81,12 @@ export default function BugList(   {showToast }  ){
     if (isLoggedIn){
         axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`, 
         { withCredentials: true ,
-          params: {pageSize: 6, pageNumber: 1}
+          params: {pageSize, pageNumber}
         })
         .then(response => {
           setBugs(response.data.bugs);
 
-          setTotalPages(Math.ceil(response.data.totalCount / 3)); // Total count is returned
+          setTotalPages(Math.ceil(response.data.totalCount / pageSize)); // Total count is returned
           setCurrentPage(1);
 
           // showToast("Success! Found All Bugs", "success");
@@ -109,7 +113,7 @@ export default function BugList(   {showToast }  ){
 
     const newSearchParams = {keywords, classification, maxAge, minAge, closed, sortBy};
     setSearchParams(newSearchParams);
-    fetchBugs({...newSearchParams, pageSize: 6, pageNumber: 1})
+    fetchBugs({...newSearchParams, pageSize, pageNumber})
 
   }
 
@@ -119,12 +123,12 @@ export default function BugList(   {showToast }  ){
     //  console.log(`Search params are: ${JSON.stringify(params)}`);
     axios.get(`${import.meta.env.VITE_API_URL}/api/bugs/list/`,
     {withCredentials: true,
-      params: {...params, pageSize: 6} 
+      params: {...params, pageSize} 
     }
     )
     .then(response => {
       setBugs(response.data.bugs); // Assuming response contains bugs
-      setTotalPages(Math.ceil(response.data.totalCount / 6)); // Total count is returned
+      setTotalPages(Math.ceil(response.data.totalCount / params.pageSize)); // Total count is returned
       // Setting the page to 1 when searching
       setCurrentPage(params.pageNumber || 1);
     })
@@ -144,7 +148,7 @@ export default function BugList(   {showToast }  ){
 
   // This will reload the list of items for every time the page button is clicked
   const handlePageChange = (pageNumber) => {
-    fetchBugs({...searchParams, pageSize: 6, pageNumber});
+    fetchBugs({...searchParams, pageSize, pageNumber});
   }
 
 

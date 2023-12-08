@@ -73,8 +73,19 @@ export default function Comments( {bugItem, bugId, showToast} ){
 // ++++++++++++++++ ADDING A NEW COMMENT TO BUG ++++++++++++++++++
     const addNewComment = () => {
 
-      const newTestCaseObject = { message: newComment, commentAuthor: userFullName, commentCreatedOn: new Date().toLocaleString() };
 
+      // Check if the new comment is empty
+      if (newComment.trim() === "") {
+        showToast("Please enter a comment", "error");
+        return;
+      }
+
+      const newTestCaseObject = {
+        message: newComment,
+        commentAuthor: userFullName,
+        commentCreatedOn: new Date().toLocaleString(),
+      };
+    
       // Update the local state immediately
       setComments([...comments, newTestCaseObject]);
       setNewComment(""); // Clear the input field after submitting a comment
