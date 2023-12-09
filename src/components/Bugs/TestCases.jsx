@@ -13,8 +13,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 // This is technical things like navbar
 import "bootstrap/dist/js/bootstrap.min.js"
 
-// CSS
-import "./Comments.css"
 
 import axios from "axios"
 
@@ -22,7 +20,11 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
+
+import LoginFormRequiredMsg from "../LoginRequiredMsg"
+
 
 
 // ******************* IMPORTS ******************* //
@@ -33,7 +35,13 @@ export default function Comments( {bugItem, bugId, showToast} ){
 
   const [testCases, setTestCases] = useState([]);
 
-  const [newTestCase, setNewTestCase] = useState("");
+  const [newTestCase, setNewTestCase] = useState({
+    title: "",
+    passed: false,
+    versionRelease: "",
+    appliedFixOnDate: "",
+  });
+
 
 
       // Retrieve the user's info object from local storage
@@ -72,19 +80,70 @@ export default function Comments( {bugItem, bugId, showToast} ){
 
 
 // ++++++++++++++++ ADDING A NEW TEST CASE TO BUG ++++++++++++++++++
-const addNewComment = () => {
+const addNewTestCase = () => {
 
-  const newTestCaseObject = { message: newComment, commentAuthor: userFullName, commentCreatedOn: new Date().toLocaleString() };
+
+    // Validate new test case inputs
+    if (
+      !newTestCase.title ||
+      !newTestCase.versionRelease
+    ) {
+      showToast("Please fill in all required fields", "error");
+      return;
+    }
+    if (
+      !newTestCase.title 
+    ) {
+      showToast("Please fill Test Case's Title", "error");
+      return;
+    }
+    if (
+      !newTestCase.versionRelease
+    ) {
+      showToast("Please Add the Version Release For This Test Case", "error");
+      return;
+    }
+    // Ensure appliedFixOnDate is not empty if passed is true
+    if (newTestCase.passed && !newTestCase.appliedFixOnDate) {
+      showToast("Please Add The Data This Test Case Was Fixed On. Format: MM-DD-YYYY", "error");
+      return;
+    }
+
+    // else if (
+    //   !newTestCase.appliedFixOnDate.match(/^\d{2}-\d{2}-\d{4}$/) /* This regex (/^\d{2}-\d{2}-\d{4}$/) checks if the appliedFixOnDate follows the MM-DD-YYYY format. */
+    // ) {
+    //   showToast("Please Add The Data This Tets Case Was Fixed On. Format: MM-DD-YYYY", "error");
+    //   return;
+    // }
+
+
+
+    const newTestCaseObject = {
+      title: newTestCase.title,
+      passed: newTestCase.passed,
+      versionRelease: newTestCase.versionRelease,           // Send null if empty when not passed due to it being optional
+      appliedFixOnDate: newTestCase.appliedFixOnDate === "" ? null : newTestCase.appliedFixOnDate,
+
+    };
+
+
 
   // Update the local state immediately
-  setComments([...comments, newTestCaseObject]);
-  setNewComment(""); // Clear the input field after submitting a comment
+  setTestCases([...testCases, newTestCaseObject]);
+  setNewTestCase({
+    title: "",
+    passed: false,
+    versionRelease: "",
+    appliedFixOnDate: "",
+  });
+
+  console.log("appliedFixOnDate:", testCases.appliedFixOnDate);
 
 
   axios
     .put(
-      `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/comment/new`,
-      { message: newTestCase },
+      `${import.meta.env.VITE_API_URL}/api/bugs/${bugId}/test/new`,
+        newTestCase ,  // Pass newTestCase directly as the data
       { withCredentials: true }
     )
     .then((response) => {
@@ -92,7 +151,7 @@ const addNewComment = () => {
       // setComments([...comments, response.data]); // Assuming the server returns the new comment
       // setNewComment(""); // Clear the input field after submitting a comment
       
-      showToast(`${Comment_Created}`, "success");
+      showToast(`${response.data.TestCase_Created}`, "success");
       // navigateToAnotherPage(`/`);
     })
     .catch((error) => {
@@ -104,8 +163,124 @@ const addNewComment = () => {
 
 
   return(
-    <>
+<>
+      <div className="container mt-5 mb-5">
+        <div className="row height d-flex justify-content-center align-items-center">
+          <div className="col-md-8">
+            <div className="card">
+              <div className="p-3 ">
+                <h2>Test Cases Found: {testCases.length} </h2>
+                {!isLoggedIn ? (
+                  <Link to="/login">
+                    <LoginFormRequiredMsg />
+                  </Link>
+                ) : !testCases.length ? (
+                  <h1 className="no_comments_message">No Test Cases Yet</h1>
+                ) : (
+                  <div className="row text-center justify-content-center list_of_mapped_items_scrollBar">
+                    {testCases.map((testCase, index) => (
+                      <div key={index} className="mt-2 single_comment">
+                        <div className="d-flex flex-row p-3">
+                          <div className="w-100">
+                            <div className="d-flex justify-content-between align-items-center">
+                              <div className="d-flex flex-row align-items-center">
+                                <span className="mr-2">{testCase.testCaseCreatedByUser}</span>
+                              </div>
+                              <small>{testCase.versionRelease}</small>
+                            </div>
+                            <h4><span className="mr-2">{testCase.title}</span></h4>
+                            <p className="text-justify comment_text">
+                              Passed: {testCase.passed ? "Yes" : "No"}
+                            </p>
+                            <p className="text-justify comment_text">
+                              Applied Fix On: {testCase.appliedFixOnDate || "Not Fixed"}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="add_comment_div align-items-center">
+                <input
+                  type="text"
+                  className="add_comment_input form-control"
+                  placeholder="Test Case Title"
+                  value={newTestCase.title}
+                  onChange={(e) =>
+                    setNewTestCase({
+                      ...newTestCase,
+                      title: e.target.value,
+                    })
+                  }
+                />
+<div className="form-check">
 
+
+<select
+            className="form-control"
+            value={newTestCase.passed ? "True" : "False"}
+            onChange={(e) =>
+              setNewTestCase({
+                ...newTestCase,
+                passed: e.target.value === "True",
+              })
+            }
+          >
+            <option value="True">Passed</option>
+            <option value="False">Not Passed</option>
+          </select>
+          {newTestCase.passed && (
+            <input
+              type="text"
+              className="add_comment_input form-control"
+              placeholder="Applied Fix On (MM-DD-YYYY)"
+              value={newTestCase.appliedFixOnDate}
+              onChange={(e) =>
+                setNewTestCase({ ...newTestCase, appliedFixOnDate: e.target.value })
+              }
+            />
+          )}
+
+
+
+
+
+
+
+
+                  <label
+                    className="form-check-label"
+                    htmlFor="passedCheckbox"
+                  >
+                    Passed
+                  </label>
+                </div>
+                <input
+                  type="text"
+                  className="add_comment_input form-control"
+                  placeholder="Version Release"
+                  value={newTestCase.versionRelease}
+                  onChange={(e) =>
+                    setNewTestCase({
+                      ...newTestCase,
+                      versionRelease: e.target.value,
+                    })
+                  }
+                />
+                <button
+                  type="button"
+                  className="add_new_comment_button"
+                  onClick={addNewTestCase}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 

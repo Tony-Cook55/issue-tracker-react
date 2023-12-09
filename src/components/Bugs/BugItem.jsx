@@ -26,7 +26,10 @@ import { FaArrowLeft, FaPencilRuler, FaArrowUp } from "react-icons/fa";
 import { useParams, Link } from "react-router-dom";
 
 
+
 import Comments from "./Comments"
+
+import TestCases from "./TestCases"
 
 
 
@@ -403,7 +406,7 @@ export default function BugItem( {showToast} ){
                         <p className="database_information">{testCase.appliedFixOnDate}</p>
                     </div>
                   ))} */}
-                  {/* <TestCases  bugItem={bugItem}  bugId={bugId} showToast={showToast}/> */}
+                  <TestCases  bugItem={bugItem}  bugId={bugId} showToast={showToast}/>
                 </div>
               </div>
             </div>

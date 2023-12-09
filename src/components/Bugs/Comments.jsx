@@ -22,8 +22,9 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
+import LoginFormRequiredMsg from "../LoginRequiredMsg"
 
 // ******************* IMPORTS ******************* //
 
@@ -102,7 +103,7 @@ export default function Comments( {bugItem, bugId, showToast} ){
           // setComments([...comments, response.data]); // Assuming the server returns the new comment
           // setNewComment(""); // Clear the input field after submitting a comment
           
-          showToast(`${Comment_Created}`, "success");
+          showToast(`${response.data.Comment_Created}`, "success");
           // navigateToAnotherPage(`/`);
         })
         .catch((error) => {
@@ -144,7 +145,7 @@ export default function Comments( {bugItem, bugId, showToast} ){
                 // </div>
               ) : (
               // Check if there are bugs, display the bug list if true
-              <div className="row text-center justify-content-center   comment_list">
+              <div className="row text-center justify-content-center   list_of_mapped_items_scrollBar">
                 {comments.map((comment) => (
                   <div key={comment._id} >  {/* className="col-lg-4 col-md-12 col-sm-12" */}
                     {/* 

@@ -18,46 +18,7 @@
 }
 
 
-/* Adds the scrolling up and down on the comments*/
-.comment_list_scroll{
-	overflow-y: scroll;
-	height: 500px;
-}
 
-
-/* Custom scrollbar for WebKit/Blink browsers (Chrome, Safari, Opera) */
-.comment_list_scroll::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-}
-
-.comment_list_scroll::-webkit-scrollbar-thumb {
-  background-color: #B58DED; /* Color of the scrollbar thumb */
-  border-radius: 5px; /* Border radius of the thumb */
-}
-
-.comment_list_scroll::-webkit-scrollbar-track {
-  background-color: #d1b0ff; /* Color of the scrollbar track */
-}
-
-/* Custom scrollbar for Firefox */
-.comment_list_scroll {
-  scrollbar-width: thin; /* Width of the scrollbar */
-  scrollbar-color: #B58DED #f1f1f1; /* Color of the scrollbar thumb and track */
-}
-
-/* Custom scrollbar for IE/Edge */
-.comment_list_scroll {
-  -ms-overflow-style: none; /* Disable IE/Edge scrollbar */
-}
-
-.comment_list_scroll::-ms-scrollbar-thumb {
-  background-color: #B58DED; /* Color of the scrollbar thumb */
-  border-radius: 5px; /* Border radius of the thumb */
-}
-
-.comment_list_scroll::-ms-scrollbar-track {
-  background-color: #d1b0ff; /* Color of the scrollbar track */
-}
 
 
 

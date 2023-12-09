@@ -8,7 +8,7 @@
 
 
 
-/* all all all all all all   RegisterForm ~ LoginForm ~ AddNewBug   all all all all all all  */
+/* all all all all all all   RegisterForm ~ LoginForm ~ AddNewBug ~ Comments ~ TestCases  all all all all all all  */
 
 
 
@@ -235,6 +235,62 @@ input:-webkit-autofill:focus {
   50% { transform: scale(1.1, 0.9); }
   75% { transform: scale(0.95, 1.05); }
 }
+
+
+
+
+
+/* ADD THIS ABOVE YOUR MAPPED ITEMS IN A DIV to make items inside map be in scroll bar */ 
+
+/* Adds the scrolling up and down on the Things like comments, test cases, and steps to reproduce*/
+.list_of_mapped_items_scrollBar{
+	overflow-y: scroll;
+	height: 500px;
+}
+
+
+/* Custom scrollbar for WebKit/Blink browsers (Chrome, Safari, Opera) */
+.list_of_mapped_items_scrollBar::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.list_of_mapped_items_scrollBar::-webkit-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.list_of_mapped_items_scrollBar::-webkit-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+/* Custom scrollbar for Firefox */
+.list_of_mapped_items_scrollBar {
+  scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: #B58DED #f1f1f1; /* Color of the scrollbar thumb and track */
+}
+
+/* Custom scrollbar for IE/Edge */
+.list_of_mapped_items_scrollBar {
+  -ms-overflow-style: none; /* Disable IE/Edge scrollbar */
+}
+
+.list_of_mapped_items_scrollBar::-ms-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.list_of_mapped_items_scrollBar::-ms-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+
+
+
+
+
+
+
+
 
 
 
