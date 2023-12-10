@@ -119,9 +119,9 @@ export default function AddNewBug(  {showToast}  ) {
 {/* Section: Design Block */}
 <section className="scale_in_center">
   {/* Jumbotron --> */}
-  <div className="px-4 py-5 px-md-5 text-center text-lg-start">
+  <div className=" text-center text-lg-start">
     <div className="container">
-      <div className="row gx-lg-5 align-items-center      text-center justify-content-center">
+      <div className="row  align-items-center      text-center justify-content-center">
 
 
 
@@ -132,7 +132,7 @@ export default function AddNewBug(  {showToast}  ) {
             <div className="card-body py-5 px-md-5">
               <form  onSubmit={(evt) => onAddBug(evt)}>
 
-                  <h1 className="main_header">Report A Bug</h1>
+                  <h1 className="main_header">Report a Bug</h1>
 
                 {/* TITLE */}
                 <div className="form-outline mb-4">
@@ -160,7 +160,7 @@ export default function AddNewBug(  {showToast}  ) {
                 <div className="form-outline mb-4">
                   <label  className="form_labels" htmlFor="description">Description</label>
                   <textarea
-                    className="form_inputs"
+                    className="form_inputs    text_area_input"
                     value={description}
                     onChange={(evt) => setDescription(evt.target.value)}
                     
@@ -188,11 +188,11 @@ export default function AddNewBug(  {showToast}  ) {
                       <div className="" key={index}>
 
                           <div className="row    text-center   justify-content-center">
-                            <div className="col-md-8">
+                            {/* <div className="col-lg-10 col-md-10 col-sm-10 col-xs-4 "> */}
                               <div className="form-outline ">
                                 <input
                                   type="text"
-                                  className="form_inputs"
+                                  className="form_inputs steps_to_reproduce_form_input"
                                   value={step}
                                   onChange={(e) => {
                                     const newSteps = [...stepsToReproduce];
@@ -202,7 +202,7 @@ export default function AddNewBug(  {showToast}  ) {
                                   }}
                                 />
                               </div>
-                            </div>
+                            {/* </div> */}
                           </div>
 
                       </div>
@@ -211,32 +211,24 @@ export default function AddNewBug(  {showToast}  ) {
                   </div>
 
                   {/* Error Message */}
-                  {stepsToReproduceError && 
-                    <div className="alert alert-danger  text-center" role="alert">
-                      <div className="error_message">{stepsToReproduceError}</div>
-                    </div>
-                  }
-                  {/* Error Message */}
-
-
-
-                  {/* If the steps length is less than the MAX STEPS we set up top, show the "Add Step" button */}
-                  {stepsToReproduce.length < MAX_STEPS_TO_REPRODUCE ? (
-                    <button
-                      type="button"
-                      onClick={() => setStepsToReproduce([...stepsToReproduce, ""])}
-                    >
-                      Add Step
-                    </button>
-                  ) : (
-                    /* If stepsToReproduceError is truthy, show the error message */
-                    stepsToReproduceError && (
+                    {(stepsToReproduce.length >= MAX_STEPS_TO_REPRODUCE) && (
                       <div className="alert alert-danger text-center" role="alert">
                         <div className="error_message">
                           Maximum steps reached. Only {MAX_STEPS_TO_REPRODUCE} Steps Allowed
                         </div>
                       </div>
-                    )
+                    )}
+                  {/* Error Message */}
+
+
+
+                  {/* If the steps length is less than the MAX STEPS we set up top, show the "Add Step" button */}
+                  {stepsToReproduce.length < MAX_STEPS_TO_REPRODUCE && (
+                    <button type="button" className="add_items_button"
+                      onClick={() => setStepsToReproduce([...stepsToReproduce, ""])}
+                    >
+                      Add Step
+                    </button>
                   )}
 
 

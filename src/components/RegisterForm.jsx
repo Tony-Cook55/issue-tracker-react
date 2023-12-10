@@ -216,6 +216,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
             <div className="card-body py-5 px-md-5">
               <form>
 
+                <h1 className="main_header     text-center">Create an Account</h1>
 
                 {/* Full Name */}
                 <div className="form-outline mb-4">

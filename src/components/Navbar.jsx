@@ -152,7 +152,7 @@ const [userProfile, setUserProfile] = useState({});
                         {/* /////// ADD BUG /////// */}
                         <li className="nav-item"  onClick={refreshNavbar}>
                           <NavLink to="/report" className="nav-link">
-                            Report Bug
+                            Add Bug
                           </NavLink>
                         </li>
                         {/* /////// ADD BUG /////// */}

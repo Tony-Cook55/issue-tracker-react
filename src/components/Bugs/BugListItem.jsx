@@ -14,7 +14,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "./BugListItem.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
+import { FaLock, FaPencilRuler } from "react-icons/fa";
 import { NavLink, Link } from "react-router-dom";
 // ICONS //
 
@@ -86,6 +86,23 @@ export default function BugListItem(  {bug, showToast }  ){
               </p>
             </div>
             {/* CREATED ON DATE */}
+
+
+                                    <div class="social-share "> {/* d-flex */}
+                                        <ul class="social-icon">
+                                            <li class="social-icon-item">
+                                                <a href="#" class="social-icon-link bi-twitter"></a>
+                                            </li>
+
+                                            <li class="social-icon-item">
+                                                <a href="#" class="social-icon-link bi-facebook"></a>
+                                            </li>
+
+                                            <li class="social-icon-item">
+                                                <a href="#" class="social-icon-link bi-pinterest"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
 
 
           </Link>

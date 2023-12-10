@@ -15,9 +15,7 @@ export default function HomePage(){
 
   return(
     <>
-      <div>
 
-        <br/><br/>
 
 
 
@@ -47,7 +45,6 @@ export default function HomePage(){
 
 
 
-      </div>
     </>
   )
 

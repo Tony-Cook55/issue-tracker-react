@@ -133,6 +133,24 @@ input:-webkit-autofill:focus {
 
 
 
+/* This is the add items button such as the add steps to reproduce*/
+.add_items_button{
+  background-color: #d1b0ff;
+  transition: all 0.3s ease 0s;
+}
+
+.add_items_button:hover, .add_items_button:focus{
+  transition: all 0.3s ease 0s;
+  background-color: #845db9;
+  color: white;
+
+  transform: scale(1.1);
+}
+
+
+
+
+
 
 /* This is the button that user clicks to register the account */
 .submit_form_button{
@@ -654,6 +672,27 @@ input:-webkit-autofill:focus {
 }
 
 
+/* This is the textarea thats expandable for the bugs description*/
+.text_area_input{
+  padding-top: 15px;
+  
+}
+
+
+
+
+/* This is just to make the width smaller and to overwrite the form_inputs css for 100% width  */
+.steps_to_reproduce_form_input{
+
+  width: 80% !important;
+
+}
+
+
+
+
+
+
 
 
 /* Adds the scrolling up and down on the steps to reproduce in AddNewBug*/
@@ -667,12 +706,24 @@ input:-webkit-autofill:focus {
   margin-bottom: 10px;
   height: 185px;
 
+
   /* Use Flexbox to space items vertically */
   display: flex;
   flex-direction: column;
   align-items: stretch; /* Items stretch to full width */
   gap: 10px; /* Adjust the gap between items as needed */
 }
+
+
+
+
+
+/* Add this to your CSS file */
+.custom-input {
+  width: 100%; /* You can adjust this value according to your design */
+  max-width: 200px; /* Add a maximum width if needed */
+}
+
 
 
 /* Custom scrollbar for WebKit/Blink browsers (Chrome, Safari, Opera) */
