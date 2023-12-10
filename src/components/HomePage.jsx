@@ -2,7 +2,9 @@
 // ******************* IMPORTS ******************* //
 
 // CSS
+import { useEffect, useState } from "react";
 import "../components/componentsCSS/HomePage.css"
+
 
 // ******************* IMPORTS ******************* //
 
@@ -11,6 +13,38 @@ export default function HomePage(){
 
 
 
+  const [showCrosshair, setShowCrosshair] = useState(false);
+
+  const [bugShot, setBugShot] = useState(false);
+
+
+  const handleCrosshairClick = () => {
+    setShowCrosshair(false);
+
+    // Trigger bug shot effect after a delay
+    setTimeout(() => {
+      setBugShot(true);
+
+      // Reset bug shot effect after another delay
+      setTimeout(() => {
+        setBugShot(false);
+      }, 500);
+    }, 500);
+  };
+
+
+  useEffect(() => {
+
+    // Set a timeout to show the crosshair after 4 seconds
+    const crosshairTimeout = setTimeout(() => {
+      setShowCrosshair(true);
+    }, 2000);
+
+    // Clear timeouts on component unmount
+    return () => {
+      clearTimeout(crosshairTimeout);
+    };
+  }, []); // Run this effect only once when the component mounts
 
 
   return(
@@ -19,7 +53,54 @@ export default function HomePage(){
 
 
 
+<div className="home-container">
 
+
+
+<section className={"full_screen_banner"}>
+      <div className="full_screen_banner_content">
+        {/* <h1 className="eliminate_bug_text">Log In To Eliminate The Bug</h1> */}
+
+        <h3>TEXT HERE</h3>
+
+      </div>
+</section>
+
+
+
+
+    <section className="features-section">
+        <div className="feature">
+          <h2>Track Bugs</h2>
+          <p>Efficiently log and manage bugs in your projects.</p>
+        </div>
+        <div className="feature">
+          <h2>Edit Bugs</h2>
+          <p>Edit bug details and keep your information up-to-date.</p>
+        </div>
+        <div className="feature">
+          <h2>Comment on Bugs</h2>
+          <p>Collaborate with your team by adding comments to bugs.</p>
+        </div>
+      </section>
+
+
+
+      <section className="features-section">
+        <div className="feature">
+          <h2>Track Bugs</h2>
+          <p>Efficiently log and manage bugs in your projects.</p>
+        </div>
+        <div className="feature">
+          <h2>Edit Bugs</h2>
+          <p>Edit bug details and keep your information up-to-date.</p>
+        </div>
+        <div className="feature">
+          <h2>Comment on Bugs</h2>
+          <p>Collaborate with your team by adding comments to bugs.</p>
+        </div>
+      </section>
+    </div>
 
 
 

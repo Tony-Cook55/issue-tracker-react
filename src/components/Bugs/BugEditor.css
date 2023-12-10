@@ -172,4 +172,166 @@
 	background: #ee3535;
 }
 
+
+
+
+
+
+
+
+
+/* xxxxxxxxx Bug Elimination Game in Modal xxxxxxxxxxx */
+
+
+
+
+/* This is the giant banner that spans the whole screen */
+.delete_fullscreen_banner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+
+  /* background: url('/images/colored_find_bug.png') center/cover no-repeat;
+  background-size: contain;  */
+
+}
+
+
+
+
+
+/* Text inside of the banner */
+.delete_fullscreen_banner_content {
+  max-width: 900px;
+  position: relative;
+  text-align: center;
+}
+
+
+
+
+.eliminate_bug_text {
+  font-size: 50px; /* Adjust the font size based on your preference */
+  margin-bottom: 450px;
+
+	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+.bug_image {
+  width: 150px; /* Adjust the size based on your preference */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+
+  margin-left: -75px; /* Half of the bug image width */
+  margin-top: -75px; /* Half of the bug image height */
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+
+
+
+.cross_hair {
+  width: 400px; /* Adjust the size based on your preference */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+  animation: swayAnimation 5s ease-in-out infinite;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+@keyframes swayAnimation {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateX(-60px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(60px);
+  }
+}
+
+
+
+
+/* Add a hover effect to scale up the magnifying glass */
+.cross_hair:hover {
+  transform: translate(-50%, -50%) scale(1.2); /* Adjust the scale factor based on your preference */
+  animation: none; /* Override the existing animation during hover */
+
+  transition: all 0.3s ease 0s;
+
+  cursor: pointer;
+}
+
+
+/* Show the crosshair after 2 seconds and make it smoothly transition in */
+/* .show_crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: all 0.3s ease 0s;
+
+	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+} */
+
+
+/* xxxxxxxxx Bug Elimination Game in Modal xxxxxxxxxxx */
+
+
+
+
+
+
+
+
+
 /* mmmmmmmmmmmmmmmmmmmmmmmmm CONFIRMATION MODAL mmmmmmmmmmmmmmmmmmmmmmmmm */

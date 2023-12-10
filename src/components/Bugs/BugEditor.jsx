@@ -206,6 +206,8 @@ export default function BugEditor(  {showToast}  ) {
 
       showToast(response.data.Bug_Updated, "success");
 
+      // navigateToAnotherPage(`/bugItem/${bugId}`);
+
     })
     .catch(error => {
       console.log(error.response),
@@ -345,6 +347,7 @@ export default function BugEditor(  {showToast}  ) {
       );
     }
   // -------------------- DELETING BUG FROM DATABASE -------------------
+
 
 
 
@@ -624,18 +627,56 @@ export default function BugEditor(  {showToast}  ) {
 	<div className="modal-dialog "> {/* modal-dialog-centered */}
 		<div className="modal-content">
 			<div className="modal-header flex-column">
-				<div className="icon-box">
+
+				{/* <div className="icon-box">
 					<i className="material-icons"><FaTrash/></i>
-				</div>						
-				<h4 className="modal-title w-100" id="confirmation_modal_title">Are you sure?</h4>	
-                <button type="button" className="close" aria-hidden="true" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+				</div>			 */}
+
+        {/* Close Button */}
+        <button type="button" className="close" aria-hidden="true" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        
+				{/* <h4 className="modal-title w-100" id="confirmation_modal_title">Want To Delete This Bug?</h4>	 */}
+        
+        {/* <div className="modal-body">
+          <p>Do you really want to delete this Bug? This process cannot be undone.</p>
+        </div> */}
+
 			</div>
-			<div className="modal-body">
-				<p>Do you really want to delete this Bug? This process cannot be undone.</p>
-			</div>
+
+
+
+
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+              <section className="delete_fullscreen_banner">
+                <div className="delete_fullscreen_banner_content">
+                  <h1 className="eliminate_bug_text">Eliminate The Bug To Delete It</h1>
+
+                  <div className="modal-body">
+                    <p>Do you really want to delete this Bug? This process cannot be undone. Just Shoot The Bug To Delete It.</p>
+                  </div>
+
+                  <img
+                    src="/images/colored_bug_logo.png"
+                    className="bug_image"
+                    alt="Bug"
+                  />
+
+                  <img
+                    src="/images/crosshair.png"
+                    className="cross_hair"
+                    alt="Crosshair"
+                    onClick={(evt) => onBugDelete(evt, bugId)} // This Deletes the bug when the pic is clicked
+                  />
+
+                </div>
+              </section>
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+
+
+
 			<div className="modal-footer justify-content-center">
 				<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" className="btn btn-danger"  onClick={(evt) => onBugDelete(evt, bugId)} >Delete</button>
+				{/* <button type="button" className="btn btn-danger"  onClick={(evt) => onBugDelete(evt, bugId)} >Delete</button> */}
 			</div>
 		</div>
 	</div>
