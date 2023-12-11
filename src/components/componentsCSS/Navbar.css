@@ -128,12 +128,18 @@ input[type="checkbox"]{
   text-decoration: none;
   font-size: 30px;
   font-weight: 500;
-  padding: 10px 30px;
+
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;  
+
   color: #fff;
   border-radius: 50px;
   background-color: #212529;
   position: relative;
-  line-height: 50px;
+  /* line-height: 50px; */
   transition: all 0.2s ease;
 }
 

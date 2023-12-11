@@ -50,6 +50,7 @@ export default function AddNewBug(  {showToast}  ) {
       setTitleError("");
     }
 
+
     if (!description.trim()) {
       setDescriptionError("Description is required");
       valid = false;
@@ -60,15 +61,22 @@ export default function AddNewBug(  {showToast}  ) {
       setDescriptionError("");
     }
 
-    stepsToReproduce.forEach((step, index) => {
-      if (!step.trim() || step.length < 1 || step.length > 100) {
-        setStepsToReproduceError(`Step ${index + 1} must be between 1 and 100 characters`);
-        valid = false;
-      } else {
-        setStepsToReproduceError("");
-      }
-    });
 
+
+    /* If there is no steps do this   and check every step even ones before filled out steps*/
+    if (stepsToReproduce.length === 0 || stepsToReproduce.every(step => !step.trim())) {
+      setStepsToReproduceError("At least 1 Step To Reproduce Is Required");
+      valid = false;
+    } else {
+      setStepsToReproduceError("");
+      stepsToReproduce.forEach((step, index) => {
+        if (!step.trim() || step.length < 1 || step.length > 100) {
+          setStepsToReproduceError(`Step ${index + 1} must be between 1 and 100 characters`);
+          valid = false;
+        }
+      });
+    }
+  
     return valid;
   };
 
@@ -209,6 +217,16 @@ export default function AddNewBug(  {showToast}  ) {
                     ))}
 
                   </div>
+
+
+                  {/* Error Message */}
+                  {stepsToReproduceError && 
+                    <div className="alert alert-danger  text-center" role="alert">
+                      <div className="error_message">{stepsToReproduceError}</div>
+                    </div>
+                  }
+                  {/* Error Message */}   
+
 
                   {/* Error Message */}
                     {(stepsToReproduce.length >= MAX_STEPS_TO_REPRODUCE) && (

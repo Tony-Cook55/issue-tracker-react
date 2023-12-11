@@ -14,6 +14,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 
 
+import "../components/componentsCSS/LoginRequiredMsg.css"
+
 
 // CSS
 
@@ -30,7 +32,32 @@ export default function LoginFormRequiredMsg( ) {
 
   return(
     <>
-      <h1> LOGIN FIX ME!</h1>
+
+
+
+<div class="main_login_div ">
+  <h1 className="login_header">Please Log In To: 
+  <div class="roller">
+    <span id="rolling_login_text">
+      Report Bugs<br/>
+      View Bugs<br/>
+      And<br/> 
+      Shoot Bugs<br/>
+    </span>
+    {/* <span id="spare-time">AMONG US IS SO COOL!</span><br/> */}
+  </div>
+    
+    </h1>
+  </div>
+
+
+
+
+      <section className={"full_screen_banner"}>
+            <div className="full_screen_banner_content">
+              {/* <h1 className="eliminate_bug_text">Log In To Eliminate The Bug</h1> */}
+            </div>
+      </section>
     </>
   )
 

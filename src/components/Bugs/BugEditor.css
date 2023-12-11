@@ -1,5 +1,81 @@
 
 
+.delete_button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+.svgIcon {
+  padding-bottom: 3px;
+  transition-duration: .3s;
+}
+
+
+
+.delete_button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button:hover .svgIcon {
+  width: 60px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+  transition: all 0.3s ease 0s;
+
+  padding-bottom: 20px;
+}
+
+.delete_button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 3px;
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+
+
+
+
+
+
+
+
+
 .delete_button_background{
   background-image: linear-gradient(120deg,  #f41414, #cc3030);
 
@@ -81,7 +157,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  max-height: 100vh; /* Set a maximum height for the modal */
+   /* Set a maximum height for the modal */
+  max-height: 200vh;
 }
 
 
@@ -100,7 +177,7 @@
 
 
 .modal-confirm .modal-content {
-	padding: 20px;
+	padding: 30px;
 	border-radius: 25px;
 	border: none;
 	text-align: center;
@@ -186,18 +263,19 @@
 
 
 /* This is the giant banner that spans the whole screen */
-.delete_fullscreen_banner {
-  height: 100vh;
+/* .delete_fullscreen_banner {
+  height: 95vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   text-align: center;
 
-  /* background: url('/images/colored_find_bug.png') center/cover no-repeat;
-  background-size: contain;  */
 
-}
+} */
+
+
 
 
 
@@ -215,7 +293,7 @@
 
 .eliminate_bug_text {
   font-size: 50px; /* Adjust the font size based on your preference */
-  margin-bottom: 450px;
+  margin-bottom: 350px;
 
 	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -274,7 +352,7 @@
 
 
 .cross_hair {
-  width: 400px; /* Adjust the size based on your preference */
+  width: 350px; /* Adjust the size based on your preference */
 
   position: absolute;
   top: 50%;
@@ -302,7 +380,7 @@
 
 /* Add a hover effect to scale up the magnifying glass */
 .cross_hair:hover {
-  transform: translate(-50%, -50%) scale(1.2); /* Adjust the scale factor based on your preference */
+  transform: translate(-50%, -50%) scale(1.3); /* Adjust the scale factor based on your preference */
   animation: none; /* Override the existing animation during hover */
 
   transition: all 0.3s ease 0s;

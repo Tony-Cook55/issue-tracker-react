@@ -386,6 +386,13 @@ export default function BugEditor(  {showToast}  ) {
             {/* DELETE THIS BUG */}
 
 
+                  {/* <button class="delete_button">
+                    <span viewBox="0 0 448 512" class="svgIcon">
+                    <FaTrash />
+                    </span>
+                  </button> */}
+
+
             {/* SAVE/UPDATE THIS BUG */}
             {canUserEditThisBug && (
             <button type="submit" className="icon_link" >
@@ -649,7 +656,7 @@ export default function BugEditor(  {showToast}  ) {
         {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
               <section className="delete_fullscreen_banner">
                 <div className="delete_fullscreen_banner_content">
-                  <h1 className="eliminate_bug_text">Eliminate The Bug To Delete It</h1>
+                  <h1 className="eliminate_bug_text">Shoot The Bug To Delete It</h1>
 
                   <div className="modal-body">
                     <p>Do you really want to delete this Bug? This process cannot be undone. Just Shoot The Bug To Delete It.</p>
