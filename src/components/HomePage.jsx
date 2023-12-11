@@ -19,11 +19,7 @@ export default function HomePage(){
     const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
     // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
 
-
-
   useEffect(() => {
-
-
 
   // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
     // This reads out of local storage for the Users Roles To see if they can Edit the Bug
@@ -43,15 +39,22 @@ export default function HomePage(){
   // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
 
 
-
-
-
-
+    // This is for the title that jumps for every item add 0.1 seconds to its jump timer
     const titleSpans = document.querySelectorAll('.home_title span');
     titleSpans.forEach((span, index) => {
       span.style.animationDelay = `${index * 0.1}s`;
     });
+
   }, []);
+
+
+
+
+
+
+
+
+
 
 
   return(
@@ -59,7 +62,7 @@ export default function HomePage(){
 
 
 <div className="home_container">
-  <section className={"full_screen_banner"}>
+  <section className="full_screen_banner">
       <div className="full_screen_banner_content">
 
 
@@ -87,6 +90,98 @@ export default function HomePage(){
   </section>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+{/* <section className="full_screen_banner">
+      <div className="full_screen_banner_content"> */}
+
+
+<section className="container">
+      <div className="row">
+        <div className="col-lg-4 col-md-6 mb-4">
+          <div className="card card_container">
+            <div className="card__image-container">
+              <img
+                src="../images/colored_bug_logo.png"
+                className="card-img-top"
+                alt="Card image cap"
+              />
+            </div>
+            <div className="card-body">
+              <h5 className="card-title text--medium">
+                Report Your Very Own Bugs
+              </h5>
+              <div className="card-info">
+                <p className="text--medium">30 Min</p>
+                <p className="card-price text--medium">Free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Repeat the above card structure for the other cards */}
+
+        <div className="col-lg-4 col-md-6 mb-4">
+          <div className="card">
+            <div className="card__image-container">
+            <img
+                src="../images/colored_bug_logo.png"
+                className="card-img-top"
+                alt="Card image cap"
+              />
+            </div>
+            <div className="card-body">
+              <h5 className="card-title text--medium">
+                View And Comment On Other Users Bugs
+              </h5>
+              <div className="card-info">
+                <p className="text--medium">30 Min</p>
+                <p className="card-price text--medium">Free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div className="col-lg-4 col-md-6 mb-4">
+          <div className="card">
+            <div className="card__image-container">
+              {/* <img
+                src="https://images.unsplash.com/photo-1473283147055-e39c51463929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+                className="card-img-top"
+                alt="Card image cap"
+              /> */}
+            </div>
+            <div className="card-body">
+              <h5 className="card-title text--medium">
+                Here's the Title of an Awesome Course
+              </h5>
+              <div className="card-info">
+                <p className="text--medium">30 Min</p>
+                <p className="card-price text--medium">Free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+
+{/* </div>
+</section> */}
+
+
 
 
 

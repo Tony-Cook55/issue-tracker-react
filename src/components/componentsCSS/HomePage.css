@@ -165,3 +165,58 @@
 
 
 
+
+.text--medium {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #000;
+}
+
+.cards {
+  margin-top: 40px; /* Adjust the margin as needed */
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.card__image-container {
+  padding-top: 66.25%; /* Adjust the padding to make the card taller */
+  overflow: hidden;
+  position: relative;
+}
+
+.card__image-container img {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card__content {
+  padding: 20px;
+  height: 180px; /* Adjust the height as needed */
+}
+
+.card__title {
+  margin-bottom: 20px;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+}
+
+.card-price {
+  margin-left: auto;
+  padding: 5px 20px;
+  background-color: #303032;
+  border-radius: 20px;
+}
