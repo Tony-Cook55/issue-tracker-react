@@ -18,22 +18,22 @@
     /\ ADD THIS TO THE BACKEND TO ALLOW FOR axios TO CONNECT TO THE BACKEND /\
   9.  npm i cors
 
-  \\ Steps with Axios for backend //
-    1. npm i cors
-    2. import cors from "cors";
+      \\ Steps with Axios for backend //
+        1. npm i cors
+        2. import cors from "cors";
 
-    / Add this into the middleware ABOVE my routers in server.js   This --> app.use("/api/books", BookRouter);
-    3 app.use(cors(
-        {
-        origin: "http://localhost:5173",
-        credentials: true
-        }
-      )); 
+        / Add this into the middleware ABOVE my routers in server.js   This --> app.use("/api/books", BookRouter);
+        3 app.use(cors(
+            {
+            origin: "http://localhost:5173",
+            credentials: true
+            }
+          )); 
 
-    / THIS ACCEPTS JSON DATA IN THE BODY OF THE REQUEST FROM THE CLIENT ADD UNDER  app.use(cors());
-    4. app.use(express.json()); 
+        / THIS ACCEPTS JSON DATA IN THE BODY OF THE REQUEST FROM THE CLIENT ADD UNDER  app.use(cors());
+        4. app.use(express.json()); 
 
-  \\ Steps with Axios for backend //
+      \\ Steps with Axios for backend //
 
   \/ ADD THIS TO THE BACKEND TO ALLOW FOR axios TO CONNECT TO THE BACKEND \/
 
@@ -54,9 +54,30 @@
     3. npm install @fontsource/prompt           //   font-family: 'Prompt', sans-serif;
     4. npm install @fontsource/paytone-one      //   font-family: 'Paytone One', sans-serif;
 
-
         DEFAULT BOOTSTRAP FONT
     font-family: 'Segoe UI', bold;
+
+
+
+
+
+    G CLOUD DEPLOYMENT   ~ https://www.youtube.com/watch?v=zxQPhZisfrM&t=168s
+      1. Create a app.yaml file in the root  and add things from video
+            DO THIS WHEN WORKING WITH THE FRONT END
+      2. gcloud config set project cook-issuetracker-frontend  <-- thats my project id from gcloud
+      3. npm run build    creates the dist folder
+      4. Create a .env.production file then change the url to the gcloud backend's url For this its cook-issuetracker-backend.uc.r.appspot.com 
+            Should end up like this ~  VITE_API_URL=https://cook-issuetracker-backend.uc.r.appspot.com/
+      5. Do another  npm run build to set the new url
+      6. gcloud app deploy
+          Choose - [17] us-central
+          Choose y to continue
+      
+          ANY TIME YOU NEED TO ACCESS THIS GCLOUD DO THIS
+            1. SWITCH TO THIS GCLOUD: gcloud config set project cook-issuetracker-frontend 
+            2. UPDATES: gcloud app deploy 
+
+
 
 
   To Run Program: npm run dev   
@@ -225,7 +246,7 @@ function App() {
 
   return (
     <>
-      <div className="container       d-flex flex-column min-vh-100">
+      <div className="container  d-flex flex-column min-vh-100 ">  {/* container       d-flex flex-column min-vh-100 */}
 
         <header>
           <nav>
@@ -237,7 +258,10 @@ function App() {
         <main>
           <ToastContainer className={"toast_message"}/>
           <Routes>
-            <Route path="/" element={<HomePage showToast={showToast} />} />
+
+              <Route path="/" element={<HomePage showToast={showToast} />} />
+
+
             <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />} />
             <Route path="/login" element={
               <LoginForm 

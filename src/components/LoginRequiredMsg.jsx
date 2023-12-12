@@ -52,12 +52,22 @@ export default function LoginFormRequiredMsg( ) {
 
 
 
+      {/* FLYING BUG 1 */}
+      <div className="first_bug_flys_across_login_screen">
+        <img className="bug_fly_login_img" src="../images/colored_bug_logo.png" alt="Bug" />
+      </div>
+      {/* FLYING BUG 1 */}
 
-      <section className={"full_screen_banner"}>
-            <div className="full_screen_banner_content">
-              {/* <h1 className="eliminate_bug_text">Log In To Eliminate The Bug</h1> */}
-            </div>
-      </section>
+
+      {/* FLYING BUG 2 */}
+      <div className="second_bug_flys_across_login_screen">
+        <img className="bug_fly_login_img" src="../images/colored_bug_logo.png" alt="Bug" />
+      </div>
+      {/* FLYING BUG 2 */}
+
+
+
+
     </>
   )
 

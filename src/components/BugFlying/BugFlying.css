@@ -1,0 +1,330 @@
+
+
+
+/* THIS IS THE IMPORT FOR THE PIXEL FONT FOR SCOREBOARD */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+
+
+
+
+/* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */
+
+
+.bug-container {
+  height: 100vh; 
+  overflow: hidden;
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  transition: .3s transform ease-in-out;
+  /* background-color: #B58DED; */
+
+  border-radius: 12px;
+  border: 3px solid white;
+
+
+}
+
+
+
+/* This will make the object its given to (list-view), to disappear upwards when screen scrolls down */
+
+@keyframes animate-in {
+0% { opacity: 0; transform: translateY(100%); }
+100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes animate-out {
+0% { opacity: 1; transform: translateY(0); }
+100% { opacity: 0; transform: translateY(-100%); }
+}
+
+.list-view{
+animation: animate-in linear forwards,
+           animate-out linear forwards;
+animation-timeline: view();
+animation-range: entry, exit;
+}
+
+
+
+
+
+
+
+/* This is the actual image of a bug */
+.bug_fly_img{
+  width: 220px;
+  padding: 30px;
+
+
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  /* background-color: #B58DED; */
+}
+@media only screen and (max-width: 768px) {
+  .bug_fly_img{
+    width: 130px;
+  }
+}
+
+
+
+
+
+.bug_flys_across_screen > * {
+/* Adjust animation duration to change the element’s speed */
+        animation: fly 25s linear infinite;
+
+  position: absolute !important;
+	top: 0;
+	left: 0;
+	transform: translateX(-120%) translateY(-120%) rotateZ(0);
+	/* position: fixed; */
+	animation-delay: 1s;
+	z-index: 999999;
+
+        /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
+        cursor: url("images/crosshair_small_good_hitbox.png"), auto;
+}
+
+
+
+
+
+ /* Keyframe values control where the element will begin
+    and end its trajectory across the screen. Each rule
+    represents a path the element follows across the screen. */
+    @keyframes fly {
+      98.001%, 0% {
+        transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
+      }
+    
+      10% {
+        transform: translateX(100vw) translateY(-30%) rotateZ(180deg);
+      }
+    
+      15%, 18% {
+        transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
+      }
+    
+      30% {
+        transform: translateX(-150%) translateY(10vh) rotateZ(-180deg);
+      }
+    
+      40%, 43% {
+        transform: translateX(-200%) translateY(-30%) rotateZ(-180deg);
+      }
+    
+      55% {
+        transform: translateX(120vw) translateY(30vh) rotateZ(0deg);
+      }
+    
+      65%, 68% {
+        transform: translateX(20vw) translateY(-30%) rotateZ(180deg);
+      }
+    
+      80% {
+        transform: translateX(50vw) translateY(70vh) rotateZ(0deg);
+      }
+    
+      95% {
+        transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
+      }
+    }
+    
+
+
+
+    /* OLD FLY CODE */
+    /* @keyframes fly {
+      98.001%, 0% {
+        display: block;
+        transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
+      }
+    
+      15% {
+        transform: translateX(100vw) translateY(-100%) rotateZ(180deg);
+      }
+    
+      15.001%, 18% {
+        transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
+      }
+    
+      40% {
+        transform: translateX(-200%) translateY(3vh) rotateZ(-180deg);
+      }
+    
+      40.001%, 43% {
+        transform: translateX(-200%) translateY(-100%) rotateZ(-180deg);
+      }
+    
+      65% {
+        transform: translateX(100vw) translateY(50vh) rotateZ(0deg);
+      }
+    
+      65.001%, 68% {
+        transform: translateX(20vw) translateY(-200%) rotateZ(180deg);
+      }
+    
+      95% {
+        transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
+      }
+    } */
+
+
+
+
+
+/* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* sssssssssssssssssssss SCORE BOARD ssssssssssssssssssssss */
+
+
+.score_board_container {
+  
+  max-width: 575px;
+  max-height: 385px;
+  background: #B58DED;
+
+  border-radius: 12px;
+  border: 3px solid white;
+
+  color: white;
+  /* padding: 68px 82px;
+  gap: 100px; */
+  box-shadow: 0px 0px 3px black;
+}
+
+.sb_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.score_board_title{
+  font-weight: 700;
+  font-size: 50px;
+  /* line-height: 35px; */
+  text-align: center;
+
+  font-family: "Silkscreen", cursive;
+
+  color: white;
+}
+
+
+.number_display {
+  width: 155px;
+  height: 120px;
+  background: #080001;
+  border-radius: 5px;
+
+  font-family: 'Silkscreen', sans-serif;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 90px;
+  line-height: 110px;
+  text-align: center;
+  color: #f94f6d;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .score_board_container {
+    max-height: 385px;
+    background: #B58DED;
+  
+    border-radius: 0px;
+    border: transparent;
+  
+    color: white;
+    /* padding: 68px 82px;
+    gap: 100px; */
+    box-shadow: 0px 0px 3px black;
+  }
+
+
+  
+  .sb_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .score_board_title{
+    font-weight: 700;
+    font-size: 30px;
+    /* line-height: 35px; */
+    text-align: center;
+  
+    font-family: "Silkscreen", cursive;
+  
+    color: white;
+  }
+  
+
+  .number_display {
+    width: 125px;
+    height: 120px;
+    background: #080001;
+    border-radius: 5px;
+  
+    font-family: 'Silkscreen', sans-serif;
+  
+    font-style: normal;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 110px;
+    text-align: center;
+    color: #f94f6d;
+  }
+}
+
+
+
+
+
+
+.audioBtn{
+  background-color: transparent;
+  border: transparent;
+  font-size: 20px;
+  margin: 0;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.audioBtn:hover, .audioBtn:focus{
+  background-color: transparent;
+  border: transparent;
+  transform: scale(1.1);
+}
+
+
+/* sssssssssssssssssssss SCORE BOARD ssssssssssssssssssssss */

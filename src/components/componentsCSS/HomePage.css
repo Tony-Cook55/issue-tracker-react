@@ -287,102 +287,16 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */
-
-/* This is the actual image of a bug */
-.bug_fly_img{
-  width: 220px;
-  padding: 30px;
-
-
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  /* background-color: #B58DED; */
-}
-@media only screen and (max-width: 768px) {
-  .bug_fly_img{
-    width: 130px;
-  }
+.full-screen-bug-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Add any other styles you need for the bug container */
 }
 
 
-.bug_flys_across_screen > * {
-/* Adjust animation duration to change the element’s speed */
-        animation: fly 60s linear infinite;
-        /* pointer-events: none !important; */
-	top: 0;
-	left: 0;
-	transform: translateX(-120%) translateY(-120%) rotateZ(0);
-	position: fixed;
-	animation-delay: 2s;
-	z-index: 999999;
-
-        /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
-        cursor: url("images/crosshair_small_good_hitbox.png"), auto;
-}
-
- /* Keyframe values control where the element will begin
-    and end its trajectory across the screen. Each rule
-    represents a path the element follows across the screen. */
-
-
-@keyframes fly {
-
-	98.001%, 0% {
-                display: block;
-		transform: translateX(-200%) translateY(100vh) rotateZ(0deg)
-	}
-
-	15% {
-		transform: translateX(100vw) translateY(-100%) rotateZ(180deg)
-	}
-
-	15.001%, 18% {
-		transform: translateX(100vw) translateY(-30%) rotateZ(0deg)
-	}
-
-	40% {
-		transform: translateX(-200%) translateY(3vh) rotateZ(-180deg)
-	}
-
-	40.001%, 43% {
-		transform: translateX(-200%) translateY(-100%) rotateZ(-180deg)
-	}
-
-	65% {
-		transform: translateX(100vw) translateY(50vh) rotateZ(0deg)
-	}
-
-	65.001%, 68% {
-		transform: translateX(20vw) translateY(-200%) rotateZ(180deg)
-	}
-
-	95% {
-		transform: translateX(10vw) translateY(100vh) rotateZ(0deg)
-	}
-}
-
-
-
-
-
-
-
-/* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */
 
 
 
