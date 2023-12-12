@@ -38,11 +38,14 @@
   \/ ADD THIS TO THE BACKEND TO ALLOW FOR axios TO CONNECT TO THE BACKEND \/
 
 
-  10. npm i react-toastify    ADD these imports:      https://fkhadra.github.io/react-toastify/introduction
+  10. npm i react-toastify    ADD these imports:      https://fkhadra.github.io/react-toastify/introduction 
       import { ToastContainer, toast } from 'react-toastify'
       import "react-toastify/dist/ReactToastify.css"
 
   11. npm i dotenv   : GETS US THE .env file
+
+  12. npm install react-dom-confetti    USED TO CREATE CONFETTI WHEN SHOOTING BUG ON HOME  ~  https://daniel-lundin.github.io/react-dom-confetti/    ~   https://www.npmjs.com/package/react-dom-confetti
+
 
 
   Font Source Fonts     https://fontsource.org/ // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;

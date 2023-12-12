@@ -6,8 +6,20 @@ import { useEffect, useState } from "react";
 import "../components/componentsCSS/HomePage.css"
 
 
+import Confetti from 'react-dom-confetti';
 
 // ******************* IMPORTS ******************* //
+
+
+
+
+
+
+
+
+
+
+
 
 
 export default function HomePage(){
@@ -45,6 +57,7 @@ export default function HomePage(){
       span.style.animationDelay = `${index * 0.1}s`;
     });
 
+
   }, []);
 
 
@@ -52,13 +65,115 @@ export default function HomePage(){
 
 
 
+  const [hits, setHits] = useState(0);
+  const [bugClicked, setBugClicked] = useState(false);
+  const [bugVisible, setBugVisible] = useState(true);
+  const [bugPosition, setBugPosition] = useState({ x: 0, y: 0 });
+
+  const [confettiPosition, setConfettiPosition] = useState({ x: 0, y: 0 });
 
 
+  const handleBugClick = (event) => {
+    setBugClicked(true);
+    setHits((prevHits) => prevHits + 1);
+
+    // Hide the bug after a delay
+    setBugVisible(false);
+
+    // Set the bug position for the confetti to follow
+    setBugPosition({ x: event.clientX, y: event.clientY });
+
+    // Set the bug position for the confetti to follow
+    setConfettiPosition({ x: event.clientX, y: event.clientY });
+
+    // Reset the bug visibility and position after another delay
+    setTimeout(() => {
+      setBugVisible(true);
+      setBugClicked(false);
+
+      // Set the bug position for the confetti to follow
+      setBugPosition({ x: event.clientX, y: event.clientY });
+
+      // Reset the confetti position
+      setConfettiPosition({ x: 0, y: 0 });
+
+    }, 5000); // Adjust the delay as needed
+  };
+
+
+  
+
+  const confettiConfig = {
+    angle: 100,
+    spread: 160,
+    startVelocity: 40,
+    elementCount: 70,
+    dragFriction: 0.12,
+    duration: 1000,
+    stagger: 3,
+    width: '20px',
+    height: '20px',
+    colors: ['#12cf21', '#3e9946', '#43b64c', '#9df7a5', '#13e024'],
+    // colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+  };
 
 
 
   return(
     <>
+
+
+
+<div className="">
+  {bugVisible && (
+        <div
+          className={`bug_flys_across_screen ${bugClicked ? 'bug_clicked' : ''}`}
+          onClick={handleBugClick}
+          // style={{ position: 'absolute', left: bugPosition.x, top: bugPosition.y }}
+        >
+          <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
+        </div>
+      )}
+
+
+        <div
+          className="confetti_fullScreen"
+          style={{ position: 'absolute', left: confettiPosition.x, top: confettiPosition.y }}
+        >
+          <div className="confetti_content"></div>
+          <Confetti active={bugClicked} config={confettiConfig} />
+        </div>
+
+        <div className="counter">Hits: {hits}</div>
+</div>
+
+
+{/* 
+    <div className="animation-container" style={{ position: 'relative' }}>
+      {bugVisible && (
+        <div
+          className={`bug_flys_across_screen ${bugClicked ? 'bug_clicked' : ''}`}
+          onClick={handleBugClick}
+          style={{ position: 'absolute', left: bugPosition.x, top: bugPosition.y }}
+        >
+          <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
+        </div>
+      )}
+
+      <div className={`confetti-container ${bugClicked ? 'bug_clicked' : ''}`}>
+        
+        <Confetti active={bugClicked} config={confettiConfig} />
+      </div>
+    </div> */}
+
+
+
+
+      {/* This is the bug image that fly's across the screen*/}
+        {/* <div className="bug_flys_across_screen">
+          <img className="bug_fly_img" src="../images/colored_bug_logo.png"></img>
+        </div> */}
+
 
 
 <div className="home_container">
@@ -86,6 +201,7 @@ export default function HomePage(){
           </h1>
         </div>
 
+
       </div>
   </section>
 
@@ -101,85 +217,97 @@ export default function HomePage(){
 
 
 
-{/* <section className="full_screen_banner">
-      <div className="full_screen_banner_content"> */}
+<section className="full_screen_cards">
+  <div className="full_screen_cards_content">
 
 
-<section className="container">
+    <section className="container">
       <div className="row">
+
+      {/* EXPLORE BUGS */}
+      <div className="col-lg-4 col-md-6 mb-4">
+          <div className="card">
+            <div className="card__image-container">
+              <img
+                src="../images/bug_on_code.png"
+                className="card-img-top"
+                alt="Card image cap"
+              />
+            </div>
+            <div className="card-body">
+              <h5 className="card-title">
+                Explore and View Others Bugs
+              </h5>
+              <div className="card-info  text-center">
+                <p className="">Browse The List of User Made Bugs and Help The Community Fix Them.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/* EXPLORE BUGS */}
+
+
+      {/* REPORT BUGS */}
         <div className="col-lg-4 col-md-6 mb-4">
           <div className="card card_container">
             <div className="card__image-container">
               <img
                 src="../images/colored_bug_logo.png"
-                className="card-img-top"
+                className="bug_logo_magnified"
+                alt="Card image cap"
+              />
+              <img
+                src="../images/magnifying_glass_removed_glass.png"
+                className="bug_magnifier"
                 alt="Card image cap"
               />
             </div>
             <div className="card-body">
-              <h5 className="card-title text--medium">
+              <h5 className="card-title ">
                 Report Your Very Own Bugs
               </h5>
-              <div className="card-info">
-                <p className="text--medium">30 Min</p>
-                <p className="card-price text--medium">Free</p>
+              <div className="card-info  text-center">
+                <p className="">Have a Bug? Report It! We Allow For The Ability For Users To Report Any Bugs.</p>
               </div>
             </div>
           </div>
         </div>
+      {/* REPORT BUGS */}
 
-        {/* Repeat the above card structure for the other cards */}
 
+      {/* COMMENT ON BUGS */}
         <div className="col-lg-4 col-md-6 mb-4">
           <div className="card">
             <div className="card__image-container">
-            <img
-                src="../images/colored_bug_logo.png"
-                className="card-img-top"
-                alt="Card image cap"
-              />
+              <img
+                  src="../images/chat_bubble_blue.png"
+                  className="card-img-top"
+                  alt="Card image cap"
+                />
             </div>
             <div className="card-body">
-              <h5 className="card-title text--medium">
-                View And Comment On Other Users Bugs
+              <h5 className="card-title">
+                See What Others Have To Say About Bugs
               </h5>
-              <div className="card-info">
-                <p className="text--medium">30 Min</p>
-                <p className="card-price text--medium">Free</p>
+              <div className="card-info  text-center">
+                <p className="">Post Your Own Comments, Or View What Other Users Have To Say.</p>
               </div>
             </div>
           </div>
         </div>
-
-
-        <div className="col-lg-4 col-md-6 mb-4">
-          <div className="card">
-            <div className="card__image-container">
-              {/* <img
-                src="https://images.unsplash.com/photo-1473283147055-e39c51463929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-                className="card-img-top"
-                alt="Card image cap"
-              /> */}
-            </div>
-            <div className="card-body">
-              <h5 className="card-title text--medium">
-                Here's the Title of an Awesome Course
-              </h5>
-              <div className="card-info">
-                <p className="text--medium">30 Min</p>
-                <p className="card-price text--medium">Free</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* COMMENT ON BUGS */}
 
 
       </div>
     </section>
 
 
-{/* </div>
-</section> */}
+  </div>
+</section>
+
+
+
+
 
 
 
