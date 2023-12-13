@@ -123,7 +123,7 @@ export default function HomePage(){
 
       {/* EXPLORE BUGS */}
       <div className="col-lg-4 col-md-6 mb-4">
-          <div className="card">
+          <div className="card card_container">
             <div className="card__image-container">
               <img
                 src="../images/bug_on_code.png"
@@ -174,7 +174,7 @@ export default function HomePage(){
 
       {/* COMMENT ON BUGS */}
         <div className="col-lg-4 col-md-6 mb-4">
-          <div className="card">
+          <div className="card card_container">
             <div className="card__image-container">
               <img
                   src="../images/chat_bubble_blue.png"

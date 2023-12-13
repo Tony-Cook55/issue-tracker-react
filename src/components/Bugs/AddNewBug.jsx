@@ -13,11 +13,32 @@ import { useNavigate } from "react-router-dom";
 // CSS //
 import "./AddNewBug.css"
 
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+import LoginFormRequiredMsg from "../LoginRequiredMsg";
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
 // ******************* IMPORTS ******************* //
 
 
 
 export default function AddNewBug(  {showToast}  ) {
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
 
 
   const navigateToAnotherPage = useNavigate();

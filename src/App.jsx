@@ -62,20 +62,27 @@
 
 
     G CLOUD DEPLOYMENT   ~ https://www.youtube.com/watch?v=zxQPhZisfrM&t=168s
+
+            For GCloud to Work must allow powershell to do it
+              1. Open powershell as administrator
+              2. Set-ExecutionPolicy RemoteSigned   Then Type Y
+
       1. Create a app.yaml file in the root  and add things from video
             DO THIS WHEN WORKING WITH THE FRONT END
       2. gcloud config set project cook-issuetracker-frontend  <-- thats my project id from gcloud
       3. npm run build    creates the dist folder
       4. Create a .env.production file then change the url to the gcloud backend's url For this its cook-issuetracker-backend.uc.r.appspot.com 
             Should end up like this ~  VITE_API_URL=https://cook-issuetracker-backend.uc.r.appspot.com/
-      5. Do another  npm run build to set the new url
+      5. Do another    npm run build    to set the new url
       6. gcloud app deploy
           Choose - [17] us-central
           Choose y to continue
       
           ANY TIME YOU NEED TO ACCESS THIS GCLOUD DO THIS
-            1. SWITCH TO THIS GCLOUD: gcloud config set project cook-issuetracker-frontend 
-            2. UPDATES: gcloud app deploy 
+            1. SWITCH TO THIS GCLOUD: 
+                gcloud config set project cook-issuetracker-frontend 
+            2. UPDATES: 
+                gcloud app deploy 
 
 
 
@@ -150,9 +157,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 // ******************* IMPORTS ******************* //
-
-
-
 
 
 
@@ -231,7 +235,6 @@ function App() {
 
 
 
-
   // This is the little pop up function called toasts that we can call in and set the message we want and type of toast
   function showToast(message, type) {
     // When called in we must specify the message and the type of toast we want it to look like
@@ -279,6 +282,8 @@ function App() {
             } />
 
 
+
+
             <Route path="bugList" element={<BugList  userFullName={userFullName} showToast={showToast}  />} />
             {/* SEARCH BUG BY ID*/}
             <Route path="/bugItem/:bugId" element={<BugItem showToast={showToast}/>} />
@@ -295,6 +300,7 @@ function App() {
             <Route path="/userEditor/:userId" element={<UserEditor showToast={showToast}/>} />
 
             <Route path="/profile" element={<Profile showToast={showToast} usersIdFromLocalStorage={usersIdFromLocalStorage}/>} />
+            
           </Routes>
         </main>
 

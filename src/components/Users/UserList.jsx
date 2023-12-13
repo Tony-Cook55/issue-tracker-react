@@ -1,3 +1,7 @@
+
+/* eslint-disable */
+
+
 // ******************* IMPORTS ******************* //
 
 
@@ -22,9 +26,11 @@ import { Link } from "react-router-dom";
 import UserListItem from "./UserListItem";
 
 
-import LoginFormRequiredMsg from "../LoginRequiredMsg";
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
 
-
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 // ******************* IMPORTS ******************* //
 
@@ -37,6 +43,20 @@ import LoginFormRequiredMsg from "../LoginRequiredMsg";
 
 
 export default function UserList(){
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
 
   
   const [users, setUser] = useState([]);
@@ -56,14 +76,7 @@ export default function UserList(){
 
 
 
-  // Retrieve the user's info object from local storage
-  const userInfo = JSON.parse(localStorage.getItem('fullName'));
 
-  // Extract the fullName from the userInfo object
-  const userFullName = userInfo ? userInfo.fullName : null;
-
-  // Check if the user is logged in by verifying the existence of fullName
-  const isLoggedIn = userFullName !== null;
 
 
 
@@ -154,23 +167,6 @@ export default function UserList(){
   return( 
     <>
 
-
-
-{/* Check if the user is logged in before rendering content */}
-{!isLoggedIn ? ( /* !isLoggedIn &&  bugs.length*/
-        <h2>
-          <Link to="/login">
-            <LoginFormRequiredMsg />
-          </Link>
-        </h2>
-      ) : 
-      // !users.length ? (
-      //   // <h1 className="no_bugs_found_message">There Are No Users</h1>
-      //   <div className="loading_spinner_container ">
-      //     <span className="loading_spinner"></span>
-      //   </div>
-      // ) :
-      (
 
 
     <div>
@@ -269,7 +265,7 @@ export default function UserList(){
 
 
 
-              {/* NO BUGS FOUND */}
+              {/* NO USERS FOUND */}
               {!users.length ? 
               (
               <div>
@@ -280,10 +276,10 @@ export default function UserList(){
                 <span className=""></span>
               </div>
               )}
-            {/* NO BUGS FOUND */}
+            {/* NO USERS FOUND */}
 
       </div>
-      )}
+
 
 
 

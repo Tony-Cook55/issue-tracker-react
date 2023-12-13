@@ -311,6 +311,94 @@ input:-webkit-autofill:focus {
 
 
 
+/* eeeeeeeeeeeeeeeeeeeeeeeeeeee EDITING ITEMS USING INPUTS  eeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+
+
+/* The item holding the content inside the accordion */
+.edit_form_accordion-body{
+  /* Adds space outside accordion*/
+  margin-bottom: 100px;
+
+  /* Adds space inside accordion*/
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+/* This is any input item to center it on page */
+.edit_form_input_center{
+  width: 50%; /* Adjust the width as needed */
+  margin: auto; /* Center the select element within its container */
+
+  background-color: #B58DED;
+
+  color: #fff;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .edit_form_input_center {
+    width: 90%; 
+  }
+}
+
+
+
+/* This is the actual options a user can click on for any select box*/
+.edit_form_select_options{
+  background-color: #fff;
+  color: #B58DED;
+}
+
+
+
+
+/* This goes on any item being edited */
+.item_being_edited{
+  /* font-size: 40px; */
+
+  cursor: pointer;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  /* padding: 15px; */
+
+  transition: all 0.3s ease 0s;
+
+}
+
+/* When the edited item is hovered and entered in */
+.item_being_edited:hover , .item_being_edited:focus{
+
+  border: 5px solid #fff;
+
+  transform: scale(1.05);
+
+  background-color: #f6b7f7; /* Add a background color for highlighting */
+}
+
+/* ONLY when the edited item is entered in */
+.item_being_edited:focus{
+
+  width: 60%;
+  color: #fff;
+  background-color: #f6b7f7; /* Add a background color for highlighting */
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+/* eeeeeeeeeeeeeeeeeeeeeeeeeeee EDITING ITEMS USING INPUTS  eeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+
+
+
+
+
+
+
 
 /* all all all all all all  ITEMS IN    RegisterForm ~ LoginForm ~ AddNewBug  all all all all all all  */
 

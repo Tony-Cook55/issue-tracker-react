@@ -79,6 +79,8 @@ export default function BugFlying(){
       setConfettiPosition({ x: 0, y: 0 });
 
     }, 2000); // Adjust the delay as needed
+
+
   };
 
 
@@ -114,14 +116,14 @@ export default function BugFlying(){
 
 
 
-<div className="bug-container  ">
+<div className="bug-container  fade_in_view">
 
     {/* ssssss SCOREBOARD ssssss */}
-    <div className="container score_board_container  justify-content-center text-center">
+    <div className="container  score_board_container  justify-content-center text-center">
         <div className=" sb_row">
 
           <div className=" col-heading">
-            <h1 className="score_board_title">Shoot The Bug!</h1>
+            <h1 className="score_board_title">Shoot The Bugs!</h1>
           </div>
 
           <div className=" number_display" id="scoreHome">{hits}</div>
@@ -144,6 +146,7 @@ export default function BugFlying(){
 
 
       {bugVisible && (
+        <div>
             <div
               className={`bug_flys_across_screen ${bugClicked ? 'bug_clicked' : ''}`}
               onClick={handleBugClick}
@@ -151,6 +154,15 @@ export default function BugFlying(){
             >
               <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
             </div>
+
+            <div
+              className={`bug_flys_across_screen_reverse ${bugClicked ? 'bug_clicked' : ''}`}
+              onClick={handleBugClick}
+              // style={{ position: 'absolute', left: bugPosition.x, top: bugPosition.y }}
+            >
+              <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
+            </div>
+        </div>
       )}
 
 

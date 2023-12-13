@@ -161,8 +161,12 @@
 
   font-family: 'Lexend Variable', sans-serif;
 
+  padding-top: 25px;
+  padding-bottom: 5px;
+
   background-image: linear-gradient(90deg, #414850, #131720);
   color: #fff;
+
 
 }
 
@@ -170,6 +174,13 @@
 /* This changes the color when the accordion is open and the default color when loading*/
 .accordion-button:not(.collapsed){
   color: #f6b7f7;
+
+
+
+  border-top: 5px solid #f6b7f7;
+  border-bottom: 0px;
+  border-left: 5px solid #f6b7f7;
+  border-right: 5px solid #f6b7f7;
 }
 
 
@@ -244,13 +255,14 @@
   transition: all 0.3s ease 0s;
 }
 
-.accordion_button_animation:hover, .accordion_button_animation:focus{
+
+.accordion_button_animation:hover{    /* .accordion_button_animation:focus */
   background-color: #131720;
   color: #f6b7f7;
 
-  border: 2px solid white;
+  border: 5px solid #B58DED;
 
-  transform: scale(1.05); 
+  transform: scale(1.1); 
 
   margin-top: 25px;
   margin-bottom: 25px;
@@ -280,7 +292,10 @@
   /* padding-top: 25px;
   padding-bottom: 25px; */
 
-  border: 2px solid #f6b7f7;
+  border-top: 5px solid #f6b7f7;
+  border-bottom: 5px solid #f6b7f7;
+  border-left: 5px solid #f6b7f7;
+  border-right: 5px solid #f6b7f7;
 
   margin: 0;
   padding: 0;
@@ -390,11 +405,12 @@
 /* This is the last updated on text */
 .last_updated_on {
   font-size: 15px;
-
+  color: white;
   /* Centers the text in the box */
   margin-top: 15px;
   font-family: 'Lexend Variable', sans-serif;
 }
+
 
 
 

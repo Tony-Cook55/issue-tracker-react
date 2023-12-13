@@ -110,12 +110,13 @@
 
   /* font-family: 'Poppins', sans-serif; */
   font-family: 'Lexend Variable', sans-serif;
+
 }
 
 
 .home_title span {
   position: relative;
-  top: 8px;
+  top: 2px;
   display: inline-block;
   animation: bounce 1s ease infinite alternate;
   font-size: 150px;
@@ -200,11 +201,11 @@
   margin-top: 40px; /* Adjust the margin as needed */
 }
 
-.card {
+.card_container {
   transition: transform 0.3s ease;
 }
 
-.card:hover {
+.card_container:hover {
   transform:  scale(1.05); /* translateY(-10px) */
 }
 

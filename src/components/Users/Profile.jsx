@@ -11,10 +11,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 
 // CSS
-import "./UserItem.css"
+import "./Profile.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaArrowLeft, FaPencilRuler, FaArrowUp, FaSave } from "react-icons/fa";
+import { FaArrowLeft, FaPencilRuler, FaArrowUp, FaSave, FaTrash } from "react-icons/fa";
 // ICONS //
 
 import axios from "axios"
@@ -69,6 +69,7 @@ const [userProfile, setUserProfile] = useState({});
 
 
 // These store the new updated values of these items
+const [fullName, setFullName] = useState("");
 const [givenName, setGivenName] = useState("");
 const [familyName, setFamilyName] = useState("");
 
@@ -96,6 +97,7 @@ axios.get(`${import.meta.env.VITE_API_URL}/api/users/${usersIdFromLocalStorage}`
 
 
         // Setting the new ITEMS THAT ARE UPDATED
+        setFullName(response.data.fullName);
         setGivenName(response.data.givenName);
         setFamilyName(response.data.familyName);
 })
@@ -118,6 +120,7 @@ const updatedUser ={
   ...userProfile,
 
   // Setting the new items here
+  fullName,
   givenName,
   familyName,
 }
@@ -132,8 +135,17 @@ console.log(updatedUser);
 // Does the update backend function
 axios.put(`${import.meta.env.VITE_API_URL}/api/users/me`,
 // This spread of the bugs is what allows it to be sent as the body.params
-{givenName, familyName}, {withCredentials: true})
+{fullName, givenName, familyName}, {withCredentials: true})
 .then(response => {
+
+  setUserProfile((prev) => ({
+    ...prev,
+    fullName: response.data.fullName,
+    givenName: response.data.givenName,
+    familyName: response.data.familyName,
+    editable: false, // Exit edit mode
+  }));
+
   // navigateToAnotherPage(`/`);
   showToast(response.data.Update_Successful, "success");
   // console.log(response.data);
@@ -154,7 +166,7 @@ axios.put(`${import.meta.env.VITE_API_URL}/api/users/me`,
 function onUserDelete(evt, userId){
   evt.preventDefault();
 
-  axios.delete(`${import.meta.env.VITE_API_URL}/api/users/delete/${userId}`, {withCredentials: true})
+  axios.delete(`${import.meta.env.VITE_API_URL}/api/users/delete/${userProfile._id}`, {withCredentials: true})
   .then(response => { 
 
     // When you delete a book this counter goes up by 1
@@ -163,7 +175,7 @@ function onUserDelete(evt, userId){
     // response.data.message is our json message from the backend 
     console.log(response.data.User_Deleted);
 
-    navigateToAnotherPage("/userList");
+    navigateToAnotherPage("/");
 
     location.reload();
 
@@ -182,27 +194,14 @@ function onUserDelete(evt, userId){
 
 
 
+
   return(
     <>
 
-      <h1> PROFILE </h1>
-      <br/>      <br/>
-
-      <h1>{userProfile.fullName}</h1>
-      <h1>Id: {userProfile._id}</h1>
-      <br/>      <br/>
-
-      <h1>Given Name</h1>
-      <h1>{userProfile.givenName}</h1>
-      <br/>      <br/>
-
-      <h1>Family Name</h1>
-      <h1>{userProfile.familyName}</h1>
-      <br/>      <br/>
+      
 
 
-
-<form onSubmit={(evt) => onUserUpdate(evt)}>
+{/* <form onSubmit={(evt) => onUserUpdate(evt)}>
 <input type="text" id="givenName" className="form-control" value={givenName} onChange={(evt) => setGivenName(evt.target.value)}></input>
 
 
@@ -215,7 +214,475 @@ function onUserDelete(evt, userId){
   </div>
 </button>
 
-</form>
+</form> */}
+
+
+
+
+
+
+
+<div className="button_container slide_in_from_top    ">
+
+  <div className="overviewInfo    user_background">
+
+    {/* USER LIST */}
+    <div className="top_button_styles">
+      < a href="/userList" className="icon_link"    >
+        <div className="back_button  back_button_background">
+        <FaArrowLeft/>
+        </div>
+      </a>
+    {/* USER LIST */}
+
+
+    {/* USER EDITOR */}
+      {/* {canUserEditThisUser && (
+        <Link to={`/userEditor/${userId}`} className="icon_link">
+          <div className="edit_button  edit_button_background">
+            <FaPencilRuler/>
+          </div>
+        </Link>
+      )}  */}
+    {/* USER EDITOR */}
+
+    </div>
+    
+
+    
+    <div className="bug_title_div">
+      <div className="user_pic_name_container">
+        <div className="profile_box">
+          <div className="profile_card">
+              <h2><strong>{greetingMessage}</strong></h2>
+              <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+              {/* <img src="/images/user_profile_body.png" className="user_profile_pic  rounded-circle" alt="User Avatar" /> */}
+              <h2 className="users_name"><strong>{userProfile.fullName}</strong></h2>
+
+
+                              <p>
+                                  User Last Updated <br/>
+                                  {userProfile.userLastUpdated
+                                      ? userProfile.userLastUpdated
+                                      : "User hasn't been updated yet"}
+                              </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div> 
+{/* <!-- overview info --> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* BEGINNING OF ACCORDION */}
+<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+
+
+
+
+
+
+
+
+
+{/* SENSITIVE USER INFORMATION ACCORDION */}
+{/* Check if the logged-in user has the necessary role or is viewing their own profile */}
+<div className="accordion-item">
+      <h2 className="accordion-header">
+        <button className="accordion-button accordion_button_animation text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sensitive_user_info" aria-expanded="true" aria-controls="sensitive_user_info">
+          Sensitive User Information
+        </button>
+      </h2>
+      <div id="sensitive_user_info" className="accordion-collapse collapse">
+        <div className="accordion-body">
+          <div className="container text-center justify-content-center">
+            <div className="row text-center justify-content-center">
+              {/* Render sensitive user information here */}
+              <div className="">
+                <p className="title_of_database_information">Email</p>
+                  <p className="database_information">{userProfile.email}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{/* SENSITIVE USER INFORMATION ACCORDION */}
+
+
+
+
+
+
+
+
+
+  {/* USERS ROLES */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#users_roles" aria-expanded="false" aria-controls="users_roles">
+        User's Roles
+      </button>
+    </h2>
+    <div id="users_roles" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+        <div className="container text-center justify-content-center">
+          <div className="row">
+
+            {/* USERS ROLE */}
+            <div className="bug_information_div">
+                {/* Checks if the array is there and then maps all the items in the array by calling them steps and giving each an index to identify them */}
+                {userProfile.role && userProfile.role.map((mappedRoles, index) => (
+                  <li className="users_roles" key={index}>{mappedRoles}</li>
+                ))}
+            </div>
+            {/* USERS ROLE */}
+
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  {/* USERS ROLES */}
+
+
+
+
+
+
+
+
+
+  {/* USERS OTHER NAMES */}
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button className="accordion-button   accordion_button_animation    text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creation_information" aria-expanded="false" aria-controls="creation_information">
+        Names
+      </button>
+    </h2>
+    <div id="creation_information" className="accordion-collapse collapse">
+      <div className="accordion-body">
+
+        <div className="container text-center justify-content-center">
+          <div className="row">
+
+            {/* FULL NAME */}
+            <div className="bug_information_div">
+              <p className="title_of_database_information">Full Name</p>
+                <p className="database_information">{userProfile.fullName}</p>
+            </div>
+            {/* FULL NAME */}
+
+            {/* GIVEN NAME */}
+            <div className="bug_information_div">
+              <p className="title_of_database_information">Given Name</p>
+                <p className="database_information">{userProfile.givenName}</p>
+            </div>
+            {/* GIVEN NAME */}
+
+            {/* FAMILY NAME */}
+            <div className="bug_information_div">
+              <p className="title_of_database_information">Family Name</p>
+                <p className="database_information">{userProfile.familyName}</p>
+            </div>
+            {/* FAMILY NAME */}
+
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  {/* USERS OTHER NAMES */}
+
+
+
+</div> {/* END OF ACCORDION */}
+
+
+
+
+
+<div className="bottom_cap_under_accordion">
+  <div className="end_cap_base">
+
+  <div className="container ">
+    <p className="last_updated_on "> 
+    {userProfile.usersCreationDate && (
+    <p className="last_updated_on">User Joined On: <br/> {userProfile.usersCreationDate}</p>
+  )}
+
+        {/* TAKES YOU TO TOP OF THE PAGE */}
+          <a href="#top" className="icon_link">
+            <div className="  back_to_top_background">
+                <FaArrowUp/>
+            </div>
+          </a>
+        {/* TAKES YOU TO TOP OF THE PAGE */}
+
+
+    </p>
+  </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+{/* <!-- wrapper--> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="/images/user_profile_circle_filled.png" alt="Avatar"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h2>
+                                      {userProfile.fullName}
+                                    </h2>
+                                    <h6>
+                                      {userProfile.role && userProfile.role.length > 0
+                                        ? userProfile.role.join(', ')
+                                        : 'No roles available'}
+                                    </h6>
+                                    <p class="proile-rating">User Id : <span>{userProfile._id}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  text-center justify-content-center">
+                    <div class="col-md-4">
+                        <div class=""> {/* profile-work */}
+                            <p>User Joined On</p>
+                            <p>{userProfile.usersCreationDate}</p>
+                            <br/>
+                            <p>User Last Updated</p>
+                              <p>
+                                  {userProfile.userLastUpdated
+                                      ? userProfile.userLastUpdated
+                                      : "User hasn't been updated yet"}
+                              </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 ">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label>Full Name</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                            {userProfile.editable ? (
+            <input
+                type="text"
+                id="fullName"
+                className="form-control"
+                value={fullName}
+                onChange={(evt) => setFullName(evt.target.value)}
+            />
+        ) : (
+            <p>{userProfile.fullName}</p>
+        )}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label>Given Name</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                        {userProfile.editable ? (
+            <input
+                type="text"
+                id="givenName"
+                className="form-control"
+                value={givenName}
+                onChange={(evt) => setGivenName(evt.target.value)}
+            />
+        ) : (
+            <p>{userProfile.givenName}</p>
+        )}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label>Family Name</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                            {userProfile.editable ? (
+            <input
+                type="text"
+                id="familyName"
+                className="form-control"
+                value={familyName}
+                onChange={(evt) => setFamilyName(evt.target.value)}
+            />
+        ) : (
+            <p>{userProfile.familyName}</p>
+        )}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label>Users Id</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>{userProfile._id}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>{userProfile.email}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label>Users Roles</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>
+                                                  {userProfile.role && userProfile.role.length > 0
+                                                    ? userProfile.role.join(' ~ ')
+                                                    : 'No roles available'}
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        {userProfile.editable ? (
+            <button
+                type="button"
+                className="btn btn-primary"
+                onClick={(evt) => {
+                    onUserUpdate(evt);
+                    setUserProfile((prev) => ({ ...prev, editable: false }));
+                }}
+            >
+                Save
+            </button>
+        ) : (
+            <button
+                type="button"
+                className="icon_link"
+                onClick={() => setUserProfile((prev) => ({ ...prev, editable: true }))}
+            >
+                <div className="edit_button  edit_button_background">
+                    <FaPencilRuler />
+                </div>
+            </button>
+        )}
+    </div>
+</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        {/* <button type="button" className="icon_link" data-bs-toggle="modal" data-bs-target="#confirmation_modal" >
+                    <div className="edit_button  delete_button_background">
+                      <FaTrash />
+                    </div>
+              </button> */}
+
+
+
+{/* dddddddddddddddddddddd DELETING CONFIRMATION MODAL dddddddddddddddddddddd*/}
+{/* <div className="modal fade   modal-confirm"  id="confirmation_modal"  aria-labelledby="confirmation_modal_title" aria-hidden="true">
+	<div className="modal-dialog ">
+		<div className="modal-content">
+			<div className="modal-header flex-column">
+				<div className="icon-box">
+					<i className="material-icons"><FaTrash/></i>
+				</div>						
+				<h4 className="modal-title w-100" id="confirmation_modal_title">Are you sure?</h4>	
+                <button type="button" className="close" aria-hidden="true" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+			</div>
+			<div className="modal-body">
+				<p>Do you really want to delete this User? This process cannot be undone.</p>
+			</div>
+			<div className="modal-footer justify-content-center">
+				<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" className="btn btn-danger"  onClick={(evt) => onUserDelete(evt, userProfile._id)} >Delete</button>
+			</div>
+		</div>
+	</div>
+</div>   */}
+{/* dddddddddddddddddddddd DELETING CONFIRMATION MODAL dddddddddddddddddddddd*/}
+
+
 
 
 

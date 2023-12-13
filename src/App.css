@@ -75,7 +75,7 @@ body::-webkit-scrollbar-thumb {
             /* CUSTOM CURSORS */
 
             /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
-            /* cursor: url("images/crosshair_small.png"), auto; */
+            /* cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto; */
 
             /* CUSTOM CURSORS */
 
