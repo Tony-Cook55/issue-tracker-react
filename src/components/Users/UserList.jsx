@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 
 import UserListItem from "./UserListItem";
 
+import { FaSearch } from "react-icons/fa"
 
   /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
   import { IsUserLoggedIn } from "../IsUserLoggedIn";
@@ -157,10 +158,13 @@ export default function UserList(){
 
 
 
-
+  /* Used in opening the search inputs */
   const [panelOpen, setPanelOpen] = useState(false);
 
   const togglePanel = () => setPanelOpen(!panelOpen);
+
+
+
 
 
 
@@ -170,12 +174,23 @@ export default function UserList(){
 
 
     <div>
+
+
         <div className={`search-panel ${panelOpen ? 'open' : ''}`}>
-          <button className="toggle-button" onClick={togglePanel}>
-            Toggle Search
-          </button>
+            <button className="toggle-button" onClick={togglePanel}>
+              Toggle Search
+            </button>
 
           <div className="panel-content">
+
+            {/* Number of Results Found */}
+            <h1 className="items_found_title">
+              {users.length}
+              <br/>
+              Users Found
+            </h1>
+            {/* Number of Results Found */}
+
             <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
                         {/* Searching for USERS by Keywords */}
                         <div className="form-group">
@@ -212,6 +227,7 @@ export default function UserList(){
                           <input type="number" className="form-control" id="minAge" placeholder="Min Age" />
                         </div>
                         {/* Max and Min AGE */}
+                        
 
 
                         {/* Sort By Items */}
@@ -228,7 +244,7 @@ export default function UserList(){
                         </div>
                         {/* Sort By Items */}
 
-                    <button type="submit">Search</button>
+                    <button type="submit" className="add_items_button mt-4">Search</button>
             </form>
           </div>
         </div>
@@ -238,7 +254,6 @@ export default function UserList(){
 
               {/* MAPPED USERS LIST ITEM */}
               <div className="row text-center justify-content-center">
-                <h1>Users Found: {users.length} </h1>
                 {users.map((userItem) => (
                   <div key={userItem._id} className="col-lg-4 col-md-12 col-sm-12">
                     <UserListItem userItem={userItem} key={userItem._id}/>

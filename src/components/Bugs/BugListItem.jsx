@@ -19,6 +19,14 @@ import { NavLink, Link } from "react-router-dom";
 // ICONS //
 
 
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
 // ******************* IMPORTS ******************* //
 
 
@@ -30,6 +38,19 @@ import { NavLink, Link } from "react-router-dom";
 
 
 export default function BugListItem(  {bug, showToast }  ){
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
 
   return( 
     <>

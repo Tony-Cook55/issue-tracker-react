@@ -23,7 +23,11 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 
-import LoginFormRequiredMsg from "../LoginRequiredMsg"
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 
 
@@ -32,6 +36,19 @@ import LoginFormRequiredMsg from "../LoginRequiredMsg"
 
 
 export default function Comments( {bugItem, bugId, showToast} ){
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
 
   const [testCases, setTestCases] = useState([]);
 
@@ -43,15 +60,6 @@ export default function Comments( {bugItem, bugId, showToast} ){
   });
 
 
-
-      // Retrieve the user's info object from local storage
-      const userInfo = JSON.parse(localStorage.getItem('fullName'));
-
-      // Extract the fullName from the userInfo object
-      const userFullName = userInfo ? userInfo.fullName : null;
-    
-      // Check if the user is logged in by verifying the existence of fullName
-      const isLoggedIn = userFullName !== null;
 
 
 

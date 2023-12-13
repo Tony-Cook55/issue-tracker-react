@@ -170,38 +170,7 @@ input:-webkit-autofill:focus {
 
 
 .submit_form_button:hover, .submit_form_button:focus {
-  -webkit-animation: jello-horizontal 0.9s both;
-	        animation: jello-horizontal 0.9s both;
-}
-@-webkit-keyframes jello-horizontal {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-  }
-  30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1);
-            transform: scale3d(1.25, 0.75, 1);
-  }
-  40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1);
-            transform: scale3d(0.75, 1.25, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1);
-            transform: scale3d(1.15, 0.85, 1);
-  }
-  65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1);
-            transform: scale3d(0.95, 1.05, 1);
-  }
-  75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1);
-            transform: scale3d(1.05, 0.95, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-  }
+	animation: jello-horizontal 0.9s both;
 }
 @keyframes jello-horizontal {
   0% {
@@ -315,6 +284,89 @@ input:-webkit-autofill:focus {
 
 
 
+/* ----------------- DELETE BUTTON  ----------------- */
+.delete_button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+.svgIcon {
+  padding-bottom: 3px;
+  transition-duration: .3s;
+}
+
+.delete_button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button:hover .svgIcon {
+  width: 60px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+  transition: all 0.3s ease 0s;
+
+  padding-bottom: 20px;
+}
+
+.delete_button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 3px;
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button_background{
+  background-image: linear-gradient(120deg,  #f41414, #cc3030);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+}
+/* ----------------- DELETE BUTTON  ----------------- */
+
+
+
+
+
+
+
+/* eeeeeeeeeeee EDITING INPUTS eeeeeeeeeeee */
 /* The item holding the content inside the accordion */
 .edit_form_accordion-body{
   /* Adds space outside accordion*/
@@ -390,6 +442,11 @@ input:-webkit-autofill:focus {
 
   font-weight: bold;
 }
+/* eeeeeeeeeeee EDITING INPUTS eeeeeeeeeeee */
+
+
+
+
 /* eeeeeeeeeeeeeeeeeeeeeeeeeeee EDITING ITEMS USING INPUTS  eeeeeeeeeeeeeeeeeeeeeeeeeeee */
 
 
@@ -850,3 +907,27 @@ input:-webkit-autofill:focus {
 
 
 /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ADD NEW BUG FORM aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

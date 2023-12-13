@@ -1,30 +1,45 @@
 
-
-
-
-
-.user_profile_pic{
-  max-width: 150px;
-}
-
-
-/* This is for things like the list of all users */
-.user_profile_pic_small{
-  max-width: 150px;
-}
-
-
+/* This is the little + background */
 .user_background{
   background-color: #ffffff;
   background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent) 100px 100px, linear-gradient(#B58DED 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #B58DED 8px, #e5e5f7 8px) -4px 0;
   background-size: 200px 200px, 200px 200px, 100px 100px, 100px 100px;
 }
 
+/* The generated Message */
+.greeting_message{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
 
 /* This is the name under the Profile Picture*/
 .users_name{
-  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+
+.user_profile_pic{
+  max-width: 400px;
+  padding-bottom: 20px;
+}
+@media (max-width: 768px) {
+  /* Actual Container for the pic and text */
+  .user_profile_pic {
+    max-width: 200px;
+  }
+}
+
+
+/* THESE ARE THE PROFILE PICS IN THE USER LIST ITEM*/
+.userListItem_profile_pic{
+  max-width: 120px;
+}
+@media (max-width: 768px) {
+  /* Actual Container for the pic and text */
+  .userListItem_profile_pic {
+    max-width: 100px;
+  }
 }
 
 
@@ -40,21 +55,17 @@
 
 
 
-.user_pic_name_container{
-
-  display: inline-block;
-
-  /* Centers items inside of the crosses */
-  padding: 20px;
-  margin: 15px;
-}
 
 
 
-
+  /* Actual Container for the pic and text */
 .profile_box {
-  width: 300px;
-  height: 400px;
+  width: 800px;
+  height: 500px;
+
+  padding: auto;
+  margin: auto;
+
   position: relative;
   display: grid;
   place-items: center;
@@ -63,6 +74,18 @@
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
     rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
 }
+
+
+@media (max-width: 768px) {
+  /* Actual Container for the pic and text */
+  .profile_box {
+    width: 300px;
+    height: 400px;
+  }
+}
+
+
+
 .profile_card {
   position: absolute;
   width: 95%;
@@ -84,14 +107,17 @@
 }
 
 
-.profile_box::before {
+.profile_box::before{
   content: "";
   position: absolute;
-  width: 40%;
-  height: 150%;
+  /* width: 40%;
+  height: 150%; */
+  width: 200%;
+  height: 250%;
+
   background: #40E0D0;
-background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
-background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+  background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+  background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
   animation: glowing01 5s linear infinite;
   transform-origin: center;
   animation: glowing 5s linear infinite;

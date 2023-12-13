@@ -180,6 +180,16 @@ export default function BugList(   {showToast }  ){
           </button>
 
           <div className="panel-content">
+
+            {/* Number of Results Found */}
+            <h1 className="items_found_title">
+              {bugs.length}
+              <br/>
+              Bugs Found
+            </h1>
+            {/* Number of Results Found */}
+
+
             <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
                         {/* Searching for BUGS by Keywords */}
                         <div className="form-group">
@@ -256,7 +266,6 @@ export default function BugList(   {showToast }  ){
 
               {/* MAPPED BUG LIST ITEM */}
               <div className="row text-center justify-content-center">
-                <h1>Bugs Found: {bugs.length} </h1>
                 {bugs.map((bug) => (
                   <div key={bug._id} className="col-lg-4 col-md-12 col-sm-12">
                     <BugListItem bug={bug} key={bug._id}  />

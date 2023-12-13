@@ -122,13 +122,15 @@ import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 import LoginFormRequiredMsg from './components/LoginRequiredMsg';
 import RegisterForm from './components/RegisterForm';
+
+import PageNotFound from './components/PageNotFound'
 import Footer from './components/Footer';
 
 import BugList from './components/Bugs/BugList';
 import BugItem from './components/Bugs/BugItem';
 import BugEditor from './components/Bugs/BugEditor';
 import AddNewBug from './components/Bugs/AddNewBug';
-import AssignUserToBug from './components/Bugs/AssignUserToBug';
+
 
 import UserList from './components/Users/UserList';
 import UserItem from './components/Users/UserItem';
@@ -291,7 +293,6 @@ function App() {
             <Route path="/bugEditor/:bugId" element={<BugEditor showToast={showToast}/>} />
             {/* ADD BUGS */}
             <Route path="/report" element={<AddNewBug showToast={showToast}/>} />
-            <Route path="/assignUserToBug" element={<AssignUserToBug showToast={showToast}/>} />
             
 
 
@@ -301,6 +302,8 @@ function App() {
 
             <Route path="/profile" element={<Profile showToast={showToast} usersIdFromLocalStorage={usersIdFromLocalStorage}/>} />
             
+            {/* PAGE NOT FOUND */}
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>
 

@@ -24,7 +24,6 @@ import axios from "axios";
 
 import Stopwatch from "../Stopwatch/Stopwatch";
 
-import AssignUserToBug from "./AssignUserToBug";
 
 // used for getting the bugs ID
 import { useParams, Link } from "react-router-dom";
@@ -99,11 +98,11 @@ export default function BugEditor(  {showToast}  ) {
     const navigateToAnotherPage = useNavigate();
 
 
-  // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
+// -+ -+ -+ CAN USER UPDATE AND DELETE USER BUG+- +- +- //
   const [usersFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
   const [rolesFromLocalStorage,setRolesFromLocalStorage] = useState(null);
   const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
-  // SEEING IF THE USER CAN EVEN UPDATE AND DELETE THIS BUG
+// -+ -+ -+ CAN USER UPDATE AND DELETE USER BUG+- +- +- //
 
 
 

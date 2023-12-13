@@ -33,6 +33,13 @@ import TestCases from "./TestCases"
 
 
 
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
 // ******************* IMPORTS ******************* //
 
 
@@ -44,6 +51,22 @@ import TestCases from "./TestCases"
 
 
 export default function BugItem( {showToast} ){
+
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
 
   // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;
