@@ -23,7 +23,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
                               // Allows us to get the fullName from the user logging in and setting their fullName
-export default function NavBar(      {userFullName,setUserFullName, usersIdFromLocalStorage, setUsersIdFromLocalStorage,}       ){
+export default function NavBar(      {userFullName,setUserFullName, usersIdFromLocalStorage, setUsersIdFromLocalStorage, showToast}       ){
   
 
   const navigateToAnotherPage = useNavigate();
@@ -34,19 +34,32 @@ export default function NavBar(      {userFullName,setUserFullName, usersIdFromL
     evt.preventDefault();
 
     // axios will go to backend logout code and set the name to nothing and remove the fullName from local Storage
-    axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,
-    {}, 
-    {withCredentials: true})
+    axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{}, {withCredentials: true})
     .then(response => {
+      console.log("Logout API response:", response.data);
+
+
       setUserFullName("");
       localStorage.removeItem("fullName");
       localStorage.removeItem("roles");
       localStorage.removeItem("usersId");
-      //console.log(response.data);
+
+      // Remove bugGameScore when user logs out
+      localStorage.removeItem("bugGameScore");
+
+
+            // Print the current values for debugging
+            console.log("After removal:", {
+              fullName: localStorage.getItem("fullName"),
+              roles: localStorage.getItem("roles"),
+              usersId: localStorage.getItem("usersId")
+            });
 
       // Goes to home page on successful logout
       navigateToAnotherPage("/");
-      window.location.reload();
+      showToast(response.data, "success");
+
+      // window.location.reload();
     })
     .catch(error => console.log(error));
   }

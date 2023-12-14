@@ -73,7 +73,6 @@ export default function Comments( {bugItem, bugId, showToast} ){
         .then(response => {
           // Sets the database info into this
           setComments(response.data);
-
         })
         .catch(error => console.log(error));
     }

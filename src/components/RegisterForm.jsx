@@ -202,11 +202,11 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
       <div className="row gx-lg-5 align-items-center">
         <div className="col-lg-6 mb-5 mb-lg-0">
           <h1 className="my-5 display-3 fw-bold main_header">
-            Register To Report Your Very Own 
+            Register To Shoot  
             <span className="highlighted_header"> Bugs</span>
           </h1>
           <p className="under_header_text">
-            Create an account and be able to Create your very own bugs. Explore what others have to say and view their bugs. 
+            Create an account and be able to Create your very own bugs and Shoot Them. Explore what others have to say and view their bugs. 
           </p>
         </div>
 

@@ -1,4 +1,6 @@
 
+/* eslint-disable */
+
 // ******************* IMPORTS ******************* //
 
 // CSS
@@ -6,6 +8,17 @@ import { useEffect, useState } from "react";
 import "../BugFlying/BugFlying.css"
 
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
+
 
 
 import Confetti from 'react-dom-confetti';
@@ -18,18 +31,12 @@ import bugClickSound from "/images/vault_tec_lunchbox.mp3";
 
 
 
-
-
-
-
-
-
-
-
-
 export default function BugFlying(){
 
 
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+    const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 
   const [hits, setHits] = useState(0);
@@ -41,14 +48,42 @@ export default function BugFlying(){
 
   const [isAudioEnabled, setIsAudioEnabled] = useState(true); // Added state for audio
 
+  // Create an audio element for vault sound on click
+  const bugClickAudio = new Audio(bugClickSound);
 
 
-    // Create an audio element for vault sound on click
-    const bugClickAudio = new Audio(bugClickSound);
 
   const handleBugClick = (event) => {
+
     setBugClicked(true);
-    setHits((prevHits) => prevHits + 1);
+
+    // setHits((prevHits) => prevHits + 1);
+
+    // Retrieve the current bug score from local storage
+    const currentBugScore = localStorage.getItem('bugGameScore') || 0;
+
+    // If the user is logged in they will gain point in local storage
+    if (isLoggedIn) {
+      // Update the score in localStorage only if the user is logged in
+      setHits((prevHits) => {
+        const newHits = prevHits + 1;
+  
+        // Calculate the new bug score
+        const newBugScore = Number(currentBugScore) + 1;
+  
+        // Update local storage with the new bug score
+        localStorage.setItem('bugGameScore', newBugScore);
+  
+        return newHits;
+      });
+    } 
+    // If user isn't logged in they will only update score board
+    else {
+      // Update the on-screen score without saving it to localStorage
+      setHits((prevHits) => prevHits + 1);
+    }
+
+
 
     // Hide the bug after a delay
     setBugVisible(false);

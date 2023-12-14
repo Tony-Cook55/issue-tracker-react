@@ -105,7 +105,7 @@ import "./components/Forms.css"
 
 // CSS //
 
-
+import axios from 'axios'
 
 // Calls In Bootstrap for colors and things
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -188,7 +188,7 @@ function App() {
 
     // After We Set the Roles we will save them to Local Storage to be called in on other pages
     if(usersRole){
-      localStorage.setItem('roles',JSON.stringify(usersRole));
+      localStorage.setItem('roles', JSON.stringify(usersRole));
       }
 
     // Sets the Id of the user from logging in or making an account into storage
@@ -210,6 +210,8 @@ function App() {
         localStorage.removeItem("roles");
         localStorage.removeItem("usersId");
 
+        // localStorage.removeItem("bugGameScore");
+
         setUserFullName(null);
         setUsersRole(null);
         setUsersId(null);
@@ -217,9 +219,22 @@ function App() {
         location.reload();
 
 
-        // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
+        // LOLOLOLOLOLOLOLOL  USER LOGS OUT FUNCTION LOLOLOLOLOLOLOLOL //
         axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`, {withCredentials: true})
         .then(response => { 
+
+          localStorage.removeItem("fullName");
+          localStorage.removeItem("roles");
+          localStorage.removeItem("usersId");
+    
+          // Remove bugGameScore when user logs out
+          localStorage.removeItem("bugGameScore");
+          //console.log(response.data);
+
+          setUserFullName(null);
+          setUsersRole(null);
+          setUsersId(null);
+
           location.reload();
           // response.data.message is our json message from the backend 
           console.log(response.data.message);
@@ -227,7 +242,8 @@ function App() {
         .catch(error => 
           console.log(error)
         );
-        // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
+        // LOLOLOLOLOLOLOLOL  USER LOGS OUT FUNCTION LOLOLOLOLOLOLOLOL //
+
       }
     }
   }, [userFullName ,usersRole, usersId]);
@@ -255,7 +271,12 @@ function App() {
 
         <header>
           <nav>
-            <NavBar userFullName={userFullName} setUserFullName={setUserFullName} usersIdFromLocalStorage={usersIdFromLocalStorage} setUsersIdFromLocalStorage={setUsersIdFromLocalStorage}/>
+            <NavBar 
+              userFullName={userFullName} 
+              setUserFullName={setUserFullName} 
+              usersIdFromLocalStorage={usersIdFromLocalStorage} 
+              setUsersIdFromLocalStorage={setUsersIdFromLocalStorage}
+              showToast={showToast} />
           </nav>
         </header>
 

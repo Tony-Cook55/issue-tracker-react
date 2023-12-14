@@ -158,11 +158,13 @@ export default function BugList(   {showToast }  ){
   const handlePageChange = (pageNumber) => {
     fetchBugs({...searchParams, pageSize, pageNumber});
 
+    {/* TAKES YOU TO TOP OF THE PAGE */}
     // Smooth scroll to the top on click
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
+    {/* TAKES YOU TO TOP OF THE PAGE */}
   }
 
 

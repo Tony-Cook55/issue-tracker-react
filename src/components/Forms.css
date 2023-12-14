@@ -1030,7 +1030,7 @@ input:-webkit-autofill:focus {
   margin-bottom: 20px;
 
 
-  width: 100%;
+  width: 90%;
   height: 64px;
 
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);

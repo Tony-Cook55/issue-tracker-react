@@ -182,10 +182,15 @@ return (
       <div className="user_pic_name_container">
         <div className="profile_box">
           <div className="profile_card">
-              <h2 className="greeting_message"><strong>{greetingMessage}</strong></h2>
-              <h2 className="users_name"><strong>{userProfile.fullName}</strong></h2>
+              <h1 className="users_name"><strong>{userProfile.fullName}</strong></h1>
               <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
               {/* <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p> */}
+              <p>
+                Last Time Logged In: <br/> {userProfile.lastTimeUserLoggedIn
+                  ? userProfile.lastTimeUserLoggedIn
+                  : "New Account"
+                }
+              </p>
           </div>
         </div>
       </div>
