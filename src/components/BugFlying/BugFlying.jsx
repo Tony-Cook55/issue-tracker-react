@@ -155,13 +155,13 @@ export default function BugFlying(){
               <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
             </div>
 
-            <div
+            {/* <div
               className={`bug_flys_across_screen_reverse ${bugClicked ? 'bug_clicked' : ''}`}
               onClick={handleBugClick}
               // style={{ position: 'absolute', left: bugPosition.x, top: bugPosition.y }}
             >
               <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
-            </div>
+            </div> */}
         </div>
       )}
 

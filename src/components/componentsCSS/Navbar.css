@@ -22,7 +22,7 @@ input[type="checkbox"]{
 /* This is the small circle in the corner */
 .menu-btn{
   position: absolute;
-  z-index: 2;
+  z-index: 99999;
   right: 20px;
 
   background: #b58ded;
@@ -39,6 +39,12 @@ input[type="checkbox"]{
   cursor: pointer;
 
   transition: all 0.3s ease-in-out;
+}
+
+/* Does the same Animation as the search bar */
+.menu-btn:hover {
+  transition: all 0.3s ease 0s;
+	animation: jello-horizontal 0.9s both;
 }
 
 /* This is the hamburger menu when the nav is not open */
@@ -90,7 +96,7 @@ input[type="checkbox"]{
 
   /* This is where on the screen the circle will begin expanding  */
   /* */
-  clip-path: circle(25px at calc(100% - 45px) 45.5px);
+  clip-path: circle(15px at calc(100% - 45px) 45.5px);
 
   /* Speed at which the wrapper appears */
   transition: all 0.3s ease-in-out;
@@ -101,8 +107,6 @@ input[type="checkbox"]{
 
   border-radius: 0;
 }
-
-
 
 
 /* This aligns the text in the center of the screen*/

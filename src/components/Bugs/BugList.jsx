@@ -14,7 +14,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import "./BugList.css"
 
 // ICONS //   Call them in like this    <FaClock/>
-import { FaPencilRuler } from "react-icons/fa";
+import { FaSearch, FaArrowUp } from "react-icons/fa";
 // ICONS //
 
 
@@ -157,14 +157,30 @@ export default function BugList(   {showToast }  ){
   // This will reload the list of items for every time the page button is clicked
   const handlePageChange = (pageNumber) => {
     fetchBugs({...searchParams, pageSize, pageNumber});
+
+    // Smooth scroll to the top on click
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
 
 
 
-  const [panelOpen, setPanelOpen] = useState(false);
 
-  const togglePanel = () => setPanelOpen(!panelOpen);
+
+  /* Used in opening the search inputs */
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  /* Used in opening the search inputs */
+
+
+
 
 
 
@@ -172,97 +188,102 @@ export default function BugList(   {showToast }  ){
     <>
 
 
+  <div>
+    <div id="mySidebar" className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
 
-        <div>
-        <div className={`search-panel ${panelOpen ? 'open' : ''}`}>
-          <button className="toggle-button" onClick={togglePanel}>
-            Toggle Search
-          </button>
+          {/* Number of Results Found */}
+          <h1 className="items_found_title">
+            {bugs.length}
+            <br/>
+            Bugs Found
+          </h1>
+          {/* Number of Results Found */}
 
-          <div className="panel-content">
-
-            {/* Number of Results Found */}
-            <h1 className="items_found_title">
-              {bugs.length}
-              <br/>
-              Bugs Found
-            </h1>
-            {/* Number of Results Found */}
-
-
-            <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
-                        {/* Searching for BUGS by Keywords */}
-                        <div className="form-group">
-                          <label htmlFor="keywords" className="form-label">Keywords</label>
-                          <input type="text" className="form-control" id="keywords" placeholder="Search Bugs By Keywords" />
-                        </div>
-                        {/* Searching for BUGS by Keywords */}
+          <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
+                      {/* Searching for BUGS by Keywords */}
+                      <div className="form-group   search_input_div">
+                        <input type="text" className="edit_form_input_center  item_being_edited   form-control   text-center" id="keywords" placeholder="Search Bugs By Keyword" />
+                      </div>
+                      {/* Searching for BUGS by Keywords */}
 
 
 
-                        {/* CLASSIFICATION */}
-                        <div className="form-group">
-                          <label htmlFor="classification" className="form-label">Classification</label>
-                          <select id="classification" className="form-control">
-                            <option value="">All</option>
-                            <option value="Approved" className="form-control">Approved</option>
-                            <option value="Unapproved" className="form-control">Unapproved</option>
-                            <option value="Duplicate" className="form-control">Duplicate</option>
-                            <option value="Unclassified" className="form-control">Unclassified</option>
-                          </select>
-                        </div>
-                        {/* CLASSIFICATION */}
+                      {/* CLASSIFICATION */}
+                      <div className="form-group   search_input_div">
+                        <select id="classification" className="edit_form_input_center  item_being_edited   form-control   text-center">
+                          <option value="">All</option>
+                          <option value="Approved" className="form-control">Approved</option>
+                          <option value="Unapproved" className="form-control">Unapproved</option>
+                          <option value="Duplicate" className="form-control">Duplicate</option>
+                          <option value="Unclassified" className="form-control">Unclassified</option>
+                        </select>
+                      </div>
+                      {/* CLASSIFICATION */}
 
 
 
-                        {/* Max and Min AGE */}
-                        <div className="form-group">
-                          <label htmlFor="maxAge" className="form-label">Max Age</label>
-                          <input type="number" className="form-control" id="maxAge" placeholder="Max Age" />
-                        </div>
-                        <div className="form-group">
-                          <label htmlFor="minAge" className="form-label">Min Age</label>
-                          <input type="number" className="form-control" id="minAge" placeholder="Min Age" />
-                        </div>
-                        {/* Max and Min AGE */}
+                      {/* Max and Min AGE */}
+                      <div className="form-group   search_input_div">
+                        <input type="number" className="edit_form_input_center  item_being_edited   form-control   text-center" id="maxAge" placeholder="Max Age" />
+                      </div>
+                      <div className="form-group">
+                        <input type="number" className="edit_form_input_center  item_being_edited   form-control   text-center" id="minAge" placeholder="Min Age" />
+                      </div>
+                      {/* Max and Min AGE */}
 
 
 
-                        {/* CLOSED */}
-                        <div className="form-group">
-                          <label htmlFor="closed" className="form-label">Closed</label>
-                          <select id="closed" className="form-control">
-                            <option value="" className="form-control">Is The Bug Closed?</option>
-                            <option value="True" className="form-control">True</option>
-                            <option value="False" className="form-control">False</option>
-                          </select>
-                        </div>
-                        {/* CLOSED */}
+                      {/* CLOSED */}
+                      <div className="form-group   search_input_div">
+                        <select id="closed" className="edit_form_input_center  item_being_edited   form-control   text-center">
+                          <option value="" className="form-control">Is The Bug Closed?</option>
+                          <option value="True" className="form-control">True</option>
+                          <option value="False" className="form-control">False</option>
+                        </select>
+                      </div>
+                      {/* CLOSED */}
 
 
 
-                        {/* Sort By Items */}
-                        <div className="form-group">
-                          <label htmlFor="sortBy" className="form-label">Sort By</label>
-                          <select id="sortBy" className="form-control">
-                            <option value="">Select A Item To Sort By</option>
-                            <option value="title" className="form-control">Title</option>
-                            <option value="classification" className="form-control">Classification</option>
-                            <option value="assignedTo" className="form-control">Assigned To</option>
-                            <option value="createdBy" className="form-control">Created By</option>
-                            <option value="newest" className="form-control">Newest</option>
-                            <option value="oldest" className="form-control">Oldest</option>
-                          </select>
-                        </div>
-                        {/* Sort By Items */}
+                      {/* Sort By Items */}
+                      <div className="form-group   search_input_div">
+                        <select id="sortBy" className="edit_form_input_center  item_being_edited   form-control   text-center">
+                          <option value="">Select A Item To Sort By</option>
+                          <option value="title" className="form-control">Title</option>
+                          <option value="classification" className="form-control">Classification</option>
+                          <option value="assignedTo" className="form-control">Assigned To</option>
+                          <option value="createdBy" className="form-control">Created By</option>
+                          <option value="newest" className="form-control">Newest</option>
+                          <option value="oldest" className="form-control">Oldest</option>
+                        </select>
+                      </div>
+                      {/* Sort By Items */}
 
-                    <button type="submit">Search</button>
+
+                      {/* SUBMIT BUTTON */}
+                      <button type="submit" className="submit_form_button mt-4">Search</button>
+                      {/* SUBMIT BUTTON */}
+
+
             </form>
-          </div>
-        </div>
+    </div> {/* End of Side bar */}
+
+      <div className="search_button" id="main">
+        {/* The button is now part of the main content */}
+        <button className="open_search_button   " onClick={toggleSidebar}>
+          {sidebarOpen ? '✕' : <FaSearch/>} {/* Toggle between ☰ (open) and ✕ (close) */}
+        </button>
+      </div>
+
+  </div>
 
 
 
+
+
+
+
+<div>
 
               {/* MAPPED BUG LIST ITEM */}
               <div className="row text-center justify-content-center">
@@ -276,19 +297,39 @@ export default function BugList(   {showToast }  ){
 
 
 
+
+
               {/* PAGE CHANGE */}
-              <nav aria-label="Page Navigation">
-                <ul className="pagination">
-                  {/* Returns the number page from the array then maps over each pageNumber*/}
-                  {/* If the currentPage your on is === to the number your own it will then make the class active to be blue*/}
-                  {generatePageNumbers().map((pageNumber) => (
-                    <li className={`page-item ${pageNumber === currentPage ? "active" : ""}`} key={pageNumber}>
-                      <button className="page-link" onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <div className="">
+                  <nav className="pagination_container" aria-label="Page navigation">
+
+                      <ul className="pagination justify-content-center">
+                        {/* Returns the number page from the array then maps over each pageNumber*/}
+                        {/* If the currentPage your on is === to the number your own it will then make the class active to be blue*/}
+                        {generatePageNumbers().map((pageNumber) => (
+                          <li className={`page-item ${pageNumber === currentPage ? "active" : ""}`} key={pageNumber}>
+                            <button className="page-link" onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      {/* Takes you back to the top */}
+                      <a href="#top" className="icon_link  mt-4">
+                          <div className="back_to_top_background">
+                              <FaArrowUp/>
+                          </div>
+                      </a>
+                      {/* Takes you back to the top */}
+
+                  </nav>
+              </div>
               {/* PAGE CHANGE */}
+
+
+
+
+
+
 
 
 
@@ -296,7 +337,19 @@ export default function BugList(   {showToast }  ){
               {!bugs.length ? 
               (
               <div>
-                <h1>No Bugs Found Please Try Again</h1>
+                  <section className="no_items_found_banner">
+                    <div className="no_items_found_content">
+
+                        <div className="drop_container">
+                            <div className="No">No</div>
+                            <div className="Results">Results</div>
+                            <div className="Found">Found</div>
+                            {/* <div className="p">P</div>
+                            <div className="s">!</div> */}
+                        </div>
+
+                    </div>
+                  </section>
               </div>
               ) : (
               <div className=" ">

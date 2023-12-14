@@ -80,10 +80,10 @@ return (
 
             {/* ROLE */}
             <div className="item_section_container">
-                <span className="item_section_title">Role</span>
-                <p className="item_highlighted">
-                <p>{Array.isArray(userItem.role) ? userItem.role.join(', ') : userItem.role}</p>
-                </p>
+              <span className="item_section_title">Role</span>
+              <p className="item_highlighted">
+                {Array.isArray(userItem.role) ? userItem.role.join(', ') : userItem.role}
+              </p>
             </div>
             {/* ROLE */}
 

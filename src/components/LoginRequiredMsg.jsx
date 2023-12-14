@@ -35,9 +35,9 @@ export default function LoginFormRequiredMsg( ) {
 
 <Link to="/login">
 
-      <div class="main_login_div ">
+      <div className="main_login_div ">
         <h1 className="login_header">Please Log In To: 
-        <div class="roller">
+        <div className="roller">
           <span id="rolling_login_text">
             Report Bugs<br/>
             View Bugs<br/>

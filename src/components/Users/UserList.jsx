@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 
 import UserListItem from "./UserListItem";
 
-import { FaSearch } from "react-icons/fa"
+import { FaSearch, FaArrowUp } from "react-icons/fa"
 
   /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
   import { IsUserLoggedIn } from "../IsUserLoggedIn";
@@ -154,34 +154,39 @@ export default function UserList(){
   // This will reload the list of items for every time the page button is clicked
   const handlePageChange = (pageNumber) => {
     fetchUsers({...searchParams, pageNumber});
+
+    // Smooth scroll to the top on click
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
 
 
+
+
+
+
   /* Used in opening the search inputs */
-  const [panelOpen, setPanelOpen] = useState(false);
-
-  const togglePanel = () => setPanelOpen(!panelOpen);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  /* Used in opening the search inputs */
 
 
 
-
+  
   return( 
     <>
 
 
 
-    <div>
-
-
-        <div className={`search-panel ${panelOpen ? 'open' : ''}`}>
-            <button className="toggle-button" onClick={togglePanel}>
-              Toggle Search
-            </button>
-
-          <div className="panel-content">
+<div>
+      <div id="mySidebar" className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
 
             {/* Number of Results Found */}
             <h1 className="items_found_title">
@@ -193,21 +198,19 @@ export default function UserList(){
 
             <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
                         {/* Searching for USERS by Keywords */}
-                        <div className="form-group">
-                          <label htmlFor="keywords" className="form-label">Keywords</label>
-                          <input type="text" className="form-control" id="keywords" placeholder="Search Users By Keywords" />
+                        <div className="form-group   search_input_div">
+                          <input type="text" className="edit_form_input_center  item_being_edited   form-control   text-center"  id="keywords" placeholder="Search Users By Keyword" />
                         </div>
                         {/* Searching for USERS by Keywords */}
 
 
 
                         {/* ROLE */}
-                        <div className="form-group">
-                          <label htmlFor="role" className="form-label">Role</label>
-                          <select id="role" className="form-control">
+                        <div className="form-group  search_input_div">
+                          <select id="role" className="edit_form_input_center  item_being_edited   form-control   text-center">
                             <option value="">Choose User Role</option>
                             <option value="Developer" className="form-control">Developer</option>
-                            <option value="Business Analysts" className="form-control">Business Analysts</option>
+                            <option value="Business Analyst" className="form-control">Business Analysts</option>
                             <option value="Quality Analyst" className="form-control">Quality Analyst</option>
                             <option value="Product Manager" className="form-control">Product Manager</option>
                             <option value="Technical Manager" className="form-control">Technical Manager</option>
@@ -218,22 +221,19 @@ export default function UserList(){
 
 
                         {/* Max and Min AGE */}
-                        <div className="form-group">
-                          <label htmlFor="maxAge" className="form-label">Max Age</label>
-                          <input type="number" className="form-control" id="maxAge" placeholder="Max Age" />
+                        <div className="form-group  search_input_div">
+                          <input type="number" className="edit_form_input_center  item_being_edited   form-control   text-center" id="maxAge" placeholder="Max Age" min="0"  />
                         </div>
-                        <div className="form-group">
-                          <label htmlFor="minAge" className="form-label">Min Age</label>
-                          <input type="number" className="form-control" id="minAge" placeholder="Min Age" />
+                        <div className="form-group  search_input_div">
+                          <input type="number" className="edit_form_input_center  item_being_edited   form-control   text-center" id="minAge" placeholder="Min Age" min="0" />
                         </div>
                         {/* Max and Min AGE */}
                         
 
 
                         {/* Sort By Items */}
-                        <div className="form-group">
-                          <label htmlFor="sortBy" className="form-label">Sort By</label>
-                          <select id="sortBy" className="form-control">
+                        <div className="form-group  search_input_div">
+                          <select id="sortBy" className="edit_form_input_center  item_being_edited   form-control   text-center">
                             <option value="">Select A Item To Sort By</option>
                             <option value="givenName" className="form-control">Given Name</option>
                             <option value="familyName" className="form-control">Family Name</option>
@@ -244,10 +244,28 @@ export default function UserList(){
                         </div>
                         {/* Sort By Items */}
 
-                    <button type="submit" className="add_items_button mt-4">Search</button>
+                    <button type="submit" className="submit_form_button mt-4">Search</button>
             </form>
-          </div>
-        </div>
+      </div>
+
+
+
+      <div id="main">
+        {/* The button is now part of the main content */}
+        <button className="open_search_button" onClick={toggleSidebar}>
+          {sidebarOpen ? '✕' : <FaSearch/>} {/* Toggle between ☰ (open) and ✕ (close) */}
+        </button>
+      </div>
+
+
+    </div>
+
+
+
+    <div>
+
+
+
 
 
 
@@ -265,18 +283,32 @@ export default function UserList(){
 
 
               {/* PAGE CHANGE */}
-              <nav aria-label="Page Navigation">
-                <ul className="pagination">
-                  {/* Returns the number page from the array then maps over each pageNumber*/}
-                  {/* If the currentPage your on is === to the number your own it will then make the class active to be blue*/}
-                  {generatePageNumbers().map((pageNumber) => (
-                    <li className={`page-item ${pageNumber === currentPage ? "active" : ""}`} key={pageNumber}>
-                      <button className="page-link" onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <div className="">
+                  <nav className="pagination_container" aria-label="Page navigation">
+
+                      <ul className="pagination justify-content-center">
+                        {/* Returns the number page from the array then maps over each pageNumber*/}
+                        {/* If the currentPage your on is === to the number your own it will then make the class active to be blue*/}
+                        {generatePageNumbers().map((pageNumber) => (
+                          <li className={`page-item ${pageNumber === currentPage ? "active" : ""}`} key={pageNumber}>
+                            <button className="page-link" onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      {/* Takes you back to the top */}
+                      <a href="#top" className="icon_link   mt-4">
+                          <div className="back_to_top_background">
+                              <FaArrowUp/>
+                          </div>
+                      </a>
+                      {/* Takes you back to the top */}
+
+                  </nav>
+              </div>
               {/* PAGE CHANGE */}
+
+
 
 
 
@@ -284,7 +316,19 @@ export default function UserList(){
               {!users.length ? 
               (
               <div>
-                <h1>No Users Found Please Try Again</h1>
+                  <section className="no_items_found_banner">
+                    <div className="no_items_found_content">
+
+                        <div className="drop_container">
+                            <div className="No">No</div>
+                            <div className="Results">Results</div>
+                            <div className="Found">Found</div>
+                            {/* <div className="p">P</div>
+                            <div className="s">!</div> */}
+                        </div>
+
+                    </div>
+                  </section>
               </div>
               ) : (
               <div className=" ">

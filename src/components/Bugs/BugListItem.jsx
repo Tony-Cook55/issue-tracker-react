@@ -109,21 +109,21 @@ export default function BugListItem(  {bug, showToast }  ){
             {/* CREATED ON DATE */}
 
 
-                                    <div class="social-share "> {/* d-flex */}
-                                        <ul class="social-icon">
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-twitter"></a>
+                                    {/* <div className="social-share ">
+                                        <ul className="social-icon">
+                                            <li className="social-icon-item">
+                                                <a href="#" className="social-icon-link bi-twitter"></a>
                                             </li>
 
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-facebook"></a>
+                                            <li className="social-icon-item">
+                                                <a href="#" className="social-icon-link bi-facebook"></a>
                                             </li>
 
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-pinterest"></a>
+                                            <li className="social-icon-item">
+                                                <a href="#" className="social-icon-link bi-pinterest"></a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> */}
 
 
           </Link>

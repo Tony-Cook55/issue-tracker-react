@@ -445,8 +445,8 @@ export default function BugEditor(  {showToast}  ) {
             {/* DELETE THIS BUG */}
 
 
-                  {/* <button class="delete_button">
-                    <span viewBox="0 0 448 512" class="svgIcon">
+                  {/* <button className="delete_button">
+                    <span viewBox="0 0 448 512" className="svgIcon">
                     <FaTrash />
                     </span>
                   </button> */}

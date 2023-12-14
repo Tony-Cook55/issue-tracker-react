@@ -1,168 +1,5 @@
 
 
-/* This is the text that says  # Bugs/Users Found */
-.items_found_title{
-  padding-top: 80px;
-  padding-bottom: 20px;
-
-  font-size: 45px;
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 1;
-  color: #000;
-}
-
-
-
-
-
-
-/* The button to open and close for search inputs */
-.toggle-button {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  margin-top: 15px;
-  margin-bottom: 10px;
-
-  border-radius: 30px;
-  background: #B58DED;
-  border: none;
-  font-family: 'Lexend Variable', sans-serif;
-  /* font-family: 'Montserrat'; */
-  font-size: 20px;
-  color: #FFFFFF;
-
-  box-shadow: 0 2px 4px 0 rgba(181, 141, 237, 0.7), 0 3px 10px 0 rgba(181, 141, 237, 0.9);
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
-  transition: all 0.3s ease 0s;
-  
-}
-
-
-.toggle-button:hover, .toggle-button:focus {
-  font-size: 21px;
-  transition: all 0.3s ease 0s;
-	/* animation: jello-horizontal 0.9s both; */
-}
-@keyframes jello-horizontal {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-  }
-  30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1);
-            transform: scale3d(1.25, 0.75, 1);
-  }
-  40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1);
-            transform: scale3d(0.75, 1.25, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1);
-            transform: scale3d(1.15, 0.85, 1);
-  }
-  65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1);
-            transform: scale3d(0.95, 1.05, 1);
-  }
-  75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1);
-            transform: scale3d(1.05, 0.95, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-  }
-}
-
-
-
-
-/* This is what hides the search inputs */
-.search-panel {
-
-
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background-color: #d92c2c;
-  overflow: hidden;
-  transition: height 0.3s ease;
-
-  z-index: 1000;
-}
-
-/* When the Toggle Search Button is clicked and panel opens */
-.search-panel.open {
-  background-color: #7f6969;
-  height: 750px; /* Adjust the height as needed */
-  transition: height 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
-  opacity: 1;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .search-panel.open {
-    height: 700px; /* Adjust the height as needed */
-  }
-}
-
-
-
-/* When the Toggle Search Button is clicked AGAIN and panel closes */
-.search-panel.closed {
-  background-color: #B58DED;
-  height: 0;
-  opacity: 0;
-  transition: height 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* This is the text to Say No Bugs Found  We need this delay due to the brief time it takes to load the Bugs*/
-.no_bugs_found_message{
-  animation: fadeIn 5s; 
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-
-
 
 .loading_spinner_container {
   display: flex;
@@ -233,3 +70,15 @@
     transform: rotate(360deg);
   }
 }  */
+
+
+
+
+
+
+
+
+
+
+
+

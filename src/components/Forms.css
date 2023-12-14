@@ -421,15 +421,20 @@ input:-webkit-autofill:focus {
 
 }
 
+/* This is used in the search tab but placeholder text gets these*/
+.item_being_edited::placeholder {
+  color: #fff !important;
+  /* padding-top: 10px; */
+
+}
+
 /* When the edited item is hovered and entered in */
 .item_being_edited:hover , .item_being_edited:focus{
-
   border: 5px solid #fff;
-
   transform: scale(1.05);
-
   background-color: #f6b7f7; /* Add a background color for highlighting */
 }
+
 
 /* ONLY when the edited item is entered in */
 .item_being_edited:focus{
@@ -448,6 +453,417 @@ input:-webkit-autofill:focus {
 
 
 /* eeeeeeeeeeeeeeeeeeeeeeeeeeee EDITING ITEMS USING INPUTS  eeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 SEARCHING BUGS AND USERS 🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 */
+
+/* This is the text that says  # Bugs/Users Found */
+.items_found_title{
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  font-size: 33px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+
+  font-weight: bold;
+}
+
+
+
+/* Adds spacing between every input on searching inputs */
+.search_input_div{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+
+
+/* The actual Side bar */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* padding-top: 60px; */
+  background-color: #FFFFFF;
+
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  z-index: 999;
+
+
+  /* Center items vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+
+
+    /* For some reason when closing the side bar or if to much content a scrollbar appears this sets it to the bg color of container */
+    /* Style the scrollbar in the sidebar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #fff #fff; /* Firefox */
+  
+    /* WebKit browsers (Chrome, Safari) */
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+    }
+}
+
+
+/* This is when the sidebar is opened */
+.sidebar.open {
+  width: 450px;
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .sidebar.open {
+    width: 250px;
+  }
+}
+
+
+
+/* #main {
+  transition: margin-left .5s;
+  padding: 16px;
+} */
+
+
+/* This is the button that open and closes the search */
+.open_search_button {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 5px;
+
+
+  border: 3px solid #fff;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+
+  /* This is used To Make it look like a perfect circle like navbar */
+  border-radius: 50%; /* Make it a perfect circle */
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+
+  /* Centers Icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.open_search_button:hover {
+  transition: all 0.3s ease 0s;
+	animation: jello-horizontal 0.9s both;
+
+  border: 3px solid #fff;
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+/* Centers the no items found message SAME CODE FOR HOME SCREEN TEXT */
+.no_items_found_banner {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+
+  /* background: url('/images/colored_find_bug.png') center/cover no-repeat;
+  background-size: contain;  */
+
+}
+
+/* Text inside of the banner */
+.no_items_found_content {
+  max-width: 900px;
+  position: relative;
+  text-align: center;
+}
+
+
+
+
+
+/* WHEN THERE ARE NO FOUND RESULTS */
+
+.drop_container {
+  /* display: flex;
+  justify-content: center; */
+  font-size: 7rem;
+  margin: 1.5rem;
+
+  font-weight: bold;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .drop_container {
+    font-size: 4rem;
+    margin: 0;
+  }
+}
+
+.No {
+  opacity: 0;
+  animation: drop 0.4s linear forwards .2s;
+  color: #B58DED;
+}
+.Results {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.4s;
+  color: #B58DED;
+}
+.Found {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.6s;
+  color: #B58DED;
+}
+/* .p {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.8s;
+  color: #B58DED;
+}
+.s {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.10s;
+  color: #B58DED;
+} */
+@keyframes drop {
+  0% {
+      transform: translateY(-200px);
+      opacity: 0;
+  }
+  50% {
+      transform: translateY(0px);
+      opacity: 1;
+  }
+  65% {
+      transform: translateY(-17px);
+      opacity: 1;
+  }
+  75% {
+      transform: translateY(-22px);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(0px);
+      opacity: 1;
+  }
+}
+/* WHEN THERE ARE NO FOUND RESULTS */
+
+
+/*🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 SEARCHING BUGS AND USERS 🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 */
+
+
+
+
+
+
+
+
+
+
+
+/* ppppppppppppppppp PAGINATION ppppppppppppppppp*/
+.pagination_container{ 
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+
+.pagination{
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    position: relative;
+}
+
+
+/* This is the page li Themselves */
+.pagination li .page-link{
+    color: #333;
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 37px;
+    height: 38px;
+    width: 38px;
+    padding: 0;
+    margin: 0 8px;
+    border: none;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease 0s;
+}
+
+
+
+/* Ensures the 1st and Last Child are the exact same as the rest */
+.pagination li:first-child .page-link,
+.pagination li:last-child .page-link {
+    font-size: 18px;
+    line-height: 37px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50%;
+}
+/* First and last child Will look different*/
+/* 
+.pagination li:first-child .page-link,
+.pagination li:last-child .page-link{
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 400;
+    border: none;
+} */
+
+
+/* When the page item is hovered and is the active page your on active */
+.pagination li .page-link:hover,
+.pagination li .page-link:focus,
+.pagination li.active .page-link:hover,
+.pagination li.active .page-link{
+    color: #fff;
+    background-color: #B58DED;
+}
+
+/* Only when the item is hovered on */
+.pagination li .page-link:hover{
+    color: #fff;
+    background-color: #000;
+    transform: scale(1.15);
+}
+
+
+
+/* Small circles BUT MAINLY THE closest to item */
+.pagination li .page-link:before,
+.pagination li .page-link:after{
+  content: '';
+  background-color: #fff;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  opacity: 0;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: -1;
+  transition: all 0.4s ease 0s;
+}
+
+
+/* Sets the set of circles corner right of item */
+.pagination li .page-link:after{
+  left: auto;
+  right: 5px;
+  top: auto;
+  bottom: 5px;
+}
+
+
+/* The 1st top circles position and 2nd circle creation */
+.pagination li .page-link:hover:before,
+.pagination li .page-link:focus:before,
+.pagination li.active .page-link:hover:before,
+.pagination li.active .page-link:before{
+  /*2nd Shadow */
+  box-shadow: -7px -7px #B58DED;
+
+  opacity: 1;
+  left: -2px;
+  top: -2px;
+}
+
+
+/* The 2nd bottom circles position and 2nd circle creation */
+.pagination li .page-link:hover:after,
+.pagination li .page-link:focus:after,
+.pagination li.active .page-link:hover:after,
+.pagination li.active .page-link:after{
+  /*2nd Shadow */
+  box-shadow: 7px 7px #B58DED;
+
+  opacity: 1;
+  right: -2px;
+  bottom: -2px;
+}
+/* ppppppppppppppppp PAGINATION ppppppppppppppppp*/
+
 
 
 

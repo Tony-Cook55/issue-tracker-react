@@ -497,16 +497,16 @@ function onUserDelete(evt, userId){
 
 
 
-<div class="container emp-profile">
+<div className="container emp-profile">
             <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
+                <div className="row">
+                    <div className="col-md-4">
+                        <div className="profile-img">
                             <img src="/images/user_profile_circle_filled.png" alt="Avatar"/>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
+                    <div className="col-md-6">
+                        <div className="profile-head">
                                     <h2>
                                       {userProfile.fullName}
                                     </h2>
@@ -515,13 +515,13 @@ function onUserDelete(evt, userId){
                                         ? userProfile.role.join(', ')
                                         : 'No roles available'}
                                     </h6>
-                                    <p class="proile-rating">User Id : <span>{userProfile._id}</span></p>
+                                    <p className="proile-rating">User Id : <span>{userProfile._id}</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="row  text-center justify-content-center">
-                    <div class="col-md-4">
-                        <div class=""> {/* profile-work */}
+                <div className="row  text-center justify-content-center">
+                    <div className="col-md-4">
+                        <div className=""> {/* profile-work */}
                             <p>User Joined On</p>
                             <p>{userProfile.usersCreationDate}</p>
                             <br/>
@@ -534,14 +534,14 @@ function onUserDelete(evt, userId){
                         </div>
                     </div>
 
-                    <div class="col-md-8 ">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-8">
+                    <div className="col-md-8 ">
+                        <div className="tab-content profile-tab" id="myTabContent">
+                            <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div className="row">
+                                            <div className="col-md-8">
                                                 <label>Full Name</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div className="col-md-8">
                                             {userProfile.editable ? (
             <input
                 type="text"
@@ -555,11 +555,11 @@ function onUserDelete(evt, userId){
         )}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
+                                        <div className="row">
+                                            <div className="col-md-8">
                                                 <label>Given Name</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div className="col-md-8">
                                                         {userProfile.editable ? (
             <input
                 type="text"
@@ -573,11 +573,11 @@ function onUserDelete(evt, userId){
         )}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
+                                        <div className="row">
+                                            <div className="col-md-8">
                                                 <label>Family Name</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div className="col-md-8">
                                             {userProfile.editable ? (
             <input
                 type="text"
@@ -591,27 +591,27 @@ function onUserDelete(evt, userId){
         )}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
+                                        <div className="row">
+                                            <div className="col-md-8">
                                                 <label>Users Id</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div className="col-md-8">
                                                 <p>{userProfile._id}</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
+                                        <div className="row">
+                                            <div className="col-md-8">
                                                 <label>Email</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div className="col-md-8">
                                                 <p>{userProfile.email}</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-8">
+                                        <div className="row">
+                                            <div className="col-md-8">
                                                 <label>Users Roles</label>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div className="col-md-8">
                                                 <p>
                                                   {userProfile.role && userProfile.role.length > 0
                                                     ? userProfile.role.join(' ~ ')
@@ -623,8 +623,8 @@ function onUserDelete(evt, userId){
 
 
 
-<div class="row">
-    <div class="col-md-12">
+<div className="row">
+    <div className="col-md-12">
         {userProfile.editable ? (
             <button
                 type="button"
