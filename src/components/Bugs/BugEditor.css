@@ -263,7 +263,7 @@
 
 
 /* This is the giant banner that spans the whole screen */
-/* .delete_fullscreen_banner {
+.delete_fullscreen_banner {
   height: 95vh;
 
   display: flex;
@@ -273,7 +273,7 @@
   text-align: center;
 
 
-} */
+}
 
 
 

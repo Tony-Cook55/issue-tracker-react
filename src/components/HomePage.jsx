@@ -5,6 +5,8 @@
 import { useEffect, useState } from "react";
 import "../components/componentsCSS/HomePage.css"
 
+import { Link } from "react-router-dom";
+
 
 import BugGame from "./BugGame/BugGame";
 
@@ -113,100 +115,132 @@ export default function HomePage(){
 
 
 
-
-<section className="full_screen_cards">
-  <div className="full_screen_cards_content">
-
-
-    <section className="container">
-      <div className="row">
-
-      {/* EXPLORE BUGS */}
-      <div className="col-lg-4 col-md-6 mb-4">
-          <div className="card card_container">
-            <div className="card__image-container">
-              <img
-                src="../images/bug_on_code.png"
-                className="card-img-top"
-                alt="Card image cap"
-              />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">
-                Explore and View Others Bugs
-              </h5>
-              <div className="card-info  text-center">
-                <p className="">Browse The List of User Made Bugs and Help The Community Fix Them.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      {/* EXPLORE BUGS */}
+<div>
+  <section className="full_screen_cards">
+    <div className="full_screen_cards_content">
 
 
-      {/* REPORT BUGS */}
+      <section className="container">
+        <div className="row">
+
+        {/* EXPLORE BUGS */}
         <div className="col-lg-4 col-md-6 mb-4">
-          <div className="card card_container">
-            <div className="card__image-container">
-              <img
-                src="../images/colored_bug_logo.png"
-                className="bug_logo_magnified"
-                alt="Card image cap"
-              />
-              <img
-                src="../images/magnifying_glass_removed_glass.png"
-                className="bug_magnifier"
-                alt="Card image cap"
-              />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title ">
-                Report Your Very Own Bugs
-              </h5>
-              <div className="card-info  text-center">
-                <p className="">Have a Bug? Report It! We Allow For The Ability For Users To Report Any Bugs.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      {/* REPORT BUGS */}
-
-
-      {/* COMMENT ON BUGS */}
-        <div className="col-lg-4 col-md-6 mb-4">
-          <div className="card card_container">
-            <div className="card__image-container">
-              <img
-                  src="../images/chat_bubble_blue.png"
+            <div className="card card_container">
+              <div className="card__image-container">
+                <img
+                  src="../images/bug_on_code.png"
                   className="card-img-top"
                   alt="Card image cap"
                 />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">
-                See What Others Have To Say
-              </h5>
-              <div className="card-info  text-center">
-                <p className="">Post Your Own Comments, Or View What Other Users Have To Say.</p>
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">
+                  Explore and View Others Bugs
+                </h5>
+                <div className="card-info  text-center">
+                  <p className="">Browse The List of User Made Bugs and Help The Community Fix Them.</p>
+                </div>
               </div>
             </div>
           </div>
+        {/* EXPLORE BUGS */}
+
+
+        {/* REPORT BUGS */}
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card card_container">
+              <div className="card__image-container">
+                <img
+                  src="../images/colored_bug_logo.png"
+                  className="bug_logo_magnified"
+                  alt="Card image cap"
+                />
+                <img
+                  src="../images/magnifying_glass_removed_glass.png"
+                  className="bug_magnifier"
+                  alt="Card image cap"
+                />
+              </div>
+              <div className="card-body">
+                <h5 className="card-title ">
+                  Report Your Very Own Bugs
+                </h5>
+                <div className="card-info  text-center">
+                  <p className="">Have a Bug? Report It! We Allow For The Ability For Users To Report Any Bugs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {/* REPORT BUGS */}
+
+
+        {/* COMMENT ON BUGS */}
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card card_container">
+              <div className="card__image-container">
+                <img
+                    src="../images/chat_bubble_blue.png"
+                    className="card-img-top"
+                    alt="Card image cap"
+                  />
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">
+                  See What Others Have To Say
+                </h5>
+                <div className="card-info  text-center">
+                  <p className="">Post Your Own Comments, Or View What Other Users Have To Say.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {/* COMMENT ON BUGS */}
+
+
         </div>
-      {/* COMMENT ON BUGS */}
+      </section>
 
 
-      </div>
-    </section>
-
-
-  </div>
-</section>
+    </div>
+  </section>
+</div>
 
 
 
-  <di className="">
+
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+        <section className="full_screen_cards">
+          <div className="full_screen_cards_content">
+
+                  <h1 className="enter_firing_range_text">Enter The Firing Range</h1>
+
+                  <img
+                    src="/images/colored_bug_logo.png"
+                    className="bug_image"
+                    alt="Bug"
+                  />
+
+                <Link to="/bugGame">
+                  <img
+                    src="/images/crosshair.png"
+                    className="cross_hair"
+                    alt="Crosshair"
+                  />
+                </Link>
+          </div>
+        </section>
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+
+
+
+
+
+
+
+
+  {/* <div className="">
       <BugGame />
-  </di>
+  </div> */}
 
 
     </>

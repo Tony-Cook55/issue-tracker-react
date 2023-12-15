@@ -8,8 +8,22 @@
 
 
 
+.bug_game_entrance_animation{
+  animation: bug-slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
 
-
+@keyframes bug-slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 
 
@@ -178,11 +192,11 @@
 
 
 .bug-container {
-  height: 95vh; 
+  height: 90vh; 
   overflow: hidden;
 
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   transition: .3s transform ease-in-out;
   /* background-color: #B58DED; */
@@ -192,6 +206,18 @@
 
         /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
         cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto;
+
+
+  /* Makes the entire container Not be able to be selected by cursor ~ADD ON DIV ->  draggable="false"  onDragStart={(e) => e.preventDefault()}*/ 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+
+
+
+  -ms-user-select: none;
 }
 
 
@@ -231,11 +257,10 @@
   padding: 30px;
 
 
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+
+
+
+
   /* background-color: #B58DED; */
 }
 @media only screen and (max-width: 768px) {
@@ -249,23 +274,82 @@
 
 
 .bug_flys_across_screen > * {
-/* Adjust animation duration to change the element’s speed */
-  animation: fly 25s linear infinite;
 
+
+/* COMMENT BELOW IS NEEDED FOR JUST IT DOING 1 ANIMATION */
+  /* animation: bug_fly 25s linear infinite;
   position: absolute !important;
 	top: 0;
 	left: 0;
 	transform: translateX(-120%) translateY(-120%) rotateZ(0);
-	/* position: fixed; */
+	position: fixed; */
+
+
 	animation-delay: 1s;
 	z-index: 999999;
 
-        /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
-        cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto;
+
+  /* Bug Rotates for first Time Seeing */
+  animation: bug_rotation 1s infinite linear;
+
+
+  /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
+  cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto;
+}
+
+/* Rotates The Bug Side to Side*/
+@keyframes bug_rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 
-@keyframes fly {
+
+
+
+
+
+/* These animation Classes Will Be called to Randomly Called With Animations On Each Shot */
+.bug_fly_animation_1 {
+  animation: bug_fly 20s linear infinite;
+  /* background-color: #f94f6d; */
+}
+
+.bug_fly_animation_2 {
+  animation: bug_fly_reversed 25s linear infinite;
+  /* background-color: aqua; */
+}
+
+.bug_fly_animation_3 {
+  animation: old_fly 20s linear infinite;
+  /* background-color: rgb(72, 255, 0); */
+}
+
+.bug_fly_animation_4 {
+  animation: fly_1 20s linear infinite;
+  /* background-color: rgb(212, 0, 255); */
+}
+
+
+
+
+
+
+
+@keyframes bug_fly {
   98.001%, 0% {
     transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
   }
@@ -303,28 +387,7 @@
   }
 }
 
-
-
-
-
-
-
-.bug_flys_across_screen_reverse > * {
-  animation: fly_reversed 25s linear infinite;
-
-  position: absolute !important;
-	top: 0;
-	left: 0;
-	transform: translateX(-120%) translateY(-120%) rotateZ(0);
-	/* position: fixed; */
-	animation-delay: 1s;
-	z-index: 999999;
-
-        /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
-        cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto;
-  }
-
-@keyframes fly_reversed {
+@keyframes bug_fly_reversed {
   98.001%, 0% {
     display: block;
     transform: translateX(200%) translateY(100vh) rotateZ(0deg);
@@ -363,48 +426,78 @@
   }
 }
 
-    
+@keyframes old_fly {
+  98.001%, 0% {
+    display: block;
+    transform: translateX(-200%) translateY(200vh) rotateZ(0deg);
+  }
 
+  15% {
+    transform: translateX(100vw) translateY(-100%) rotateZ(180deg);
+  }
 
+  15.001%, 18% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
+  }
 
-    /* OLD FLY CODE */
-    /* @keyframes fly {
-      98.001%, 0% {
-        display: block;
-        transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
-      }
-    
-      15% {
-        transform: translateX(100vw) translateY(-100%) rotateZ(180deg);
-      }
-    
-      15.001%, 18% {
-        transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
-      }
-    
-      40% {
-        transform: translateX(-200%) translateY(3vh) rotateZ(-180deg);
-      }
-    
-      40.001%, 43% {
-        transform: translateX(-200%) translateY(-100%) rotateZ(-180deg);
-      }
-    
-      65% {
-        transform: translateX(100vw) translateY(50vh) rotateZ(0deg);
-      }
-    
-      65.001%, 68% {
-        transform: translateX(20vw) translateY(-200%) rotateZ(180deg);
-      }
-    
-      95% {
-        transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
-      }
-    } */
+  40% {
+    transform: translateX(-200%) translateY(3vh) rotateZ(-180deg);
+  }
 
+  40.001%, 43% {
+    transform: translateX(-200%) translateY(-100%) rotateZ(-180deg);
+  }
 
+  65% {
+    transform: translateX(100vw) translateY(50vh) rotateZ(0deg);
+  }
 
+  65.001%, 68% {
+    transform: translateX(20vw) translateY(-200%) rotateZ(180deg);
+  }
+
+  95% {
+    transform: translateX(100vw) translateY(100vh) rotateZ(0deg);
+  }
+}
+
+@keyframes fly_1 {
+  98.001%, 0% {
+    transform: translateX(-200%) translateY(10vh) rotateZ(0deg);
+  }
+
+  10% {
+    transform: translateX(80vw) translateY(-20%) rotateZ(160deg);
+  }
+
+  15%, 18% {
+    transform: translateX(120vw) translateY(-40%) rotateZ(0deg);
+  }
+
+  30% {
+    transform: translateX(-100%) translateY(20vh) rotateZ(-140deg);
+  }
+
+  40%, 43% {
+    transform: translateX(-150%) translateY(-10%) rotateZ(-180deg);
+  }
+
+  55% {
+    transform: translateX(60vw) translateY(50vh) rotateZ(20deg);
+  }
+
+  65%, 68% {
+    transform: translateX(40vw) translateY(-30%) rotateZ(120deg);
+  }
+
+  80% {
+    transform: translateX(-50vw) translateY(80vh) rotateZ(-40deg);
+  }
+
+  95% {
+    transform: translateX(-10vw) translateY(10vh) rotateZ(0deg);
+  }
+}
 
 
 /* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */

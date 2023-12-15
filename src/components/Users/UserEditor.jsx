@@ -444,6 +444,19 @@ return (
 
       </div>
     </div>
+
+
+              {/* SAVE THIS USER */}
+              {canUserEditThisUser && (
+                <button type="submit" className="icon_link" >
+                <div className="edit_button  edit_button_background">
+                  <FaSave />
+                </div>
+              </button>
+              )}
+              {/* SAVE THIS USER */}
+
+
   </div>
   {/* USERS ROLES */}
 

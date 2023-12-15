@@ -731,9 +731,24 @@ export default function BugEditor(  {showToast}  ) {
           </div>
 
       </div>
+      
     </div>
+
+
+            {/* SAVE/UPDATE THIS BUG */}
+            {canUserEditThisBug && (
+            <button type="submit" className="icon_link" >
+              <div className="edit_button  edit_button_background">
+                <FaSave />
+              </div>
+            </button>
+            )}
+            {/* SAVE/UPDATE THIS BUG */}
+
+
   </div>
   {/* CLOSE BUG */}
+
 
 
 </div>
@@ -821,10 +836,8 @@ export default function BugEditor(  {showToast}  ) {
 			</div>
 
 
-
-
         {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
-              <section className="delete_fullscreen_banner">
+              <section className=""> {/* delete_fullscreen_banner */}
                 <div className="delete_fullscreen_banner_content">
                   <h1 className="eliminate_bug_text">Shoot The Bug To Delete It</h1>
 

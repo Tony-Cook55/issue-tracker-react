@@ -56,6 +56,10 @@ export default function BugGame(){
 
 
 
+
+
+
+
 // +B +B +B +B +B +B +B +B +B +B  BUG GAME UPDATING POINTS  +B +B +B +B +B +B +B +B +B +B  */
   // Gets the new backend route of finding logged in user and updating the bugsShot score
   const updateUsersScore = async (score) => {
@@ -81,46 +85,119 @@ export default function BugGame(){
 
 
 
-  // On Bug being shot
+
+
+
+
+/* bs bs bs bs GETTING THE LOGGED IN USERS BUG SCORE TOTAL bs bs bs bs */
+  const [bugsShot, setBugsShot] = useState(null);
+
+ // Get the score of the user and plug it in if nothing its 0
+useEffect(() => {
+  if (usersId) {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/users/bugsShot/${usersId}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        const userBugScore = response.data.bugsShot || 0;
+        setBugsShot(userBugScore);
+      })
+      .catch((error) => {
+        console.error('Error fetching bug score:', error);
+      });
+  }
+}, [usersId]);
+/* bs bs bs bs GETTING THE LOGGED IN USERS BUG SCORE TOTAL bs bs bs bs */
+
+
+
+
+
+
+
+
+
+
+
+  /* cccccccc RANDOM ANIMATION CLASS SELECTED cccccccc */
+  const [bugAnimationClass, setBugAnimationClass] = useState('');
+
+
+  // Function to randomly choose bug animation class
+  const getRandomAnimationClass = () => {
+    const animationClasses = [
+      'bug_fly_animation_1',
+      'bug_fly_animation_2',
+      'bug_fly_animation_3',
+      'bug_fly_animation_4',
+      // Add more animation classes as needed
+    ];
+    const randomIndex = Math.floor(Math.random() * animationClasses.length);
+    return animationClasses[randomIndex];
+  };
+  /* cccccccc RANDOM ANIMATION CLASS SELECTED cccccccc */
+
+
+
+
+
+
+
+
+
+  // sssssssssssssssssss BUG SHOT / CLICKED sssssssssssssssssss //
   const handleBugClick = (event) => {
 
     setBugClicked(true);
 
 
     // Fetch bug score from the server using the user's profile ID
-  if (isLoggedIn) {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/api/users/bugsShot/${usersId}`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-          // Ensure that the response contains the expected structure
-          if (response.data && response.data.bugsShot !== undefined) {
-            const currentBugScore = response.data.bugsShot || 0;
+    if (isLoggedIn) {
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/api/users/bugsShot/${usersId}`, {
+          withCredentials: true,
+        })
+        .then((response) => {
+            // Ensure that the response contains the expected structure
+            if (response.data && response.data.bugsShot !== undefined) {
+              const currentBugScore = response.data.bugsShot || 0;
 
-            setHits((prevHits) => {
-              const newHits = prevHits + 1;
+              setHits((prevHits) => {
+                const newHits = prevHits + 1;
 
-              /* Calculate the new bug score based on that of the bugsShot in server */
-              const newBugScore = Number(currentBugScore) + 1;
+                /* Calculate the new bug score based on that of the bugsShot in server */
+                const newBugScore = Number(currentBugScore) + 1;
 
-              /* Send bugsShot to the server */
-              updateUsersScore(newBugScore);
+                // +B +B  BUG GAME UPDATING POINTS  +B +B //
+                updateUsersScore(newBugScore); /* Send bugsShot to the server */
+                // +B +B  BUG GAME UPDATING POINTS  +B +B //
 
-              return newHits;
-            });
-          } else {
-            console.error("Invalid response structure");
-          }
-      })
-      .catch((error) => {
-        console.error("Error fetching bug score:", error);
-      });
-  }
-  else {
-    /* Update the on-screen score without saving it to localStorage */
-    setHits((prevHits) => prevHits + 1);
-  }
+                // bs bs GETTING THE LOGGED IN USERS BUG SCORE TOTAL bs bs //
+                setBugsShot(newBugScore); // Update the Score Of The Grand Total  From Database
+                // bs bs GETTING THE LOGGED IN USERS BUG SCORE TOTAL bs bs //
+
+                return newHits;
+              });
+            } else {
+              console.error("Invalid response structure");
+            }
+        })
+        .catch((error) => {
+          console.error("Error fetching bug score:", error);
+        });
+    }
+    else {
+      /* Update the on-screen score without saving it to localStorage */
+      setHits((prevHits) => prevHits + 1);
+    }
+
+
+
+    /* cccccccc RANDOM ANIMATION CLASS SELECTED cccccccc */
+    const randomAnimationClass = getRandomAnimationClass();
+    setBugAnimationClass(randomAnimationClass);
+    /* cccccccc RANDOM ANIMATION CLASS SELECTED cccccccc */
 
 
 
@@ -160,10 +237,8 @@ export default function BugGame(){
     // Hide the bug after a delay
     setBugVisible(false);
 
-    // Set the bug position for the confetti to follow
-    setBugPosition({ x: event.clientX, y: event.clientY });
 
-    // Set the bug position for the confetti to follow
+    // Set the bug position for the confetti to follow the bug when shot
     setConfettiPosition({ x: event.clientX, y: event.clientY });
 
 
@@ -189,18 +264,20 @@ export default function BugGame(){
 
 
   };
+  // sssssssssssssssssss BUG SHOT / CLICKED sssssssssssssssssss //
 
 
 
-    // Function to toggle audio
+    // Function to toggle audio On/Off
     const toggleAudio = () => {
       setIsAudioEnabled((prev) => !prev);
     };
 
 
+  // Change Appearance of Confetti
   const confettiConfig = {
-    angle: 100,
-    spread: 60,
+    angle: 160,
+    spread: 50,
     startVelocity: 50,
     elementCount: 70,
     dragFriction: 0.12,
@@ -214,6 +291,7 @@ export default function BugGame(){
 
 
 
+
   return(
     <>
 
@@ -223,7 +301,7 @@ export default function BugGame(){
 
 
 
-<div className="bug-container  fade_in_view">
+<div className="bug-container  fade_in_view"    draggable="false"  onDragStart={(e) => e.preventDefault()}>
 
     {/* ssssss SCOREBOARD ssssss */}
     <div className="container  score_board_container  justify-content-center text-center">
@@ -231,6 +309,7 @@ export default function BugGame(){
 
           <div className=" col-heading">
             <h1 className="score_board_title">Shoot The Bugs!</h1>
+            <h1 className="score_board_title">Total Shot: {bugsShot}</h1>
           </div>
 
           <div className=" number_display" id="scoreHome">{hits}</div>
@@ -261,27 +340,26 @@ export default function BugGame(){
 
 
 
+
+      {/* iiiii BUG IMAGE iiiii */}
       {bugVisible && (
         <div>
             <div
-              className={`bug_flys_across_screen ${bugClicked ? 'bug_clicked' : ''}`}
+              className={`bug_flys_across_screen  ${bugAnimationClass} `}    // ${bugClicked ? 'bug_clicked' : ''}
+              // className={`bug_flys_across_screen ${bugClicked ? 'bug_clicked' : ''}`}
               onClick={handleBugClick}
               // style={{ position: 'absolute', left: bugPosition.x, top: bugPosition.y }}
             >
-              <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
+              <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug"   draggable="false"  onDragStart={(e) => e.preventDefault()}/>
             </div>
 
-            {/* <div
-              className={`bug_flys_across_screen_reverse ${bugClicked ? 'bug_clicked' : ''}`}
-              onClick={handleBugClick}
-              // style={{ position: 'absolute', left: bugPosition.x, top: bugPosition.y }}
-            >
-              <img className="bug_fly_img" src="../images/colored_bug_logo.png" alt="Bug" />
-            </div> */}
         </div>
       )}
+      {/* iiiii BUG IMAGE iiiii */}
 
 
+
+      {/* cccc CONFETTI cccc */}
       <div
         className="confetti_fullScreen"
         style={{ position: 'absolute', left: confettiPosition.x, top: confettiPosition.y }}
@@ -289,6 +367,8 @@ export default function BugGame(){
         <div className="confetti_content"></div>
         <Confetti active={bugClicked} config={confettiConfig} />
       </div>
+      {/* cccc CONFETTI cccc */}
+
 
 </div>
 

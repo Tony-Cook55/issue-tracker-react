@@ -35,16 +35,19 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
   // If the users score in the backend == that of the score return the medals name. 
   const determineBugScoreTier = (bugsShotScore) => {
     // Your logic to determine the tier based on the score
+    if(bugsShotScore >= 100000){
+      return 'go-outside';
+    }
     if(bugsShotScore >= 10000){
       return 'diamond-medal';
     }
-    else if (bugsShotScore >= 10) {
+    else if (bugsShotScore >= 100) {
       return 'gold-medal';
     } 
-    else if (bugsShotScore >= 5) {
+    else if (bugsShotScore >= 50) {
       return 'silver-medal';
     } 
-    else if (bugsShotScore >= 2) {
+    else if (bugsShotScore >= 25) {
       return 'bronze-medal';
     } 
     else {
@@ -90,10 +93,25 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
         </div>
 
 
+
+        {/* GO OUTSIDE MEDAL */}
+        {bugsShotTier === 'diamond-medal' && (
+            <div className="medal_container">
+              <h1 className="bugsShot_title">Please Go Outside Bro</h1>
+              <div className="centered_shine_box">
+                <div className="shine_box   diamond_shine">
+                  <img className="diamond_medal  medal_images" src="/images/medals/outdoor_tier.png" alt="Gold Medal" />
+                </div>
+              </div>
+            </div>
+          )}
+        {/* GO OUTSIDE MEDAL */}
+
+
         {/* DIAMOND MEDAL */}
           {bugsShotTier === 'diamond-medal' && (
             <div className="medal_container">
-              <h1 className="bugsShot_title">Please Go Outside</h1>
+              <h1 className="bugsShot_title">DIAMOND PLAYER</h1>
               <div className="centered_shine_box">
                 <div className="shine_box   diamond_shine">
                   <img className="diamond_medal  medal_images" src="/images/medals/diamond_badge.png" alt="Gold Medal" />

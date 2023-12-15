@@ -2,7 +2,7 @@
 
 
 function Footer() {
-  return (<footer className="text-white pt-5 ">
+  return (<footer className="text-white">
     &copy; Tony Cook 2023
   </footer>)
 }

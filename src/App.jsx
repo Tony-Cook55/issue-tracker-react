@@ -45,8 +45,7 @@
   11. npm i dotenv   : GETS US THE .env file
 
   12. npm install react-dom-confetti    USED TO CREATE CONFETTI WHEN SHOOTING BUG ON HOME  ~  https://daniel-lundin.github.io/react-dom-confetti/    ~   https://www.npmjs.com/package/react-dom-confetti
-
-
+      - import Confetti from 'react-dom-confetti';
 
   Font Source Fonts     https://fontsource.org/ // This is the font poppins it can be called in like this : font-family: 'Poppins', sans-serif;
     1. npm install @fontsource/poppins          //   font-family: 'Poppins', sans-serif;
@@ -119,6 +118,9 @@ import { useState, useEffect } from 'react'
 
 // COMPONENTS //
 import HomePage from './components/HomePage';
+
+import BugGamePage from './components/BugGame/BugGamePage'
+
 import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 import LoginFormRequiredMsg from './components/LoginRequiredMsg';
@@ -288,7 +290,10 @@ function App() {
 
               <Route path="/" element={<HomePage showToast={showToast} />} />
 
+              <Route path="bugGame" element={<BugGamePage showToast={showToast} />} />
 
+
+            {/* lllllllll LOGIN/REGISTER lllllllll */}
             <Route path="/loginRequiredMsg" element={<LoginFormRequiredMsg />} />
             <Route path="/login" element={
               <LoginForm 
@@ -304,10 +309,11 @@ function App() {
               setUsersId={setUsersId} 
               showToast={showToast} />
             } />
+            {/* lllllllll LOGIN/REGISTER lllllllll */}
 
 
 
-
+            {/* bbbbbbbbbbbbb BUGS bbbbbbbbbbbbb */}
             <Route path="bugList" element={<BugList  userFullName={userFullName} showToast={showToast}  />} />
             {/* SEARCH BUG BY ID*/}
             <Route path="/bugItem/:bugId" element={<BugItem showToast={showToast}/>} />
@@ -315,17 +321,22 @@ function App() {
             <Route path="/bugEditor/:bugId" element={<BugEditor showToast={showToast}/>} />
             {/* ADD BUGS */}
             <Route path="/report" element={<AddNewBug showToast={showToast}/>} />
-            
+            {/* bbbbbbbbbbbbb BUGS bbbbbbbbbbbbb */}
 
 
+
+            {/* uuuuuuuuuuuuu USERS uuuuuuuuuuuuu */}
             <Route path="userList" element={<UserList userFullName={userFullName} showToast={showToast}/>} />
             <Route path="/user/:userId" element={<UserItem  showToast={showToast}/>} />
             <Route path="/userEditor/:userId" element={<UserEditor showToast={showToast}/>} />
 
             <Route path="/profile" element={<Profile showToast={showToast} usersIdFromLocalStorage={usersIdFromLocalStorage}/>} />
-            
+            {/* uuuuuuuuuuuuu USERS uuuuuuuuuuuuu */}
+
+
             {/* PAGE NOT FOUND */}
             <Route path="*" element={<PageNotFound />} />
+
           </Routes>
         </main>
 
