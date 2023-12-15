@@ -5,9 +5,11 @@
 
 // CSS
 import { useEffect, useState } from "react";
-import "../BugFlying/BugFlying.css"
+import "./BugGame.css"
 
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+
+import axios from "axios";
 
 
   /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
@@ -31,7 +33,7 @@ import bugClickSound from "/images/vault_tec_lunchbox.mp3";
 
 
 
-export default function BugFlying(){
+export default function BugGame(){
 
 
   /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
@@ -53,35 +55,105 @@ export default function BugFlying(){
 
 
 
+
+// +B +B +B +B +B +B +B +B +B +B  BUG GAME UPDATING POINTS  +B +B +B +B +B +B +B +B +B +B  */
+  // Gets the new backend route of finding logged in user and updating the bugsShot score
+  const updateUsersScore = async (score) => {
+    try {
+      // Send the bugsShot to the server using the new route and pass in the score
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/users/updateBugsShot`, { bugsShot: score }, { withCredentials: true })
+      .then(response => { 
+
+        console.log(response.data.Point_Gained);
+        // console.log(response.data);
+        // showToast(response.data.Point_Gained, "success");
+    
+      })
+      .catch(error => 
+        console.log(error)
+      );
+    } catch (error) {
+      console.error("Error updating bugsShot:", error);
+    }
+  };
+// +B +B +B +B +B +B +B +B +B +B  BUG GAME UPDATING POINTS  +B +B +B +B +B +B +B +B +B +B  */
+
+
+
+
+  // On Bug being shot
   const handleBugClick = (event) => {
 
     setBugClicked(true);
 
-    // setHits((prevHits) => prevHits + 1);
 
-    // Retrieve the current bug score from local storage
-    const currentBugScore = localStorage.getItem('bugGameScore') || 0;
+    // Fetch bug score from the server using the user's profile ID
+  if (isLoggedIn) {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/users/bugsShot/${usersId}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+          // Ensure that the response contains the expected structure
+          if (response.data && response.data.bugsShot !== undefined) {
+            const currentBugScore = response.data.bugsShot || 0;
 
-    // If the user is logged in they will gain point in local storage
-    if (isLoggedIn) {
-      // Update the score in localStorage only if the user is logged in
-      setHits((prevHits) => {
-        const newHits = prevHits + 1;
-  
-        // Calculate the new bug score
-        const newBugScore = Number(currentBugScore) + 1;
-  
-        // Update local storage with the new bug score
-        localStorage.setItem('bugGameScore', newBugScore);
-  
-        return newHits;
+            setHits((prevHits) => {
+              const newHits = prevHits + 1;
+
+              /* Calculate the new bug score based on that of the bugsShot in server */
+              const newBugScore = Number(currentBugScore) + 1;
+
+              /* Send bugsShot to the server */
+              updateUsersScore(newBugScore);
+
+              return newHits;
+            });
+          } else {
+            console.error("Invalid response structure");
+          }
+      })
+      .catch((error) => {
+        console.error("Error fetching bug score:", error);
       });
-    } 
-    // If user isn't logged in they will only update score board
-    else {
-      // Update the on-screen score without saving it to localStorage
-      setHits((prevHits) => prevHits + 1);
-    }
+  }
+  else {
+    /* Update the on-screen score without saving it to localStorage */
+    setHits((prevHits) => prevHits + 1);
+  }
+
+
+
+
+    /* LLLLL ADD SCORE BASED ON LOCAL STORAGE LLLLL */
+      // /* Retrieve the current bug score from local storage */
+      // const currentBugScore = localStorage.getItem('bugsShot') || 0;
+
+      // /* If the user is logged in they will gain point in local storage */
+      // if (isLoggedIn) {
+
+      //   setHits((prevHits) => {
+      //     const newHits = prevHits + 1;
+    
+      //     /* Calculate the new bug score */
+      //     const newBugScore = Number(currentBugScore) + 1;
+    
+      //     /* Update local storage with the new bug score */
+      //     localStorage.setItem('bugsShot', newBugScore);
+
+      //     /* Send bugsShot to the server */
+      //     updateUsersScore(newBugScore);
+    
+      //     return newHits;
+      //   });
+      // } 
+      // /* If user isn't logged in they will only update score board */
+      // else {
+      //   /* Update the on-screen score without saving it to localStorage */
+      //   setHits((prevHits) => prevHits + 1);
+      // }
+    /* LLLLL ADD SCORE BASED ON LOCAL STORAGE LLLLL */
+
 
 
 
@@ -162,6 +234,15 @@ export default function BugFlying(){
           </div>
 
           <div className=" number_display" id="scoreHome">{hits}</div>
+          {/* {isLoggedIn ? (
+            <div className="number_display" id="scoreHome">
+              {hits}
+            </div>
+          ) : (
+            <div className="score_board_title">
+              Log in to keep track of your score!
+            </div>
+          )} */}
 
 
           {/* Toggle button for audio */}

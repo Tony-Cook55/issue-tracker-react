@@ -25,6 +25,8 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
+import BugScoreMedal from "../BugGame/BugScoreMedal";
+
 
   /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
   import { IsUserLoggedIn } from "../IsUserLoggedIn";
@@ -219,40 +221,6 @@ function onUserDelete(evt, userId){
 
 
 
-// +++++++++++++ BUG GAME SCORE +++++++++++++ //
-
-/* GETS BUG SCORE FOR MEDAL */
-const [bugScore, setBugScore] = useState(null);
-const [medalImage, setMedalImage] = useState(null);
-
-  useEffect(() => {
-    // Retrieve bug score from local storage
-    const storedBugScore = localStorage.getItem('bugGameScore');
-    if (storedBugScore) {
-      setBugScore(Number(storedBugScore));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Determine medal tier based on bug score
-    if (bugScore >= 10) {
-      return "gold-medal";
-      // setMedalImage('/images/medals/1st_gold_medal.png');
-    } 
-    else if (bugScore >= 5) {
-      return "silver-medal";
-      // setMedalImage('/images/medals/2nd_silver_medal.png');
-    } 
-    else if (bugScore >= 2) {
-      return "bronze-medal";
-      // setMedalImage('/images/medals/3rd_bronze_medal.png');
-    } 
-    else {       // No medal earned
-      // return "no-medal";
-      setMedalImage('/images/medals/star_medal.png');
-    }
-  }, [bugScore]);
-// +++++++++++++ BUG GAME SCORE +++++++++++++ //
 
 
 
@@ -263,28 +231,12 @@ const [medalImage, setMedalImage] = useState(null);
     <>
 
 
-
-    <div>
-      {bugScore !== null && (
-          <div>
-            <p>Bug Score: {bugScore}</p>
-            {bugScoreTier === 'gold-medal' && <img className="gold_medal" src="/images/medals/1st_gold_medal.png" alt="Gold Medal" />}
-            {bugScoreTier === 'silver-medal' && <img className="silver_medal" src="/images/medals/2nd_silver_medal.png" alt="Silver Medal" />}
-            {bugScoreTier === 'bronze-medal' && <img className="bronze_medal" src="/images/medals/3rd_bronze_medal.png" alt="Bronze Medal" />}
-            {bugScoreTier === 'no-medal' && <img className="bronze_medal" src="/images/medals/star_medal.png" alt="Bronze Medal" />}
-          </div>
-        )}
-      {bugScore === null && <img src={medalImage} className="greyed_medal shimmer" alt="Star Medal" />}
-    </div>
-
-
 <div className="button_container slide_in_from_top    ">
 
-  <div className="overviewInfo    user_background">
+  <div className="overviewInfo    user_background"> {/* user_background */}
 
     {/* BUTTONS */}
     <div className="top_button_styles">
-
 
       {/* BACK HOME */}
       <Link to="/" className="icon_link"    >
@@ -320,13 +272,21 @@ const [medalImage, setMedalImage] = useState(null);
 
         ) : (
           /* USER NOT IN EDIT MODE */
-            <button type="button" className="icon_link "
-              onClick={() => setUserProfile((prev) => ({ ...prev, editable: true }))}
-            >
-              <div className="edit_button  edit_button_background">
-                  <FaPencilRuler />
-              </div>
-            </button>
+          <div>
+            <div className="top_button_styles">
+              <button type="button" className="icon_link "
+                onClick={() => setUserProfile((prev) => ({ ...prev, editable: true }))}
+              >
+                <div className="edit_button  edit_button_background">
+                    <FaPencilRuler />
+                </div>
+              </button>
+            </div>
+
+
+
+            
+          </div>
           /* USER NOT IN EDIT MODE */
         )}
       {/* Edit User Button Puts Profile In Edit Mode*/}
@@ -337,8 +297,7 @@ const [medalImage, setMedalImage] = useState(null);
 
 
 
-    
-    <div className="bug_title_div">
+    <div className="profile_top    justify-content-center align-items-center">
       <div className="user_pic_name_container">
         <div className="profile_box">
           <div className="profile_card">
@@ -349,9 +308,18 @@ const [medalImage, setMedalImage] = useState(null);
           </div>
         </div>
       </div>
-      
 
-  </div>
+
+      {/* // ++++++ BUG GAME SCORE ++++++ // */}
+      {/* Calling in the Medals For the users Score and passing the users Id in */}
+      <div className="justify-content-center   text-center">
+        <BugScoreMedal  usersId={usersId}/>
+      </div>
+      {/* // ++++++ BUG GAME SCORE ++++++ // */}
+
+    </div>
+
+
 </div> 
 {/* <!-- overview info --> */}
 
@@ -646,21 +614,19 @@ const [medalImage, setMedalImage] = useState(null);
     <div className="end_cap_base">
 
     <div className="container ">
-      <p className="last_updated_on "> 
-      {userProfile.usersCreationDate && (
-      <p className="last_updated_on">User Joined On: <br/> {userProfile.usersCreationDate}</p>
-    )}
+      <div className="last_updated_on "> 
+          {userProfile.usersCreationDate && (
+            <p className="last_updated_on">User Joined On: <br/> {userProfile.usersCreationDate}</p>
+          )}
+      </div>
 
-          {/* TAKES YOU TO TOP OF THE PAGE */}
-            <a href="#top" className="icon_link">
-              <div className="  back_to_top_background">
-                  <FaArrowUp/>
-              </div>
-            </a>
-          {/* TAKES YOU TO TOP OF THE PAGE */}
-
-
-      </p>
+      {/* TAKES YOU TO TOP OF THE PAGE */}
+      <a href="#top" className="icon_link">
+          <div className="  back_to_top_background">
+              <FaArrowUp/>
+          </div>
+        </a>
+      {/* TAKES YOU TO TOP OF THE PAGE */}
     </div>
   </div>
 </div>

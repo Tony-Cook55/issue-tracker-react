@@ -1,10 +1,19 @@
 
 /* This is the little + background */
 .user_background{
+
   background-color: #ffffff;
+  opacity: 1;
+  background-image:  radial-gradient(#B58DED 5px, transparent 5px), radial-gradient(#B58DED 5px, #ffffff 5px);
+  background-size: 90px 90px;
+  background-position: 0 0,40px 40px;
+
+  /* Large Background */
+  /* background-color: #ffffff;
   background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent) 100px 100px, linear-gradient(#B58DED 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #B58DED 8px, #e5e5f7 8px) -4px 0;
-  background-size: 200px 200px, 200px 200px, 100px 100px, 100px 100px;
+  background-size: 200px 200px, 200px 200px, 100px 100px, 100px 100px; */
 }
+
 
 /* The generated Message */
 .greeting_message{

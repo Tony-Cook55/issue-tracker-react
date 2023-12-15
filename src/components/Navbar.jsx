@@ -44,8 +44,8 @@ export default function NavBar(      {userFullName,setUserFullName, usersIdFromL
       localStorage.removeItem("roles");
       localStorage.removeItem("usersId");
 
-      // Remove bugGameScore when user logs out
-      localStorage.removeItem("bugGameScore");
+      // Remove bugsShot when user logs out
+      localStorage.removeItem("bugsShot");
 
 
             // Print the current values for debugging
@@ -59,7 +59,7 @@ export default function NavBar(      {userFullName,setUserFullName, usersIdFromL
       navigateToAnotherPage("/");
       showToast(response.data, "success");
 
-      // window.location.reload();
+      window.location.reload();
     })
     .catch(error => console.log(error));
   }

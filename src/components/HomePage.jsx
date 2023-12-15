@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import "../components/componentsCSS/HomePage.css"
 
 
-import BugFlying from "./BugFlying/BugFlying";
+import BugGame from "./BugGame/BugGame";
 
 
 // ******************* IMPORTS ******************* //
@@ -204,9 +204,9 @@ export default function HomePage(){
 
 
 
-
-          <BugFlying />
-
+  <di className="">
+      <BugGame />
+  </di>
 
 
     </>

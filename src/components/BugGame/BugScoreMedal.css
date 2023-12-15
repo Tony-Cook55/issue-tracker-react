@@ -1,0 +1,217 @@
+
+
+
+
+
+
+
+.bugs_score_title{
+  /* padding-top: 30px;
+  padding-bottom: 30px; */
+}
+
+
+
+
+
+/* This is the container that the title and score are in */
+.bugsShot_title_container{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+
+
+/* This is added to the text that will jump*/
+.bouncing_text {
+  position: relative;
+  display: flex;
+  font-size: 65px;
+  font-weight: 900;
+  font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif; 
+}
+
+/* This is the Is the "Bugs You've Shot" Text */
+.bugsShot_title{
+  color: #4cc9f0;
+  text-shadow: 0 3px #4361ee, 0 5px #4361ee, 0 7px #4361ee;
+
+  /* Space Below so the score can bounce up */
+  padding-bottom: 40px;
+}
+
+/* This is the actual score itself*/
+.bugsShot_score{
+
+  color: #4cc9f0;
+  text-shadow: 0 3px #4361ee, 0 5px #4361ee, 0 7px #4361ee;
+  animation: bounce 1.5s ease infinite;
+}
+
+
+@keyframes bounce {
+  0%   { transform: scale(1,1) translateY(0); }
+  10%  { transform: scale(1.1,.9) translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(-55px);}
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  58%  { transform: scale(1,1) translateY(-7px); }
+  65%  { transform: scale(1,1) translateY(0);}
+  100% { transform: scale(1,1) translateY(0);}
+}
+
+
+@keyframes scale {
+  0% {transform: scaleX(1);}
+  25% {transform: scaleX(0.4);}
+  50% {transform: scaleX(1);}
+  75% {transform: scaleX(0.9);}
+  100% {transform: scaleX(1);}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container Holding the medals and Text */
+.medal_container{
+  padding-bottom: 100px;
+}
+
+/* This applies to every Medal */
+.medal_images{
+  position: relative;
+  
+  height: 240px;
+  animation: tilt-shaking 0.35s infinite;
+
+  transition: all 0.3s ease-in-out;
+
+  z-index: 1; /* Set z-index to 1 or lower to be below the shine effect */
+}
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(6deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* When Hovering on the medal */
+.medal_images:hover, .medal_images:focus{
+  /* height: 280px; */
+  animation: horizontal-shaking 0.25s infinite;
+
+  transition: all 0.3s ease-in-out;
+}
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) }
+}
+
+
+/* Medal You Get For No Score Or below The Score */
+.greyed_medal{
+  filter: grayscale()
+}
+
+
+
+
+
+
+
+
+
+
+/* Puts The Image in the center*/
+.centered_shine_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* Holds teh shine effect */
+.shine_box {
+  width: 240px;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+
+  border-radius: 50%;
+}
+
+/* Handles the shine effect in the shine_box container */
+.shine_box:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -1500px;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(255, 230, 0, 0.3); */
+  transform: skewX(-30deg);
+  animation: shine 3.5s linear infinite; /* Adjust the duration as needed */
+
+  z-index: 5; /* Above the Img */
+}
+
+@keyframes shine {
+  to {
+    left: 100%;
+  }
+}
+
+
+/* Colors to shine based on Medal */
+.diamond_shine:before{
+  background: #8bcbff83;
+}
+.gold_shine:before{
+  background: #ffe27a73; 
+}
+.silver_shine:before{
+  background: #e0e0e050;
+}
+.bronze_shine:before{
+  background: #ff98381e;
+}
+.grey_shine:before{
+  background: #fff5f511;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,13 +1,9 @@
 
 
-.red_text li{
-  font-size: 30px;
-  padding: 2%;
-  color: red;
-  font-weight: bold;
-}
 
-
+/* .home_container{
+  padding-bottom: 50px;
+} */
 
 
 
@@ -34,10 +30,6 @@
   position: relative;
   text-align: center;
 }
-
-
-
-
 
 
 
@@ -116,9 +108,9 @@
 
 .home_title span {
   position: relative;
-  top: 2px;
+  top: 0px;
   display: inline-block;
-  animation: bounce 1s ease infinite alternate;
+  animation: home_page_bounce 1s ease infinite alternate;
   font-size: 150px;
   color: #fff;
   text-shadow: 0 1px 0 #B58DED, 0 2px 0 #B58DED, 0 3px 0 #B58DED, 0 4px 0 #B58DED,
@@ -131,7 +123,7 @@
   position: relative;
   top: 8px;
   display: inline-block;
-  /* animation: bounce 1s ease infinite alternate; */
+  /* animation: home_page_bounce 1s ease infinite alternate; */
   font-size: 100px;
   color: #fff;
   text-shadow: 0 1px 0 #B58DED, 0 2px 0 #B58DED, 0 3px 0 #B58DED, 0 4px 0 #B58DED,
@@ -150,7 +142,7 @@
 
 
 /* ANIMATION */
-@keyframes bounce {
+@keyframes home_page_bounce {
   100% {
     top: -30px;
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
@@ -187,11 +179,11 @@
 
   text-align: center;
 
-
 }
 .full_screen_cards_content {
   position: relative;
   text-align: center;
+
 }
 
 

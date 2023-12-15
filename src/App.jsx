@@ -79,9 +79,10 @@
           Choose y to continue
       
           ANY TIME YOU NEED TO ACCESS THIS GCLOUD DO THIS
-            1. SWITCH TO THIS GCLOUD: 
-                gcloud config set project cook-issuetracker-frontend 
-            2. UPDATES: 
+            1. npm run build 
+            2. SWITCH TO THIS GCLOUD: 
+                gcloud config set project cook-issuetracker-frontend         for backend          gcloud config set project cook-issuetracker-backend
+            3. UPDATES: 
                 gcloud app deploy 
 
 
@@ -210,7 +211,7 @@ function App() {
         localStorage.removeItem("roles");
         localStorage.removeItem("usersId");
 
-        // localStorage.removeItem("bugGameScore");
+        // localStorage.removeItem("bugsShot");
 
         setUserFullName(null);
         setUsersRole(null);
@@ -227,8 +228,8 @@ function App() {
           localStorage.removeItem("roles");
           localStorage.removeItem("usersId");
     
-          // Remove bugGameScore when user logs out
-          localStorage.removeItem("bugGameScore");
+          // Remove bugsShot when user logs out
+          localStorage.removeItem("bugsShot");
           //console.log(response.data);
 
           setUserFullName(null);
