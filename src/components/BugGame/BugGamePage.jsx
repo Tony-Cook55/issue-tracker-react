@@ -18,6 +18,9 @@ import "./BugGame.css"
 
 
 export default function BugGamePage(){
+
+
+
   return(
     <>
 

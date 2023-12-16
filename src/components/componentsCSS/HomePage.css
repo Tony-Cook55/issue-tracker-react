@@ -24,13 +24,14 @@
 }
 
 
-
 /* Text inside of the banner */
 .full_screen_banner_content {
   max-width: 900px;
   position: relative;
   text-align: center;
 }
+
+
 
 @media only screen and (max-width: 768px) {
   .full_screen_banner,
@@ -305,8 +306,11 @@
   margin-bottom: 800px;
 
   font-weight: bold;
-  color: #B58DED;
-  text-shadow: 2px 2px 0px rgb(255, 255, 255);
+  color: #fff;
+
+  /* text-shadow: 0 3px #B58DED, 0 5px #B58DED, 0 7px #B58DED; */
+  text-shadow: 0 3px 10px #B58DED, 0 5px 10px #B58DED, 0 7px 10px #B58DED;
+
 	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
@@ -314,13 +318,61 @@
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .enter_firing_range_text {
-    font-family: 'Lexend Variable', sans-serif;
   
     font-size: 70px; /* Adjust the font size based on your preference */
   
-    margin-top: 200px;
   
     /* Space Between The Images */
     margin-bottom: 850px;
   }  
+}
+
+
+
+
+
+
+
+
+.firing_range_cross_hair {
+  width: 250px; /* Adjust the size based on your preference */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+  animation: swayAnimation 5s ease-in-out infinite;
+
+  transition: all 0.3s ease 0s;
+}
+
+@keyframes swayAnimation {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateX(-60px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(60px);
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .firing_range_cross_hair {
+    width: 200px; 
+  }
+}
+
+
+
+
+/* Add a hover effect to scale up the magnifying glass */
+.firing_range_cross_hair:hover {
+  transform: translate(-50%, -50%) scale(1.3); /* Adjust the scale factor based on your preference */
+  animation: none; /* Override the existing animation during hover */
+
+  transition: all 0.3s ease 0s;
+
+  cursor: pointer;
 }

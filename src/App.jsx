@@ -120,6 +120,7 @@ import { useState, useEffect } from 'react'
 import HomePage from './components/HomePage';
 
 import BugGamePage from './components/BugGame/BugGamePage'
+import BugGame from './components/BugGame/BugGame'
 
 import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
@@ -290,7 +291,7 @@ function App() {
 
               <Route path="/" element={<HomePage showToast={showToast} />} />
 
-              <Route path="bugGame" element={<BugGamePage showToast={showToast} />} />
+              <Route path="bugGame" element={<BugGame showToast={showToast} />} />
 
 
             {/* lllllllll LOGIN/REGISTER lllllllll */}

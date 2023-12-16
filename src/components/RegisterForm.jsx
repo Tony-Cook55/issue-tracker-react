@@ -223,7 +223,8 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
                   <input value={fullName} name="fullName" type="text" id="fullName" 
                   className="form_inputs"   
                   onChange={(e) => handleInputChange(e, setFullName)}  
-                  required    autoFocus
+                  required    
+                  autoFocus
                   />
                   <label  className="under_input_placeholder" htmlFor="fullName">Full Name</label>
                 </div>

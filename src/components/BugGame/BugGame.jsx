@@ -301,7 +301,7 @@ useEffect(() => {
 
 
 
-<div className="bug-container  fade_in_view"    draggable="false"  onDragStart={(e) => e.preventDefault()}>
+<div className="bug-container    bug_game_entrance_animation   fade_in_view"    draggable="false"  onDragStart={(e) => e.preventDefault()}>
 
     {/* ssssss SCOREBOARD ssssss */}
     <div className="container  score_board_container  justify-content-center text-center">

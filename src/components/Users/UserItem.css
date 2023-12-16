@@ -89,7 +89,7 @@
 @media (max-width: 768px) {
   /* Actual Container for the pic and text */
   .profile_box {
-    width: 300px;
+    width: 250px;
     height: 400px;
   }
 }

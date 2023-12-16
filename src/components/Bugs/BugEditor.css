@@ -363,7 +363,6 @@
   animation: swayAnimation 5s ease-in-out infinite;
 
   transition: all 0.3s ease 0s;
-
 }
 
 @keyframes swayAnimation {
@@ -372,6 +371,13 @@
   }
   50% {
     transform: translate(-50%, -50%) translateX(60px);
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .cross_hair {
+    width: 350px; /* Adjust the size based on your preference */
   }
 }
 

@@ -317,6 +317,23 @@ function onUserDelete(evt, userId){
       </div>
       {/* // ++++++ BUG GAME SCORE ++++++ // */}
 
+
+
+
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+
+          <h1 className="enter_firing_range_text_profile">Enter The Firing Range</h1>
+
+          <Link to="/bugGame">
+            <img
+              src="/images/colored_bug_logo.png"
+              className="bug_image_profile"
+              alt="Bug"
+            />
+          </Link>
+
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+
     </div>
 
 

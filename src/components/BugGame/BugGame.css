@@ -198,7 +198,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
 
-  transition: .3s transform ease-in-out;
+  transition: all 0.3s ease-in-out;
   /* background-color: #B58DED; */
 
   border-radius: 12px;
@@ -223,7 +223,7 @@
 
 
 /* This will make the object its given to (list-view), to disappear upwards when screen scrolls down */
-.fade_in_view{
+/* .fade_in_view{
   animation: 
   animate-in linear forwards,
   animate-out linear forwards;
@@ -242,7 +242,7 @@
 
 
 
-/* @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .fade_in_view {
     animation: none; 
   }

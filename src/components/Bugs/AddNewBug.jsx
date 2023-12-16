@@ -170,7 +170,7 @@ export default function AddNewBug(  {showToast}  ) {
                     className="form_inputs"
                     value={title} 
                     onChange={(evt) => setTitle(evt.target.value)}
-                      autoFocus
+                    autoFocus
                   />
 
                   {/* Error Message */}

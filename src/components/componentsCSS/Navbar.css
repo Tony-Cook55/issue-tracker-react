@@ -1,7 +1,10 @@
 
 
 
-
+.navbar_ul{
+  padding: 0;
+  margin: 0;
+}
 
 
 
@@ -130,7 +133,9 @@ input[type="checkbox"]{
 .wrapper ul li a{
   color: none;
   text-decoration: none;
+
   font-size: 30px;
+
   font-weight: 500;
 
 
@@ -146,6 +151,14 @@ input[type="checkbox"]{
   /* line-height: 50px; */
   transition: all 0.2s ease;
 }
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .wrapper ul li a{
+    font-size: 24px;
+  }
+}
+
+
 
 
 /* This is the hover effect of having the swirling colors on the border */

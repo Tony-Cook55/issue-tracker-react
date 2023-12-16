@@ -119,11 +119,18 @@ const [userProfile, setUserProfile] = useState({});
 
             
               <div className="wrapper">
-                <ul>
+                <ul className="navbar_ul">
                   {/* /////// HOME PAGE /////// */}
                   <li className="nav-item"  onClick={refreshNavbar}>
                     <NavLink to="/" className="nav-link">
                       Home
+                    </NavLink>
+                  </li>
+
+
+                  <li className="nav-item"  onClick={refreshNavbar}>
+                    <NavLink to="bugGame" className="nav-link">
+                      Bug Shooter
                     </NavLink>
                   </li>
                   {/* /////// HOME PAGE /////// */}

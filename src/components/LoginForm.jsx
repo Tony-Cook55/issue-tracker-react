@@ -167,7 +167,8 @@ export default function LoginForm(    {setUserFullName,setUsersRole,setUsersId, 
           <div className="login_Inputs_Div">
             <input type="email" id="email" name="email" placeholder="Email" 
               className="login_Inputs" 
-              required   autoFocus
+              required
+              autoFocus
               onChange={(evt) => setEmail(evt.target.value)}
             />
           </div>

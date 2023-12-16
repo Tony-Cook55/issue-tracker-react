@@ -1,4 +1,8 @@
 
+
+/* eslint-disable */
+
+
 // ******************* IMPORTS ******************* //
 
 // CSS
@@ -59,9 +63,9 @@ export default function HomePage(){
     titleSpans.forEach((span, index) => {
       span.style.animationDelay = `${index * 0.1}s`;
     });
-
-
   }, []);
+
+
 
 
 
@@ -220,10 +224,11 @@ export default function HomePage(){
                     alt="Bug"
                   />
 
+
                 <Link to="/bugGame">
                   <img
-                    src="/images/crosshair.png"
-                    className="cross_hair"
+                    src="/images/crosshair_borderless.png"
+                    className="firing_range_cross_hair"
                     alt="Crosshair"
                   />
                 </Link>
