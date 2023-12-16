@@ -334,7 +334,7 @@
 }
 
 .bug_fly_animation_3 {
-  animation: old_fly 20s linear infinite;
+  animation: flyingAnimation 25s linear infinite;
   /* background-color: rgb(72, 255, 0); */
 }
 
@@ -343,6 +343,10 @@
   /* background-color: rgb(212, 0, 255); */
 }
 
+.bug_fly_animation_5{
+  animation: ghost_fly 20s linear infinite;
+  /* background-color: rgb(255, 230, 0); */
+}
 
 
 
@@ -426,40 +430,45 @@
   }
 }
 
-@keyframes old_fly {
-  98.001%, 0% {
-    display: block;
-    transform: translateX(-200%) translateY(200vh) rotateZ(0deg);
+
+@keyframes flyingAnimation {
+  0%, 98.001% {
+    transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
   }
 
-  15% {
-    transform: translateX(100vw) translateY(-100%) rotateZ(180deg);
+  10% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(180deg);
   }
 
-  15.001%, 18% {
+  15%, 18% {
     transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
   }
 
-  40% {
-    transform: translateX(-200%) translateY(3vh) rotateZ(-180deg);
+  30% {
+    transform: translateX(-150%) translateY(10vh) rotateZ(-180deg);
   }
 
-  40.001%, 43% {
-    transform: translateX(-200%) translateY(-100%) rotateZ(-180deg);
+  40%, 43% {
+    transform: translateX(-200%) translateY(-30%) rotateZ(-180deg);
   }
 
-  65% {
-    transform: translateX(100vw) translateY(50vh) rotateZ(0deg);
+  55% {
+    transform: translateX(120vw) translateY(30vh) rotateZ(0deg);
   }
 
-  65.001%, 68% {
-    transform: translateX(20vw) translateY(-200%) rotateZ(180deg);
+  65%, 68% {
+    transform: translateX(20vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  80% {
+    transform: translateX(50vw) translateY(70vh) rotateZ(0deg);
   }
 
   95% {
-    transform: translateX(100vw) translateY(100vh) rotateZ(0deg);
+    transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
   }
 }
+
 
 @keyframes fly_1 {
   98.001%, 0% {
@@ -498,6 +507,58 @@
     transform: translateX(-10vw) translateY(10vh) rotateZ(0deg);
   }
 }
+
+@keyframes ghost_fly {
+	0% {
+
+		transform: translate(-200%,110vh) rotateZ(0deg);
+	}
+
+	12.5% {
+		transform: translate(120vw,-120%) rotateZ(20deg);
+	}
+
+	25% {
+		transform: translate(-200%,50vh) scale(1.75) rotateZ(-20deg);
+	}
+
+	37.5% {
+		transform: translate(-200%,-120%) rotateZ(-40deg);
+	}
+
+	50% {
+		transform: translate(100vw,50vh) rotateZ(0deg);
+	}
+
+	62.5% {
+		transform: translate(20vw,100vh) rotateZ(20deg);
+	}
+	75% {
+		transform: translate(200%,100vh) rotateZ(20deg);
+	}
+	87.5% {
+		transform: translate(50vw,-200%) scale(1.75) rotateZ(20deg);
+	}
+
+	100% {
+		transform: translate(-200%,110vh) rotateZ(0deg);
+	}
+}
+
+
+
+/* @keyframes up_and_down {
+  0% {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+    -moz-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+} */
 
 
 /* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */

@@ -131,6 +131,7 @@ useEffect(() => {
       'bug_fly_animation_2',
       'bug_fly_animation_3',
       'bug_fly_animation_4',
+      "bug_fly_animation_5",
       // Add more animation classes as needed
     ];
     const randomIndex = Math.floor(Math.random() * animationClasses.length);
@@ -276,7 +277,7 @@ useEffect(() => {
 
   // Change Appearance of Confetti
   const confettiConfig = {
-    angle: 160,
+    angle: 90,
     spread: 50,
     startVelocity: 50,
     elementCount: 70,

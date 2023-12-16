@@ -309,7 +309,7 @@
   color: #fff;
 
   /* text-shadow: 0 3px #B58DED, 0 5px #B58DED, 0 7px #B58DED; */
-  text-shadow: 0 3px 10px #B58DED, 0 5px 10px #B58DED, 0 7px 10px #B58DED;
+  text-shadow: 0 3px 5px #B58DED, 0 5px 5px #B58DED, 0 7px 5px #B58DED;
 
 	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
