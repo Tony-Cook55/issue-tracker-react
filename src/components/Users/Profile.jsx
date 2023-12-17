@@ -302,7 +302,7 @@ function onUserDelete(evt, userId){
         <div className="profile_box">
           <div className="profile_card">
               <h2 className="greeting_message"><strong>{greetingMessage}</strong></h2>
-              <h2 className="users_name"><strong>{userProfile.fullName}</strong></h2>
+              <h2 className="users_name_profile"><strong>{userProfile.fullName}</strong></h2>
               <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
               {/* <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p> */}
           </div>
@@ -321,8 +321,7 @@ function onUserDelete(evt, userId){
 
 
         {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
-
-          <h1 className="enter_firing_range_text_profile">Enter The Firing Range</h1>
+          {/* <h1 className="enter_firing_range_text_profile">Enter The Firing Range</h1>
 
           <Link to="/bugGame">
             <img
@@ -330,9 +329,23 @@ function onUserDelete(evt, userId){
               className="bug_image_profile"
               alt="Bug"
             />
+          </Link> */}
+        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+
+
+        {/* xxxx LEADER BOARD xxxx */}
+
+          <h1 className="enter_firing_range_text_profile">Visit THe Leaderboard</h1>
+
+          <Link to="/leaderBoard">
+            <img
+              src="/images/medals/leaderboard.png"
+              className="bug_image_profile"
+              alt="Bug"
+            />
           </Link>
 
-        {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
+        {/* xxxx LEADER BOARD xxxx */}
 
     </div>
 

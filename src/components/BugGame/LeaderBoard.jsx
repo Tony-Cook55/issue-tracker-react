@@ -88,7 +88,7 @@ export default function LeaderBoard(){
 <div className="d-flex align-items-center justify-content-center">
       <div className="leader_board_container">
         <div className="leader_board_title_container">
-          <h1 className="leader_board_title text-center">Leader Board</h1>
+          <h1 className="leader_board_title text-center">Leaderboard</h1>
 
         </div>
         <div id="leaderboard">

@@ -102,6 +102,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
       }
     {/* xxxxx ERROR HANDLING xxxxx */}
 
+    console.log('Current Date:', new Date().toLocaleString('en-US'));
 
 
     {/* SUCCESS  IF NO ERRORS POST REGISTER TO SERVER  SUCCESS */}
@@ -132,6 +133,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
       // Makes an object and plugs it into fullName that has the users name and the time it should expire
       const user = {
         fullName : response.data.fullName,
+        users_id: response.data.users_id,
         expiration : expirationTime,
 
         // readable_expiration: new Date(expirationTime).toLocaleString("en-US", {

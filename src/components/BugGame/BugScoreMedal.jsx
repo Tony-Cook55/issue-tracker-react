@@ -95,7 +95,7 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
 
 
         {/* GO OUTSIDE MEDAL */}
-        {bugsShotTier === 'diamond-medal' && (
+        {/* {bugsShotTier === 'diamond-medal' && (
             <div className="medal_container">
               <h1 className="bugsShot_title">Please Go Outside Bro</h1>
               <div className="centered_shine_box">
@@ -104,12 +104,12 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         {/* GO OUTSIDE MEDAL */}
 
 
         {/* DIAMOND MEDAL */}
-          {bugsShotTier === 'diamond-medal' && (
+          {/* {bugsShotTier === 'diamond-medal' && (
             <div className="medal_container">
               <h1 className="bugsShot_title">DIAMOND PLAYER</h1>
               <div className="centered_shine_box">
@@ -118,12 +118,12 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         {/* DIAMOND MEDAL */}
 
 
         {/* GOLD MEDAL */}
-          {bugsShotTier === 'gold-medal' && (
+          {/* {bugsShotTier === 'gold-medal' && (
             <div className="medal_container ">
               <h1 className="bugsShot_title">You Are 1st Place</h1>
 
@@ -133,12 +133,12 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         {/* GOLD MEDAL */}
 
 
         {/* SILVER MEDAL */}
-          {bugsShotTier === 'silver-medal' && (
+          {/* {bugsShotTier === 'silver-medal' && (
             <div className="medal_container">
               <h1 className="bugsShot_title">You Are 2nd Place</h1>
 
@@ -148,12 +148,12 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         {/* SILVER MEDAL */}
 
 
         {/* BRONZE MEDAL */}
-          {bugsShotTier === 'bronze-medal' && (
+          {/* {bugsShotTier === 'bronze-medal' && (
             <div className="medal_container">
               <h1 className="bugsShot_title">You Are 3rd Place</h1>
 
@@ -163,12 +163,12 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         {/* BRONZE MEDAL */}
 
 
         {/* NO MEDAL */}
-          {bugsShotTier === 'no-medal' && (
+          {/* {bugsShotTier === 'no-medal' && (
             <div className="medal_container">
               <h1 className="bugsShot_title">Shoot More Bugs!</h1>
 
@@ -178,13 +178,14 @@ export default function BugScoreMedal(   {usersId, showToast}  ){
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         {/* NO MEDAL */}
 
         </div>
       )}
       {bugsShot === null && (
-        <img className="greyed_medal  shimmer  medal_images" src="/images/medals/star_medal.png" alt="No Medal" />
+        <span></span>
+        // <img className="greyed_medal  shimmer  medal_images" src="/images/medals/star_medal.png" alt="No Medal" />
       )}
     </div>
   );

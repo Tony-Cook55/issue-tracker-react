@@ -277,13 +277,13 @@ useEffect(() => {
 
   // Change Appearance of Confetti
   const confettiConfig = {
-    angle: 90,
+    angle: 110,
     spread: 50,
     startVelocity: 50,
     elementCount: 70,
     dragFriction: 0.12,
     duration: 1000,
-    stagger: 3,
+    stagger: 0,
     width: '30px',
     height: '30px',
     colors: ['#12cf21', '#3e9946', '#43b64c', '#9df7a5', '#13e024'],

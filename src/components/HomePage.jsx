@@ -243,10 +243,10 @@ export default function HomePage(){
 
 
         {/* LLLL LEADERBOARD LLLL */}
-        <section className="full_screen_cards">
+        {/* <section className="full_screen_cards">
           <div className="full_screen_cards_content">
 
-                  <h1 className="enter_firing_range_text">Visit The Leader Board </h1>
+                  <h1 className="enter_firing_range_text">Visit The Leaderboard </h1>
 
                 <Link to="/leaderBoard">
                   <img
@@ -256,7 +256,7 @@ export default function HomePage(){
                   />
                 </Link>
           </div>
-        </section>
+        </section> */}
         {/* LLLL LEADERBOARD LLLL */}
 
 

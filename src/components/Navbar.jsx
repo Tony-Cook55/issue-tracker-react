@@ -170,13 +170,13 @@ const [userProfile, setUserProfile] = useState({});
                       <div className="cursor_pointer">
 
 
-                        {/* /////// ADD BUG /////// */}
+                        {/* /////// LEADER BOARD /////// */}
                         <li className="nav-item"  onClick={refreshNavbar}>
                           <NavLink to="/leaderBoard" className="nav-link">
-                            Leader Board
+                            Leaderboard
                           </NavLink>
                         </li>
-                        {/* /////// ADD BUG /////// */}
+                        {/* /////// LEADER BOARD  /////// */}
 
 
                         {/* /////// ADD BUG /////// */}

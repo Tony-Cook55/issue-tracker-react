@@ -231,7 +231,7 @@ export default function BugEditor(  {showToast}  ) {
 
       showToast(response.data.Bug_Updated, "success");
 
-      // navigateToAnotherPage(`/bugItem/${bugId}`);
+      navigateToAnotherPage(`/bugItem/${bugId}`);
 
     })
     .catch(error => {

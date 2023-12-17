@@ -194,7 +194,7 @@ const addNewTestCase = () => {
                               <div className="d-flex flex-row align-items-center">
                                 <span className="mr-2">{testCase.testCaseCreatedByUser}</span>
                               </div>
-                              <small>{testCase.versionRelease}</small>
+                              <small>Version Release: {testCase.versionRelease}</small>
                             </div>
                             <h4><span className="mr-2">{testCase.title}</span></h4>
                             <p className="text-justify comment_text">
