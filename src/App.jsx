@@ -12,7 +12,7 @@
   / Allows for the connection of the backend \
   6. npm i axios
 
-  7. npm i react-icons  
+  7. npm i react-icons        npm install react-icons --save      https://react-icons.github.io/react-icons/
   8. npm i react-router-dom    CHANGES PAGES
 
     /\ ADD THIS TO THE BACKEND TO ALLOW FOR axios TO CONNECT TO THE BACKEND /\
@@ -121,6 +121,7 @@ import HomePage from './components/HomePage';
 
 import BugGamePage from './components/BugGame/BugGamePage'
 import BugGame from './components/BugGame/BugGame'
+import LeaderBoard from './components/BugGame/LeaderBoard'
 
 import NavBar from './components/Navbar';
 import LoginForm from './components/LoginForm';
@@ -291,7 +292,10 @@ function App() {
 
               <Route path="/" element={<HomePage showToast={showToast} />} />
 
+
               <Route path="bugGame" element={<BugGame showToast={showToast} />} />
+              <Route path="leaderBoard" element={<LeaderBoard showToast={showToast} />} />
+
 
 
             {/* lllllllll LOGIN/REGISTER lllllllll */}
@@ -345,7 +349,12 @@ function App() {
 
 
       <footer>
-        <Footer />
+        <Footer 
+          userFullName={userFullName} 
+          setUserFullName={setUserFullName} 
+          usersIdFromLocalStorage={usersIdFromLocalStorage} 
+          setUsersIdFromLocalStorage={setUsersIdFromLocalStorage}
+        />
       </footer>
     </>
   );

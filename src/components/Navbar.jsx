@@ -169,6 +169,16 @@ const [userProfile, setUserProfile] = useState({});
                     {userFullName && 
                       <div className="cursor_pointer">
 
+
+                        {/* /////// ADD BUG /////// */}
+                        <li className="nav-item"  onClick={refreshNavbar}>
+                          <NavLink to="/leaderBoard" className="nav-link">
+                            Leader Board
+                          </NavLink>
+                        </li>
+                        {/* /////// ADD BUG /////// */}
+
+
                         {/* /////// ADD BUG /////// */}
                         <li className="nav-item"  onClick={refreshNavbar}>
                           <NavLink to="/report" className="nav-link">

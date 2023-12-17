@@ -242,6 +242,27 @@ export default function HomePage(){
 
 
 
+        {/* LLLL LEADERBOARD LLLL */}
+        <section className="full_screen_cards">
+          <div className="full_screen_cards_content">
+
+                  <h1 className="enter_firing_range_text">Visit The Leader Board </h1>
+
+                <Link to="/leaderBoard">
+                  <img
+                    src="/images/medals/leaderboard.png"
+                    className="leader_board_pic"
+                    alt=""
+                  />
+                </Link>
+          </div>
+        </section>
+        {/* LLLL LEADERBOARD LLLL */}
+
+
+
+
+
 
   {/* <div className="">
       <BugGame />

@@ -1,0 +1,17 @@
+
+
+.footer_container{
+  padding-top: 150px;
+}
+
+
+.footer_Links{
+  text-shadow: 0 1px 2px #B58DED, 0 2px 2px #B58DED, 0 3px 2px #B58DED;
+
+  transition: all 0.2s ease 0s;
+}
+
+.btn-floating:hover{
+  font-size: 20px;
+  transition: all 0.2s ease 0s;
+}
