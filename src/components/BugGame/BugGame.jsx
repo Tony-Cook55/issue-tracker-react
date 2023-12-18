@@ -261,7 +261,7 @@ useEffect(() => {
       // Reset the confetti position
       setConfettiPosition({ x: 0, y: 0 });
 
-    }, 2000); // Adjust the delay as needed
+    }, 1000); // 1000 Adjust the delay as needed
 
 
   };

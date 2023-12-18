@@ -70,6 +70,18 @@ export default function HomePage(){
 
 
 
+/* ^^^^^^^^^^^^ ON LINK CLICK REFRESH AND SCROLL TO TOP ^^^^^^^^^^^^ */     // onClick={scrollToTop}
+
+// Scrolls to the top of the page
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth" // Use "smooth" for a smooth scrolling effect, or "auto" for instant scrolling
+  });
+};
+
+/* ^^^^^^^^^^^^ ON LINK CLICK REFRESH AND SCROLL TO TOP ^^^^^^^^^^^^ */
+
 
 
 
@@ -225,7 +237,7 @@ export default function HomePage(){
                   />
 
 
-                <Link to="/bugGame">
+                <Link to="/bugGame" onClick={scrollToTop}>
                   <img
                     src="/images/crosshair_borderless.png"
                     className="firing_range_cross_hair"

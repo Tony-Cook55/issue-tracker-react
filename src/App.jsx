@@ -190,6 +190,16 @@ function App() {
 
   // When the component loads use this
   useEffect(() => {
+
+
+    // Scrolls To Top //
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    // Scrolls To Top //
+
+
     // Getting the fullName and setting it in our local storage to allow for users to refresh and their name stays
     const getFullName = JSON.parse(localStorage.getItem("fullName"));
 

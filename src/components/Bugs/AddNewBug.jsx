@@ -97,7 +97,9 @@ export default function AddNewBug(  {showToast}  ) {
         }
       });
     }
-  
+
+    // showToast(`All Fields Are Required`,"error");
+
     return valid;
   };
 
@@ -124,10 +126,52 @@ export default function AddNewBug(  {showToast}  ) {
 
       navigateToAnotherPage("/");
     })
-    .catch(error => 
-      console.log(error)
-    );
-  
+    .catch(error => {
+      // Log the entire error object for further inspection
+      console.error("Full error object:", error);
+
+      // Check if there's a response and data property
+      if (error.response && error.response.data && error.response.data.error) {
+        const detailsArray = error.response.data.error.details;
+    
+        // Check if detailsArray is an array before using forEach
+        if (Array.isArray(detailsArray)) {
+          // Handle errors for each field
+          detailsArray.forEach(detail => {
+            const { path, message } = detail;
+    
+            switch (path[0]) {
+              case "title":
+                setTitleError(message);
+                break;
+              case "description":
+                setDescriptionError(message);
+                break;
+              case "stepsToReproduce":
+                setStepsToReproduceError(message);
+                break;
+              default:
+                // Handle other fields if needed
+                break;
+            }
+          });
+        } else {
+          // Handle errors without a detailsArray
+          console.error("Error details are not in an array:", error);
+    
+          // You may want to set a generic error message or handle it in a way that makes sense for your application
+          // setError("An unexpected error occurred. Please try again.");
+          showToast(`Please Try Again`,"error");
+        }
+      } else {
+        // Handle errors without a response.data.error structure
+        console.error("Error without response.data.error:", error);
+        showToast(`Please Try Again`,"error");
+        // You may want to set a generic error message or handle it in a way that makes sense for your application
+        // setError("An unexpected error occurred. Please try again.");
+      }
+    });
+
 
   }
 
@@ -227,7 +271,7 @@ export default function AddNewBug(  {showToast}  ) {
                                     const newSteps = [...stepsToReproduce];
                                     newSteps[index] = e.target.value;
                                     setStepsToReproduce(newSteps);
-                                    required
+                                    // required
                                   }}
                                 />
                               </div>

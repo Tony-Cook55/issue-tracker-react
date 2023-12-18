@@ -64,14 +64,37 @@ export default function NavBar(      {userFullName,setUserFullName, usersIdFromL
     .catch(error => console.log(error));
   }
 
-
-  // THIS ALLOWS WHEN A LINK IS CLICKED TO REFRESH THE PAGE ALLOWING THE NAVBAR WRAPPER TO RESET
-  const refreshNavbar = () => {
-    window.location.reload();
-  };
 // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
 
 
+
+
+
+
+/* ^^^^^^^^^^^^ ON LINK CLICK REFRESH AND SCROLL TO TOP ^^^^^^^^^^^^ */
+
+// THIS ALLOWS WHEN A LINK IS CLICKED TO REFRESH THE PAGE ALLOWING THE NAVBAR WRAPPER TO RESET
+const refreshNavbar = () => {
+  window.location.reload();
+};
+
+// Scrolls to the top of the page
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth" // Use "smooth" for a smooth scrolling effect, or "auto" for instant scrolling
+  });
+};
+
+// const RefreshAndScrollOnClick = () => {
+//   scrollToTop();
+//   refreshNavbar();
+
+//   setTimeout(() => {
+//     refreshNavbar();
+//   }, 100); 
+// };
+/* ^^^^^^^^^^^^ ON LINK CLICK REFRESH AND SCROLL TO TOP ^^^^^^^^^^^^ */
 
 
 
@@ -128,7 +151,7 @@ const [userProfile, setUserProfile] = useState({});
                   </li>
 
 
-                  <li className="nav-item"  onClick={refreshNavbar}>
+                  <li className="nav-item"  onClick={refreshNavbar}  >
                     <NavLink to="bugGame" className="nav-link">
                       Bug Shooter
                     </NavLink>

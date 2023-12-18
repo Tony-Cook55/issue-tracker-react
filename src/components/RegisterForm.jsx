@@ -48,7 +48,8 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
 
     // If no email is there say required : if otherwise : the email doesn't have @ say its required : if all good : do nothing " "
     const emailError = !email ? "Email is required" : 
-    !email.includes("@") ? "Email must contain @" : "";
+    !email.includes("@") || !email.split('@')[1].trim().includes('.') ? "Email must contain a valid domain" : "";
+    // Above the email must have an @, text behind the @, and after that text a . to allow for the .com, .net 
 
     // If no password say its required : if otherwise : the length is less than 8 say must be at least 8 : if all good : do nothing " "
     const passwordError = !password ? "Password is required" :

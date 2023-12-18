@@ -12,6 +12,7 @@ import axios from 'axios';
 // Lets us on a command go to another page
 import { useNavigate, useParams } from "react-router-dom";
 
+import { FaArrowUp } from 'react-icons/fa';
 
 import { FaHome, FaCrosshairs, FaBug ,FaUserCircle   } from "react-icons/fa";
 import { IoMdAddCircle, IoMdLogOut  } from "react-icons/io";
@@ -164,6 +165,7 @@ const refreshNavbar = () => {
             <a className="btn btn-outline-light btn-floating m-1" role="button"       onClick={(evt) => onClickLogout(evt)}>
               <span className="footer_Links">Logout</span>
             </a>
+
         </div>
       }
 
@@ -174,6 +176,15 @@ const refreshNavbar = () => {
     © 2023 Copyright:
     Tony Cook
   </div>
+
+            {/* TAKES YOU TO TOP OF THE PAGE */}
+            <a href="#top" className="icon_link">
+                <div className="back_to_top_background">
+                    <FaArrowUp/>
+                </div>
+              </a>
+            {/* TAKES YOU TO TOP OF THE PAGE */}
+
 </footer>
     </>
   )
