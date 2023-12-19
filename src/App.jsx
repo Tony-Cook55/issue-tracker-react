@@ -87,6 +87,13 @@
 
 
 
+  TO GET RID OF ALL EDITS IN MONGO DB TERMINAL DO THESE STEPS
+    1. use IssueTracker
+    2. show collections
+    3. db.Edits.deleteMany({})
+
+
+
   To Run Program: npm run dev   
 */
 
@@ -142,6 +149,7 @@ import UserItem from './components/Users/UserItem';
 import UserEditor from './components/Users/UserEditor';
 
 import Profile from './components/Users/Profile';
+
 // COMPONENTS //
 
 
@@ -350,6 +358,8 @@ function App() {
 
             <Route path="/profile" element={<Profile showToast={showToast} usersIdFromLocalStorage={usersIdFromLocalStorage}/>} />
             {/* uuuuuuuuuuuuu USERS uuuuuuuuuuuuu */}
+
+
 
 
             {/* PAGE NOT FOUND */}

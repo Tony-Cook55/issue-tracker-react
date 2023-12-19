@@ -501,7 +501,7 @@ export default function BugEditor(  {showToast}  ) {
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 
   {/* TITLE */}
@@ -601,44 +601,47 @@ export default function BugEditor(  {showToast}  ) {
 
 
   {/* CLASSIFICATION */}
-  <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button className="accordion-button    text-center " type="button"  data-bs-target="#classification" aria-expanded="false" aria-controls="classification">
-        Classification
-      </button>
-    </h2>
-    <div id="classification" className="accordion-collapse ">
-      <div className="accordion-body  edit_form_accordion-body">
+  {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+    <div className="accordion-item">
+      <h2 className="accordion-header">
+        <button className="accordion-button    text-center " type="button"  data-bs-target="#classification" aria-expanded="false" aria-controls="classification">
+          Classification
+        </button>
+      </h2>
+      <div id="classification" className="accordion-collapse ">
+        <div className="accordion-body  edit_form_accordion-body">
 
-          <div className="container text-center justify-content-center">
-            <div className="row">
-              
-                <div className="col-sm   accordion_edit_form_container">
-                      {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
-                        <select id="classification" className="edit_form_input_center  item_being_edited   form-control   text-center  "
-                          value={classification}
-                          onChange={(evt) => setClassification(evt.target.value)}
-                        >
-                          <option value="Unclassified" className="edit_form_select_options">Unclassified</option>
-                          <option value="Approved" className="edit_form_select_options">Approved</option>
-                          <option value="Unapproved" className="edit_form_select_options">Unapproved</option>
-                          <option value="Duplicate" className="edit_form_select_options">Duplicate</option>
-                        </select>
-                      )}
-                </div>
+            <div className="container text-center justify-content-center">
+              <div className="row">
+                
+                  <div className="col-sm   accordion_edit_form_container">
+                        {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+                          <select id="classification" className="edit_form_input_center  item_being_edited   form-control   text-center  "
+                            value={classification}
+                            onChange={(evt) => setClassification(evt.target.value)}
+                          >
+                            <option value="Unclassified" className="edit_form_select_options">Unclassified</option>
+                            <option value="Approved" className="edit_form_select_options">Approved</option>
+                            <option value="Unapproved" className="edit_form_select_options">Unapproved</option>
+                            <option value="Duplicate" className="edit_form_select_options">Duplicate</option>
+                          </select>
+                        )}
+                  </div>
 
+              </div>
             </div>
-          </div>
 
+        </div>
       </div>
     </div>
-  </div>
+  )}
   {/* CLASSIFICATION */}
 
 
 
 
   {/* ASSIGN A USER TO BUG */}
+{rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
   <div className="accordion-item">
     <h2 className="accordion-header">
       <button className="accordion-button    text-center " type="button"  data-bs-target="#classification" aria-expanded="false" aria-controls="classification">
@@ -693,60 +696,47 @@ export default function BugEditor(  {showToast}  ) {
       </div>
     </div>
   </div>
+)}
   {/* ASSIGN A USER TO BUG */}
 
 
 
   {/* CLOSE BUG */}
-  <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button className="accordion-button    text-center " type="button"  data-bs-target="#" aria-expanded="false" aria-controls="">
-        Close Bug
-      </button>
-    </h2>
-    <div id="title" className="accordion-collapse ">
-      <div className="accordion-body  edit_form_accordion-body">
+  {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+    <div className="accordion-item">
+      <h2 className="accordion-header">
+        <button className="accordion-button    text-center " type="button"  data-bs-target="#" aria-expanded="false" aria-controls="">
+          Close Bug
+        </button>
+      </h2>
+      <div id="title" className="accordion-collapse ">
+        <div className="accordion-body  edit_form_accordion-body">
 
-          <div className="container text-center justify-content-center">
-            <div className="row ">
-              
-                <div className="col-sm  accordion_edit_form_container">
-                  {/* CLOSE BUG */}
-                  {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
-                  <div className="d-flex flex-row align-items-center form-color">
-                    <select id="closeBug" className="edit_form_input_center  item_being_edited   form-control   text-center  " 
-                      value={closeBug}
-                      onChange={(evt) => setCloseBug(evt.target.value)}
-                    >
-                      <option value="">Is This Bug Closed?</option>
-                      <option value="True">True</option>
-                      <option value="False">False</option>
-                    </select>
+            <div className="container text-center justify-content-center">
+              <div className="row ">
+                
+                  <div className="col-sm  accordion_edit_form_container">
+                    {/* CLOSE BUG */}
+                    {rolesFromLocalStorage && rolesFromLocalStorage.includes('Business Analyst') && (
+                    <div className="d-flex flex-row align-items-center form-color">
+                      <select id="closeBug" className="edit_form_input_center  item_being_edited   form-control   text-center  " 
+                        value={closeBug}
+                        onChange={(evt) => setCloseBug(evt.target.value)}
+                      >
+                        <option value="">Is This Bug Closed?</option>
+                        <option value="True">True</option>
+                        <option value="False">False</option>
+                      </select>
+                    </div>
+                    )}
+                    {/* CLOSE BUG */}
                   </div>
-                  )}
-                  {/* CLOSE BUG */}
-                </div>
-
-            </div>
-          </div>
-
-      </div>
-      
-    </div>
-
-
-            {/* SAVE/UPDATE THIS BUG */}
-            {canUserEditThisBug && (
-            <button type="submit" className="icon_link" >
-              <div className="edit_button  edit_button_background">
-                <FaSave />
               </div>
-            </button>
-            )}
-            {/* SAVE/UPDATE THIS BUG */}
-
-
-  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  )}
   {/* CLOSE BUG */}
 
 
@@ -775,12 +765,32 @@ export default function BugEditor(  {showToast}  ) {
 
 
 
-              {bugItem.bugUpdated && bugItem.bugUpdated.bugLastUpdatedOn && (
+
+              {/* SAVE/UPDATE THIS BUG */}
+              {canUserEditThisBug && (
+              <button type="submit" className="icon_link" >
+                <div className="edit_button  edit_button_background">
+                  <FaSave />
+                </div>
+              </button>
+              )}
+              {/* SAVE/UPDATE THIS BUG */}
+
+
+
+              {/* {bugItem.bugUpdated && bugItem.bugUpdated.bugLastUpdatedOn && (
                 <p className="last_updated_on">Bug Last Updated On: <br/> {bugItem.bugUpdated.bugLastUpdatedOn}</p>
               )}
 
               {!bugItem.bugUpdated || !bugItem.bugUpdated.bugLastUpdatedOn && (
                 <p className="last_updated_on">Bug not yet updated</p>
+              )} */}
+
+              {/* If bug has a bug updated show 1st message ? IF NOT ? Show not updated message*/}
+              {bugItem.bugUpdated && bugItem.bugUpdated.bugLastUpdatedOn ? (
+                <p className="last_updated_on">Bug Last Updated On: <br/> {bugItem.bugUpdated.bugLastUpdatedOn}</p>
+              ) : (
+                <p className="last_updated_on">Bug Has Not Been Updated</p>
               )}
 
 

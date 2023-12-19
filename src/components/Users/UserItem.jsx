@@ -183,7 +183,7 @@ return (
         <div className="profile_box">
           <div className="profile_card">
               <h1 className=""><strong>{userProfile.fullName}</strong></h1>
-              <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+              <img src="/images/user_profile_circle_filled.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
               {/* <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p> */}
               <p>
                 Last Time Logged In: <br/> {userProfile.lastTimeUserLoggedIn
@@ -216,7 +216,7 @@ return (
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 
 

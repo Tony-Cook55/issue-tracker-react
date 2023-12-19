@@ -289,7 +289,7 @@ return (
             <p>{userProfile._id}</p>
 
             {/* Has The Same Css From UserItem.css*/}
-            <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+            <img src="/images/user_profile_circle_filled.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
 
             <p className=" ">
                 Time Spent Updating This User: <Stopwatch />
@@ -316,7 +316,7 @@ return (
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 
   {/* FULL NAME */}
@@ -444,19 +444,6 @@ return (
 
       </div>
     </div>
-
-
-              {/* SAVE THIS USER */}
-              {canUserEditThisUser && (
-                <button type="submit" className="icon_link" >
-                <div className="edit_button  edit_button_background">
-                  <FaSave />
-                </div>
-              </button>
-              )}
-              {/* SAVE THIS USER */}
-
-
   </div>
   {/* USERS ROLES */}
 
@@ -475,6 +462,17 @@ return (
       <div className="container ">
         <p className="last_updated_on "> 
         
+
+            {/* SAVE/UPDATE THIS BUG */}
+              {canUserEditThisUser && (
+              <button type="submit" className="icon_link" >
+                <div className="edit_button  edit_button_background">
+                  <FaSave />
+                </div>
+              </button>
+              )}
+            {/* SAVE/UPDATE THIS BUG */}
+
 
             {userProfile.userLastUpdated && (
               <p className="last_updated_on">User Last Updated On: <br/> {userProfile.userLastUpdated}</p>

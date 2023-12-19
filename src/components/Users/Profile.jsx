@@ -64,7 +64,18 @@ import BugScoreMedal from "../BugGame/BugScoreMedal";
 
 
 
+
+// Scrolls to the top of the page
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth" // Use "smooth" for a smooth scrolling effect, or "auto" for instant scrolling
+  });
+};
+
+
 export default function Profile(   {usersIdFromLocalStorage, showToast}  ){
+
 
 
 
@@ -303,19 +314,48 @@ function onUserDelete(evt, userId){
           <div className="profile_card">
               <h2 className="greeting_message"><strong>{greetingMessage}</strong></h2>
               <h2 className="users_name_profile"><strong>{userProfile.fullName}</strong></h2>
-              <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+              <img src="/images/user_profile_circle_filled.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
               {/* <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p> */}
           </div>
         </div>
       </div>
 
 
-      {/* // ++++++ BUG GAME SCORE ++++++ // */}
-      {/* Calling in the Medals For the users Score and passing the users Id in */}
-      <div className="justify-content-center   text-center">
-        <BugScoreMedal  usersId={usersId}/>
+      {/* // ~~~~~~~~~ SHOW SCORE AND LEADER BOARD ~~~~~~~~~ // */}
+      <div className="">
+        {userProfile.editable ? ( // IN EDIT MODE
+          // Render items in edit mode
+          <div>
+            {/* Any items specific to edit mode go here */}
+          </div>
+        ) : ( // NOT IN EDIT MODE
+        // Render items when NOT in edit mode
+        <div className="">
+
+          {/* sssss SCORE AND MEDALS sssss */}
+          <div className="justify-content-center text-center">
+            <BugScoreMedal usersId={usersId} />
+          </div>
+          {/* sssss SCORE AND MEDALS sssss */}
+
+
+          {/* xxxx LEADER BOARD xxxx */}
+          <h1 className="enter_firing_range_text_profile">Visit The Leader Board</h1>
+
+          <Link to="/leaderBoard" onClick={scrollToTop}>
+            <img
+              src="/images/medals/leaderboard.png"
+              className="bug_image_profile"
+              alt="Bug"
+            />
+          </Link>
+          {/* xxxx LEADER BOARD xxxx */}
+
+        </div>
+        )}
       </div>
-      {/* // ++++++ BUG GAME SCORE ++++++ // */}
+      {/* // ~~~~~~~~~ SHOW SCORE AND LEADER BOARD ~~~~~~~~~ // */}
+
 
 
 
@@ -331,21 +371,6 @@ function onUserDelete(evt, userId){
             />
           </Link> */}
         {/* xxxx ELIMINATE BUG ONCLICK EVENT GAME xxxx */}
-
-
-        {/* xxxx LEADER BOARD xxxx */}
-
-          <h1 className="enter_firing_range_text_profile">Visit THe Leaderboard</h1>
-
-          <Link to="/leaderBoard">
-            <img
-              src="/images/medals/leaderboard.png"
-              className="bug_image_profile"
-              alt="Bug"
-            />
-          </Link>
-
-        {/* xxxx LEADER BOARD xxxx */}
 
     </div>
 
@@ -368,7 +393,7 @@ function onUserDelete(evt, userId){
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 <div className="">
 

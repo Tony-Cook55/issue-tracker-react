@@ -198,7 +198,7 @@ export default function BugItem( {showToast} ){
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 
   {/* BUG CREATION INFO */}
