@@ -22,14 +22,36 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 // ******************* IMPORTS ******************* //
 
 
 
 export default function Comments( {bugItem, bugId, showToast} ){
+
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
 
 
   const [comments, setComments] = useState([]);
@@ -40,14 +62,6 @@ export default function Comments( {bugItem, bugId, showToast} ){
   const navigateToAnotherPage = useNavigate();
 
 
-    // Retrieve the user's info object from local storage
-    const userInfo = JSON.parse(localStorage.getItem('fullName'));
-
-    // Extract the fullName from the userInfo object
-    const userFullName = userInfo ? userInfo.fullName : null;
-  
-    // Check if the user is logged in by verifying the existence of fullName
-    const isLoggedIn = userFullName !== null;
 
 
 // ~~~~~~~~~~~~~~~~ FIND ALL COMMENTS IN BUG ~~~~~~~~~~~~~~~~ //
@@ -59,7 +73,6 @@ export default function Comments( {bugItem, bugId, showToast} ){
         .then(response => {
           // Sets the database info into this
           setComments(response.data);
-
         })
         .catch(error => console.log(error));
     }
@@ -73,8 +86,19 @@ export default function Comments( {bugItem, bugId, showToast} ){
 // ++++++++++++++++ ADDING A NEW COMMENT TO BUG ++++++++++++++++++
     const addNewComment = () => {
 
-      const newTestCaseObject = { message: newComment, commentAuthor: userFullName, commentCreatedOn: new Date().toLocaleString() };
 
+      // Check if the new comment is empty
+      if (newComment.trim() === "") {
+        showToast("Please enter a comment", "error");
+        return;
+      }
+
+      const newTestCaseObject = {
+        message: newComment,
+        commentAuthor: userFullName,
+        commentCreatedOn: new Date().toLocaleString(),
+      };
+    
       // Update the local state immediately
       setComments([...comments, newTestCaseObject]);
       setNewComment(""); // Clear the input field after submitting a comment
@@ -91,7 +115,7 @@ export default function Comments( {bugItem, bugId, showToast} ){
           // setComments([...comments, response.data]); // Assuming the server returns the new comment
           // setNewComment(""); // Clear the input field after submitting a comment
           
-          showToast(`${Comment_Created}`, "success");
+          showToast(`${response.data.Comment_Created}`, "success");
           // navigateToAnotherPage(`/`);
         })
         .catch((error) => {
@@ -133,7 +157,7 @@ export default function Comments( {bugItem, bugId, showToast} ){
                 // </div>
               ) : (
               // Check if there are bugs, display the bug list if true
-              <div className="row text-center justify-content-center   comment_list">
+              <div className="row text-center justify-content-center   list_of_mapped_items_scrollBar">
                 {comments.map((comment) => (
                   <div key={comment._id} >  {/* className="col-lg-4 col-md-12 col-sm-12" */}
                     {/* 

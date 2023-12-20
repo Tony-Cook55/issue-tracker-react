@@ -1,7 +1,10 @@
 
 
 
-
+.navbar_ul{
+  padding: 0;
+  margin: 0;
+}
 
 
 
@@ -22,7 +25,7 @@ input[type="checkbox"]{
 /* This is the small circle in the corner */
 .menu-btn{
   position: absolute;
-  z-index: 2;
+  z-index: 99999;
   right: 20px;
 
   background: #b58ded;
@@ -39,6 +42,12 @@ input[type="checkbox"]{
   cursor: pointer;
 
   transition: all 0.3s ease-in-out;
+}
+
+/* Does the same Animation as the search bar */
+.menu-btn:hover {
+  transition: all 0.3s ease 0s;
+	animation: jello-horizontal 0.9s both;
 }
 
 /* This is the hamburger menu when the nav is not open */
@@ -90,7 +99,7 @@ input[type="checkbox"]{
 
   /* This is where on the screen the circle will begin expanding  */
   /* */
-  clip-path: circle(25px at calc(100% - 45px) 45.5px);
+  clip-path: circle(15px at calc(100% - 45px) 45.5px);
 
   /* Speed at which the wrapper appears */
   transition: all 0.3s ease-in-out;
@@ -101,8 +110,6 @@ input[type="checkbox"]{
 
   border-radius: 0;
 }
-
-
 
 
 /* This aligns the text in the center of the screen*/
@@ -126,16 +133,32 @@ input[type="checkbox"]{
 .wrapper ul li a{
   color: none;
   text-decoration: none;
+
   font-size: 30px;
+
   font-weight: 500;
-  padding: 10px 30px;
+
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;  
+
   color: #fff;
   border-radius: 50px;
   background-color: #212529;
   position: relative;
-  line-height: 50px;
+  /* line-height: 50px; */
   transition: all 0.2s ease;
 }
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .wrapper ul li a{
+    font-size: 24px;
+  }
+}
+
+
 
 
 /* This is the hover effect of having the swirling colors on the border */

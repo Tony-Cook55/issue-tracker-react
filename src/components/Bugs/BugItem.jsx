@@ -26,8 +26,18 @@ import { FaArrowLeft, FaPencilRuler, FaArrowUp } from "react-icons/fa";
 import { useParams, Link } from "react-router-dom";
 
 
+
 import Comments from "./Comments"
 
+import TestCases from "./TestCases"
+
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 
 // ******************* IMPORTS ******************* //
@@ -41,6 +51,22 @@ import Comments from "./Comments"
 
 
 export default function BugItem( {showToast} ){
+
+
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
 
   // Lets us get the Bugs Id of the specific bug we are on
   const bugId = useParams().bugId;
@@ -172,7 +198,7 @@ export default function BugItem( {showToast} ){
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 
   {/* BUG CREATION INFO */}
@@ -403,7 +429,7 @@ export default function BugItem( {showToast} ){
                         <p className="database_information">{testCase.appliedFixOnDate}</p>
                     </div>
                   ))} */}
-                  {/* <TestCases  bugItem={bugItem}  bugId={bugId} showToast={showToast}/> */}
+                  <TestCases  bugItem={bugItem}  bugId={bugId} showToast={showToast}/>
                 </div>
               </div>
             </div>

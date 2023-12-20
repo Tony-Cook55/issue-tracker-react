@@ -158,7 +158,7 @@ export default function LoginForm(    {setUserFullName,setUsersRole,setUsersId, 
 
   return (
     <>
-      <div className="main_Login_Div   scale_in_center">
+      <div className="main_form_div   scale_in_center">
         <h4 className="login_Header">Login</h4>
         <form className="login_Form">
 
@@ -166,8 +166,9 @@ export default function LoginForm(    {setUserFullName,setUsersRole,setUsersId, 
           {/* EMAIL INPUT */}
           <div className="login_Inputs_Div">
             <input type="email" id="email" name="email" placeholder="Email" 
-              className="login_Inputs " 
+              className="login_Inputs" 
               required
+              autoFocus
               onChange={(evt) => setEmail(evt.target.value)}
             />
           </div>
@@ -216,21 +217,6 @@ export default function LoginForm(    {setUserFullName,setUsersRole,setUsersId, 
           Don't Have An Account? <br /> Sign Up Here!
         </a>
         {/* SIGN UP BUTTON */} 
-
-
-
-
-
-                            <div className="text-danger">
-                              <br/>
-                              <br/>
-                              <br/>
-                              <br/>
-                              <h2 >TESTING PURPOSES ONLY DELETE ME!!!</h2>
-                              <h3>Email:    god@gmail.com</h3>
-                              <h3>Password: 123456789</h3>
-                            </div>
-
 
 
 

@@ -1,0 +1,75 @@
+
+
+
+
+
+/* .profile_top{
+
+} */
+
+
+
+
+.enter_firing_range_text_profile{
+
+  font-family: 'Lexend Variable', sans-serif;
+
+  font-size: 50px; /* Adjust the font size based on your preference */
+
+
+  padding-bottom: 100px;
+
+  font-weight: bold;
+  color: #4cc9f0;
+  text-shadow: 0 3px #4361ee, 0 5px #4361ee, 0 7px #4361ee;
+  animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .enter_firing_range_text_profile {
+  
+    font-size: 60px; /* Adjust the font size based on your preference */
+  
+  }  
+}
+
+
+
+
+
+.bug_image_profile {
+  width: 150px;
+
+  padding-bottom: 100px;
+
+  animation: rotation 2s infinite linear;
+
+  transition: all 0.3s ease-in-out;
+
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+.bug_image_profile:hover, .bug_image_profile:focus{
+  width: 200px;
+  transition: all 0.3s ease-in-out;
+}

@@ -1,9 +1,419 @@
 
 
 
-.red_text li{
+/* .home_container{
+  padding-bottom: 50px;
+} */
+
+
+
+
+/* This is the giant banner that spans the whole screen */
+.full_screen_banner {
+  min-height: 100vh; /* Set a minimum height for larger screens */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+
+  /* background: url('/images/colored_find_bug.png') center/cover no-repeat;
+  background-size: contain;  */
+
+}
+
+
+/* Text inside of the banner */
+.full_screen_banner_content {
+  max-width: 900px;
+  position: relative;
+  text-align: center;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .full_screen_banner,
+  .full_screen_cards {
+    min-height: 100vh; /* Adjust the height for smaller screens */
+  }
+}
+
+
+
+
+/* ttttttt HOME TITLE ttttttt */
+
+/* This is the bouncing text animation on coming in */
+.home_title_entrance{
+  animation: bounce-in-top 1.1s both;
+}
+@keyframes bounce-in-top {
+  0% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: translateY(-65px);
+            transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: translateY(-28px);
+            transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  90% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateY(-8px);
+            transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
+
+/* This is the animation of the text on the home Screen */
+.home_title {
+  cursor: default;
+
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Lexend Variable', sans-serif;
+
+}
+
+
+.home_title span {
+  position: relative;
+  top: 0px;
+  display: inline-block;
+  animation: home_page_bounce 1s ease infinite alternate;
+  font-size: 150px;
+  color: #fff;
+  text-shadow: 0 1px 0 #B58DED, 0 2px 0 #B58DED, 0 3px 0 #B58DED, 0 4px 0 #B58DED,
+    0 5px 0 #B58DED, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px #B58DED;
+}
+
+
+.home_users_name span{
+  position: relative;
+  top: 8px;
+  display: inline-block;
+  /* animation: home_page_bounce 1s ease infinite alternate; */
+  font-size: 100px;
+  color: #fff;
+  text-shadow: 0 1px 0 #B58DED, 0 2px 0 #B58DED, 0 3px 0 #B58DED, 0 4px 0 #B58DED,
+    0 5px 0 #B58DED, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px #B58DED;
+}
+
+
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .home_title span {
+    font-size: 80px; /* Adjust the size for smaller screens */
+  }
+}
+
+
+/* ANIMATION */
+@keyframes home_page_bounce {
+  100% {
+    top: -30px;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
+      0 50px 25px #00000033;
+  }
+}
+
+/* ttttttt HOME TITLE ttttttt */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* cccccccccccccccccc 3 CARD ITEMS cccccccccccccccccc */
+
+
+/* Does the same thing as the text on refresh centered on page and fullscreen */
+.full_screen_cards {
+  min-height: 100vh; /* Set a minimum height for larger screens */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  
+
+
+}
+.full_screen_cards_content {
+  min-height: 100vh;
+
+  position: relative;
+  text-align: center;
+}
+
+
+
+
+.cards {
+  margin-top: 40px; /* Adjust the margin as needed */
+}
+
+.card_container {
+  transition: transform 0.3s ease;
+}
+
+.card_container:hover {
+  transform:  scale(1.05); /* translateY(-10px) */
+}
+
+.card__image-container {
+  padding-top: 66.25%; /* Adjust the padding to make the card taller */
+  overflow: hidden;
+  position: relative;
+  }
+
+
+
+/* This is for all images expect magnifying glass and small bug in cards */
+.card-img-top {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* This is the small bug inside of the magnifying glass */
+.bug_logo_magnified{
+  width: 20%;
+  position: absolute;
+  top: 40%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+/* This is the magnifying glass that is on the bug in 1st card */
+.bug_magnifier{
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+.card__content {
+  padding: 20px;
+  height: 180px; /* Adjust the height as needed */
+}
+
+
+
+
+
+/* This is the main text inside of the cards */
+.card-title{
   font-size: 30px;
-  padding: 2%;
-  color: red;
   font-weight: bold;
+  color: #B58DED;
+
+  font-family: 'Lexend Variable', sans-serif;
+
+  /* text-transform: uppercase; */
+
+  /* margin-bottom: 20px; */
+}
+
+
+/* Info under the image */
+.card-info{
+  font-family: 'Poppins', sans-serif;
+
+  text-transform: capitalize;
+}
+
+/* cccccccccccccccccc 3 CARD ITEMS cccccccccccccccccc */
+
+
+
+
+
+
+
+
+
+
+
+/* eeeee ENTER FIRING RANGE LINK eeeee */
+.enter_firing_range_text {
+  font-family: 'Lexend Variable', sans-serif;
+
+  font-size: 100px; /* Adjust the font size based on your preference */
+
+  margin-top: 200px;
+  
+  /* Space Between The Images */
+  margin-bottom: 800px;
+
+  font-weight: bold;
+  color: #fff;
+
+  /* text-shadow: 0 3px #B58DED, 0 5px #B58DED, 0 7px #B58DED; */
+  text-shadow: 0 3px 5px #B58DED, 0 5px 5px #B58DED, 0 7px 5px #B58DED;
+
+	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .enter_firing_range_text {
+  
+    font-size: 70px; /* Adjust the font size based on your preference */
+  
+  
+    /* Space Between The Images */
+    margin-bottom: 800px;
+  }  
+}
+
+
+
+
+
+
+
+
+.firing_range_cross_hair {
+  width: 250px; /* Adjust the size based on your preference */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+  animation: swayAnimation 5s ease-in-out infinite;
+
+  transition: all 0.3s ease 0s;
+}
+
+@keyframes swayAnimation {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateX(-60px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(60px);
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .firing_range_cross_hair {
+    width: 200px; 
+  }
+}
+
+
+
+
+/* Add a hover effect to scale up the magnifying glass */
+.firing_range_cross_hair:hover {
+  transform: translate(-50%, -50%) scale(1.3); /* Adjust the scale factor based on your preference */
+  animation: none; /* Override the existing animation during hover */
+
+  transition: all 0.3s ease 0s;
+
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.leader_board_pic{
+  width: 250px; /* Adjust the size based on your preference */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: all 0.3s ease 0s;
+}
+
+@media only screen and (max-width: 768px) {
+  .leader_board_pic {
+    width: 200px; 
+  }
+}
+
+
+/* Add a hover effect to scale up the magnifying glass */
+.leader_board_pic:hover {
+  transform: translate(-50%, -50%) scale(1.3); /* Adjust the scale factor based on your preference */
+  animation: none; /* Override the existing animation during hover */
+
+  transition: all 0.3s ease 0s;
+
+  cursor: pointer;
 }

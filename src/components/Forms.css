@@ -1,0 +1,1349 @@
+
+/* This code is here to allow any and all forms like login - Bug Adder - and Register to share 1 file with similar code*/
+
+
+
+
+
+
+
+
+/* all all all all all all   RegisterForm ~ LoginForm ~ AddNewBug ~ Comments ~ TestCases  all all all all all all  */
+
+
+
+    /* CARD Used In - RegisterForm ~ AddNewBug   */
+/* ccccccccccccccccccccc CARD ccccccccccccccccccccc */
+
+/* Holder For the form inputs THE OUTER MOST PART */
+.card{
+  background-color: rgb(255, 255, 255);
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/* This is the text box's in the card */
+.form_inputs{
+  margin-top: 1rem;
+  font-family: 'Segoe UI', bold;
+  font-size: 23px;
+  border: none;
+  /* background-color: #3b3b3b; */
+
+  color: #B58DED;
+
+  /* Padding of the text from the left wall */
+  padding-left: 20px;
+
+
+  /* Below makes the rounded pill like object*/
+  align-content: center;
+  border-radius: 22px;
+
+  /* Space between each text box */
+  margin-bottom: 10px;
+
+
+  width: 100%;
+  height: 64px;
+
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
+/* WHEN A USER AUTO COMPLETES THE FIELDS MAKE TEXT COLOR SAME AS MY FOCUS AND MAKE THE BACKGROUND TRANSPARENT INSTEAD OF GRAY*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+
+
+
+/* When user is inside of the textbox */
+.form_inputs:focus {
+  color: #FFFFFF;
+  background: #d1b0ff;
+
+  outline: none;
+  -webkit-animation: jello-textboxs 0.9s both;
+	        animation: jello-textboxs 0.9s both;
+}
+@-webkit-keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+/* ccccccccccccccccccccc CARD ccccccccccccccccccccc */
+
+
+
+
+
+/* This is the add items button such as the add steps to reproduce*/
+.add_items_button{
+  background-color: #d1b0ff;
+  transition: all 0.3s ease 0s;
+}
+
+.add_items_button:hover, .add_items_button:focus{
+  transition: all 0.3s ease 0s;
+  background-color: #845db9;
+  color: white;
+
+  transform: scale(1.1);
+}
+
+
+
+
+
+
+/* This is the button that user clicks to register the account */
+.submit_form_button{
+  margin-top: 30px;
+  width: 165px;
+  height: 60px;
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Lexend Variable', sans-serif;
+  /* font-family: 'Montserrat'; */
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
+}
+
+
+.submit_form_button:hover, .submit_form_button:focus {
+	animation: jello-horizontal 0.9s both;
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+/* This is the span message that appears underneath the inputs when the info is incorrect */
+.error_message{
+  color: #dc1717;
+  font-weight: bold;
+
+  margin: auto;
+
+  /* animation: gelatine 4s infinite; */
+}
+@keyframes gelatine {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+
+
+
+
+/* ADD THIS ABOVE YOUR MAPPED ITEMS IN A DIV to make items inside map be in scroll bar */ 
+
+/* Adds the scrolling up and down on the Things like comments, test cases, and steps to reproduce*/
+.list_of_mapped_items_scrollBar{
+	overflow-y: scroll;
+	height: 500px;
+}
+
+
+/* Custom scrollbar for WebKit/Blink browsers (Chrome, Safari, Opera) */
+.list_of_mapped_items_scrollBar::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.list_of_mapped_items_scrollBar::-webkit-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.list_of_mapped_items_scrollBar::-webkit-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+/* Custom scrollbar for Firefox */
+.list_of_mapped_items_scrollBar {
+  scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: #B58DED #f1f1f1; /* Color of the scrollbar thumb and track */
+}
+
+/* Custom scrollbar for IE/Edge */
+.list_of_mapped_items_scrollBar {
+  -ms-overflow-style: none; /* Disable IE/Edge scrollbar */
+}
+
+.list_of_mapped_items_scrollBar::-ms-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.list_of_mapped_items_scrollBar::-ms-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* eeeeeeeeeeeeeeeeeeeeeeeeeeee EDITING ITEMS USING INPUTS  eeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+
+
+/* ----------------- DELETE BUTTON  ----------------- */
+.delete_button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+.svgIcon {
+  padding-bottom: 3px;
+  transition-duration: .3s;
+}
+
+.delete_button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button:hover .svgIcon {
+  width: 60px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+  transition: all 0.3s ease 0s;
+
+  padding-bottom: 20px;
+}
+
+.delete_button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 3px;
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+
+  transition: all 0.3s ease 0s;
+
+}
+
+.delete_button_background{
+  background-image: linear-gradient(120deg,  #f41414, #cc3030);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+}
+/* ----------------- DELETE BUTTON  ----------------- */
+
+
+
+
+
+
+
+/* eeeeeeeeeeee EDITING INPUTS eeeeeeeeeeee */
+/* The item holding the content inside the accordion */
+.edit_form_accordion-body{
+  /* Adds space outside accordion*/
+  margin-bottom: 100px;
+
+  /* Adds space inside accordion*/
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+/* This is any input item to center it on page */
+.edit_form_input_center{
+  width: 50%; /* Adjust the width as needed */
+  margin: auto; /* Center the select element within its container */
+
+  background-color: #B58DED;
+
+  color: #fff;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .edit_form_input_center {
+    width: 90%; 
+  }
+}
+
+
+
+/* This is the actual options a user can click on for any select box*/
+.edit_form_select_options{
+  background-color: #fff;
+  color: #B58DED;
+}
+
+
+
+
+/* This goes on any item being edited */
+.item_being_edited{
+  /* font-size: 40px; */
+
+  cursor: pointer;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  /* padding: 15px; */
+
+  transition: all 0.3s ease 0s;
+
+}
+
+/* This is used in the search tab but placeholder text gets these*/
+.item_being_edited::placeholder {
+  color: #fff !important;
+  /* padding-top: 10px; */
+
+}
+
+/* When the edited item is hovered and entered in */
+.item_being_edited:hover , .item_being_edited:focus{
+  border: 5px solid #fff;
+  transform: scale(1.05);
+  background-color: #f6b7f7; /* Add a background color for highlighting */
+}
+
+
+/* ONLY when the edited item is entered in */
+.item_being_edited:focus{
+
+  width: 60%;
+  color: #fff;
+  background-color: #f6b7f7; /* Add a background color for highlighting */
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+/* eeeeeeeeeeee EDITING INPUTS eeeeeeeeeeee */
+
+
+
+
+/* eeeeeeeeeeeeeeeeeeeeeeeeeeee EDITING ITEMS USING INPUTS  eeeeeeeeeeeeeeeeeeeeeeeeeeee */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 SEARCHING BUGS AND USERS 🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 */
+
+/* This is the text that says  # Bugs/Users Found */
+.items_found_title{
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  font-size: 33px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+
+  font-weight: bold;
+}
+
+
+
+/* Adds spacing between every input on searching inputs */
+.search_input_div{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+
+
+/* The actual Side bar */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* padding-top: 60px; */
+  background-color: #FFFFFF;
+
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  z-index: 999;
+
+
+  /* Center items vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+
+
+    /* For some reason when closing the side bar or if to much content a scrollbar appears this sets it to the bg color of container */
+    /* Style the scrollbar in the sidebar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #fff #fff; /* Firefox */
+  
+    /* WebKit browsers (Chrome, Safari) */
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+    }
+}
+
+
+/* This is when the sidebar is opened */
+.sidebar.open {
+  width: 450px;
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .sidebar.open {
+    width: 250px;
+  }
+}
+
+
+
+/* #main {
+  transition: margin-left .5s;
+  padding: 16px;
+} */
+
+
+/* This is the button that open and closes the search */
+.open_search_button {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 5px;
+
+
+  border: 3px solid #fff;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+
+  /* This is used To Make it look like a perfect circle like navbar */
+  border-radius: 50%; /* Make it a perfect circle */
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+
+  /* Centers Icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.open_search_button:hover {
+  transition: all 0.3s ease 0s;
+	animation: jello-horizontal 0.9s both;
+
+  border: 3px solid #fff;
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+/* Centers the no items found message SAME CODE FOR HOME SCREEN TEXT */
+.no_items_found_banner {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+
+  /* background: url('/images/colored_find_bug.png') center/cover no-repeat;
+  background-size: contain;  */
+
+}
+
+/* Text inside of the banner */
+.no_items_found_content {
+  max-width: 900px;
+  position: relative;
+  text-align: center;
+}
+
+
+
+
+
+/* WHEN THERE ARE NO FOUND RESULTS */
+
+.drop_container {
+  /* display: flex;
+  justify-content: center; */
+  font-size: 7rem;
+  margin: 1.5rem;
+
+  font-weight: bold;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .drop_container {
+    font-size: 4rem;
+    margin: 0;
+  }
+}
+
+.No {
+  opacity: 0;
+  animation: drop 0.4s linear forwards .2s;
+  color: #B58DED;
+}
+.Results {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.4s;
+  color: #B58DED;
+}
+.Found {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.6s;
+  color: #B58DED;
+}
+/* .p {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.8s;
+  color: #B58DED;
+}
+.s {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.10s;
+  color: #B58DED;
+} */
+@keyframes drop {
+  0% {
+      transform: translateY(-200px);
+      opacity: 0;
+  }
+  50% {
+      transform: translateY(0px);
+      opacity: 1;
+  }
+  65% {
+      transform: translateY(-17px);
+      opacity: 1;
+  }
+  75% {
+      transform: translateY(-22px);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(0px);
+      opacity: 1;
+  }
+}
+/* WHEN THERE ARE NO FOUND RESULTS */
+
+
+/*🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 SEARCHING BUGS AND USERS 🔎🔎🔎🔎🔎🔎🔎🔎🔎🔎 */
+
+
+
+
+
+
+
+
+
+
+
+/* ppppppppppppppppp PAGINATION ppppppppppppppppp*/
+.pagination_container{ 
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+
+.pagination{
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    position: relative;
+}
+
+
+/* This is the page li Themselves */
+.pagination li .page-link{
+    color: #333;
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 37px;
+    height: 38px;
+    width: 38px;
+    padding: 0;
+    margin: 0 8px;
+    border: none;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease 0s;
+}
+
+
+
+/* Ensures the 1st and Last Child are the exact same as the rest */
+.pagination li:first-child .page-link,
+.pagination li:last-child .page-link {
+    font-size: 18px;
+    line-height: 37px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50%;
+}
+/* First and last child Will look different*/
+/* 
+.pagination li:first-child .page-link,
+.pagination li:last-child .page-link{
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 400;
+    border: none;
+} */
+
+
+/* When the page item is hovered and is the active page your on active */
+.pagination li .page-link:hover,
+.pagination li .page-link:focus,
+.pagination li.active .page-link:hover,
+.pagination li.active .page-link{
+    color: #fff;
+    background-color: #B58DED;
+}
+
+/* Only when the item is hovered on */
+.pagination li .page-link:hover{
+    color: #fff;
+    background-color: #000;
+    transform: scale(1.15);
+}
+
+
+
+/* Small circles BUT MAINLY THE closest to item */
+.pagination li .page-link:before,
+.pagination li .page-link:after{
+  content: '';
+  background-color: #fff;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  opacity: 0;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: -1;
+  transition: all 0.4s ease 0s;
+}
+
+
+/* Sets the set of circles corner right of item */
+.pagination li .page-link:after{
+  left: auto;
+  right: 5px;
+  top: auto;
+  bottom: 5px;
+}
+
+
+/* The 1st top circles position and 2nd circle creation */
+.pagination li .page-link:hover:before,
+.pagination li .page-link:focus:before,
+.pagination li.active .page-link:hover:before,
+.pagination li.active .page-link:before{
+  /*2nd Shadow */
+  box-shadow: -7px -7px #B58DED;
+
+  opacity: 1;
+  left: -2px;
+  top: -2px;
+}
+
+
+/* The 2nd bottom circles position and 2nd circle creation */
+.pagination li .page-link:hover:after,
+.pagination li .page-link:focus:after,
+.pagination li.active .page-link:hover:after,
+.pagination li.active .page-link:after{
+  /*2nd Shadow */
+  box-shadow: 7px 7px #B58DED;
+
+  opacity: 1;
+  right: -2px;
+  bottom: -2px;
+}
+/* ppppppppppppppppp PAGINATION ppppppppppppppppp*/
+
+
+
+
+
+
+
+
+
+
+/* all all all all all all  ITEMS IN    RegisterForm ~ LoginForm ~ AddNewBug  all all all all all all  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr REGISTER FORM rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*/
+
+
+/* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
+
+.main_header{
+  font-family: 'Lexend Variable', sans-serif;
+  /*   font-family: 'Nunito', sans-serif; */
+  font-size: 50px;
+  /* margin-top: 4rem; */
+  margin-bottom: 2rem;
+}
+
+
+/* This is the single highlighted word in the main header*/
+.highlighted_header{
+  font-family: 'Lexend Variable', sans-serif;
+  color: #d1b0ff;
+}
+
+
+/* The smaller text under the big header */
+.under_header_text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: #212529;
+}
+
+/* hhhhhhhhhhhhhhhhhhhh HEADER hhhhhhhhhhhhhhhhhhhh */
+
+
+
+
+/* The text under the input box's */
+.under_input_placeholder{
+  color: black;
+  font-family: 'Segoe UI', bold;
+  font-size: 20px;
+}
+
+
+
+
+
+/* This is the same css as the button of the Register Button on the login Page */
+.login_Link{
+  margin-top: 2rem;
+  color: #0E4579;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  display: block;
+  text-decoration: none;
+}
+
+
+/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr REGISTER FORM rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* lllllllllllllllllllllllllllllllllllllllllllllllll LOGIN FORM lllllllllllllllllllllllllllllllllllllllllllllllllll */
+
+
+/*  This is the main white rounded background for the form  */
+.main_form_div{
+  display: inline-block;
+  background: #FFFFFF;
+  max-width: 434px; 
+  height: 700px;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
+
+/*  This is the title text that says Login  */
+.login_Header{
+  font-family: 'Lexend Variable', sans-serif;
+  /*   font-family: 'Nunito', sans-serif; */
+  font-size: 50px;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+
+/*  This is the form that the inputs are inside of  */
+.login_Form{
+  display: inline-block;
+  align-items: center;
+  height: 270px;
+  width: 350px;
+  margin-bottom: 130px;
+}
+
+
+/*  Actual text user enters  */
+.login_Inputs{
+  margin-top: 1rem;
+  font-family: 'Segoe UI', bold;
+  font-size: 23px;
+  border: none;
+
+  color: #B58DED;
+
+  /* Padding of the text from the left wall */
+  padding-left: 20px;
+
+
+  /* Below makes the rounded pill like object*/
+  align-content: center;
+  border-radius: 22px;
+
+  /* Space between each text box */
+  margin-bottom: 20px;
+
+
+  width: 90%;
+  height: 64px;
+
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* WHEN A USER AUTO COMPLETES THE EMAIL OR PASSWORD MAKE TEXT COLOR SAME AS MY FOCUS AND MAKE THE BACKGROUND TRANSPARENT INSTEAD OF GRAY*/
+/* input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 600000s 0s, color 600000s 0s;
+} */
+
+
+/* When user is inside of the textbox */
+.login_Inputs:focus {
+  color: #FFFFFF;
+  background: #d1b0ff;
+
+  outline: none;
+  -webkit-animation: jello-textboxs 0.9s both;
+	        animation: jello-textboxs 0.9s both;
+}
+@-webkit-keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-textboxs {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+
+/*  Big Login Button that user clicks to go to home page  */
+.login_Button {
+  margin-top: 30px;
+  width: 165px;
+  height: 60px;
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Lexend Variable', sans-serif;
+  /* font-family: 'Montserrat'; */
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for smooth effect */
+}
+
+.login_Button:hover, .login_Button:focus {
+  -webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+/*    */
+.register_Link{
+  margin-top: 2rem;
+  color: #0E4579;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  display: block;
+  text-decoration: none;
+}
+
+
+/* lllllllllllllllllllllllllllllllllllllllllllllllll LOGIN FORM lllllllllllllllllllllllllllllllllllllllllllllllllll */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ADD NEW BUG FORM aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+
+/* This is for the text above the text inputs */
+.form_labels{
+  font-size: 35px;
+  font-family: 'Segoe UI', bold;
+}
+
+
+/* This is the textarea thats expandable for the bugs description*/
+.text_area_input{
+  padding-top: 15px;
+  
+}
+
+
+
+
+/* This is just to make the width smaller and to overwrite the form_inputs css for 100% width  */
+.steps_to_reproduce_form_input{
+
+  width: 80% !important;
+
+}
+
+
+
+
+
+
+
+
+/* Adds the scrolling up and down on the steps to reproduce in AddNewBug*/
+.steps_to_reproduce_scroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  padding-left: auto;
+  padding-right: auto;
+
+  margin-bottom: 10px;
+  height: 185px;
+
+
+  /* Use Flexbox to space items vertically */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Items stretch to full width */
+  gap: 10px; /* Adjust the gap between items as needed */
+}
+
+
+
+
+
+/* Add this to your CSS file */
+.custom-input {
+  width: 100%; /* You can adjust this value according to your design */
+  max-width: 200px; /* Add a maximum width if needed */
+}
+
+
+
+/* Custom scrollbar for WebKit/Blink browsers (Chrome, Safari, Opera) */
+.steps_to_reproduce_scroll::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.steps_to_reproduce_scroll::-webkit-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.steps_to_reproduce_scroll::-webkit-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+/* Custom scrollbar for Firefox */
+.steps_to_reproduce_scroll {
+  scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: #B58DED #f1f1f1; /* Color of the scrollbar thumb and track */
+}
+
+/* Custom scrollbar for IE/Edge */
+.steps_to_reproduce_scroll {
+  -ms-overflow-style: none; /* Disable IE/Edge scrollbar */
+}
+
+.steps_to_reproduce_scroll::-ms-scrollbar-thumb {
+  background-color: #B58DED; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the thumb */
+}
+
+.steps_to_reproduce_scroll::-ms-scrollbar-track {
+  background-color: #d1b0ff; /* Color of the scrollbar track */
+}
+
+
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ADD NEW BUG FORM aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

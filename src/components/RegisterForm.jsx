@@ -48,7 +48,8 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
 
     // If no email is there say required : if otherwise : the email doesn't have @ say its required : if all good : do nothing " "
     const emailError = !email ? "Email is required" : 
-    !email.includes("@") ? "Email must contain @" : "";
+    !email.includes("@") || !email.split('@')[1].trim().includes('.') ? "Email must contain a valid domain" : "";
+    // Above the email must have an @, text behind the @, and after that text a . to allow for the .com, .net 
 
     // If no password say its required : if otherwise : the length is less than 8 say must be at least 8 : if all good : do nothing " "
     const passwordError = !password ? "Password is required" :
@@ -102,6 +103,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
       }
     {/* xxxxx ERROR HANDLING xxxxx */}
 
+    console.log('Current Date:', new Date().toLocaleString('en-US'));
 
 
     {/* SUCCESS  IF NO ERRORS POST REGISTER TO SERVER  SUCCESS */}
@@ -132,6 +134,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
       // Makes an object and plugs it into fullName that has the users name and the time it should expire
       const user = {
         fullName : response.data.fullName,
+        users_id: response.data.users_id,
         expiration : expirationTime,
 
         // readable_expiration: new Date(expirationTime).toLocaleString("en-US", {
@@ -202,11 +205,11 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
       <div className="row gx-lg-5 align-items-center">
         <div className="col-lg-6 mb-5 mb-lg-0">
           <h1 className="my-5 display-3 fw-bold main_header">
-            Register To Report Your Very Own 
+            Register To Shoot  
             <span className="highlighted_header"> Bugs</span>
           </h1>
           <p className="under_header_text">
-            Create an account and be able to Create your very own bugs. Explore what others have to say and view their bugs. 
+            Create an account and be able to Create your very own bugs and Shoot Them. Explore what others have to say and view their bugs. 
           </p>
         </div>
 
@@ -216,10 +219,16 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
             <div className="card-body py-5 px-md-5">
               <form>
 
+                <h1 className="main_header     text-center">Create an Account</h1>
 
                 {/* Full Name */}
                 <div className="form-outline mb-4">
-                  <input value={fullName} name="fullName" type="text" id="fullName" className="register_inputs"   onChange={(e) => handleInputChange(e, setFullName)}  required/>
+                  <input value={fullName} name="fullName" type="text" id="fullName" 
+                  className="form_inputs"   
+                  onChange={(e) => handleInputChange(e, setFullName)}  
+                  required    
+                  autoFocus
+                  />
                   <label  className="under_input_placeholder" htmlFor="fullName">Full Name</label>
                 </div>
 
@@ -228,13 +237,21 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
                 <div className="row">
                   <div className="col-md-6 mb-6">
                     <div className="form-outline">
-                      <input value={givenName} name="givenName" type="text" id="givenName" className="register_inputs" onChange={(e) => handleInputChange(e, setGivenName)}  required/>
+                      <input value={givenName} name="givenName" type="text" id="givenName" 
+                      className="form_inputs" 
+                      onChange={(e) => handleInputChange(e, setGivenName)} 
+                      required
+                      />
                       <label  className="under_input_placeholder" htmlFor="givenName">Given name</label>
                     </div>
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input value={familyName} name="familyName" type="text" id="familyName" className="register_inputs"  onChange={(e) => handleInputChange(e, setFamilyName)}  required/>
+                      <input value={familyName} name="familyName" type="text" id="familyName" 
+                      className="form_inputs"  
+                      onChange={(e) => handleInputChange(e, setFamilyName)}  
+                      required
+                      />
                       <label  className="under_input_placeholder" htmlFor="familyName">Family name</label>
                     </div>
                   </div>
@@ -243,14 +260,14 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
 
                 {/* Email input --> */}
                 <div className="form-outline mb-4">
-                  <input value={email} name="email" type="email" id="email" className="register_inputs"  onChange={(e) => handleInputChange(e, setEmail)}  required/>
+                  <input value={email} name="email" type="email" id="email" className="form_inputs"  onChange={(e) => handleInputChange(e, setEmail)}  required/>
                   <label className="under_input_placeholder" htmlFor="email">Email address</label>
                 </div>
 
 
                 {/* Password input --> */}
                 <div className="form-outline mb-4">
-                  <input value={password} name="password" type="password" id="password" className="register_inputs"  onChange={(e) => handleInputChange(e, setPassword)}  required/>
+                  <input value={password} name="password" type="password" id="password" className="form_inputs"  onChange={(e) => handleInputChange(e, setPassword)}  required/>
                   <label className="under_input_placeholder" htmlFor="password">Password</label>
                 </div>
 
@@ -260,7 +277,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
 
                   {/* IF error is truthy show the error this if not it wont display */}
                   {error && 
-                    <div className="alert alert-danger" role="alert">
+                    <div className="alert alert-danger  text-center" role="alert">
                       <p className="error_message">{error}</p>
                     </div>
                   }
@@ -270,7 +287,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
 
                 {/* Submit button --> */}
                 <div className="text-center">
-                  <button type="submit" className="register_button" onClick={(evt) => registerNewUser(evt)}>
+                  <button type="submit" className="submit_form_button" onClick={(evt) => registerNewUser(evt)}>
                     Register
                   </button>
                 </div>

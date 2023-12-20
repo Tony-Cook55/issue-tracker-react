@@ -23,7 +23,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
                               // Allows us to get the fullName from the user logging in and setting their fullName
-export default function NavBar(      {userFullName,setUserFullName, usersIdFromLocalStorage, setUsersIdFromLocalStorage,}       ){
+export default function NavBar(      {userFullName,setUserFullName, usersIdFromLocalStorage, setUsersIdFromLocalStorage, showToast}       ){
   
 
   const navigateToAnotherPage = useNavigate();
@@ -34,31 +34,67 @@ export default function NavBar(      {userFullName,setUserFullName, usersIdFromL
     evt.preventDefault();
 
     // axios will go to backend logout code and set the name to nothing and remove the fullName from local Storage
-    axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,
-    {}, 
-    {withCredentials: true})
+    axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`,{}, {withCredentials: true})
     .then(response => {
+      console.log("Logout API response:", response.data);
+
+
       setUserFullName("");
       localStorage.removeItem("fullName");
       localStorage.removeItem("roles");
       localStorage.removeItem("usersId");
-      //console.log(response.data);
+
+      // Remove bugsShot when user logs out
+      localStorage.removeItem("bugsShot");
+
+
+            // Print the current values for debugging
+            console.log("After removal:", {
+              fullName: localStorage.getItem("fullName"),
+              roles: localStorage.getItem("roles"),
+              usersId: localStorage.getItem("usersId")
+            });
 
       // Goes to home page on successful logout
       navigateToAnotherPage("/");
+      showToast(response.data, "success");
+
       window.location.reload();
     })
     .catch(error => console.log(error));
   }
 
-
-  // THIS ALLOWS WHEN A LINK IS CLICKED TO REFRESH THE PAGE ALLOWING THE NAVBAR WRAPPER TO RESET
-  const refreshNavbar = () => {
-    window.location.reload();
-  };
 // LOLOLOLOLOLOLOLOL  USER LOGS OUT  LOLOLOLOLOLOLOLOL //
 
 
+
+
+
+
+/* ^^^^^^^^^^^^ ON LINK CLICK REFRESH AND SCROLL TO TOP ^^^^^^^^^^^^ */
+
+// THIS ALLOWS WHEN A LINK IS CLICKED TO REFRESH THE PAGE ALLOWING THE NAVBAR WRAPPER TO RESET
+const refreshNavbar = () => {
+  window.location.reload();
+};
+
+// Scrolls to the top of the page
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth" // Use "smooth" for a smooth scrolling effect, or "auto" for instant scrolling
+  });
+};
+
+// const RefreshAndScrollOnClick = () => {
+//   scrollToTop();
+//   refreshNavbar();
+
+//   setTimeout(() => {
+//     refreshNavbar();
+//   }, 100); 
+// };
+/* ^^^^^^^^^^^^ ON LINK CLICK REFRESH AND SCROLL TO TOP ^^^^^^^^^^^^ */
 
 
 
@@ -106,11 +142,18 @@ const [userProfile, setUserProfile] = useState({});
 
             
               <div className="wrapper">
-                <ul>
+                <ul className="navbar_ul">
                   {/* /////// HOME PAGE /////// */}
                   <li className="nav-item"  onClick={refreshNavbar}>
                     <NavLink to="/" className="nav-link">
                       Home
+                    </NavLink>
+                  </li>
+
+
+                  <li className="nav-item"  onClick={refreshNavbar}  >
+                    <NavLink to="bugGame" className="nav-link">
+                      Bug Shooter
                     </NavLink>
                   </li>
                   {/* /////// HOME PAGE /////// */}
@@ -149,10 +192,20 @@ const [userProfile, setUserProfile] = useState({});
                     {userFullName && 
                       <div className="cursor_pointer">
 
+
+                        {/* /////// LEADER BOARD /////// */}
+                        <li className="nav-item"  onClick={refreshNavbar}>
+                          <NavLink to="/leaderBoard" className="nav-link">
+                            Leaderboard
+                          </NavLink>
+                        </li>
+                        {/* /////// LEADER BOARD  /////// */}
+
+
                         {/* /////// ADD BUG /////// */}
                         <li className="nav-item"  onClick={refreshNavbar}>
                           <NavLink to="/report" className="nav-link">
-                            Report Bug
+                            Add Bug
                           </NavLink>
                         </li>
                         {/* /////// ADD BUG /////// */}

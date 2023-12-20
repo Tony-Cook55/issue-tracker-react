@@ -18,20 +18,27 @@
 }
 
 
-/* Adds the scrolling up and down on the comments*/
-.comment_list{
-	overflow-y: auto;
-	height: 500px;
-}
+
+
+
+
+
+
+
+
 
 
 /* This is each and every comment */
 .single_comment{
 	border: 3px solid black;
 	background-color: #B58DED;
+  
+  /* padding: 10px; */
 
 	color: #000;
 	font-weight: bold;
+
+  border-radius: 8px;
 }
 
 

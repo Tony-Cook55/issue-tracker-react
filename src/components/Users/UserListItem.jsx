@@ -19,11 +19,29 @@ import { FaArrowLeft, FaPencilRuler } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+// ******************* IMPORTS ******************* //
+
+
 // ******************* IMPORTS ******************* //
 
 export default function UserListItem(  {userItem}  ){
 
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
 
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 return (
   <>
@@ -41,6 +59,15 @@ return (
             <div className="background_circle_top_right"></div>
             <div className="background_circle_bottom_left"></div>
 
+
+            {/* PROFILE PICTURE */}
+            <div className="item_section_container">
+              <img src="/images/user_profile_circle_filled.png" className="userListItem_profile_pic  rounded-circle" alt="User Avatar" />
+            </div>
+            {/* PROFILE PICTURE */}
+
+
+
             {/* USER NAME & ID */}
             <div className="list_item_title">
               {userItem.fullName}
@@ -53,10 +80,10 @@ return (
 
             {/* ROLE */}
             <div className="item_section_container">
-                <span className="item_section_title">Role</span>
-                <p className="item_highlighted">
-                <p>{Array.isArray(userItem.role) ? userItem.role.join(', ') : userItem.role}</p>
-                </p>
+              <span className="item_section_title">Role</span>
+              <p className="item_highlighted">
+                {Array.isArray(userItem.role) ? userItem.role.join(', ') : userItem.role}
+              </p>
             </div>
             {/* ROLE */}
 

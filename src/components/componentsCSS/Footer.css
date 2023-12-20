@@ -1,0 +1,35 @@
+
+
+.footer_container{
+  padding-top: 150px;
+}
+
+
+.footer_Links{
+  text-shadow: 0 1px 1px #B58DED, 0 1px 1px #B58DED, 0 2px 1px #B58DED;
+
+  transition: all 0.2s ease 0s;
+}
+
+.btn-floating:hover{
+  font-size: 20px;
+  transition: all 0.2s ease 0s;
+}
+
+
+
+
+/* This is the back to top button */
+.back_to_top_background_footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  transition: all 0.3s ease 0s;
+}
+
+
+.back_to_top_background_footer:hover{
+  transform: scale(1.2);
+}

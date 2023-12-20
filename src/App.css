@@ -68,64 +68,16 @@ body::-webkit-scrollbar-thumb {
 /* ttttttt TOASTIFY ttttttt */
 
 
-/* BUG LOGO ANIMATION */
-/* 
-  <div className="bug_container">
-    <img src="/images/colored_bug_logo.png" className="bug_pic" ></img>
-  </div> 
-*/
 
 
 
-.bug_pic{
 
-  /* z-index: 999; */
+            /* CUSTOM CURSORS */
 
-  pointer-events: none;
+            /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
+            /* cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto; */
 
-  width: 150px;
-
-}
-
-.bug_image_container{
-
-}
-
-
-
-/* @keyframes fly {
-  0%{
-    transform: translate(0, 100vh);
-  }
-  50%{
-    transform: translate(100vw, 0);
-  }
-  100%{
-    transform: translate(0, 100vh);
-  }
-} */
-
-
-@keyframes scurry {
-  0%, 100% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  25% {
-    transform: translate(-50%, -50%) rotate(15deg);
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  75% {
-    transform: translate(-50%, -50%) rotate(-15deg);
-  }
-}
-
-.bug_pic:hover{
-  transform: scale(1.5);
-}
-
-/* BUG LOGO ANIMATION */
+            /* CUSTOM CURSORS */
 
 
 
@@ -136,7 +88,15 @@ body::-webkit-scrollbar-thumb {
 
 
 
-/* aaaaaaaaaaaaaaaaaa ANIMATIONS aaaaaaaaaaaaaaaaaa*/
+
+
+
+
+
+
+
+
+/* aaaaaaaaaaaaaaaaaa ANIMATIONS aaaaaaaaaaaaaaaaaa */
 
 
 /* ANIMATION USED IN: 

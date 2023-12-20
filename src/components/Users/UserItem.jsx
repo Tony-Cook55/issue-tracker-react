@@ -26,6 +26,13 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
+
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
 // ******************* IMPORTS ******************* //
 
 
@@ -60,6 +67,19 @@ import { useState, useEffect } from "react";
 export default function UserItem(){
 
 
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
   // Lets us get the User Id of the specific User we are on
   const userId = useParams().userId;
 
@@ -67,10 +87,11 @@ export default function UserItem(){
   const [userProfile, setUserProfile] = useState({});
 
 
+  // -+ -+ -+ CAN USER UPDATE AND DELETE USER +- +- +- //
   const [userFullNameFromLocalStorage, setUserFullNameFromLocalStorage] = useState("");
   const [rolesFromLocalStorage,setRolesFromLocalStorage] = useState(null);
   const [usersIdFromLocalStorage,setUsersIdFromLocalStorage] = useState(null);
-
+// -+ -+ -+ CAN USER UPDATE AND DELETE USER +- +- +- //
 
 
   //!!!!!!!!!!!!!!!!!!  SEARCHING BY ID !!!!!!!!!!!!!!!! //
@@ -110,14 +131,14 @@ export default function UserItem(){
 
 
 
-
+// -+ -+ -+ CAN USER UPDATE  USER +- +- +- //
     // THIS CHECKS both the roles of the user and to see if there id is in local storage is also the id of the user who this is
     const canUserEditThisUser =
       rolesFromLocalStorage &&
       (rolesFromLocalStorage.includes('Technical Manager')
       // || userProfile._id === usersIdFromLocalStorage
       );
-
+// -+ -+ -+ CAN USER UPDATE  USER +- +- +- //
 
 
 
@@ -161,12 +182,15 @@ return (
       <div className="user_pic_name_container">
         <div className="profile_box">
           <div className="profile_card">
-              <h2><strong>{greetingMessage}</strong></h2>
-              <img src="/images/wide_ear_dog.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
-              {/* <img src="/images/user_profile_body.png" className="user_profile_pic  rounded-circle" alt="User Avatar" /> */}
-              <h2 className="users_name"><strong>{userProfile.fullName}</strong></h2>
-
-              <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p>
+              <h1 className=""><strong>{userProfile.fullName}</strong></h1>
+              <img src="/images/user_profile_circle_filled.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
+              {/* <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p> */}
+              <p>
+                Last Time Logged In: <br/> {userProfile.lastTimeUserLoggedIn
+                  ? userProfile.lastTimeUserLoggedIn
+                  : "New Account"
+                }
+              </p>
           </div>
         </div>
       </div>
@@ -192,7 +216,7 @@ return (
 
 
 {/* BEGINNING OF ACCORDION */}
-<div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+<div className="accordion accordion-flush" id="">
 
 
 

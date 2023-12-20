@@ -1,0 +1,572 @@
+
+
+
+/* THIS IS THE IMPORT FOR THE PIXEL FONT FOR SCOREBOARD */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+
+
+
+
+.bug_game_entrance_animation{
+  animation: bug-slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes bug-slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* sssssssssssssssssssss SCORE BOARD ssssssssssssssssssssss */
+
+
+.score_board_container {
+
+  max-width: 575px;
+  max-height: 385px;
+  background: #B58DED;
+
+  border-radius: 12px;
+  border: 3px solid white;
+
+  color: white;
+  /* padding: 68px 82px;
+  gap: 100px; */
+  box-shadow: 0px 0px 3px black;
+}
+
+.sb_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.score_board_title{
+  font-weight: 700;
+  font-size: 50px;
+  /* line-height: 35px; */
+  text-align: center;
+
+  font-family: "Silkscreen", cursive;
+
+  color: white;
+}
+
+
+.number_display {
+  width: 155px;
+  height: 120px;
+  background: #080001;
+  border-radius: 5px;
+
+  font-family: 'Silkscreen', sans-serif;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 90px;
+  line-height: 110px;
+  text-align: center;
+  color: #f94f6d;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .score_board_container {
+    max-height: 385px;
+    background: #B58DED;
+  
+    border-radius: 0px;
+    border: transparent;
+  
+    color: white;
+    /* padding: 68px 82px;
+    gap: 100px; */
+    box-shadow: 0px 0px 3px black;
+  }
+
+
+  
+  .sb_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .score_board_title{
+    font-weight: 700;
+    font-size: 30px;
+    /* line-height: 35px; */
+    text-align: center;
+  
+    font-family: "Silkscreen", cursive;
+  
+    color: white;
+  }
+  
+
+  .number_display {
+    width: 125px;
+    height: 120px;
+    background: #080001;
+    border-radius: 5px;
+  
+    font-family: 'Silkscreen', sans-serif;
+  
+    font-style: normal;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 110px;
+    text-align: center;
+    color: #f94f6d;
+  }
+}
+
+
+
+
+
+
+.audioBtn{
+  background-color: transparent;
+  border: transparent;
+  font-size: 20px;
+  margin: 0;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.audioBtn:hover, .audioBtn:focus{
+  background-color: transparent;
+  border: transparent;
+  transform: scale(1.1);
+}
+
+
+/* sssssssssssssssssssss SCORE BOARD ssssssssssssssssssssss */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */
+
+
+.bug-container {
+  height: 90vh; 
+  overflow: hidden;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  transition: all 0.3s ease-in-out;
+  /* background-color: #B58DED; */
+
+  border-radius: 12px;
+  border: 3px solid white;
+
+        /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
+        cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto;
+
+
+  /* Makes the entire container Not be able to be selected by cursor ~ADD ON DIV ->  draggable="false"  onDragStart={(e) => e.preventDefault()}*/ 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+
+
+
+  -ms-user-select: none;
+}
+
+
+
+/* This will make the object its given to (list-view), to disappear upwards when screen scrolls down */
+/* .fade_in_view{
+  animation: 
+  animate-in linear forwards,
+  animate-out linear forwards;
+  animation-timeline: view();
+  animation-range: entry, exit;
+  }
+@keyframes animate-in {
+0% { opacity: 0; transform: translateY(100%); }
+100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes animate-out {
+0% { opacity: 1; transform: translateY(0); }
+100% { opacity: 0; transform: translateY(-100%); }
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+  .fade_in_view {
+    animation: none; 
+  }
+} */
+
+
+
+
+/* This is the actual image of a bug */
+.bug_fly_img{
+  width: 220px;
+  padding: 30px;
+
+
+
+
+
+
+  /* background-color: #B58DED; */
+}
+@media only screen and (max-width: 768px) {
+  .bug_fly_img{
+    width: 130px;
+  }
+}
+
+
+
+
+
+.bug_flys_across_screen > * {
+
+
+/* COMMENT BELOW IS NEEDED FOR JUST IT DOING 1 ANIMATION */
+  /* animation: bug_fly 25s linear infinite;
+  position: absolute !important;
+	top: 0;
+	left: 0;
+	transform: translateX(-120%) translateY(-120%) rotateZ(0);
+	position: fixed; */
+
+
+	animation-delay: 1s;
+	z-index: 999999;
+
+
+  /* Bug Rotates for first Time Seeing */
+  animation: bug_rotation 1s infinite linear;
+
+
+  /* When a user is hovered over this section this image will appear. IT MUST BE AT MAX 128px x 128px*/
+  cursor: url("/public/images/crosshair_small_good_hitbox.png"), auto;
+}
+
+/* Rotates The Bug Side to Side*/
+@keyframes bug_rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+
+
+
+
+
+/* These animation Classes Will Be called to Randomly Called With Animations On Each Shot */
+.bug_fly_animation_1 {
+  animation: bug_fly 20s linear infinite;
+  /* background-color: #f94f6d; */
+}
+
+.bug_fly_animation_2 {
+  animation: bug_fly_reversed 25s linear infinite;
+  /* background-color: aqua; */
+}
+
+.bug_fly_animation_3 {
+  animation: flyingAnimation 25s linear infinite;
+  /* background-color: rgb(72, 255, 0); */
+}
+
+.bug_fly_animation_4 {
+  animation: fly_1 20s linear infinite;
+  /* background-color: rgb(212, 0, 255); */
+}
+
+.bug_fly_animation_5{
+  animation: ghost_fly 20s linear infinite;
+  /* background-color: rgb(255, 230, 0); */
+}
+
+
+
+
+
+
+@keyframes bug_fly {
+  98.001%, 0% {
+    transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
+  }
+
+  10% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  15%, 18% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
+  }
+
+  30% {
+    transform: translateX(-150%) translateY(10vh) rotateZ(-180deg);
+  }
+
+  40%, 43% {
+    transform: translateX(-200%) translateY(-30%) rotateZ(-180deg);
+  }
+
+  55% {
+    transform: translateX(120vw) translateY(30vh) rotateZ(0deg);
+  }
+
+  65%, 68% {
+    transform: translateX(20vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  80% {
+    transform: translateX(50vw) translateY(70vh) rotateZ(0deg);
+  }
+
+  95% {
+    transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
+  }
+}
+
+@keyframes bug_fly_reversed {
+  98.001%, 0% {
+    display: block;
+    transform: translateX(200%) translateY(100vh) rotateZ(0deg);
+  }
+
+  10% {
+    transform: translateX(-100vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  15%, 18% {
+    transform: translateX(-100vw) translateY(-30%) rotateZ(0deg);
+  }
+
+  30% {
+    transform: translateX(150%) translateY(10vh) rotateZ(-180deg);
+  }
+
+  40%, 43% {
+    transform: translateX(200%) translateY(-30%) rotateZ(-180deg);
+  }
+
+  55% {
+    transform: translateX(-120vw) translateY(30vh) rotateZ(0deg);
+  }
+
+  65%, 68% {
+    transform: translateX(-20vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  80% {
+    transform: translateX(-50vw) translateY(70vh) rotateZ(0deg);
+  }
+
+  95% {
+    transform: translateX(-10vw) translateY(100vh) rotateZ(0deg);
+  }
+}
+
+
+@keyframes flyingAnimation {
+  0%, 98.001% {
+    transform: translateX(-200%) translateY(100vh) rotateZ(0deg);
+  }
+
+  10% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  15%, 18% {
+    transform: translateX(100vw) translateY(-30%) rotateZ(0deg);
+  }
+
+  30% {
+    transform: translateX(-150%) translateY(10vh) rotateZ(-180deg);
+  }
+
+  40%, 43% {
+    transform: translateX(-200%) translateY(-30%) rotateZ(-180deg);
+  }
+
+  55% {
+    transform: translateX(120vw) translateY(30vh) rotateZ(0deg);
+  }
+
+  65%, 68% {
+    transform: translateX(20vw) translateY(-30%) rotateZ(180deg);
+  }
+
+  80% {
+    transform: translateX(50vw) translateY(70vh) rotateZ(0deg);
+  }
+
+  95% {
+    transform: translateX(10vw) translateY(100vh) rotateZ(0deg);
+  }
+}
+
+
+@keyframes fly_1 {
+  98.001%, 0% {
+    transform: translateX(-200%) translateY(10vh) rotateZ(0deg);
+  }
+
+  10% {
+    transform: translateX(80vw) translateY(-20%) rotateZ(160deg);
+  }
+
+  15%, 18% {
+    transform: translateX(120vw) translateY(-40%) rotateZ(0deg);
+  }
+
+  30% {
+    transform: translateX(-100%) translateY(20vh) rotateZ(-140deg);
+  }
+
+  40%, 43% {
+    transform: translateX(-150%) translateY(-10%) rotateZ(-180deg);
+  }
+
+  55% {
+    transform: translateX(60vw) translateY(50vh) rotateZ(20deg);
+  }
+
+  65%, 68% {
+    transform: translateX(40vw) translateY(-30%) rotateZ(120deg);
+  }
+
+  80% {
+    transform: translateX(-50vw) translateY(80vh) rotateZ(-40deg);
+  }
+
+  95% {
+    transform: translateX(-10vw) translateY(10vh) rotateZ(0deg);
+  }
+}
+
+@keyframes ghost_fly {
+	0% {
+
+		transform: translate(-200%,110vh) rotateZ(0deg);
+	}
+
+	12.5% {
+		transform: translate(120vw,-120%) rotateZ(20deg);
+	}
+
+	25% {
+		transform: translate(-200%,50vh) scale(1.75) rotateZ(-20deg);
+	}
+
+	37.5% {
+		transform: translate(-200%,-120%) rotateZ(-40deg);
+	}
+
+	50% {
+		transform: translate(100vw,50vh) rotateZ(0deg);
+	}
+
+	62.5% {
+		transform: translate(20vw,100vh) rotateZ(20deg);
+	}
+	75% {
+		transform: translate(200%,100vh) rotateZ(20deg);
+	}
+	87.5% {
+		transform: translate(50vw,-200%) scale(1.75) rotateZ(20deg);
+	}
+
+	100% {
+		transform: translate(-200%,110vh) rotateZ(0deg);
+	}
+}
+
+
+
+/* @keyframes up_and_down {
+  0% {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+    -moz-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+} */
+
+
+/* fly fly fly fly fly fly fly  BUG FLYING IMAGE fly fly fly fly fly fly fly */
+
+
+
+
+
+
+
+

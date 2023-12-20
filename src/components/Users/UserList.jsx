@@ -1,3 +1,7 @@
+
+/* eslint-disable */
+
+
 // ******************* IMPORTS ******************* //
 
 
@@ -21,10 +25,13 @@ import { Link } from "react-router-dom";
 
 import UserListItem from "./UserListItem";
 
+import { FaSearch, FaArrowUp } from "react-icons/fa"
 
-import LoginFormRequiredMsg from "../LoginRequiredMsg";
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+  import { IsUserLoggedIn } from "../IsUserLoggedIn";
 
-
+  import LoginFormRequiredMsg from "../LoginRequiredMsg";
+    /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
 
 // ******************* IMPORTS ******************* //
 
@@ -38,6 +45,20 @@ import LoginFormRequiredMsg from "../LoginRequiredMsg";
 
 export default function UserList(){
 
+
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/        // import { IsUserLoggedIn } from "../IsUserLoggedIn";      import LoginFormRequiredMsg from "../LoginRequiredMsg";  
+
+  // Use the IsUserLoggedIn component to get authentication information 
+  const { isLoggedIn, userFullName, usersId, roles } = IsUserLoggedIn(); // Once logged in these will become not null
+
+  // if not logged in and no info is passed from local storage from IsUserLoggedIn.jsx This is false and send Message
+  if (!isLoggedIn) {
+    return <LoginFormRequiredMsg />;
+  }
+  /* LLLLLLLLLLL  IS USER LOGGED IN  LLLLLLLLLLL*/
+
+
+
   
   const [users, setUser] = useState([]);
 
@@ -47,19 +68,16 @@ export default function UserList(){
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
+    // CHANGE THIS TO CHANGE THE AMOUNT OF ITEMS ON THE PAGE
+    const pageSize = 6;
+    const pageNumber = 1;
+
   const [searchParams, setSearchParams] = useState({keywords: "", role:"", maxAge:"", minAge:"", sortBy:""})
   // PAGES AND NEW PAGES //
 
 
 
-  // Retrieve the user's info object from local storage
-  const userInfo = JSON.parse(localStorage.getItem('fullName'));
 
-  // Extract the fullName from the userInfo object
-  const userFullName = userInfo ? userInfo.fullName : null;
-
-  // Check if the user is logged in by verifying the existence of fullName
-  const isLoggedIn = userFullName !== null;
 
 
 
@@ -72,12 +90,12 @@ export default function UserList(){
     if (isLoggedIn) {
       axios.get(`${import.meta.env.VITE_API_URL}/api/users/list/`, 
       { withCredentials: true,
-        params: {pageSize: 6, pageNumber: 1}
+        params: {pageSize, pageNumber}
       })
         .then(response => {
           setUser(response.data.users);
 
-          setTotalPages(Math.ceil(response.data.totalCount / 3)); // Total count is returned
+          setTotalPages(Math.ceil(response.data.totalCount / pageSize)); // Total count is returned
           setCurrentPage(1);
         })
         .catch(error => console.log(error));
@@ -100,7 +118,7 @@ export default function UserList(){
 
     const newSearchParams = {keywords, role, maxAge, minAge, sortBy};
     setSearchParams(newSearchParams);
-    fetchUsers({...newSearchParams, pageSize: 6, pageNumber: 1})
+    fetchUsers({...newSearchParams, pageSize, pageNumber})
   }
 
 
@@ -110,12 +128,12 @@ export default function UserList(){
     //  console.log(`Search params are: ${JSON.stringify(params)}`);
     axios.get(`${import.meta.env.VITE_API_URL}/api/users/list/`,
     {withCredentials: true,
-      params: {...params, pageSize: 6} 
+      params: {...params, pageSize} 
     }
     )
     .then(response => {
       setUser(response.data.users); // Assuming response contains users
-      setTotalPages(Math.ceil(response.data.totalCount / 6)); // Total count is returned
+      setTotalPages(Math.ceil(response.data.totalCount / pageSize)); // Total count is returned
       // Setting the page to 1 when searching
       setCurrentPage(params.pageNumber || 1);
     })
@@ -136,63 +154,63 @@ export default function UserList(){
   // This will reload the list of items for every time the page button is clicked
   const handlePageChange = (pageNumber) => {
     fetchUsers({...searchParams, pageNumber});
+
+    // Smooth scroll to the top on click
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
 
 
 
-  const [panelOpen, setPanelOpen] = useState(false);
-
-  const togglePanel = () => setPanelOpen(!panelOpen);
 
 
 
+  /* Used in opening the search inputs */
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  /* Used in opening the search inputs */
+
+
+
+  
   return( 
     <>
 
 
 
-{/* Check if the user is logged in before rendering content */}
-{!isLoggedIn ? ( /* !isLoggedIn &&  bugs.length*/
-        <h2>
-          <Link to="/login">
-            <LoginFormRequiredMsg />
-          </Link>
-        </h2>
-      ) : 
-      // !users.length ? (
-      //   // <h1 className="no_bugs_found_message">There Are No Users</h1>
-      //   <div className="loading_spinner_container ">
-      //     <span className="loading_spinner"></span>
-      //   </div>
-      // ) :
-      (
+<div>
+      <div id="mySidebar" className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
 
+            {/* Number of Results Found */}
+            <h1 className="items_found_title">
+              {users.length}
+              <br/>
+              Users Found
+            </h1>
+            {/* Number of Results Found */}
 
-    <div>
-        <div className={`search-panel ${panelOpen ? 'open' : ''}`}>
-          <button className="toggle-button" onClick={togglePanel}>
-            Toggle Search
-          </button>
-
-          <div className="panel-content">
             <form onSubmit={(evt) => onSearchFormSubmit(evt)}>
                         {/* Searching for USERS by Keywords */}
-                        <div className="form-group">
-                          <label htmlFor="keywords" className="form-label">Keywords</label>
-                          <input type="text" className="form-control" id="keywords" placeholder="Search Users By Keywords" />
+                        <div className="form-group   search_input_div">
+                          <input type="text" className="edit_form_input_center  item_being_edited   form-control   text-center"  id="keywords" placeholder="Search Users By Keyword" />
                         </div>
                         {/* Searching for USERS by Keywords */}
 
 
 
                         {/* ROLE */}
-                        <div className="form-group">
-                          <label htmlFor="role" className="form-label">Role</label>
-                          <select id="role" className="form-control">
+                        <div className="form-group  search_input_div">
+                          <select id="role" className="edit_form_input_center  item_being_edited   form-control   text-center">
                             <option value="">Choose User Role</option>
                             <option value="Developer" className="form-control">Developer</option>
-                            <option value="Business Analysts" className="form-control">Business Analysts</option>
+                            <option value="Business Analyst" className="form-control">Business Analysts</option>
                             <option value="Quality Analyst" className="form-control">Quality Analyst</option>
                             <option value="Product Manager" className="form-control">Product Manager</option>
                             <option value="Technical Manager" className="form-control">Technical Manager</option>
@@ -203,21 +221,19 @@ export default function UserList(){
 
 
                         {/* Max and Min AGE */}
-                        <div className="form-group">
-                          <label htmlFor="maxAge" className="form-label">Max Age</label>
-                          <input type="number" className="form-control" id="maxAge" placeholder="Max Age" />
+                        <div className="form-group  search_input_div">
+                          <input type="number" className="edit_form_input_center  item_being_edited   form-control   text-center" id="maxAge" placeholder="Max Age" min="0"  />
                         </div>
-                        <div className="form-group">
-                          <label htmlFor="minAge" className="form-label">Min Age</label>
-                          <input type="number" className="form-control" id="minAge" placeholder="Min Age" />
+                        <div className="form-group  search_input_div">
+                          <input type="number" className="edit_form_input_center  item_being_edited   form-control   text-center" id="minAge" placeholder="Min Age" min="0" />
                         </div>
                         {/* Max and Min AGE */}
+                        
 
 
                         {/* Sort By Items */}
-                        <div className="form-group">
-                          <label htmlFor="sortBy" className="form-label">Sort By</label>
-                          <select id="sortBy" className="form-control">
+                        <div className="form-group  search_input_div">
+                          <select id="sortBy" className="edit_form_input_center  item_being_edited   form-control   text-center">
                             <option value="">Select A Item To Sort By</option>
                             <option value="givenName" className="form-control">Given Name</option>
                             <option value="familyName" className="form-control">Family Name</option>
@@ -228,17 +244,34 @@ export default function UserList(){
                         </div>
                         {/* Sort By Items */}
 
-                    <button type="submit">Search</button>
+                    <button type="submit" className="submit_form_button mt-4">Search</button>
             </form>
-          </div>
-        </div>
+      </div>
+
+
+
+      <div id="main">
+        {/* The button is now part of the main content */}
+        <button className="open_search_button" onClick={toggleSidebar}>
+          {sidebarOpen ? '✕' : <FaSearch/>} {/* Toggle between ☰ (open) and ✕ (close) */}
+        </button>
+      </div>
+
+
+    </div>
+
+
+
+    <div>
+
+
+
 
 
 
 
               {/* MAPPED USERS LIST ITEM */}
               <div className="row text-center justify-content-center">
-                <h1>Users Found: {users.length} </h1>
                 {users.map((userItem) => (
                   <div key={userItem._id} className="col-lg-4 col-md-12 col-sm-12">
                     <UserListItem userItem={userItem} key={userItem._id}/>
@@ -250,36 +283,62 @@ export default function UserList(){
 
 
               {/* PAGE CHANGE */}
-              <nav aria-label="Page Navigation">
-                <ul className="pagination">
-                  {/* Returns the number page from the array then maps over each pageNumber*/}
-                  {/* If the currentPage your on is === to the number your own it will then make the class active to be blue*/}
-                  {generatePageNumbers().map((pageNumber) => (
-                    <li className={`page-item ${pageNumber === currentPage ? "active" : ""}`} key={pageNumber}>
-                      <button className="page-link" onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <div className="">
+                  <nav className="pagination_container" aria-label="Page navigation">
+
+                      <ul className="pagination justify-content-center">
+                        {/* Returns the number page from the array then maps over each pageNumber*/}
+                        {/* If the currentPage your on is === to the number your own it will then make the class active to be blue*/}
+                        {generatePageNumbers().map((pageNumber) => (
+                          <li className={`page-item ${pageNumber === currentPage ? "active" : ""}`} key={pageNumber}>
+                            <button className="page-link" onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      {/* Takes you back to the top */}
+                      <a href="#top" className="icon_link   mt-4">
+                          <div className="back_to_top_background">
+                              <FaArrowUp/>
+                          </div>
+                      </a>
+                      {/* Takes you back to the top */}
+
+                  </nav>
+              </div>
               {/* PAGE CHANGE */}
 
 
 
-              {/* NO BUGS FOUND */}
+
+
+              {/* NO USERS FOUND */}
               {!users.length ? 
               (
               <div>
-                <h1>No Users Found Please Try Again</h1>
+                  <section className="no_items_found_banner">
+                    <div className="no_items_found_content">
+
+                        <div className="drop_container">
+                            <div className="No">No</div>
+                            <div className="Results">Results</div>
+                            <div className="Found">Found</div>
+                            {/* <div className="p">P</div>
+                            <div className="s">!</div> */}
+                        </div>
+
+                    </div>
+                  </section>
               </div>
               ) : (
               <div className=" ">
                 <span className=""></span>
               </div>
               )}
-            {/* NO BUGS FOUND */}
+            {/* NO USERS FOUND */}
 
       </div>
-      )}
+
 
 
 

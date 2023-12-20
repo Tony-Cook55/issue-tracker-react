@@ -1,50 +1,126 @@
 
 
-.delete_button_background{
-  background-image: linear-gradient(120deg,  #f41414, #cc3030);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255,255,255,0.1), 2px 2px 6px 3px rgba(0,0,0,0.4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* The item holding the content inside the accordion */
+.edit_form_accordion-body{
+  /* Adds space outside accordion*/
+  margin-bottom: 100px;
+
+  /* Adds space inside accordion*/
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+/* This is any input item to center it on page */
+.edit_form_input_center{
+  width: 50%; /* Adjust the width as needed */
+  margin: auto; /* Center the select element within its container */
+
+  background-color: #B58DED;
+
+  color: #fff;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .edit_form_input_center {
+    width: 90%; 
+  }
 }
 
 
 
-.last_updated_on{
-  color: white;
+/* This is the actual options a user can click on for any select box*/
+.edit_form_select_options{
+  background-color: #fff;
+  color: #B58DED;
 }
 
 
+
+
+/* This goes on any item being edited */
 .item_being_edited{
   /* font-size: 40px; */
 
-  cursor: pointer; /* Add this to show the cursor as a pointer when editable */
+  cursor: pointer;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  /* padding: 15px; */
 
   transition: all 0.3s ease 0s;
+
 }
 
-
+/* When the edited item is hovered and entered in */
 .item_being_edited:hover , .item_being_edited:focus{
-  margin: 10px;
-  padding: 15px;
 
-  border: 1px solid black;
+  border: 5px solid #fff;
 
-  transform: scale(1.1);
+  transform: scale(1.05);
 
-  background-color: #B58DED; /* Add a background color for highlighting */
+  background-color: #f6b7f7; /* Add a background color for highlighting */
+}
 
+/* ONLY when the edited item is entered in */
+.item_being_edited:focus{
+
+  width: 60%;
+  color: #fff;
+  background-color: #f6b7f7; /* Add a background color for highlighting */
+
+  font-size: 20px;
+
+  font-weight: bold;
 }
 
 
 
-/* This will create a paper like background for anything named:  edit_mode_background*/
-.edit_mode_background:hover, .edit_mode_background:focus{
-  background-color: #e5e5f7;
-  background-size: 20px 20px;
-  background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,7 +157,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  max-height: 100vh; /* Set a maximum height for the modal */
+   /* Set a maximum height for the modal */
+  max-height: 200vh;
 }
 
 
@@ -100,7 +177,7 @@
 
 
 .modal-confirm .modal-content {
-	padding: 20px;
+	padding: 30px;
 	border-radius: 25px;
 	border: none;
 	text-align: center;
@@ -171,5 +248,174 @@
 .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
 	background: #ee3535;
 }
+
+
+
+
+
+
+
+
+
+/* xxxxxxxxx Bug Elimination Game in Modal xxxxxxxxxxx */
+
+
+
+
+/* This is the giant banner that spans the whole screen */
+.delete_fullscreen_banner {
+  height: 95vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+
+
+}
+
+
+
+
+
+
+
+/* Text inside of the banner */
+.delete_fullscreen_banner_content {
+  max-width: 900px;
+  position: relative;
+  text-align: center;
+}
+
+
+
+
+.eliminate_bug_text {
+  font-size: 50px; /* Adjust the font size based on your preference */
+  margin-bottom: 350px;
+
+	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+.bug_image {
+  width: 150px; /* Adjust the size based on your preference */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+
+  margin-left: -75px; /* Half of the bug image width */
+  margin-top: -75px; /* Half of the bug image height */
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+
+
+
+.cross_hair {
+  width: 350px; /* Adjust the size based on your preference */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+  animation: swayAnimation 5s ease-in-out infinite;
+
+  transition: all 0.3s ease 0s;
+}
+
+@keyframes swayAnimation {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateX(-60px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(60px);
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .cross_hair {
+    width: 350px; /* Adjust the size based on your preference */
+  }
+}
+
+
+
+
+/* Add a hover effect to scale up the magnifying glass */
+.cross_hair:hover {
+  transform: translate(-50%, -50%) scale(1.3); /* Adjust the scale factor based on your preference */
+  animation: none; /* Override the existing animation during hover */
+
+  transition: all 0.3s ease 0s;
+
+  cursor: pointer;
+}
+
+
+/* Show the crosshair after 2 seconds and make it smoothly transition in */
+/* .show_crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: all 0.3s ease 0s;
+
+	animation: scale-in-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+} */
+
+
+/* xxxxxxxxx Bug Elimination Game in Modal xxxxxxxxxxx */
+
+
+
+
+
+
+
+
 
 /* mmmmmmmmmmmmmmmmmmmmmmmmm CONFIRMATION MODAL mmmmmmmmmmmmmmmmmmmmmmmmm */

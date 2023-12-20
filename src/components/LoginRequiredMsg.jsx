@@ -14,9 +14,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 
 
+import "../components/componentsCSS/LoginRequiredMsg.css"
 
-// CSS
 
+import { Link } from "react-router-dom"
 
 
 
@@ -30,7 +31,43 @@ export default function LoginFormRequiredMsg( ) {
 
   return(
     <>
-      <h1> LOGIN FIX ME!</h1>
+
+
+<Link to="/login">
+
+      <div className="main_login_div ">
+        <h1 className="login_header">Please Log In To: 
+        <div className="roller">
+          <span id="rolling_login_text">
+            Report Bugs<br/>
+            View Bugs<br/>
+            And<br/> 
+            Shoot Bugs<br/>
+          </span>
+          {/* <span id="spare-time">AMONG US IS SO COOL!</span><br/> */}
+        </div>
+          
+          </h1>
+        </div>
+
+
+
+            {/* FLYING BUG 1 */}
+            <div className="first_bug_flys_across_login_screen">
+              <img className="bug_fly_login_img crosshair_cursor" src="../images/colored_bug_logo.png" alt="Bug" />
+            </div>
+            {/* FLYING BUG 1 */}
+
+
+            {/* FLYING BUG 2 */}
+            <div className="second_bug_flys_across_login_screen   ">
+              <img className="bug_fly_login_img crosshair_cursor" src="../images/colored_bug_logo.png" alt="Bug" />
+            </div>
+            {/* FLYING BUG 2 */}
+</Link>
+
+
+
     </>
   )
 
