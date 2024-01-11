@@ -182,7 +182,7 @@ return (
       <div className="user_pic_name_container">
         <div className="profile_box">
           <div className="profile_card">
-              <h1 className=""><strong>{userProfile.fullName}</strong></h1>
+              <h1 className="users_name_profile"><strong>{userProfile.fullName}</strong></h1>
               <img src="/images/user_profile_circle_filled.png" className="user_profile_pic  rounded-circle" alt="User Avatar" />
               {/* <p>Last Time Logged In: {userProfile.lastTimeUserLoggedIn}</p> */}
               <p>

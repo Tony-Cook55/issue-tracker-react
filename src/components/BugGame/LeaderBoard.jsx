@@ -97,7 +97,7 @@ export default function LeaderBoard(){
             {top5Users.map((user, index) => (
               <tr className="mapped_scores_container" key={user._id}>
                 <td className="placement">{index + 1}</td>
-                <td className="users_name">{user.fullName}</td>
+                <td className="users_name_leaderBoard">{user.fullName}</td>
                 <td className="points">{user.bugsShot || 0} Shot</td>
               </tr>
             ))}

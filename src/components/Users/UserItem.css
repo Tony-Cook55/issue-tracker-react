@@ -151,6 +151,24 @@
 
 
 
+.users_name_profile{
+  font-size: 2.6em; /* Same font size as a h1 */
+}
+
+
+/* This is the FullNames inside of the rainbow cards on user items and the profile */
+@media (max-width: 768px) {
+  .users_name_profile{
+    font-size: 16px;
+  }
+}
+
+
+
+
+
+
+
 .users_roles{
   color: #f9b234;
   font-size: 20px;

@@ -228,6 +228,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
                   onChange={(e) => handleInputChange(e, setFullName)}  
                   required    
                   autoFocus
+                  maxLength={25}
                   />
                   <label  className="under_input_placeholder" htmlFor="fullName">Full Name</label>
                 </div>
@@ -241,6 +242,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
                       className="form_inputs" 
                       onChange={(e) => handleInputChange(e, setGivenName)} 
                       required
+                      maxLength={25}
                       />
                       <label  className="under_input_placeholder" htmlFor="givenName">Given name</label>
                     </div>
@@ -251,6 +253,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
                       className="form_inputs"  
                       onChange={(e) => handleInputChange(e, setFamilyName)}  
                       required
+                      maxLength={25}
                       />
                       <label  className="under_input_placeholder" htmlFor="familyName">Family name</label>
                     </div>
@@ -267,7 +270,7 @@ export default function RegisterForm(  {setUserFullName, setUsersRole, setUsersI
 
                 {/* Password input --> */}
                 <div className="form-outline mb-4">
-                  <input value={password} name="password" type="password" id="password" className="form_inputs"  onChange={(e) => handleInputChange(e, setPassword)}  required/>
+                  <input value={password} name="password" type="password" id="password" className="form_inputs"  onChange={(e) => handleInputChange(e, setPassword)}  required  maxLength={50}/>
                   <label className="under_input_placeholder" htmlFor="password">Password</label>
                 </div>
 

@@ -416,6 +416,7 @@ function onUserDelete(evt, userId){
                         <div className="col-sm  accordion_edit_form_container">
                           {/* fullName */}
                           <textarea  id="fullName" className="edit_form_input_center  item_being_edited   form-control   text-center" 
+                            maxLength={25}
                             value={fullName} 
                             onChange={(evt) => setFullName(evt.target.value)}></textarea>
                           {/* fullName */}
@@ -446,6 +447,7 @@ function onUserDelete(evt, userId){
                     <div className="col-sm  accordion_edit_form_container">
                       {/* Given Name */}
                       <textarea  id="givenName" className="edit_form_input_center  item_being_edited   form-control   text-center  " 
+                        maxLength={25}
                         value={givenName} 
                         onChange={(evt) => setGivenName(evt.target.value)}></textarea>
                       {/* Given Name */}
@@ -477,6 +479,7 @@ function onUserDelete(evt, userId){
                     <div className="col-sm  accordion_edit_form_container">
                       {/* Family Name */}
                       <textarea  id="familyName" className="edit_form_input_center  item_being_edited   form-control   text-center  " 
+                        maxLength={25}
                         value={familyName} 
                         onChange={(evt) => setFamilyName(evt.target.value)}></textarea>
                       {/* Family Name */}
